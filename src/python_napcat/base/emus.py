@@ -1,11 +1,6 @@
-"""
-API动作定义模块
-
-该模块包含了所有可用的API端点的定义常量
-"""
-
+# -*- coding: utf-8 -*-
 from enum import Enum
-
+# region ActionType
 class ActionType(Enum):
     """API动作类型枚举"""
     # 消息相关
