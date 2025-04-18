@@ -7,12 +7,11 @@ authors = [
     { name = "LIghtJUNction", email = "LIghtJUNction.me@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
-
-[project.optional-dependencies]
-dev = [
-    "pyupgrade>=3.19.1",
+dependencies = [
+    "aiohttp>=3.11.16",
+    "pydantic>=2.11.3",
 ]
+
 
 [build-system]
 requires = ["hatchling"]
