@@ -1,0 +1,19 @@
+[project]
+name = "python-napcat"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "LIghtJUNction", email = "LIghtJUNction.me@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pyupgrade>=3.19.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
