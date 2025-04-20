@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-退群 API
+撤回消息 API
 开发完毕
 @作者：GitHub Copilot
 @日期：2025/04/20
@@ -14,17 +14,16 @@ from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseMo
 
 class Request(BaseHttpRequest):
     """
-    退群请求参数
+    撤回消息请求参数
     """
-    group_id: int = Field(description="群号")
-    is_dismiss: bool = Field(default=False, description="是否解散群（如果是群主）")
+    message_id: str = Field(description="要撤回的消息ID")
 
 
 class ResponseData(BaseModel):
     """
-    退群响应数据模型
+    撤回消息响应数据模型
     """
-    success: bool = Field(default=False, description="是否退群成功")
+    success: bool = Field(default=False, description="是否撤回成功")
     message: str = Field(default="", description="结果消息")
     
     model_config = ConfigDict(
@@ -37,28 +36,27 @@ class ResponseData(BaseModel):
 
 class Response(BaseHttpResponse[ResponseData]):
     """
-    退群响应参数
+    撤回消息响应参数
     """
     pass
 
 
-class SetGroupLeaveAPI(BaseHttpAPI):
+class RecallMsgAPI(BaseHttpAPI):
     """
-    退群 API
-    用于主动退出群聊，如果是群主且设置is_dismiss为true，则解散该群
-    接口地址: https://napcat.apifox.cn/226659191e0.md
+    撤回消息 API
+    用于撤回已发送的消息
+    接口地址: https://napcat.apifox.cn/226659151e0.md
 
     参数：
     {
-      "group_id": 123456789,
-      "is_dismiss": false  // 是否解散群（如果是群主），默认为false
+      "message_id": "abcd-1234-efgh-5678"
     }
 
     返回：
-    - 退群操作的结果状态，包含是否成功和相关消息
+    - 撤回消息的结果状态，包含是否成功和相关消息
     """
 
-    api: str = "/set_group_leave"
+    api: str = "/delete_msg"
     method: Literal['POST', 'GET'] = "POST"
     request: BaseHttpRequest = Request()
     response: BaseHttpResponse[ResponseData] = Response()
@@ -66,7 +64,7 @@ class SetGroupLeaveAPI(BaseHttpAPI):
 if __name__ == "__main__":
     from ..base.utils import test_model
     # uv pip install -e . 
-    # python -m napcat.api.group.set_group_leave
+    # python -m napcat.api.messages.recall_msg
     test_model(Request)
     test_model(ResponseData)
     test_model(Response)

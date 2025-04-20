@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-退群 API
+获取Client Key API
 开发完毕
 @作者：GitHub Copilot
 @日期：2025/04/20
@@ -14,18 +14,18 @@ from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseMo
 
 class Request(BaseHttpRequest):
     """
-    退群请求参数
+    获取Client Key请求参数
     """
-    group_id: int = Field(description="群号")
-    is_dismiss: bool = Field(default=False, description="是否解散群（如果是群主）")
+    pass  # 无需参数
 
 
 class ResponseData(BaseModel):
     """
-    退群响应数据模型
+    Client Key响应数据模型
     """
-    success: bool = Field(default=False, description="是否退群成功")
-    message: str = Field(default="", description="结果消息")
+    client_key: str = Field(default="", description="客户端密钥字符串")
+    expires_in: int = Field(default=0, description="密钥有效期(秒)")
+    created_at: int = Field(default=0, description="创建时间戳")
     
     model_config = ConfigDict(
         extra="allow",  # 允许额外字段
@@ -37,36 +37,33 @@ class ResponseData(BaseModel):
 
 class Response(BaseHttpResponse[ResponseData]):
     """
-    退群响应参数
+    获取Client Key响应参数
     """
     pass
 
 
-class SetGroupLeaveAPI(BaseHttpAPI):
+class GetClientKeyAPI(BaseHttpAPI):
     """
-    退群 API
-    用于主动退出群聊，如果是群主且设置is_dismiss为true，则解散该群
-    接口地址: https://napcat.apifox.cn/226659191e0.md
+    获取Client Key API
+    用于获取客户端密钥，此密钥用于身份验证和部分敏感操作
+    接口地址: https://napcat.apifox.cn/250286915e0.md
 
     参数：
-    {
-      "group_id": 123456789,
-      "is_dismiss": false  // 是否解散群（如果是群主），默认为false
-    }
+    无需参数
 
     返回：
-    - 退群操作的结果状态，包含是否成功和相关消息
+    - 包含clientkey的对象，用于后续API调用的身份验证
     """
 
-    api: str = "/set_group_leave"
-    method: Literal['POST', 'GET'] = "POST"
+    api: str = "/get_client_key"
+    method: Literal['POST', 'GET'] = "GET"
     request: BaseHttpRequest = Request()
     response: BaseHttpResponse[ResponseData] = Response()
 
 if __name__ == "__main__":
     from ..base.utils import test_model
     # uv pip install -e . 
-    # python -m napcat.api.group.set_group_leave
+    # python -m napcat.api.key.get_client_key
     test_model(Request)
     test_model(ResponseData)
     test_model(Response)

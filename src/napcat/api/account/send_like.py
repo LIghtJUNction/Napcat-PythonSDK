@@ -1,37 +1,72 @@
+# -*- coding: utf-8 -*-
 """
-点赞API
-用于向指定QQ用户发送点赞，每天每个用户最多赞10次
-接口地址: https://napcat.apifox.cn/226656933e0.md
-
-参数：
-- user_id: 被点赞的用户QQ号
-- times: 点赞次数，默认为1，最大为10
-
-返回：
-- 点赞结果的状态信息
-
-# NapCat 开发中
+点赞 API
+开发完毕
+@作者：GitHub Copilot
+@日期：2025/04/20
 """
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+from typing import Literal
 
-class SendLikeReq(BaseModel):
-    """
-    点赞API请求参数
-    """
-    user_id: int                # 被点赞的用户QQ号
-    times: int | None = None        # 点赞次数，默认为1，最大为10
+from pydantic import ConfigDict, Field
+from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
 
-class LikeResult(BaseModel):
-    """
-    点赞结果的状态信息
-    """
-    success: bool               # 是否点赞成功
-    message: str                # 结果消息
 
-class SendLikeRes(BaseHttpResponse[LikeResult]):
+class Request(BaseHttpRequest):
     """
-    点赞API响应参数
+    点赞请求参数
+    """
+    user_id: int | str = Field(description="目标用户QQ号")
+    times: int = Field(default=1, description="点赞次数，默认为1，每天不能超过10次")
+
+
+class ResponseData(BaseModel):
+    """
+    点赞响应数据模型
+    """
+    success: bool = Field(default=False, description="是否点赞成功")
+    message: str = Field(default="", description="结果消息")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
+
+
+class Response(BaseHttpResponse[ResponseData]):
+    """
+    点赞响应参数
     """
     pass
+
+
+class SendLikeAPI(BaseHttpAPI):
+    """
+    点赞 API
+    用于对指定用户发送点赞
+    接口地址: https://napcat.apifox.cn/226659176e0.md
+
+    参数：
+    {
+      "user_id": 123456789,  // 目标用户QQ号
+      "times": 1             // 点赞次数，默认为1，每天不能超过10次
+    }
+
+    返回：
+    - 点赞操作的结果状态，包含是否成功和相关消息
+    """
+
+    api: str = "/send_like"
+    method: Literal['POST', 'GET'] = "POST"
+    request: BaseHttpRequest = Request()
+    response: BaseHttpResponse[ResponseData] = Response()
+
+if __name__ == "__main__":
+    from ..base.utils import test_model
+    # uv pip install -e . 
+    # python -m napcat.api.account.send_like
+    test_model(Request)
+    test_model(ResponseData)
+    test_model(Response)

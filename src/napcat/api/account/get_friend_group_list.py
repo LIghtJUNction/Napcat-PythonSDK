@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-获取单向好友列表 API
+获取好友分组列表 API
 开发完毕
 @作者：GitHub Copilot
 @日期：2025/04/20
@@ -14,18 +14,19 @@ from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseMo
 
 class Request(BaseHttpRequest):
     """
-    获取单向好友列表请求参数
+    获取好友分组列表请求参数
     """
     pass  # 无需参数
 
 
-class UnidirectionalFriend(BaseModel):
+class FriendGroup(BaseModel):
     """
-    单向好友信息数据模型
+    好友分组信息
     """
-    user_id: int = Field(default=0, description="用户QQ号")
-    nickname: str = Field(default="", description="用户昵称")
-    source: str = Field(default="", description="来源")
+    group_id: int = Field(default=0, description="分组ID")
+    group_name: str = Field(default="", description="分组名称")
+    friend_count: int = Field(default=0, description="分组内好友数量")
+    online_friend_count: int = Field(default=0, description="在线好友数量")
     
     model_config = ConfigDict(
         extra="allow",  # 允许额外字段
@@ -37,9 +38,9 @@ class UnidirectionalFriend(BaseModel):
 
 class ResponseData(BaseModel):
     """
-    单向好友列表响应数据模型
+    好友分组列表数据模型
     """
-    # 无需定义额外字段，直接使用list[UnidirectionalFriend]
+    # 使用list[FriendGroup]表示分组列表
     model_config = ConfigDict(
         extra="allow",  # 允许额外字段
         frozen=False,   # 不冻结模型
@@ -48,35 +49,35 @@ class ResponseData(BaseModel):
     )
 
 
-class Response(BaseHttpResponse[list[UnidirectionalFriend]]):
+class Response(BaseHttpResponse[list[FriendGroup]]):
     """
-    获取单向好友列表响应参数
+    获取好友分组列表响应参数
     """
     pass
 
 
-class GetUnidirectionalFriendListAPI(BaseHttpAPI):
+class GetFriendGroupListAPI(BaseHttpAPI):
     """
-    获取单向好友列表 API
-    用于获取已经将自己设为好友，但自己未添加对方为好友的用户列表
-    接口地址: https://napcat.apifox.cn/266151878e0.md
+    获取好友分组列表 API
+    用于获取QQ好友分组列表信息
+    接口地址: https://napcat.apifox.cn/226659159e0.md
 
     参数：
     无需参数
 
     返回：
-    - 包含所有单向好友信息的列表，每个好友包含QQ号、昵称和来源等信息
+    - 包含所有好友分组信息的列表，每个分组包含分组ID、名称和好友数量等信息
     """
 
-    api: str = "/get_unidirectional_friend_list"
+    api: str = "/get_friend_group_list"
     method: Literal['POST', 'GET'] = "GET"
     request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[list[UnidirectionalFriend]] = Response()
+    response: BaseHttpResponse[list[FriendGroup]] = Response()
 
 if __name__ == "__main__":
     from ..base.utils import test_model
     # uv pip install -e . 
-    # python -m napcat.api.account.get_unidirectional_friend_list
+    # python -m napcat.api.account.get_friend_group_list
     test_model(Request)
-    test_model(UnidirectionalFriend)
+    test_model(FriendGroup)
     test_model(Response)

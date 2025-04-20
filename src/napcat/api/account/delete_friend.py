@@ -1,33 +1,70 @@
+# -*- coding: utf-8 -*-
 """
 删除好友 API
-用于删除指定好友关系
-接口地址: https://napcat.apifox.cn/227233981e0.md
-
-参数：
-- user_id: 要删除的好友QQ号
-
-返回：
-- 操作结果及状态信息
+开发完毕
+@作者：GitHub Copilot
+@日期：2025/04/20
 """
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class DeleteFriendReq(TypedDict):
-    """
-    删除好友 API 请求参数
-    """
-    user_id: int  # 要删除的好友QQ号
+from typing import Literal
 
-class OperationResult(TypedDict):
-    """
-    操作结果详情
-    """
-    success: bool    # 是否成功
-    message: str     # 操作结果描述
+from pydantic import ConfigDict, Field
+from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
 
-class DeleteFriendRes(BaseHttpResponse[OperationResult]):
+
+class Request(BaseHttpRequest):
     """
-    删除好友 API 响应参数
+    删除好友请求参数
+    """
+    user_id: int | str = Field(description="要删除的好友QQ号")
+
+
+class ResponseData(BaseModel):
+    """
+    删除好友响应数据模型
+    """
+    success: bool = Field(default=False, description="是否删除成功")
+    message: str = Field(default="", description="结果消息")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
+
+
+class Response(BaseHttpResponse[ResponseData]):
+    """
+    删除好友响应参数
     """
     pass
+
+
+class DeleteFriendAPI(BaseHttpAPI):
+    """
+    删除好友 API
+    用于将指定QQ号从好友列表中删除
+    接口地址: https://napcat.apifox.cn/226659202e0.md
+
+    参数：
+    {
+      "user_id": 123456789  // 要删除的好友QQ号
+    }
+
+    返回：
+    - 删除好友的结果状态，包含是否成功和相关消息
+    """
+
+    api: str = "/delete_friend"
+    method: Literal['POST', 'GET'] = "POST"
+    request: BaseHttpRequest = Request()
+    response: BaseHttpResponse[ResponseData] = Response()
+
+if __name__ == "__main__":
+    from ..base.utils import test_model
+    # uv pip install -e . 
+    # python -m napcat.api.account.delete_friend
+    test_model(Request)
+    test_model(ResponseData)
+    test_model(Response)

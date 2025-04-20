@@ -1,32 +1,74 @@
+# -*- coding: utf-8 -*-
 """
-设置群管理员 API
-用于设置或取消群管理员身份
-接口地址: https://napcat.apifox.cn/227425594e0.md
-
-参数：
-- group_id: 群号
-- user_id: 用户QQ号
-- enable: 是否设置为管理员
-
-返回：
-- 操作结果
-
-# NapCat 开发中
+设置群管理 API
+开发完毕
+@作者：GitHub Copilot
+@日期：2025/04/20
 """
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class SetGroupAdminReq(TypedDict):
-    """
-    设置群管理员 API 请求参数
-    """
-    group_id: int  # 群号
-    user_id: int   # 用户QQ号
-    enable: bool   # 是否设置为管理员
+from typing import Literal
 
-class SetGroupAdminRes(BaseHttpResponse[dict[str, bool]]):
+from pydantic import ConfigDict, Field
+from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+
+class Request(BaseHttpRequest):
     """
-    设置群管理员 API 响应参数
+    设置群管理请求参数
+    """
+    group_id: int = Field(description="群号")
+    user_id: int | str = Field(description="要设置的成员QQ号")
+    enable: bool = Field(description="true为设置为管理员，false为取消管理员")
+
+
+class ResponseData(BaseModel):
+    """
+    设置群管理响应数据模型
+    """
+    success: bool = Field(default=False, description="是否设置成功")
+    message: str = Field(default="", description="结果消息")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
+
+
+class Response(BaseHttpResponse[ResponseData]):
+    """
+    设置群管理响应参数
     """
     pass
+
+
+class SetGroupAdminAPI(BaseHttpAPI):
+    """
+    设置群管理 API
+    用于设置或取消群成员的管理员权限
+    接口地址: https://napcat.apifox.cn/226659188e0.md
+
+    参数：
+    {
+      "group_id": 123456789,
+      "user_id": 987654321,
+      "enable": true  // true为设置为管理员，false为取消管理员
+    }
+
+    返回：
+    - 设置群管理员的结果状态，包含是否成功和相关消息
+    """
+
+    api: str = "/set_group_admin"
+    method: Literal['POST', 'GET'] = "POST"
+    request: BaseHttpRequest = Request()
+    response: BaseHttpResponse[ResponseData] = Response()
+
+if __name__ == "__main__":
+    from ..base.utils import test_model
+    # uv pip install -e . 
+    # python -m napcat.api.group.set_group_admin
+    test_model(Request)
+    test_model(ResponseData)
+    test_model(Response)

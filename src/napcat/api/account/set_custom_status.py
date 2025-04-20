@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-全体禁言 API
+设置自定义在线状态 API
 开发完毕
 @作者：GitHub Copilot
 @日期：2025/04/20
@@ -14,15 +14,17 @@ from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseMo
 
 class Request(BaseHttpRequest):
     """
-    全体禁言请求参数
+    设置自定义在线状态请求参数
     """
-    group_id: int = Field(description="群号")
-    enable: bool = Field(description="是否开启全体禁言")
+    status_text: str = Field(description="自定义状态文本")
+    emoji_id: str | None = Field(default=None, description="状态表情ID(可选)")
+    emoji_url: str | None = Field(default=None, description="表情URL(可选)")
+    duration: int | None = Field(default=None, description="显示持续时间，单位秒，不设置则为永久(可选)")
 
 
 class ResponseData(BaseModel):
     """
-    全体禁言响应数据模型
+    设置自定义在线状态响应数据模型
     """
     success: bool = Field(default=False, description="是否设置成功")
     message: str = Field(default="", description="结果消息")
@@ -37,28 +39,30 @@ class ResponseData(BaseModel):
 
 class Response(BaseHttpResponse[ResponseData]):
     """
-    全体禁言响应参数
+    设置自定义在线状态响应参数
     """
     pass
 
 
-class SetGroupWholeBanAPI(BaseHttpAPI):
+class SetCustomStatusAPI(BaseHttpAPI):
     """
-    全体禁言 API
-    用于设置群全体禁言状态
-    接口地址: https://napcat.apifox.cn/226659191e0.md
+    设置自定义在线状态 API
+    用于设置当前账号的自定义在线状态
+    接口地址: https://napcat.apifox.cn/226659198e0.md
 
     参数：
     {
-      "group_id": 123456789,
-      "enable": true  // true表示开启全体禁言，false表示关闭
+      "status_text": "正在学习Python",
+      "emoji_id": "128218",  // 可选
+      "emoji_url": "https://example.com/emoji.png",  // 可选
+      "duration": 3600  // 可选，单位秒，不设置则为永久
     }
 
     返回：
-    - 设置全体禁言的结果状态，包含是否成功和相关消息
+    - 设置自定义在线状态的结果信息，包含是否成功和相关消息
     """
 
-    api: str = "/set_group_whole_ban"
+    api: str = "/set_custom_status"
     method: Literal['POST', 'GET'] = "POST"
     request: BaseHttpRequest = Request()
     response: BaseHttpResponse[ResponseData] = Response()
@@ -66,7 +70,7 @@ class SetGroupWholeBanAPI(BaseHttpAPI):
 if __name__ == "__main__":
     from ..base.utils import test_model
     # uv pip install -e . 
-    # python -m napcat.api.group.set_group_whole_ban
+    # python -m napcat.api.account.set_custom_status
     test_model(Request)
     test_model(ResponseData)
     test_model(Response)

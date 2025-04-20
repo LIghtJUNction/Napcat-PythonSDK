@@ -11,24 +11,6 @@
 
 """
 
-"""
-分享群聊小程序卡片 API
-用于分享小程序卡片到指定群聊
-接口地址: https://napcat.apifox.cn/250287107e0.md
-
-参数：
-- app_id: 小程序ID
-- group_id: 目标群号
-- title: 卡片标题
-- content: 卡片内容
-- image: 卡片图片URL
-- url: 小程序跳转链接
-
-返回：
-- 分享结果信息
-
-# NapCat 开发中
-"""
 
 from typing import TypedDict
 from napcat.api.base.models import BaseHttpResponse

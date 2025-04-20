@@ -1,30 +1,38 @@
-# region GetModelShow
+# -*- coding: utf-8 -*-
+"""
+获取在线机型 API
+开发完毕
+@作者：GitHub Copilot
+@日期：2025/04/20
+"""
+
 from typing import Literal
-from pydantic import BaseModel, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse
 
+from pydantic import ConfigDict, Field
+from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
 
-
-
-# region Request
 
 class Request(BaseHttpRequest):
     """
-    请求参数模型
-    无需请求参数
+    获取在线机型请求参数
     """
-    model : str = Field(default="", description="机型名称")
+    model: str = Field(default="", description="机型名称")
 
 
-
-# region Response
 class Variant(BaseModel):
     """
     机型变体模型
-    包含机型ID、机型名称和显示信息等
+    包含机型显示信息和支付状态
     """
-    model_show : str = Field(default="", description="机型显示信息")
-    need_pay : bool = Field(default=False, description="是否需要pay")
+    model_show: str = Field(default="", description="机型显示信息")
+    need_pay: bool = Field(default=False, description="是否需要付费")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
 
 
 class ResponseData(BaseModel):
@@ -32,20 +40,24 @@ class ResponseData(BaseModel):
     响应数据模型
     包含当前在线机型信息
     """
-    # 使用List[Variant]确保它是Variant对象的列表
     variants: list[Variant] = Field(default_factory=list, description="机型变体列表")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
 
 
 class Response(BaseHttpResponse[ResponseData]):
     """
-    响应模型
-    包含响应状态、返回码、数据和消息等
+    获取在线机型响应参数
     """
     pass
 
-# region API
 
-class GetModelShow(BaseHttpAPI):
+class GetModelShowAPI(BaseHttpAPI):
     """
     获取在线机型 API
     用于获取当前账号设置的在线机型信息
@@ -57,26 +69,18 @@ class GetModelShow(BaseHttpAPI):
     返回：
     - 当前在线机型信息，包含机型ID、机型名称和显示信息等
     """
-    api : str = "/_get_model_show"  # API名称
-    method : Literal["POST" , "GET"] = "POST"  # HTTP请求方法
 
-    # 修正类属性的定义方式
-    Request = Request  # 请求参数模型
-    Response = Response  # 响应模型
-    
+    api: str = "/_get_model_show"
+    method: Literal['POST', 'GET'] = "POST"
+    request: BaseHttpRequest = Request()
+    response: BaseHttpResponse[ResponseData] = Response()
 
-
-
-__all__ = [
-    "GetModelShow",
-]
-
-
-# region TEST
 if __name__ == "__main__":
     from ..base.utils import test_model
-
-    test_model(GetModelShow.Request)
-    test_model(GetModelShow.Response)
+    # uv pip install -e . 
+    # python -m napcat.api.account._get_model_show
+    test_model(Request)
+    test_model(ResponseData)
+    test_model(Response)
 
 

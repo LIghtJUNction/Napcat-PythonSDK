@@ -1,82 +1,103 @@
+# -*- coding: utf-8 -*-
 """
 获取版本信息 API
-用于获取当前NapCat的版本信息
-接口地址: https://napcat.apifox.cn/226657087e0.md
-
-参数：
-无需参数
-
-返回：
-- 包含版本信息的对象，通常包括版本号、构建日期、运行环境等
-- 可能包含框架版本、插件版本以及兼容性信息
-
-注意：
-- 版本信息对于排查兼容性问题和获取更新非常重要
-- 在提交问题报告时，建议附上此API返回的版本信息
-- 版本信息可用于判断是否需要更新到最新版本
-
-# NapCat 开发中
+开发完毕
+@作者：GitHub Copilot
+@日期：2025/04/20
 """
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+from typing import Literal
 
-class GetVersionInfoReq(BaseModel):
+from pydantic import ConfigDict, Field
+from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+
+class Request(BaseHttpRequest):
     """
-    获取版本信息 API 请求参数
+    获取版本信息请求参数
     """
     pass  # 无需参数
 
-class EnvironmentInfo(BaseModel):
-    """
-    运行环境信息
-    """
-    os: str                   # 操作系统信息
-    python_version: str       # Python版本
-    runtime_env: str          # 运行时环境信息
-    system_arch: str          # 系统架构
-
-class PluginVersion(BaseModel):
-    """
-    插件版本信息
-    """
-    name: str                 # 插件名称
-    version: str              # 插件版本
-    enabled: bool             # 是否启用
-    compatible: bool          # 是否兼容当前版本
-
-class DetailedVersionInfo(BaseModel):
-    """
-    详细版本信息
-    """
-    app_name: str             # 应用名称
-    app_version: str          # 应用版本号
-    build_number: str         # 构建编号
-    build_date: str           # 构建日期
-    protocol_version: str     # 协议版本号
-    environment: EnvironmentInfo  # 环境信息
-    plugins: list[PluginVersion]  # 插件版本列表
-    update_available: bool    # 是否有可用更新
-    latest_version: str       # 最新可用版本
-
-class GetVersionInfoRes(BaseHttpResponse[DetailedVersionInfo]):
-    """
-    获取版本信息 API 响应参数
-    """
-    pass
 
 class VersionInfo(BaseModel):
     """
-    版本信息
+    版本详细信息
     """
-    app_name: str       # 应用名称
-    app_version: str    # 应用版本
-    protocol_version: str # 协议版本
-    go_cqhttp_version: str # go-cqhttp 版本 (如果基于)
-    # 可以根据实际API响应添加更多字段
+    name: str = Field(default="", description="应用名称")
+    version: str = Field(default="", description="版本号")
+    build_time: str = Field(default="", description="构建时间")
+    repository: str = Field(default="", description="代码仓库地址")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
 
-class GetVersionInfoRes(BaseHttpResponse[VersionInfo]):
+
+class ImplementInfo(BaseModel):
     """
-    获取版本信息 API 响应参数
+    实现信息
+    """
+    name: str = Field(default="", description="实现名称")
+    version: str = Field(default="", description="实现版本")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
+
+
+class ResponseData(BaseModel):
+    """
+    版本信息响应数据模型
+    """
+    app: VersionInfo = Field(default_factory=VersionInfo, description="应用版本信息")
+    protocol: VersionInfo = Field(default_factory=VersionInfo, description="协议版本信息")
+    implements: list[ImplementInfo] = Field(default_factory=list, description="实现信息列表")
+    
+    model_config = ConfigDict(
+        extra="allow",  # 允许额外字段
+        frozen=False,   # 不冻结模型
+        populate_by_name=True,  # 通过名称填充字段
+        arbitrary_types_allowed=True,  # 允许任意类型
+    )
+
+
+class Response(BaseHttpResponse[ResponseData]):
+    """
+    获取版本信息响应参数
     """
     pass
+
+
+class GetVersionInfoAPI(BaseHttpAPI):
+    """
+    获取版本信息 API
+    用于获取当前Napcat实例的版本信息和协议信息
+    接口地址: https://napcat.apifox.cn/227493562e0.md
+
+    参数：
+    无需参数
+
+    返回：
+    - 包含应用版本、协议版本和实现信息的详细数据
+    """
+
+    api: str = "/get_version_info"
+    method: Literal['POST', 'GET'] = "GET"
+    request: BaseHttpRequest = Request()
+    response: BaseHttpResponse[ResponseData] = Response()
+
+if __name__ == "__main__":
+    from ..base.utils import test_model
+    # uv pip install -e . 
+    # python -m napcat.api.system.get_version_info
+    test_model(Request)
+    test_model(VersionInfo)
+    test_model(ImplementInfo)
+    test_model(ResponseData)
+    test_model(Response)
