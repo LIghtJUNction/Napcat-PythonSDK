@@ -17,6 +17,7 @@ def generate_readme(path: Path , type: str = ".py"):
         if dir.is_dir() and dir.name != "__pycache__":
             with open(output, "a", encoding="utf-8") as f:
                 f.write(f"** {dir.name} **\n")
+                f.write( "=" * 20 + "\n\n")
             generate_readme(dir, type)
         if dir.is_file() and dir.name.endswith(type):
             with open(output, "a", encoding="utf-8") as f:
