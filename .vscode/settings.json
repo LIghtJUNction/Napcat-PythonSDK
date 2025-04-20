@@ -1,0 +1,13 @@
+{
+    "python.REPL.enableREPLSmartSend": false,
+    "basedpyright.analysis.inlayHints.genericTypes": true,
+    "basedpyright.analysis.logLevel": "Information",
+    "basedpyright.analysis.typeCheckingMode": "strict",
+    "basedpyright.analysis.useTypingExtensions": true,
+    "basedpyright.disableOrganizeImports": true,
+    "python.testing.pytestArgs": [
+        "test"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}
