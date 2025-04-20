@@ -23,4 +23,4 @@ def generate_readme(path: Path , type: str = ".py"):
             with open(output, "a", encoding="utf-8") as f:
                 f.write(f"* [ ] [{dir.name}](https://github.com/LIghtJUNction/Napcat-PythonSDK/blob/main/{dir.relative_to(path).as_posix()})\n")
 
-generate_readme(docs, ".md")
+generate_readme(api, ".py")
