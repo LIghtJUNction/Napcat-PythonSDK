@@ -21,6 +21,6 @@ def generate_readme(path: Path , type: str = ".py"):
             generate_readme(dir, type)
         if dir.is_file() and dir.name.endswith(type):
             with open(output, "a", encoding="utf-8") as f:
-                f.write(f"* [ ] [{dir.name}](https://github.com/LIghtJUNction/Napcat-PythonSDK/blob/main/{dir.relative_to(path).as_posix()})\n")
+                f.write(f"\n* [ ] [{dir.name}](https://github.com/LIghtJUNction/Napcat-PythonSDK/blob/main/{dir.relative_to(path).as_posix()})\n")
 
 generate_readme(api, ".py")
