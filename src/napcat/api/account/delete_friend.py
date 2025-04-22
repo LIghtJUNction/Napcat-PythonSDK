@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 227237873e0
 @endpoint: delete_friend
 @tags: 账号相关
-@homepage: https://api.napcat.com/227237873e0
-@llms.txt: https://api.napcat.com/227237873e0.md
+@homepage: https://napcat.apifox.cn/227237873e0
+@llms.txt: https://napcat.apifox.cn/227237873e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:34
+@last_update: 2025-04-23 04:35:53
 
 @description: delete_friend API
 @usage: 使用 `client.delete_friend()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = "delete_friend"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class DeleteFriendReq(BaseHttpRequest):
     """
     delete_friend 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class DeleteFriendData(BaseModel):
     """
     delete_friend 数据结构
@@ -58,9 +60,9 @@ class DeleteFriendData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class DeleteFriendRes(BaseHttpResponse[DeleteFriendData]):
     """
     delete_friend 响应参数
@@ -71,9 +73,9 @@ class DeleteFriendRes(BaseHttpResponse[DeleteFriendData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class DeleteFriendAPI(BaseHttpAPI[DeleteFriendReq, DeleteFriendRes]):
     """
     删除好友
@@ -86,12 +88,13 @@ class DeleteFriendAPI(BaseHttpAPI[DeleteFriendReq, DeleteFriendRes]):
 
     request: DeleteFriendReq
     response: DeleteFriendRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(DeleteFriendAPI)
 
-# region }
+# region code/
 

@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 226658234e0
 @endpoint: .ocr_image
 @tags: 个人操作
-@homepage: https://api.napcat.com/226658234e0
-@llms.txt: https://api.napcat.com/226658234e0.md
+@homepage: https://napcat.apifox.cn/226658234e0
+@llms.txt: https://napcat.apifox.cn/226658234e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:34
+@last_update: 2025-04-23 04:35:54
 
 @description: .ocr_image API
 @usage: 使用 `client..ocr_image()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = ".ocr_image"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class OcrImageReq(BaseHttpRequest):
     """
     .ocr_image 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class OcrImageData(BaseModel):
     """
     .ocr_image 数据结构
@@ -58,10 +60,10 @@ class OcrImageData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
-class OcrImageRes(BaseHttpResponse[OcrImageData]):
+# region res
+class OcrImageRes(BaseHttpResponse[list[OcrImageData]]):
     """
     .ocr_image 响应参数
     """
@@ -71,9 +73,9 @@ class OcrImageRes(BaseHttpResponse[OcrImageData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class OcrImageAPI(BaseHttpAPI[OcrImageReq, OcrImageRes]):
     """
     .OCR 图片识别
@@ -86,12 +88,13 @@ class OcrImageAPI(BaseHttpAPI[OcrImageReq, OcrImageRes]):
 
     request: OcrImageReq
     response: OcrImageRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(OcrImageAPI)
 
-# region }
+# region code/
 

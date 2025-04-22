@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 226659255e0
 @endpoint: friend_poke
 @tags: 消息相关/发送私聊消息
-@homepage: https://api.napcat.com/226659255e0
-@llms.txt: https://api.napcat.com/226659255e0.md
+@homepage: https://napcat.apifox.cn/226659255e0
+@llms.txt: https://napcat.apifox.cn/226659255e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:33
+@last_update: 2025-04-23 04:35:53
 
 @description: friend_poke API
 @usage: 使用 `client.friend_poke()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = "friend_poke"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class FriendPokeReq(BaseHttpRequest):
     """
     friend_poke 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class FriendPokeData(BaseModel):
     """
     friend_poke 数据结构
@@ -58,9 +60,9 @@ class FriendPokeData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class FriendPokeRes(BaseHttpResponse[FriendPokeData]):
     """
     friend_poke 响应参数
@@ -71,9 +73,9 @@ class FriendPokeRes(BaseHttpResponse[FriendPokeData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class FriendPokeAPI(BaseHttpAPI[FriendPokeReq, FriendPokeRes]):
     """
     发送私聊戳一戳
@@ -86,12 +88,13 @@ class FriendPokeAPI(BaseHttpAPI[FriendPokeReq, FriendPokeRes]):
 
     request: FriendPokeReq
     response: FriendPokeRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(FriendPokeAPI)
 
-# region }
+# region code/
 

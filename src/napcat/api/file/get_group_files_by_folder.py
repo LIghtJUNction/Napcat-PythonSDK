@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 226658865e0
 @endpoint: get_group_files_by_folder
 @tags: 文件相关
-@homepage: https://api.napcat.com/226658865e0
-@llms.txt: https://api.napcat.com/226658865e0.md
+@homepage: https://napcat.apifox.cn/226658865e0
+@llms.txt: https://napcat.apifox.cn/226658865e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:34
+@last_update: 2025-04-23 04:35:54
 
 @description: get_group_files_by_folder API
 @usage: 使用 `client.get_group_files_by_folder()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = "get_group_files_by_folder"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class GetGroupFilesByFolderReq(BaseHttpRequest):
     """
     get_group_files_by_folder 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class GetGroupFilesByFolderData(BaseModel):
     """
     get_group_files_by_folder 数据结构
@@ -58,9 +60,9 @@ class GetGroupFilesByFolderData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class GetGroupFilesByFolderRes(BaseHttpResponse[GetGroupFilesByFolderData]):
     """
     get_group_files_by_folder 响应参数
@@ -71,9 +73,9 @@ class GetGroupFilesByFolderRes(BaseHttpResponse[GetGroupFilesByFolderData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class GetGroupFilesByFolderAPI(BaseHttpAPI[GetGroupFilesByFolderReq, GetGroupFilesByFolderRes]):
     """
     获取群子目录文件列表
@@ -86,12 +88,13 @@ class GetGroupFilesByFolderAPI(BaseHttpAPI[GetGroupFilesByFolderReq, GetGroupFil
 
     request: GetGroupFilesByFolderReq
     response: GetGroupFilesByFolderRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(GetGroupFilesByFolderAPI)
 
-# region }
+# region code/
 

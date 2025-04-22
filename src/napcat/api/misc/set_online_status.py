@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 226658977e0
 @endpoint: set_online_status
 @tags:
-@homepage: https://api.napcat.com/226658977e0
-@llms.txt: https://api.napcat.com/226658977e0.md
+@homepage: https://napcat.apifox.cn/226658977e0
+@llms.txt: https://napcat.apifox.cn/226658977e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:33
+@last_update: 2025-04-23 04:35:53
 
 @description:
 
@@ -26,30 +26,32 @@ __endpoint__ = "set_online_status"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class SetOnlineStatusReq(BaseHttpRequest):
     """
     set_online_status 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class SetOnlineStatusData(BaseModel):
     """
     set_online_status 数据结构
@@ -60,9 +62,9 @@ class SetOnlineStatusData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class SetOnlineStatusRes(BaseHttpResponse[SetOnlineStatusData]):
     """
     set_online_status 响应参数
@@ -73,9 +75,9 @@ class SetOnlineStatusRes(BaseHttpResponse[SetOnlineStatusData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class SetOnlineStatusAPI(BaseHttpAPI[SetOnlineStatusReq, SetOnlineStatusRes]):
     """
     设置在线状态
@@ -88,12 +90,13 @@ class SetOnlineStatusAPI(BaseHttpAPI[SetOnlineStatusReq, SetOnlineStatusRes]):
 
     request: SetOnlineStatusReq
     response: SetOnlineStatusRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(SetOnlineStatusAPI)
 
-# region }
+# region code/
 

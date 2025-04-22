@@ -3065,10 +3065,7 @@
         "request_body": {
           "content_type": "application/json",
           "required_fields": [
-            "group_id",
-            "message_seq",
-            "count",
-            "reverseOrder"
+            "group_id"
           ],
           "properties": {
             "group_id": {
@@ -3079,17 +3076,17 @@
             "message_seq": {
               "type": "",
               "description": "0为最新",
-              "required": true
+              "required": false
             },
             "count": {
               "type": "number",
               "description": "数量",
-              "required": true
+              "required": false
             },
             "reverseOrder": {
               "type": "boolean",
               "description": "倒序",
-              "required": true
+              "required": false
             }
           }
         },
@@ -3449,10 +3446,7 @@
         "request_body": {
           "content_type": "application/json",
           "required_fields": [
-            "user_id",
-            "reverseOrder",
-            "count",
-            "message_seq"
+            "user_id"
           ],
           "properties": {
             "user_id": {
@@ -3463,17 +3457,17 @@
             "message_seq": {
               "type": "",
               "description": "0为最新",
-              "required": true
+              "required": false
             },
             "count": {
               "type": "number",
               "description": "数量",
-              "required": true
+              "required": false
             },
             "reverseOrder": {
               "type": "boolean",
               "description": "倒序",
-              "required": true
+              "required": false
             }
           }
         },
@@ -11281,11 +11275,17 @@
         "request_body": {
           "content_type": "application/json",
           "required_fields": [
-            "group_id"
+            "group_id",
+            "file_count"
           ],
           "properties": {
             "group_id": {
               "type": "",
+              "description": "",
+              "required": true
+            },
+            "file_count": {
+              "type": "number",
               "description": "",
               "required": true
             }
@@ -11378,9 +11378,7 @@
         "request_body": {
           "content_type": "application/json",
           "required_fields": [
-            "group_id",
-            "folder_id",
-            "file_count"
+            "group_id"
           ],
           "properties": {
             "group_id": {
@@ -11390,13 +11388,18 @@
             },
             "folder_id": {
               "type": "string",
-              "description": "",
-              "required": true
+              "description": "和 folder 二选一",
+              "required": false
+            },
+            "folder": {
+              "type": "string",
+              "description": "和 folder_id 二选一",
+              "required": false
             },
             "file_count": {
               "type": "number",
               "description": "一次性获取的文件数量",
-              "required": true
+              "required": false
             }
           }
         },

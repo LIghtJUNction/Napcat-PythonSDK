@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 226659178e0
 @endpoint: create_collection
 @tags: 账号相关
-@homepage: https://api.napcat.com/226659178e0
-@llms.txt: https://api.napcat.com/226659178e0.md
+@homepage: https://napcat.apifox.cn/226659178e0
+@llms.txt: https://napcat.apifox.cn/226659178e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:34
+@last_update: 2025-04-23 04:35:53
 
 @description: create_collection API
 @usage: 使用 `client.create_collection()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = "create_collection"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class CreateCollectionReq(BaseHttpRequest):
     """
     create_collection 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class CreateCollectionData(BaseModel):
     """
     create_collection 数据结构
@@ -58,9 +60,9 @@ class CreateCollectionData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class CreateCollectionRes(BaseHttpResponse[CreateCollectionData]):
     """
     create_collection 响应参数
@@ -71,9 +73,9 @@ class CreateCollectionRes(BaseHttpResponse[CreateCollectionData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class CreateCollectionAPI(BaseHttpAPI[CreateCollectionReq, CreateCollectionRes]):
     """
     创建收藏
@@ -86,12 +88,13 @@ class CreateCollectionAPI(BaseHttpAPI[CreateCollectionReq, CreateCollectionRes])
 
     request: CreateCollectionReq
     response: CreateCollectionRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(CreateCollectionAPI)
 
-# region }
+# region code/
 

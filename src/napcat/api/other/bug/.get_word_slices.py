@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 165
+@build_id: 213
 @api_id: 228534368e0
 @endpoint: .get_word_slices
 @tags: 其他/bug
-@homepage: https://api.napcat.com/228534368e0
-@llms.txt: https://api.napcat.com/228534368e0.md
+@homepage: https://napcat.apifox.cn/228534368e0
+@llms.txt: https://napcat.apifox.cn/228534368e0.md
 @version: 4.7.17
-@last_update: 2025-04-22 22:32:35
+@last_update: 2025-04-23 04:35:54
 
 @description: .get_word_slices API
 @usage: 使用 `client..get_word_slices()` 调用此API
@@ -24,30 +24,32 @@ __endpoint__ = ".get_word_slices"
 __method__ = "POST"
 
 
-# region {
+# region code
 from typing import Literal, Any
 
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class GetWordSlicesReq(BaseHttpRequest):
     """
     .get_word_slices 请求参数
     """
 
     pass
+# region req/
 
-
+# region data
 class GetWordSlicesData(BaseModel):
     """
     .get_word_slices 数据结构
@@ -58,9 +60,9 @@ class GetWordSlicesData(BaseModel):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
+# region res
 class GetWordSlicesRes(BaseHttpResponse[GetWordSlicesData]):
     """
     .get_word_slices 响应参数
@@ -71,9 +73,9 @@ class GetWordSlicesRes(BaseHttpResponse[GetWordSlicesData]):
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class GetWordSlicesAPI(BaseHttpAPI[GetWordSlicesReq, GetWordSlicesRes]):
     """
     获取中文分词
@@ -86,12 +88,13 @@ class GetWordSlicesAPI(BaseHttpAPI[GetWordSlicesReq, GetWordSlicesRes]):
 
     request: GetWordSlicesReq
     response: GetWordSlicesRes
-    
+# region api/
+
 
 if __name__ == "__main__":
 
     from napcat.base.utils import test_model
     test_model(GetWordSlicesAPI)
 
-# region }
+# region code/
 

@@ -7,7 +7,7 @@
 @api_id: {{api_id}} # API api_id 结尾应当为e0
 @endpoint: {{endpoint}} # 终结点名称 读取对应json文件时的键名
 @tags: {{tags}} # 标签 也就是相对路径 
-@homepage: {{homepage}} # base_url/api_id 其中base_url固定为https://api.napcat.com/
+@homepage: {{homepage}} # base_url/api_id 其中base_url固定为https://napcat.apifox.cn/
 @llms.txt: {{llms.txt}} # base_url/api_id.md
 @version: {{version}} # 版本号 由根目录的.version 正则匹配得到
 @last_update: {{last_update}} # 最后更新时间 构建时的时间
@@ -24,30 +24,32 @@ __endpoint__ = "{{endpoint}}" # 终结点名称
 __method__ = "POST" # HTTP请求方法
 
 
-# region {
+# region code
 from typing import Literal, Any # 使用现代导入方式，禁止导入List, Dict等过时类型
 
 from pydantic import BaseModel, Field # 固定导入 # type: ignore
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest # 固定导入 # type: ignore
 
-    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
-    # 示例 class : SendGroupMessageAPI
-    # 示例 request : SendGroupMessageReq
-    # 示例 response : SendGroupMessageRes
-    # 示例 data : SendGroupMessageData
-    # 请将你需要展示给用户的注释符："#"放置于行首
-    # 否则将被清理掉
+    -# 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI) # type: ignore
+    -# 示例 class : SendGroupMessageAPI # type: ignore
+    -# 示例 request : SendGroupMessageReq # type: ignore
+    -# 示例 response : SendGroupMessageRes # type: ignore
+    -# 示例 data : SendGroupMessageData # type: ignore
+    -# 请将你需要展示给用户的注释符："#"放置于行首 # type: ignore
+    -# 否则将被清理掉 # type: ignore
+    # 本行注释旨在测试构建清理逻辑
 
 
-# request model
+# region req
 class {{EndPointReq}}(BaseHttpRequest): # type: ignore
     """
     {{DESC_EndPointReq}}
     """
 
     pass
+# region req/
 
-
+# region data
 class {{EndPointData}}(BaseModel): # type: ignore
     """
     {{DESC_EndPointData}}
@@ -58,10 +60,10 @@ class {{EndPointData}}(BaseModel): # type: ignore
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region data/
 
-
-# response model
-class {{EndPointRes}}(BaseHttpResponse[{{*[EndPointData]}}]): # type: ignore
+# region res
+class {{EndPointRes}}(BaseHttpResponse[{{type[EndPointData]}}]): # type: ignore
     """
     {{DESC_EndPointRes}}
     """
@@ -71,9 +73,9 @@ class {{EndPointRes}}(BaseHttpResponse[{{*[EndPointData]}}]): # type: ignore
     # param2: int = Field(..., description="参数2的描述")
     
     pass
+# region res/
 
-
-# API class
+# region api
 class {{EndPointAPI}}(BaseHttpAPI[{{EndPointReq}}, {{EndPointRes}}]):
     """
     {{DESC_EndPointAPI}}
@@ -86,12 +88,13 @@ class {{EndPointAPI}}(BaseHttpAPI[{{EndPointReq}}, {{EndPointRes}}]):
 
     request: {{EndPointReq}}
     response: {{EndPointRes}}
-    
+# region api/
+
 
 if __name__ == "__main__": # type: ignore
 
     from napcat.base.utils import test_model
     test_model({{EndPointAPI}})
 
-# region }
+# region code/
 
