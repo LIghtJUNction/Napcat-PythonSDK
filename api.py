@@ -30,14 +30,6 @@ from typing import Literal, Any # 使用现代导入方式，禁止导入List, D
 from pydantic import BaseModel, Field # 固定导入 # type: ignore
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest # 固定导入 # type: ignore
 
-    -# 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI) # type: ignore
-    -# 示例 class : SendGroupMessageAPI # type: ignore
-    -# 示例 request : SendGroupMessageReq # type: ignore
-    -# 示例 response : SendGroupMessageRes # type: ignore
-    -# 示例 data : SendGroupMessageData # type: ignore
-    -# 请将你需要展示给用户的注释符："#"放置于行首 # type: ignore
-    -# 否则将被清理掉 # type: ignore
-    # 本行注释旨在测试构建清理逻辑
 
 
 # region req

@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 213
+@build_id: 214
 @api_id: 226658977e0
 @endpoint: set_online_status
 @tags:
 @homepage: https://napcat.apifox.cn/226658977e0
 @llms.txt: https://napcat.apifox.cn/226658977e0.md
 @version: 4.7.17
-@last_update: 2025-04-23 04:35:53
+@last_update: 2025-04-23 04:39:50
 
 @description:
 
@@ -32,14 +32,6 @@ from typing import Literal, Any
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    -
-    -
-    -
-    -
-    -
-    -
-    -
-    # 本行注释旨在测试构建清理逻辑
 
 
 # region req

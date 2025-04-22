@@ -3,14 +3,14 @@
 @author: LIghtJUNction
 @builder: AI
 
-@build_id: 213
+@build_id: 214
 @api_id: 226659311e0
 @endpoint: get_guild_list
 @tags: 其他/接口
 @homepage: https://napcat.apifox.cn/226659311e0
 @llms.txt: https://napcat.apifox.cn/226659311e0.md
 @version: 4.7.17
-@last_update: 2025-04-23 04:35:54
+@last_update: 2025-04-23 04:39:51
 
 @description: get_guild_list API
 @usage: 使用 `client.get_guild_list()` 调用此API
@@ -30,14 +30,6 @@ from typing import Literal, Any
 from pydantic import BaseModel, Field
 from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-    -
-    -
-    -
-    -
-    -
-    -
-    -
-    # 本行注释旨在测试构建清理逻辑
 
 
 # region req
