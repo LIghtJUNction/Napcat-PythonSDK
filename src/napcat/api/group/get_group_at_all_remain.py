@@ -1,36 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群@全体成员剩余次数 API
-用于查询群内@全体成员的剩余次数
-接口地址: https://napcat.apifox.cn/227425447e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
+@build_id: 165
+@api_id: 227245941e0
+@endpoint: get_group_at_all_remain
+@tags: 群聊相关
+@homepage: https://api.napcat.com/227245941e0
+@llms.txt: https://api.napcat.com/227245941e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 群内@全体成员剩余次数信息
+@description: get_group_at_all_remain API
+@usage: 使用 `client.get_group_at_all_remain()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class GetGroupAtAllRemainReq(TypedDict):
-    """
-    获取群@全体成员剩余次数 API 请求参数
-    """
-    group_id: int  # 群号
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_at_all_remain"
+__method__ = "POST"
 
-class AtAllRemainInfo(TypedDict):
-    """
-    @全体成员剩余信息
-    """
-    can_at_all: bool  # 是否可以@全体成员
-    remain_at_all_count_for_group: int  # 群内所有管理员剩余@全体成员次数
-    remain_at_all_count_for_uin: int    # 当前用户剩余@全体成员次数
 
-class GetGroupAtAllRemainRes(BaseHttpResponse[AtAllRemainInfo]):
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGroupAtAllRemainReq(BaseHttpRequest):
     """
-    获取群@全体成员剩余次数 API 响应参数
+    get_group_at_all_remain 请求参数
     """
+
     pass
+
+
+class GetGroupAtAllRemainData(BaseModel):
+    """
+    get_group_at_all_remain 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupAtAllRemainRes(BaseHttpResponse[GetGroupAtAllRemainData]):
+    """
+    get_group_at_all_remain 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupAtAllRemainAPI(BaseHttpAPI[GetGroupAtAllRemainReq, GetGroupAtAllRemainRes]):
+    """
+    获取群 @全体成员 剩余次数
+    """
+    api: str = "/get_group_at_all_remain"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupAtAllRemainReq
+    Response = GetGroupAtAllRemainRes
+
+    request: GetGroupAtAllRemainReq
+    response: GetGroupAtAllRemainRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupAtAllRemainAPI)
+
+# region }
+

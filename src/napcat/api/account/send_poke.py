@@ -1,43 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-发送戳一戳 API
-用于向指定好友或群成员发送戳一戳(窗口抖动)消息
-接口地址: https://napcat.apifox.cn/250286923e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- user_id: 接收戳一戳的用户QQ号
-- group_id: 群号(可选，如果在群内戳一戳则需要提供)
-- poke_type: 戳一戳类型ID
-- poke_id: 具体戳一戳表情的ID
-- strength: 戳一戳强度(可选)
+@build_id: 165
+@api_id: 250286923e0
+@endpoint: send_poke
+@tags: 账号相关
+@homepage: https://api.napcat.com/250286923e0
+@llms.txt: https://api.napcat.com/250286923e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:33
 
-返回：
-- 发送戳一戳的结果状态信息
+@description: send_poke API
+@usage: 使用 `client.send_poke()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "send_poke"
+__method__ = "POST"
 
-class SendPokeReq(BaseModel):
-    """
-    发送戳一戳 API 请求参数
-    """
-    user_id: int                # 接收戳一戳的用户QQ号
-    poke_type: int              # 戳一戳类型ID
-    poke_id: int                # 具体戳一戳表情的ID
-    group_id: int | None = None     # 群号(可选)
-    strength: int | None = None     # 戳一戳强度(可选)
 
-class PokeResult(BaseModel):
-    """
-    发送戳一戳的结果状态信息
-    """
-    success: bool               # 是否发送成功
-    message: str                # 结果消息
+# region {
+from typing import Literal, Any
 
-class SendPokeRes(BaseHttpResponse[PokeResult]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class SendPokeReq(BaseHttpRequest):
     """
-    发送戳一戳 API 响应参数
+    send_poke 请求参数
     """
+
     pass
+
+
+class SendPokeData(BaseModel):
+    """
+    send_poke 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class SendPokeRes(BaseHttpResponse[SendPokeData]):
+    """
+    send_poke 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SendPokeAPI(BaseHttpAPI[SendPokeReq, SendPokeRes]):
+    """
+    发送戳一戳
+    """
+    api: str = "/send_poke"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SendPokeReq
+    Response = SendPokeRes
+
+    request: SendPokeReq
+    response: SendPokeRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(SendPokeAPI)
+
+# region }
+

@@ -1,41 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取频道服务器列表 API
-用于获取机器人加入的频道服务器列表
-接口地址: https://napcat.apifox.cn/227495429e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 226659311e0
+@endpoint: get_guild_list
+@tags: 其他/接口
+@homepage: https://api.napcat.com/226659311e0
+@llms.txt: https://api.napcat.com/226659311e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:35
 
-返回：
-- 频道服务器列表
+@description: get_guild_list API
+@usage: 使用 `client.get_guild_list()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from napcat.api.base.models import BaseHttpResponse
-from pydantic import BaseModel
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_guild_list"
+__method__ = "POST"
 
-class GetGuildListReq(BaseModel):
-    """
-    获取频道服务器列表 API 请求参数
-    """
-    pass  # 无需参数
 
-class GuildInfo(BaseModel):
-    """
-    频道服务器信息
-    """
-    guild_id: str       # 频道服务器ID
-    guild_name: str     # 频道服务器名称
-    guild_display_id: str  # 频道服务器显示ID
-    member_count: int   # 成员数
-    max_member_count: int  # 最大成员数
-    description: str    # 描述
-    create_time: int    # 创建时间
-    is_owner: bool      # 是否为创建者
+# region {
+from typing import Literal, Any
 
-class GetGuildListRes(BaseHttpResponse[list[GuildInfo]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGuildListReq(BaseHttpRequest):
     """
-    获取频道服务器列表 API 响应参数
+    get_guild_list 请求参数
     """
+
     pass
+
+
+class GetGuildListData(BaseModel):
+    """
+    get_guild_list 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGuildListRes(BaseHttpResponse[GetGuildListData]):
+    """
+    get_guild_list 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGuildListAPI(BaseHttpAPI[GetGuildListReq, GetGuildListRes]):
+    """
+    get_guild_list
+    """
+    api: str = "/get_guild_list"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGuildListReq
+    Response = GetGuildListRes
+
+    request: GetGuildListReq
+    response: GetGuildListRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGuildListAPI)
+
+# region }
+

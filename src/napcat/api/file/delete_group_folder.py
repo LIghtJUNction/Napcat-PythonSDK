@@ -1,30 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-删除群文件文件夹 API
-用于删除群文件系统中的文件夹
-接口地址: https://napcat.apifox.cn/227450068e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
-- folder_id: 文件夹ID
+@build_id: 165
+@api_id: 226658779e0
+@endpoint: delete_group_folder
+@tags: 文件相关
+@homepage: https://api.napcat.com/226658779e0
+@llms.txt: https://api.napcat.com/226658779e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 删除操作结果
+@description: delete_group_folder API
+@usage: 使用 `client.delete_group_folder()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class DeleteGroupFolderReq(TypedDict):
-    """
-    删除群文件文件夹 API 请求参数
-    """
-    group_id: int   # 群号
-    folder_id: str  # 文件夹ID
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "delete_group_folder"
+__method__ = "POST"
 
-class DeleteGroupFolderRes(BaseHttpResponse[dict[str, bool]]):
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class DeleteGroupFolderReq(BaseHttpRequest):
     """
-    删除群文件文件夹 API 响应参数
+    delete_group_folder 请求参数
     """
+
     pass
+
+
+class DeleteGroupFolderData(BaseModel):
+    """
+    delete_group_folder 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class DeleteGroupFolderRes(BaseHttpResponse[DeleteGroupFolderData]):
+    """
+    delete_group_folder 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class DeleteGroupFolderAPI(BaseHttpAPI[DeleteGroupFolderReq, DeleteGroupFolderRes]):
+    """
+    删除群文件夹
+    """
+    api: str = "/delete_group_folder"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = DeleteGroupFolderReq
+    Response = DeleteGroupFolderRes
+
+    request: DeleteGroupFolderReq
+    response: DeleteGroupFolderRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(DeleteGroupFolderAPI)
+
+# region }
+

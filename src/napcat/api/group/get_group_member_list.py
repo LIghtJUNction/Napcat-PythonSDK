@@ -1,50 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群成员列表 API
-用于获取群内所有成员的信息
-接口地址: https://napcat.apifox.cn/227425563e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
-- no_cache: 是否不使用缓存
+@build_id: 165
+@api_id: 226657034e0
+@endpoint: get_group_member_list
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226657034e0
+@llms.txt: https://api.napcat.com/226657034e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 群成员列表
+@description: get_group_member_list API
+@usage: 使用 `client.get_group_member_list()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_member_list"
+__method__ = "POST"
 
-class GetGroupMemberListReq(BaseModel):
-    """
-    获取群成员列表 API 请求参数
-    """
-    group_id: int   # 群号
-    no_cache: bool  # 是否不使用缓存
 
-class GroupMember(BaseModel):
-    """
-    群成员信息
-    """
-    group_id: int         # 群号
-    user_id: int          # QQ号
-    nickname: str         # 昵称
-    card: str             # 群名片
-    sex: str              # 性别
-    age: int              # 年龄
-    area: str             # 地区
-    join_time: int        # 入群时间
-    last_sent_time: int   # 最后发言时间
-    level: str            # 等级
-    role: str             # 角色，owner或admin或member
-    unfriendly: bool      # 是否不良记录成员
-    title: str            # 专属头衔
-    title_expire_time: int # 专属头衔过期时间
-    card_changeable: bool # 是否允许修改群名片
+# region {
+from typing import Literal, Any
 
-class GetGroupMemberListRes(BaseHttpResponse[list[GroupMember]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGroupMemberListReq(BaseHttpRequest):
     """
-    获取群成员列表 API 响应参数
+    get_group_member_list 请求参数
     """
+
     pass
+
+
+class GetGroupMemberListData(BaseModel):
+    """
+    get_group_member_list 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupMemberListRes(BaseHttpResponse[GetGroupMemberListData]):
+    """
+    get_group_member_list 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupMemberListAPI(BaseHttpAPI[GetGroupMemberListReq, GetGroupMemberListRes]):
+    """
+    获取群成员列表
+    """
+    api: str = "/get_group_member_list"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupMemberListReq
+    Response = GetGroupMemberListRes
+
+    request: GetGroupMemberListReq
+    response: GetGroupMemberListRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupMemberListAPI)
+
+# region }
+

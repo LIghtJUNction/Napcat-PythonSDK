@@ -1,62 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-标记私聊消息已读 API
-开发完毕
-@作者：GitHub Copilot LIghtJUNction 纠正并复核
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226659165e0
+@endpoint: mark_private_msg_as_read
+@tags: 账号相关
+@homepage: https://api.napcat.com/226659165e0
+@llms.txt: https://api.napcat.com/226659165e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:33
+
+@description: mark_private_msg_as_read API
+@usage: 使用 `client.mark_private_msg_as_read()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "mark_private_msg_as_read"
+__method__ = "POST"
 
-from pydantic import Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class MarkPrivateMsgAsReadReq(BaseHttpRequest):
     """
-    标记私聊消息已读请求参数
+    mark_private_msg_as_read 请求参数
     """
-    user_id: int | str = Field(default=0, description="要标记已读消息的用户ID")
 
-class ResponseData(BaseModel):
-    """
-    标记私聊消息已读响应数据模型
-    """
-    pass 
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    标记私聊消息已读响应参数
-    """
     pass
 
 
-class MarkPrivateMsgAsReadAPI(BaseHttpAPI):
+class MarkPrivateMsgAsReadData(BaseModel):
     """
-    标记私聊消息已读 API
-    用于将与指定用户的私聊消息标记为已读状态
-    接口地址: https://napcat.apifox.cn/226659165e0.md
-
-    参数：
-    {
-      "user_id": 123456789,
-    }
-
-    返回：
-    - 标记私聊消息已读的结果状态，包含是否成功和相关消息
-
+    mark_private_msg_as_read 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
-    api: str = "/set_private_msg_read"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+
+# response model
+class MarkPrivateMsgAsReadRes(BaseHttpResponse[MarkPrivateMsgAsReadData]):
+    """
+    mark_private_msg_as_read 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class MarkPrivateMsgAsReadAPI(BaseHttpAPI[MarkPrivateMsgAsReadReq, MarkPrivateMsgAsReadRes]):
+    """
+    设置私聊已读
+    """
+    api: str = "/mark_private_msg_as_read"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = MarkPrivateMsgAsReadReq
+    Response = MarkPrivateMsgAsReadRes
+
+    request: MarkPrivateMsgAsReadReq
+    response: MarkPrivateMsgAsReadRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.account.mark_private_msg_as_read
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(MarkPrivateMsgAsReadAPI)
+
+# region }
+

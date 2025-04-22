@@ -1,30 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-创建收藏 API
-用于在QQ收藏夹中创建新的收藏内容
-接口地址: https://napcat.apifox.cn/226659190e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- message_id: 要收藏的消息ID，收藏指定消息内容
-- content: 收藏的自定义内容，与message_id二选一
+@build_id: 165
+@api_id: 226659178e0
+@endpoint: create_collection
+@tags: 账号相关
+@homepage: https://api.napcat.com/226659178e0
+@llms.txt: https://api.napcat.com/226659178e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 创建收藏的结果信息
+@description: create_collection API
+@usage: 使用 `client.create_collection()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class CreateCollectionReq(TypedDict, total=False):
-    """创建收藏的请求参数，message_id和content二选一"""
-    message_id: int  # 要收藏的消息ID
-    content: str     # 收藏的自定义内容
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "create_collection"
+__method__ = "POST"
 
-class CollectionData(TypedDict):
-    """收藏数据"""
-    collection_id: str  # 创建的收藏ID
 
-class CreateCollectionRes(BaseHttpResponse[CollectionData]):
-    """创建收藏的响应结果"""
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class CreateCollectionReq(BaseHttpRequest):
+    """
+    create_collection 请求参数
+    """
+
     pass
+
+
+class CreateCollectionData(BaseModel):
+    """
+    create_collection 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class CreateCollectionRes(BaseHttpResponse[CreateCollectionData]):
+    """
+    create_collection 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class CreateCollectionAPI(BaseHttpAPI[CreateCollectionReq, CreateCollectionRes]):
+    """
+    创建收藏
+    """
+    api: str = "/create_collection"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = CreateCollectionReq
+    Response = CreateCollectionRes
+
+    request: CreateCollectionReq
+    response: CreateCollectionRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(CreateCollectionAPI)
+
+# region }
+

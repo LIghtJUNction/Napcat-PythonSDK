@@ -1,42 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-转发群文件到群 API
-用于将文件从一个群转发到另一个群
-接口地址: https://napcat.apifox.cn/227450223e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 源群号
-- file_id: 文件ID
-- busid: 文件类型
-- target_group_id: 目标群号
+@build_id: 165
+@api_id: 283136366e0
+@endpoint: trans_group_file
+@tags: 文件相关
+@homepage: https://api.napcat.com/283136366e0
+@llms.txt: https://api.napcat.com/283136366e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 转发结果信息
+@description: trans_group_file API
+@usage: 使用 `client.trans_group_file()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class TransGroupFileReq(TypedDict):
-    """
-    转发群文件到群 API 请求参数
-    """
-    group_id: int       # 源群号
-    file_id: str        # 文件ID
-    busid: int          # 文件类型
-    target_group_id: int # 目标群号
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "trans_group_file"
+__method__ = "POST"
 
-class TransFileResult(TypedDict):
-    """
-    文件转发结果
-    """
-    file_id: str     # 新文件ID
-    file_name: str   # 文件名
-    busid: int       # 文件类型
 
-class TransGroupFileRes(BaseHttpResponse[TransFileResult]):
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class TransGroupFileReq(BaseHttpRequest):
     """
-    转发群文件到群 API 响应参数
+    trans_group_file 请求参数
     """
+
     pass
+
+
+class TransGroupFileData(BaseModel):
+    """
+    trans_group_file 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class TransGroupFileRes(BaseHttpResponse[TransGroupFileData]):
+    """
+    trans_group_file 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class TransGroupFileAPI(BaseHttpAPI[TransGroupFileReq, TransGroupFileRes]):
+    """
+    转存为永久文件
+    """
+    api: str = "/trans_group_file"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = TransGroupFileReq
+    Response = TransGroupFileRes
+
+    request: TransGroupFileReq
+    response: TransGroupFileRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(TransGroupFileAPI)
+
+# region }
+

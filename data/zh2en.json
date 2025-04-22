@@ -1,0 +1,18 @@
+{
+    "账号相关": "account",
+    "消息相关": "message",
+    "发送群聊消息": "group",
+    "发送私聊消息": "private",
+
+    "群聊相关": "group",
+    "文件相关": "file",
+    "密钥相关": "key",
+    "个人操作": "personal",
+    "系统操作": "system",
+    "其他": "other",
+
+    "保留": "reserved",
+    "接口": "interface",
+    "bug": "bug"
+
+}

@@ -1,46 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取小程序卡片 API
-用于获取可分享的QQ小程序卡片信息
-接口地址: https://napcat.apifox.cn/227738594e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- app_id: 小程序的应用ID
-- title: 卡片标题
-- content: 卡片内容描述
-- url: 小程序链接地址
-- icon: 小程序图标URL(可选)
-- mini_app_path: 小程序路径(可选)
+@build_id: 165
+@api_id: 227738594e0
+@endpoint: get_mini_app_ark
+@tags: 账号相关
+@homepage: https://api.napcat.com/227738594e0
+@llms.txt: https://api.napcat.com/227738594e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 小程序卡片的数据结构，可用于发送消息
+@description: get_mini_app_ark API
+@usage: 使用 `client.get_mini_app_ark()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_mini_app_ark"
+__method__ = "POST"
 
-class GetMiniAppArkReq(BaseModel):
-    """
-    获取小程序卡片 API 请求参数
-    """
-    app_id: str                  # 小程序的应用ID
-    title: str                   # 卡片标题
-    content: str                 # 卡片内容描述
-    url: str                     # 小程序链接地址
-    icon: str | None = None          # 小程序图标URL(可选)
-    mini_app_path: str | None = None # 小程序路径(可选)
 
-class MiniAppArkData(BaseModel):
-    """
-    小程序卡片数据
-    """
-    app_info: str                # 小程序信息
-    ark_json: str                # 卡片JSON数据
-    view_id: str                 # 视图ID
+# region {
+from typing import Literal, Any
 
-class GetMiniAppArkRes(BaseHttpResponse[MiniAppArkData]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetMiniAppArkReq(BaseHttpRequest):
     """
-    获取小程序卡片 API 响应参数
+    get_mini_app_ark 请求参数
     """
+
     pass
+
+
+class GetMiniAppArkData(BaseModel):
+    """
+    get_mini_app_ark 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetMiniAppArkRes(BaseHttpResponse[GetMiniAppArkData]):
+    """
+    get_mini_app_ark 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetMiniAppArkAPI(BaseHttpAPI[GetMiniAppArkReq, GetMiniAppArkRes]):
+    """
+    获取小程序卡片
+    """
+    api: str = "/get_mini_app_ark"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetMiniAppArkReq
+    Response = GetMiniAppArkRes
+
+    request: GetMiniAppArkReq
+    response: GetMiniAppArkRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetMiniAppArkAPI)
+
+# region }
+

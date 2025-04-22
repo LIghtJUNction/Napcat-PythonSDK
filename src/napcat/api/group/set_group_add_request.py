@@ -1,76 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-处理加群请求 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226656947e0
+@endpoint: set_group_add_request
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226656947e0
+@llms.txt: https://api.napcat.com/226656947e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: set_group_add_request API
+@usage: 使用 `client.set_group_add_request()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "set_group_add_request"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class SetGroupAddRequestReq(BaseHttpRequest):
     """
-    处理加群请求参数
+    set_group_add_request 请求参数
     """
-    flag: str = Field(description="加群请求的标识，收到的请求事件数据中的flag字段")
-    sub_type: str = Field(default="add", description="请求类型，add或invite，默认为add")
-    approve: bool = Field(default=True, description="是否同意请求，默认为true")
-    reason: str = Field(default="", description="拒绝理由，仅在拒绝时有效")
 
-
-class ResponseData(BaseModel):
-    """
-    处理加群请求响应数据模型
-    """
-    success: bool = Field(default=False, description="是否处理成功")
-    message: str = Field(default="", description="结果消息")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    处理加群请求响应参数
-    """
     pass
 
 
-class SetGroupAddRequestAPI(BaseHttpAPI):
+class SetGroupAddRequestData(BaseModel):
     """
-    处理加群请求 API
-    用于处理他人申请加群或被邀请加群的请求
-    接口地址: https://napcat.apifox.cn/226659210e0.md
-
-    参数：
-    {
-      "flag": "12345678",  // 加群请求的标识
-      "sub_type": "add",   // 请求类型，add或invite
-      "approve": true,     // 是否同意请求
-      "reason": ""         // 拒绝理由，仅在拒绝时有效
-    }
-
-    返回：
-    - 处理加群请求的结果状态，包含是否成功和相关消息
+    set_group_add_request 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class SetGroupAddRequestRes(BaseHttpResponse[SetGroupAddRequestData]):
+    """
+    set_group_add_request 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SetGroupAddRequestAPI(BaseHttpAPI[SetGroupAddRequestReq, SetGroupAddRequestRes]):
+    """
+    处理加群请求
+    """
     api: str = "/set_group_add_request"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SetGroupAddRequestReq
+    Response = SetGroupAddRequestRes
+
+    request: SetGroupAddRequestReq
+    response: SetGroupAddRequestRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.group.set_group_add_request
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(SetGroupAddRequestAPI)
+
+# region }
+

@@ -1,30 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-设置群备注 API
-用于设置群组的备注信息
-接口地址: https://napcat.apifox.cn/283136268e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数:
-- group_id: int - 群号
-- remark: str - 备注信息
+@build_id: 165
+@api_id: 283136268e0
+@endpoint: set_group_remark
+@tags: 群聊相关
+@homepage: https://api.napcat.com/283136268e0
+@llms.txt: https://api.napcat.com/283136268e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回:
-- 设置群备注的结果
+@description: set_group_remark API
+@usage: 使用 `client.set_group_remark()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "set_group_remark"
+__method__ = "POST"
 
-class SetGroupRemarkReq(TypedDict):
-    """
-    设置群备注 API 请求参数
-    """
-    group_id: int  # 群号
-    remark: str    # 备注信息
 
-class SetGroupRemarkRes(BaseHttpResponse[dict[str, bool]]):
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class SetGroupRemarkReq(BaseHttpRequest):
     """
-    设置群备注 API 响应参数
+    set_group_remark 请求参数
     """
+
     pass
+
+
+class SetGroupRemarkData(BaseModel):
+    """
+    set_group_remark 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class SetGroupRemarkRes(BaseHttpResponse[SetGroupRemarkData]):
+    """
+    set_group_remark 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SetGroupRemarkAPI(BaseHttpAPI[SetGroupRemarkReq, SetGroupRemarkRes]):
+    """
+    设置群备注
+    """
+    api: str = "/set_group_remark"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SetGroupRemarkReq
+    Response = SetGroupRemarkRes
+
+    request: SetGroupRemarkReq
+    response: SetGroupRemarkRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(SetGroupRemarkAPI)
+
+# region }
+

@@ -1,49 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取用户在线状态 API
-用于获取指定QQ用户的在线状态信息
-接口地址: https://napcat.apifox.cn/227232854e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- user_id: 要查询的用户QQ号
+@build_id: 165
+@api_id: 226659292e0
+@endpoint: nc_get_user_status
+@tags: 账号相关
+@homepage: https://api.napcat.com/226659292e0
+@llms.txt: https://api.napcat.com/226659292e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 用户的在线状态、使用的客户端类型等信息
+@description: nc_get_user_status API
+@usage: 使用 `client.nc_get_user_status()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from datetime import datetime
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "nc_get_user_status"
+__method__ = "POST"
 
-class NcGetUserStatusReq(TypedDict):
-    """
-    获取用户在线状态 API 请求参数
-    """
-    user_id: int               # 要查询的用户QQ号
 
-class ClientInfo(TypedDict):
-    """
-    客户端信息
-    """
-    client_type: str           # 客户端类型（如手机、电脑等）
-    client_name: str           # 客户端名称
-    device_name: str | None # 设备名称
-    version: str | None     # 客户端版本号
+# region {
+from typing import Literal, Any
 
-class UserStatusInfo(TypedDict):
-    """
-    用户在线状态信息
-    """
-    user_id: int                    # 用户QQ号
-    online: bool                    # 是否在线
-    status_type: int                # 状态类型码
-    status_text: str                # 状态文本描述
-    last_active: datetime           # 最后活跃时间
-    clients: list[ClientInfo]       # 用户登录的客户端列表
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class NcGetUserStatusRes(BaseHttpResponse[UserStatusInfo]):
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class NcGetUserStatusReq(BaseHttpRequest):
     """
-    获取用户在线状态 API 响应参数
+    nc_get_user_status 请求参数
     """
+
     pass
+
+
+class NcGetUserStatusData(BaseModel):
+    """
+    nc_get_user_status 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class NcGetUserStatusRes(BaseHttpResponse[NcGetUserStatusData]):
+    """
+    nc_get_user_status 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class NcGetUserStatusAPI(BaseHttpAPI[NcGetUserStatusReq, NcGetUserStatusRes]):
+    """
+    获取用户状态
+    """
+    api: str = "/nc_get_user_status"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = NcGetUserStatusReq
+    Response = NcGetUserStatusRes
+
+    request: NcGetUserStatusReq
+    response: NcGetUserStatusRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(NcGetUserStatusAPI)
+
+# region }
+

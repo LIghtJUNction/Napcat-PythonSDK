@@ -1,39 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-创建群文件文件夹 API
-用于在群文件系统中创建新的文件夹
-接口地址: https://napcat.apifox.cn/227450004e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
-- name: 文件夹名称
-- parent_id: 父文件夹ID，空字符串表示在根目录创建
+@build_id: 165
+@api_id: 226658773e0
+@endpoint: create_group_file_folder
+@tags: 文件相关
+@homepage: https://api.napcat.com/226658773e0
+@llms.txt: https://api.napcat.com/226658773e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 创建结果信息
+@description: create_group_file_folder API
+@usage: 使用 `client.create_group_file_folder()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "create_group_file_folder"
+__method__ = "POST"
 
-class CreateGroupFileFolderReq(BaseModel):
-    """
-    创建群文件文件夹 API 请求参数
-    """
-    group_id: int  # 群号
-    name: str      # 文件夹名称
-    parent_id: str # 父文件夹ID，空字符串表示在根目录创建
 
-class FolderInfo(BaseModel):
-    """
-    创建的文件夹信息
-    """
-    folder_id: str    # 文件夹ID
-    folder_name: str  # 文件夹名称
+# region {
+from typing import Literal, Any
 
-class CreateGroupFileFolderRes(BaseHttpResponse[FolderInfo]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class CreateGroupFileFolderReq(BaseHttpRequest):
     """
-    创建群文件文件夹 API 响应参数
+    create_group_file_folder 请求参数
     """
+
     pass
+
+
+class CreateGroupFileFolderData(BaseModel):
+    """
+    create_group_file_folder 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class CreateGroupFileFolderRes(BaseHttpResponse[CreateGroupFileFolderData]):
+    """
+    create_group_file_folder 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class CreateGroupFileFolderAPI(BaseHttpAPI[CreateGroupFileFolderReq, CreateGroupFileFolderRes]):
+    """
+    创建群文件文件夹
+    """
+    api: str = "/create_group_file_folder"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = CreateGroupFileFolderReq
+    Response = CreateGroupFileFolderRes
+
+    request: CreateGroupFileFolderReq
+    response: CreateGroupFileFolderRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(CreateGroupFileFolderAPI)
+
+# region }
+

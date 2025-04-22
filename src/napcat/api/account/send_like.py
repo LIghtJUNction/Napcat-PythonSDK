@@ -1,72 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-点赞 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226656717e0
+@endpoint: send_like
+@tags: 账号相关
+@homepage: https://api.napcat.com/226656717e0
+@llms.txt: https://api.napcat.com/226656717e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:33
+
+@description: send_like API
+@usage: 使用 `client.send_like()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "send_like"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class SendLikeReq(BaseHttpRequest):
     """
-    点赞请求参数
+    send_like 请求参数
     """
-    user_id: int | str = Field(description="目标用户QQ号")
-    times: int = Field(default=1, description="点赞次数，默认为1，每天不能超过10次")
 
-
-class ResponseData(BaseModel):
-    """
-    点赞响应数据模型
-    """
-    success: bool = Field(default=False, description="是否点赞成功")
-    message: str = Field(default="", description="结果消息")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    点赞响应参数
-    """
     pass
 
 
-class SendLikeAPI(BaseHttpAPI):
+class SendLikeData(BaseModel):
     """
-    点赞 API
-    用于对指定用户发送点赞
-    接口地址: https://napcat.apifox.cn/226659176e0.md
-
-    参数：
-    {
-      "user_id": 123456789,  // 目标用户QQ号
-      "times": 1             // 点赞次数，默认为1，每天不能超过10次
-    }
-
-    返回：
-    - 点赞操作的结果状态，包含是否成功和相关消息
+    send_like 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class SendLikeRes(BaseHttpResponse[SendLikeData]):
+    """
+    send_like 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SendLikeAPI(BaseHttpAPI[SendLikeReq, SendLikeRes]):
+    """
+    点赞
+    """
     api: str = "/send_like"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SendLikeReq
+    Response = SendLikeRes
+
+    request: SendLikeReq
+    response: SendLikeRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.account.send_like
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(SendLikeAPI)
+
+# region }
+

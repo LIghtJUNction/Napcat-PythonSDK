@@ -1,78 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-获取群列表 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226656992e0
+@endpoint: get_group_list
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226656992e0
+@llms.txt: https://api.napcat.com/226656992e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: get_group_list API
+@usage: 使用 `client.get_group_list()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_list"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class GetGroupListReq(BaseHttpRequest):
     """
-    获取群列表请求参数
+    get_group_list 请求参数
     """
-    no_cache: bool = Field(default=False, description="是否不使用缓存，默认为False")
 
-
-class GroupInfo(BaseModel):
-    """
-    群信息数据模型
-    """
-    group_id: int = Field(default=0, description="群号")
-    group_name: str = Field(default="", description="群名称")
-    member_count: int = Field(default=0, description="成员数量")
-    max_member_count: int = Field(default=0, description="最大成员数量")
-    owner_id: int | str = Field(default="", description="群主ID")
-    admin_flag: bool = Field(default=False, description="是否为管理员")
-    owner_flag: bool = Field(default=False, description="是否为群主")
-    create_time: int = Field(default=0, description="创建时间")
-    level: int = Field(default=0, description="群等级")
-    avatar: str = Field(default="", description="群头像URL")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[list[GroupInfo]]):
-    """
-    获取群列表响应参数
-    """
     pass
 
 
-class GetGroupListAPI(BaseHttpAPI):
+class GetGroupListData(BaseModel):
     """
-    获取群列表 API
-    用于获取当前登录账号加入的群列表
-    接口地址: https://napcat.apifox.cn/226659184e0.md
-
-    参数：
-    {
-      "no_cache": false
-    }
-
-    返回：
-    - 群列表，包含群号、群名称、成员数量等信息
+    get_group_list 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class GetGroupListRes(BaseHttpResponse[GetGroupListData]):
+    """
+    get_group_list 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupListAPI(BaseHttpAPI[GetGroupListReq, GetGroupListRes]):
+    """
+    获取群列表
+    """
     api: str = "/get_group_list"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[list[GroupInfo]] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupListReq
+    Response = GetGroupListRes
+
+    request: GetGroupListReq
+    response: GetGroupListRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.group.get_group_list
-    test_model(Request)
-    test_model(GroupInfo)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupListAPI)
+
+# region }
+

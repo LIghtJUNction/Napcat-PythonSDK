@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 @作者：LIghtJUNction
 @日期：2025/04/20
@@ -11,9 +10,9 @@ from pydantic import BaseModel
 import logging
 import sys
 
-from napcat.api.base.models import BaseHttpResponse
+from napcat.base.models import BaseHttpResponse
 
-from ...api.base.models import BaseHttpAPI
+from napcat.base.models import BaseHttpAPI
 
 # 配置日志记录器
 logging.basicConfig(
@@ -123,7 +122,7 @@ class AsyncHttpClient:
                 logger.debug(f"响应数据: {response.text}")
                 # 将响应文本解析为 JSON 字典，然后传递给 model_validate
                 response_data = response.json()
-                logger.info(f"验证响应"+"="*20)
+                logger.info("验证响应"+"="*20)
                 # 设置 by_alias=True 和 from_attributes=False 以更好地处理字段名称映射
                 # 同时添加 from_attributes=False 以防止尝试从非对象属性中获取数据
                 API.response = API.response.model_validate(
@@ -141,7 +140,7 @@ class AsyncHttpClient:
                 logger.debug(f"响应数据: {response.text}")
                 # 将响应文本解析为 JSON 字典，然后传递给 model_validate
                 response_data = response.json()
-                logger.info(f"验证响应"+"="*20)
+                logger.info("验证响应"+"="*20)
                 # 设置 by_alias=True 和 from_attributes=False 以更好地处理字段名称映射
                 # 同时添加 from_attributes=False 以防止尝试从非对象属性中获取数据
                 API.response = API.response.model_validate(

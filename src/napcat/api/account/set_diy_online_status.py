@@ -1,39 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-设置自定义在线状态 API
-用于设置QQ账号的自定义在线状态，支持设置自定义状态文本和表情
-接口地址: https://napcat.apifox.cn/266151905e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- face_id: 状态表情ID，用于显示特定表情图标
-- status_text: 自定义状态文本内容
-- duration: 状态持续时间(单位:秒)，设置为0表示永久生效
+@build_id: 165
+@api_id: 266151905e0
+@endpoint: set_diy_online_status
+@tags: 账号相关
+@homepage: https://api.napcat.com/266151905e0
+@llms.txt: https://api.napcat.com/266151905e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 设置自定义在线状态的结果信息
+@description: set_diy_online_status API
+@usage: 使用 `client.set_diy_online_status()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "set_diy_online_status"
+__method__ = "POST"
 
-class SetDiyOnlineStatusReq(BaseModel):
-    """
-    设置自定义在线状态 API 请求参数
-    """
-    face_id: int          # 状态表情ID
-    status_text: str      # 自定义状态文本内容
-    duration: int         # 状态持续时间(单位:秒)，0表示永久生效
 
-class DiyStatusResult(BaseModel):
-    """
-    设置自定义在线状态的结果信息
-    """
-    success: bool         # 是否设置成功
-    message: str          # 结果消息
+# region {
+from typing import Literal, Any
 
-class SetDiyOnlineStatusRes(BaseHttpResponse[DiyStatusResult]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class SetDiyOnlineStatusReq(BaseHttpRequest):
     """
-    设置自定义在线状态 API 响应参数
+    set_diy_online_status 请求参数
     """
+
     pass
+
+
+class SetDiyOnlineStatusData(BaseModel):
+    """
+    set_diy_online_status 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class SetDiyOnlineStatusRes(BaseHttpResponse[SetDiyOnlineStatusData]):
+    """
+    set_diy_online_status 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SetDiyOnlineStatusAPI(BaseHttpAPI[SetDiyOnlineStatusReq, SetDiyOnlineStatusRes]):
+    """
+    设置自定义在线状态
+    """
+    api: str = "/set_diy_online_status"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SetDiyOnlineStatusReq
+    Response = SetDiyOnlineStatusRes
+
+    request: SetDiyOnlineStatusReq
+    response: SetDiyOnlineStatusRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(SetDiyOnlineStatusAPI)
+
+# region }
+

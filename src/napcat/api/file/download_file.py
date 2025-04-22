@@ -1,59 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-下载文件到缓存目录 API
-用于下载群文件或私聊文件到本地缓存目录
-接口地址: https://napcat.apifox.cn/226658887e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- url: 文件下载链接
-- thread_count: 下载线程数(可选)，默认为单线程下载
-- headers: 自定义HTTP请求头(可选)
+@build_id: 165
+@api_id: 226658887e0
+@endpoint: download_file
+@tags: 文件相关
+@homepage: https://api.napcat.com/226658887e0
+@llms.txt: https://api.napcat.com/226658887e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 下载结果信息，包含下载后的本地文件路径
-
-# NapCat 开发中
-"""
-
-# 具体实现内容将根据API规范添加
+@description: download_file API
+@usage: 使用 `client.download_file()` 调用此API
 
 """
-下载文件 API
-用于下载指定的文件
-接口地址: https://napcat.apifox.cn/227492775e0.md
+# region METADATA
 
-参数：
-- file_id: 文件ID
-- file_type: 文件类型，群文件: group，私聊文件: private，共享文件: share
-- download_path: 下载保存的路径
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "download_file"
+__method__ = "POST"
 
-返回：
-- 下载结果和保存路径信息
 
-# NapCat 开发中
-"""
+# region {
+from typing import Literal, Any
 
-from typing import TypedDict, Literal
-from napcat.api.base.models import BaseHttpResponse
-# region TypedDicts
-class DownloadFileReq(TypedDict):
-    """
-    下载文件 API 请求参数
-    """
-    file_id: str  # 文件ID
-    file_type: Literal["group", "private", "share"]  # 文件类型
-    download_path: str  # 下载保存的路径
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class DownloadResult(TypedDict):
-    """
-    下载结果信息
-    """
-    file_path: str  # 文件保存路径
-    file_name: str  # 文件名称
-    file_size: int  # 文件大小（字节）
-    success: bool   # 下载是否成功
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class DownloadFileRes(BaseHttpResponse[DownloadResult]):
+
+# request model
+class DownloadFileReq(BaseHttpRequest):
     """
-    下载文件 API 响应参数
+    download_file 请求参数
     """
+
     pass
+
+
+class DownloadFileData(BaseModel):
+    """
+    download_file 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class DownloadFileRes(BaseHttpResponse[DownloadFileData]):
+    """
+    download_file 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class DownloadFileAPI(BaseHttpAPI[DownloadFileReq, DownloadFileRes]):
+    """
+    下载文件到缓存目录
+    """
+    api: str = "/download_file"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = DownloadFileReq
+    Response = DownloadFileRes
+
+    request: DownloadFileReq
+    response: DownloadFileRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(DownloadFileAPI)
+
+# region }
+

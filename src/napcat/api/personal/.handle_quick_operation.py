@@ -1,70 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-对事件执行快速操作 API
-用于对接收到的事件进行快速响应处理
-接口地址: https://napcat.apifox.cn/228954032e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- context: 事件上下文对象，包含事件的相关信息
-- operation: 要执行的操作对象，包含操作类型和参数
+@build_id: 165
+@api_id: 226658889e0
+@endpoint: .handle_quick_operation
+@tags: 个人操作
+@homepage: https://api.napcat.com/226658889e0
+@llms.txt: https://api.napcat.com/226658889e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 操作执行结果，包含是否成功及相关信息
+@description: 相当于http的快速操作
+@usage: 使用 `client..handle_quick_operation()` 调用此API
 
-注意：
-- 此API用于简化事件处理流程，将常用操作封装为快速响应
-- 支持对消息、请求等多种事件类型的快速操作
-- 不同事件类型支持的操作可能不同，请参考具体事件文档
-
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import Any
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = ".handle_quick_operation"
+__method__ = "POST"
 
-class EventContext(BaseModel):
-    """
-    事件上下文信息
-    """
-    event_id: str             # 事件ID
-    event_type: str           # 事件类型
-    detail_type: str          # 详细类型
-    sub_type: str             # 子类型
-    time: int                 # 事件发生的时间戳
-    self_id: int              # 收到事件的机器人QQ号
 
-class Operation(BaseModel):
-    """
-    快速操作内容
-    """
-    type: str                 # 操作类型
-    reply: str | None = None                # 回复内容(可选)
-    at_sender: bool | None = None           # 是否@发送者(可选)
-    delete: bool | None = None              # 是否撤回消息(可选)
-    kick: bool | None = None                # 是否踢出群员(可选)
-    ban: bool | None = None                 # 是否禁言(可选)
-    ban_duration: int | None = None         # 禁言时长(可选)
-    approve: bool | None = None             # 是否同意请求(可选)
-    reason: str | None = None               # 拒绝理由(可选)
-    # 其他可能的操作参数...
+# region {
+from typing import Literal, Any
 
-class HandleQuickOperationReq(BaseModel):
-    """
-    对事件执行快速操作 API 请求参数
-    """
-    context: EventContext     # 事件上下文
-    operation: Operation      # 操作内容
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class OperationResult(BaseModel):
-    """
-    操作执行结果
-    """
-    success: bool             # 是否成功
-    message: str              # 结果消息
-    detail: dict[str, Any]    # 详细结果信息(如果有)
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class HandleQuickOperationRes(BaseHttpResponse[OperationResult]):
+
+# request model
+class HandleQuickOperationReq(BaseHttpRequest):
     """
-    对事件执行快速操作 API 响应参数
+    .handle_quick_operation 请求参数
     """
+
     pass
+
+
+class HandleQuickOperationData(BaseModel):
+    """
+    .handle_quick_operation 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class HandleQuickOperationRes(BaseHttpResponse[HandleQuickOperationData]):
+    """
+    .handle_quick_operation 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class HandleQuickOperationAPI(BaseHttpAPI[HandleQuickOperationReq, HandleQuickOperationRes]):
+    """
+    .对事件执行快速操作
+    """
+    api: str = "/.handle_quick_operation"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = HandleQuickOperationReq
+    Response = HandleQuickOperationRes
+
+    request: HandleQuickOperationReq
+    response: HandleQuickOperationRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(HandleQuickOperationAPI)
+
+# region }
+

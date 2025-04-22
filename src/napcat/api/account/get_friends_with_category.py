@@ -1,52 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取好友分组列表 API
-用于获取账号的好友分组信息及每个分组中的好友列表
-接口地址: https://napcat.apifox.cn/226658978e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- refresh_token: 是否刷新令牌(可选)
+@build_id: 165
+@api_id: 226658978e0
+@endpoint: get_friends_with_category
+@tags: 账号相关
+@homepage: https://api.napcat.com/226658978e0
+@llms.txt: https://api.napcat.com/226658978e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:33
 
-返回：
-- 包含所有好友分组及其中好友信息的数据结构
-- 每个分组包含分组ID、分组名称及组内好友列表
+@description: get_friends_with_category API
+@usage: 使用 `client.get_friends_with_category()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_friends_with_category"
+__method__ = "POST"
 
-class GetFriendsWithCategoryReq(TypedDict):
-    """
-    获取好友分组列表 API 请求参数
-    """
-    refresh_token: bool | None  # 是否刷新令牌(可选)
 
-class FriendInfo(TypedDict):
-    """
-    好友信息
-    """
-    user_id: int             # 好友QQ号
-    nickname: str            # 好友昵称
-    remark: str              # 好友备注
-    avatar: str              # 头像URL
+# region {
+from typing import Literal, Any
 
-class FriendCategory(TypedDict):
-    """
-    好友分组信息
-    """
-    category_id: int              # 分组ID
-    category_name: str            # 分组名称
-    friends: list[FriendInfo]     # 分组内的好友列表
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class FriendCategoryResult(TypedDict):
-    """
-    好友分组列表结果
-    """
-    categories: list[FriendCategory]  # 分组列表
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class GetFriendsWithCategoryRes(BaseHttpResponse[FriendCategoryResult]):
+
+# request model
+class GetFriendsWithCategoryReq(BaseHttpRequest):
     """
-    获取好友分组列表 API 响应参数
+    get_friends_with_category 请求参数
     """
+
     pass
+
+
+class GetFriendsWithCategoryData(BaseModel):
+    """
+    get_friends_with_category 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetFriendsWithCategoryRes(BaseHttpResponse[GetFriendsWithCategoryData]):
+    """
+    get_friends_with_category 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetFriendsWithCategoryAPI(BaseHttpAPI[GetFriendsWithCategoryReq, GetFriendsWithCategoryRes]):
+    """
+    获取好友分组列表
+    """
+    api: str = "/get_friends_with_category"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetFriendsWithCategoryReq
+    Response = GetFriendsWithCategoryRes
+
+    request: GetFriendsWithCategoryReq
+    response: GetFriendsWithCategoryRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetFriendsWithCategoryAPI)
+
+# region }
+

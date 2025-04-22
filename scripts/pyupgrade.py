@@ -11,9 +11,8 @@ from pathlib import Path
 def main():
     # 获取当前脚本目录
     script_dir = Path(__file__).resolve().parent
-    
-    # 确定 astrbot/ 文件夹的位置
-    src_dir = script_dir.parent / "src"
+
+    src_dir = script_dir.parent / "build"
     
 
     print(f"开始处理 {src_dir} 目录下的 Python 文件...")

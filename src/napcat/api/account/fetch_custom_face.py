@@ -1,39 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取自定义表情 API
-用于获取用户上传的自定义表情列表
-接口地址: https://napcat.apifox.cn/227233981e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- type: 表情类型 (all/image/face)
-- page: 分页页码
+@build_id: 165
+@api_id: 226659210e0
+@endpoint: fetch_custom_face
+@tags: 账号相关
+@homepage: https://api.napcat.com/226659210e0
+@llms.txt: https://api.napcat.com/226659210e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 表情列表及元数据
+@description: fetch_custom_face API
+@usage: 使用 `client.fetch_custom_face()` 调用此API
+
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "fetch_custom_face"
+__method__ = "POST"
 
-class FetchCustomFaceReq(BaseModel):
-    """
-    获取自定义表情 API 请求参数
-    """
-    type: str  # 表情类型
-    page: int  # 分页页码
 
-class CustomFaceItem(BaseModel):
-    """
-    自定义表情项
-    """
-    id: str         # 表情ID
-    name: str       # 表情名称
-    url: str        # 表情URL
-    width: int      # 表情宽度
-    height: int     # 表情高度
+# region {
+from typing import Literal, Any
 
-class FetchCustomFaceRes(BaseHttpResponse[list[CustomFaceItem]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class FetchCustomFaceReq(BaseHttpRequest):
     """
-    获取自定义表情 API 响应参数
+    fetch_custom_face 请求参数
     """
-    total: int      # 总数量
-    page_size: int  # 每页数量
+
+    pass
+
+
+class FetchCustomFaceData(BaseModel):
+    """
+    fetch_custom_face 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class FetchCustomFaceRes(BaseHttpResponse[FetchCustomFaceData]):
+    """
+    fetch_custom_face 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class FetchCustomFaceAPI(BaseHttpAPI[FetchCustomFaceReq, FetchCustomFaceRes]):
+    """
+    获取收藏表情
+    """
+    api: str = "/fetch_custom_face"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = FetchCustomFaceReq
+    Response = FetchCustomFaceRes
+
+    request: FetchCustomFaceReq
+    response: FetchCustomFaceRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(FetchCustomFaceAPI)
+
+# region }
+

@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 import asyncio
 from napcat.clients.http.v1 import AsyncHttpClient
 
-from napcat.api.account.get_friend_list import GetFriendListAPI, Request, Response # type: ignore[import]
+from napcat.api.account.get_friend_list import GetFriendListAPI # type: ignore[import]
 # 初始化
 
 client : AsyncHttpClient = AsyncHttpClient(
@@ -24,7 +23,7 @@ async def main():
     # 测试连接
     API = GetFriendListAPI()
 
-    API.request = Request(
+    API.request = GetFriendListAPI.Request(
         no_cache = False
     )
 

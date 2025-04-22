@@ -1,36 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取点赞列表 API
-用于获取当天收到的点赞信息列表
-接口地址: https://napcat.apifox.cn/226659197e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 226659197e0
+@endpoint: get_profile_like
+@tags: 账号相关
+@homepage: https://api.napcat.com/226659197e0
+@llms.txt: https://api.napcat.com/226659197e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 当天收到的点赞列表数据，包含点赞者QQ号、点赞时间和点赞次数等信息
+@description: get_profile_like API
+@usage: 使用 `client.get_profile_like()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_profile_like"
+__method__ = "POST"
 
-class GetProfileLikeReq(BaseModel):
-    """
-    获取点赞列表 API 请求参数
-    """
-    pass  # 无需参数
 
-class LikeInfo(BaseModel):
-    """
-    点赞信息结构
-    """
-    user_id: int    # 点赞者QQ号
-    time: int       # 点赞时间戳
-    count: int      # 点赞次数
+# region {
+from typing import Literal, Any
 
-class GetProfileLikeRes(BaseHttpResponse[list[LikeInfo]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetProfileLikeReq(BaseHttpRequest):
     """
-    获取点赞列表 API 响应参数
+    get_profile_like 请求参数
     """
+
     pass
+
+
+class GetProfileLikeData(BaseModel):
+    """
+    get_profile_like 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetProfileLikeRes(BaseHttpResponse[GetProfileLikeData]):
+    """
+    get_profile_like 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetProfileLikeAPI(BaseHttpAPI[GetProfileLikeReq, GetProfileLikeRes]):
+    """
+    获取点赞列表
+    """
+    api: str = "/get_profile_like"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetProfileLikeReq
+    Response = GetProfileLikeRes
+
+    request: GetProfileLikeReq
+    response: GetProfileLikeRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetProfileLikeAPI)
+
+# region }
+

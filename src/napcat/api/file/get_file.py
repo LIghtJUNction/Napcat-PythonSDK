@@ -1,44 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取文件信息 API
-用于获取指定文件的信息
-接口地址: https://napcat.apifox.cn/227492775e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- file_id: 文件ID
-- file_type: 文件类型，群文件: group，私聊文件: private，共享文件: share
+@build_id: 165
+@api_id: 226658985e0
+@endpoint: get_file
+@tags: 文件相关
+@homepage: https://api.napcat.com/226658985e0
+@llms.txt: https://api.napcat.com/226658985e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 文件的详细信息
+@description: get_file API
+@usage: 使用 `client.get_file()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import Literal
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_file"
+__method__ = "POST"
 
-class GetFileReq(BaseModel):
-    """
-    获取文件信息 API 请求参数
-    """
-    file_id: str  # 文件ID
-    file_type: Literal["group", "private", "share"]  # 文件类型
 
-class FileInfo(BaseModel):
-    """
-    文件信息
-    """
-    file_id: str       # 文件ID
-    file_name: str     # 文件名称
-    file_size: int     # 文件大小（字节）
-    upload_time: int   # 上传时间戳
-    uploader: int      # 上传者QQ号
-    file_type: str     # 文件类型
-    expire_time: int   # 过期时间戳
-    download_times: int # 下载次数
+# region {
+from typing import Literal, Any
 
-class GetFileRes(BaseHttpResponse[FileInfo]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetFileReq(BaseHttpRequest):
     """
-    获取文件信息 API 响应参数
+    get_file 请求参数
     """
+
     pass
+
+
+class GetFileData(BaseModel):
+    """
+    get_file 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetFileRes(BaseHttpResponse[GetFileData]):
+    """
+    get_file 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetFileAPI(BaseHttpAPI[GetFileReq, GetFileRes]):
+    """
+    获取文件信息
+    """
+    api: str = "/get_file"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetFileReq
+    Response = GetFileRes
+
+    request: GetFileReq
+    response: GetFileRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetFileAPI)
+
+# region }
+

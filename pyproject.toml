@@ -1,6 +1,6 @@
 [project]
 name = "python-napcat"
-version = "0.1.0"
+version = "4.7.17"
 description = "From napcat.fastnc import FastNC"
 readme = "README.md"
 authors = [
@@ -8,15 +8,16 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "httpx>=0.28.1",
     "httpx-ws>=0.7.2",
+    "openai>=1.75.0",
+    "openai-agents>=0.0.11",
     "pydantic>=2.11.3",
+    "pyyaml>=6.0.2",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=8.3.5",
-    "pytest-asyncio>=0.26.0",
+
 ]
 
 

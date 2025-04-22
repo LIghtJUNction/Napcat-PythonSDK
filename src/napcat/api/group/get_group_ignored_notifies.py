@@ -1,42 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群过滤系统消息 API
-用于获取经过过滤的群系统消息
-接口地址: https://napcat.apifox.cn/226659323e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数:
-无需参数
+@build_id: 165
+@api_id: 226659323e0
+@endpoint: get_group_ignored_notifies
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226659323e0
+@llms.txt: https://api.napcat.com/226659323e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回:
-- 过滤后的群系统消息列表
+@description: get_group_ignored_notifies API
+@usage: 使用 `client.get_group_ignored_notifies()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import TypedDict
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_ignored_notifies"
+__method__ = "POST"
 
-class GetGroupIgnoredNotifiesReq(TypedDict):
-    """
-    获取群过滤系统消息 API 请求参数
-    """
-    pass  # 无需参数
 
-class IgnoredRequestInfo(TypedDict):
-    """
-    被过滤的请求信息
-    """
-    request_id: str        # 请求ID
-    group_id: int          # 群号
-    group_name: str        # 群名称
-    requester_uin: int     # 请求者QQ号
-    requester_nick: str    # 请求者昵称
-    message: str           # 请求消息
-    flag: str              # 请求标识，用于处理请求
-    time: int              # 请求时间戳
-    filter_reason: str     # 过滤原因
+# region {
+from typing import Literal, Any
 
-class GetGroupIgnoredNotifiesRes(BaseHttpResponse[list[IgnoredRequestInfo]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGroupIgnoredNotifiesReq(BaseHttpRequest):
     """
-    获取群过滤系统消息 API 响应参数
+    get_group_ignored_notifies 请求参数
     """
+
     pass
+
+
+class GetGroupIgnoredNotifiesData(BaseModel):
+    """
+    get_group_ignored_notifies 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupIgnoredNotifiesRes(BaseHttpResponse[GetGroupIgnoredNotifiesData]):
+    """
+    get_group_ignored_notifies 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupIgnoredNotifiesAPI(BaseHttpAPI[GetGroupIgnoredNotifiesReq, GetGroupIgnoredNotifiesRes]):
+    """
+    获取群过滤系统消息
+    """
+    api: str = "/get_group_ignored_notifies"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupIgnoredNotifiesReq
+    Response = GetGroupIgnoredNotifiesRes
+
+    request: GetGroupIgnoredNotifiesReq
+    response: GetGroupIgnoredNotifiesRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupIgnoredNotifiesAPI)
+
+# region }
+

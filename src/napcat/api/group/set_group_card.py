@@ -1,74 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-设置群成员名片 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226656913e0
+@endpoint: set_group_card
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226656913e0
+@llms.txt: https://api.napcat.com/226656913e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: set_group_card API
+@usage: 使用 `client.set_group_card()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "set_group_card"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class SetGroupCardReq(BaseHttpRequest):
     """
-    设置群成员名片请求参数
+    set_group_card 请求参数
     """
-    group_id: int = Field(description="群号")
-    user_id: int | str = Field(description="要设置的成员QQ号")
-    card: str = Field(description="新的群名片内容，设置为空字符串表示清除群名片")
 
-
-class ResponseData(BaseModel):
-    """
-    设置群成员名片响应数据模型
-    """
-    success: bool = Field(default=False, description="是否设置成功")
-    message: str = Field(default="", description="结果消息")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    设置群成员名片响应参数
-    """
     pass
 
 
-class SetGroupCardAPI(BaseHttpAPI):
+class SetGroupCardData(BaseModel):
     """
-    设置群成员名片 API
-    用于设置群成员在群内显示的昵称
-    接口地址: https://napcat.apifox.cn/226659185e0.md
-
-    参数：
-    {
-      "group_id": 123456789,
-      "user_id": 987654321,
-      "card": "新名片"  // 群名片内容，不填或空字符串表示清除群名片
-    }
-
-    返回：
-    - 设置群成员名片的结果状态，包含是否成功和相关消息
+    set_group_card 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class SetGroupCardRes(BaseHttpResponse[SetGroupCardData]):
+    """
+    set_group_card 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SetGroupCardAPI(BaseHttpAPI[SetGroupCardReq, SetGroupCardRes]):
+    """
+    设置群成员名片
+    """
     api: str = "/set_group_card"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SetGroupCardReq
+    Response = SetGroupCardRes
+
+    request: SetGroupCardReq
+    response: SetGroupCardRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.group.set_group_card
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(SetGroupCardAPI)
+
+# region }
+

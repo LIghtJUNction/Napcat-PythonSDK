@@ -1,86 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-获取在线机型 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 227233981e0
+@endpoint: _get_model_show
+@tags: 账号相关
+@homepage: https://api.napcat.com/227233981e0
+@llms.txt: https://api.napcat.com/227233981e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: _get_model_show API
+@usage: 使用 `client._get_model_show()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "_get_model_show"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class GetModelShowReq(BaseHttpRequest):
     """
-    获取在线机型请求参数
+    _get_model_show 请求参数
     """
-    model: str = Field(default="", description="机型名称")
 
-
-class Variant(BaseModel):
-    """
-    机型变体模型
-    包含机型显示信息和支付状态
-    """
-    model_show: str = Field(default="", description="机型显示信息")
-    need_pay: bool = Field(default=False, description="是否需要付费")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class ResponseData(BaseModel):
-    """
-    响应数据模型
-    包含当前在线机型信息
-    """
-    variants: list[Variant] = Field(default_factory=list, description="机型变体列表")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    获取在线机型响应参数
-    """
     pass
 
 
-class GetModelShowAPI(BaseHttpAPI):
+class GetModelShowData(BaseModel):
     """
-    获取在线机型 API
-    用于获取当前账号设置的在线机型信息
-    接口地址: https://napcat.apifox.cn/227233981e0.md
-
-    参数：
-    无需参数
-
-    返回：
-    - 当前在线机型信息，包含机型ID、机型名称和显示信息等
+    _get_model_show 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class GetModelShowRes(BaseHttpResponse[GetModelShowData]):
+    """
+    _get_model_show 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetModelShowAPI(BaseHttpAPI[GetModelShowReq, GetModelShowRes]):
+    """
+    _获取在线机型
+    """
     api: str = "/_get_model_show"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetModelShowReq
+    Response = GetModelShowRes
+
+    request: GetModelShowReq
+    response: GetModelShowRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.account._get_model_show
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
 
+    from napcat.base.utils import test_model
+    test_model(GetModelShowAPI)
+
+# region }
 

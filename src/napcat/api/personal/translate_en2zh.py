@@ -1,45 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-英译中 API
-用于将英文翻译成中文
-接口地址: https://napcat.apifox.cn/282546119e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- text: 需要翻译的英文文本内容
-- engine: 翻译引擎(可选)，指定使用的翻译服务
+@build_id: 165
+@api_id: 226659102e0
+@endpoint: translate_en2zh
+@tags: 个人操作
+@homepage: https://api.napcat.com/226659102e0
+@llms.txt: https://api.napcat.com/226659102e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 翻译结果，包含翻译后的中文文本和其他相关信息
+@description: translate_en2zh API
+@usage: 使用 `client.translate_en2zh()` 调用此API
 
-注意：
-- 单次翻译文本长度可能有限制
-- 翻译质量受原文表达和引擎能力影响
-- 专业术语翻译可能需要特定的翻译引擎
-
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "translate_en2zh"
+__method__ = "POST"
 
-class TranslateEn2zhReq(BaseModel):
-    """
-    英译中 API 请求参数
-    """
-    text: str                  # 需要翻译的英文文本
-    engine: str | None = None                # 翻译引擎(可选)，如"default", "baidu", "google"等
 
-class TranslateResult(BaseModel):
-    """
-    翻译结果
-    """
-    original_text: str         # 原始英文文本
-    translated_text: str       # 翻译后的中文文本
-    engine_used: str           # 使用的翻译引擎
-    confidence: float          # 翻译置信度(0-1)
-    alternatives: list[str]    # 其他可能的翻译结果
+# region {
+from typing import Literal, Any
 
-class TranslateEn2zhRes(BaseHttpResponse[TranslateResult]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class TranslateEn2zhReq(BaseHttpRequest):
     """
-    英译中 API 响应参数
+    translate_en2zh 请求参数
     """
+
     pass
+
+
+class TranslateEn2zhData(BaseModel):
+    """
+    translate_en2zh 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class TranslateEn2zhRes(BaseHttpResponse[TranslateEn2zhData]):
+    """
+    translate_en2zh 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class TranslateEn2zhAPI(BaseHttpAPI[TranslateEn2zhReq, TranslateEn2zhRes]):
+    """
+    英译中
+    """
+    api: str = "/translate_en2zh"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = TranslateEn2zhReq
+    Response = TranslateEn2zhRes
+
+    request: TranslateEn2zhReq
+    response: TranslateEn2zhRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(TranslateEn2zhAPI)
+
+# region }
+

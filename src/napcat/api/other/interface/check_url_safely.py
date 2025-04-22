@@ -1,37 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-检查URL安全性 API
-用于检查一个URL是否安全
-接口地址: https://napcat.apifox.cn/227495392e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- url: 需要检查的URL
+@build_id: 165
+@api_id: 228534361e0
+@endpoint: check_url_safely
+@tags: 其他/接口
+@homepage: https://api.napcat.com/228534361e0
+@llms.txt: https://api.napcat.com/228534361e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:35
 
-返回：
-- URL安全检查结果
+@description: check_url_safely API
+@usage: 使用 `client.check_url_safely()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from napcat.api.base.models import BaseHttpResponse
-from pydantic import BaseModel
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "check_url_safely"
+__method__ = "POST"
 
-class CheckUrlSafelyReq(BaseModel):
-    """
-    检查URL安全性 API 请求参数
-    """
-    url: str  # 需要检查的URL
 
-class SafetyCheckResult(BaseModel):
-    """
-    安全检查结果
-    """
-    url: str       # 检查的URL
-    is_safe: bool  # 是否安全
-    risk_level: int  # 风险等级，0-5，数字越大风险越高
-    risk_type: str   # 风险类型，如"phishing"、"malware"等
+# region {
+from typing import Literal, Any
 
-class CheckUrlSafelyRes(BaseHttpResponse[SafetyCheckResult]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class CheckUrlSafelyReq(BaseHttpRequest):
     """
-    检查URL安全性 API 响应参数
+    check_url_safely 请求参数
     """
+
     pass
+
+
+class CheckUrlSafelyData(BaseModel):
+    """
+    check_url_safely 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class CheckUrlSafelyRes(BaseHttpResponse[CheckUrlSafelyData]):
+    """
+    check_url_safely 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class CheckUrlSafelyAPI(BaseHttpAPI[CheckUrlSafelyReq, CheckUrlSafelyRes]):
+    """
+    检查链接安全性
+    """
+    api: str = "/check_url_safely"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = CheckUrlSafelyReq
+    Response = CheckUrlSafelyRes
+
+    request: CheckUrlSafelyReq
+    response: CheckUrlSafelyRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(CheckUrlSafelyAPI)
+
+# region }
+

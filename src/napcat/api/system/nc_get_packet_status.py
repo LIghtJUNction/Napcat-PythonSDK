@@ -1,63 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取packet状态 API
-用于获取当前网络包的状态信息，帮助诊断网络连接情况
-接口地址: https://napcat.apifox.cn/226659280e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 226659280e0
+@endpoint: nc_get_packet_status
+@tags: 系统操作
+@homepage: https://api.napcat.com/226659280e0
+@llms.txt: https://api.napcat.com/226659280e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 包含网络包状态的对象，通常包含发送/接收统计、网络延迟信息等
-- 可能包含连接质量、丢包率等网络性能指标
+@description: nc_get_packet_status API
+@usage: 使用 `client.nc_get_packet_status()` 调用此API
 
-注意：
-- 此API可用于监控和诊断网络连接问题
-- 状态信息反映了底层网络通信的实时情况
-- 在网络连接不稳定时，可通过此API获取详细的故障信息
-
-# NapCat 开发中
 """
+# region METADATA
 
-from napcat.api.base.models import BaseHttpResponse
-from pydantic import BaseModel
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "nc_get_packet_status"
+__method__ = "POST"
 
-class NcGetPacketStatusReq(BaseModel):
-    """
-    获取packet状态 API 请求参数
-    """
-    pass  # 无需参数
 
-class PacketStatistics(BaseModel):
-    """
-    网络包统计信息
-    """
-    total_sent: int           # 发送的包总数
-    total_received: int       # 接收的包总数
-    bytes_sent: int           # 发送的总字节数
-    bytes_received: int       # 接收的总字节数
-    packets_lost: int         # 丢失的包数量
-    packet_loss_rate: float   # 丢包率
+# region {
+from typing import Literal, Any
 
-class NetworkMetrics(BaseModel):
-    """
-    网络性能指标
-    """
-    average_latency: float    # 平均延迟(毫秒)
-    max_latency: float        # 最大延迟(毫秒)
-    jitter: float             # 抖动值(毫秒)
-    connection_quality: str   # 连接质量评级(如"good", "fair", "poor")
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class PacketStatus(BaseModel):
-    """
-    网络包状态信息
-    """
-    statistics: PacketStatistics  # 包统计信息
-    metrics: NetworkMetrics       # 网络性能指标
-    connection_stable: bool       # 连接是否稳定
-    last_activity: int            # 最后活动时间戳(毫秒)
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class NcGetPacketStatusRes(BaseHttpResponse[PacketStatus]):
+
+# request model
+class NcGetPacketStatusReq(BaseHttpRequest):
     """
-    获取packet状态 API 响应参数
+    nc_get_packet_status 请求参数
     """
+
     pass
+
+
+class NcGetPacketStatusData(BaseModel):
+    """
+    nc_get_packet_status 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class NcGetPacketStatusRes(BaseHttpResponse[NcGetPacketStatusData]):
+    """
+    nc_get_packet_status 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class NcGetPacketStatusAPI(BaseHttpAPI[NcGetPacketStatusReq, NcGetPacketStatusRes]):
+    """
+    获取packet状态
+    """
+    api: str = "/nc_get_packet_status"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = NcGetPacketStatusReq
+    Response = NcGetPacketStatusRes
+
+    request: NcGetPacketStatusReq
+    response: NcGetPacketStatusRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(NcGetPacketStatusAPI)
+
+# region }
+

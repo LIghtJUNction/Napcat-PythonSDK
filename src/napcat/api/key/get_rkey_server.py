@@ -1,45 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取rkey服务 API
-用于获取专门提供rkey的服务信息，包括服务地址、访问方式等
-接口地址: https://napcat.apifox.cn/283136236e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 283136236e0
+@endpoint: get_rkey_server
+@tags: 密钥相关
+@homepage: https://api.napcat.com/283136236e0
+@llms.txt: https://api.napcat.com/283136236e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 包含rkey服务相关信息的对象，可用于配置和访问rkey服务
+@description: get_rkey_server API
+@usage: 使用 `client.get_rkey_server()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_rkey_server"
+__method__ = "POST"
 
-class GetRkeyServerReq(BaseModel):
-    """
-    获取rkey服务 API 请求参数
-    """
-    pass  # 无请求参数
 
-class ServerEndpoint(BaseModel):
-    """
-    服务端点信息
-    """
-    url: str            # 服务URL地址
-    protocol: str       # 通信协议
-    priority: int       # 优先级
+# region {
+from typing import Literal, Any
 
-class RkeyServerInfo(BaseModel):
-    """
-    Rkey服务信息
-    """
-    service_name: str                # 服务名称
-    endpoints: list[ServerEndpoint]  # 服务端点列表
-    timeout: int                     # 超时时间(毫秒)
-    retry_count: int                 # 重试次数
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class GetRkeyServerRes(BaseHttpResponse[RkeyServerInfo]):
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetRkeyServerReq(BaseHttpRequest):
     """
-    获取rkey服务 API 响应参数
+    get_rkey_server 请求参数
     """
+
     pass
+
+
+class GetRkeyServerData(BaseModel):
+    """
+    get_rkey_server 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetRkeyServerRes(BaseHttpResponse[GetRkeyServerData]):
+    """
+    get_rkey_server 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetRkeyServerAPI(BaseHttpAPI[GetRkeyServerReq, GetRkeyServerRes]):
+    """
+    获取rkey服务
+    """
+    api: str = "/get_rkey_server"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetRkeyServerReq
+    Response = GetRkeyServerRes
+
+    request: GetRkeyServerReq
+    response: GetRkeyServerRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetRkeyServerAPI)
+
+# region }
+

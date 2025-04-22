@@ -1,46 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群信息ex API
-用于获取群组的扩展信息
-接口地址: https://napcat.apifox.cn/226659229e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数:
-- group_id: int - 群号
+@build_id: 165
+@api_id: 226659229e0
+@endpoint: get_group_info_ex
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226659229e0
+@llms.txt: https://api.napcat.com/226659229e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回:
-- 群组扩展信息
+@description: get_group_info_ex API
+@usage: 使用 `client.get_group_info_ex()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_info_ex"
+__method__ = "POST"
 
-class GetGroupInfoExReq(BaseModel):
-    """
-    获取群信息ex API 请求参数
-    """
-    group_id: int  # 群号
 
-class GroupInfoExData(BaseModel):
-    """
-    群组扩展信息
-    """
-    group_id: int           # 群号
-    group_name: str         # 群名称
-    group_memo: str         # 群备注
-    group_create_time: int  # 群创建时间
-    group_level: int        # 群等级
-    member_count: int       # 成员数
-    max_member_count: int   # 最大成员数
-    owner_id: int           # 群主QQ号
-    admin_flag: bool        # 是否为管理员
-    last_join_time: int     # 最后加入时间
-    last_sent_time: int     # 最后发言时间
-    shutup_time_whole: int  # 全员禁言到期时间
-    shutup_time_me: int     # 个人禁言到期时间
+# region {
+from typing import Literal, Any
 
-class GetGroupInfoExRes(BaseHttpResponse[GroupInfoExData]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGroupInfoExReq(BaseHttpRequest):
     """
-    获取群信息ex API 响应参数
+    get_group_info_ex 请求参数
     """
+
     pass
+
+
+class GetGroupInfoExData(BaseModel):
+    """
+    get_group_info_ex 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupInfoExRes(BaseHttpResponse[GetGroupInfoExData]):
+    """
+    get_group_info_ex 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupInfoExAPI(BaseHttpAPI[GetGroupInfoExReq, GetGroupInfoExRes]):
+    """
+    获取群信息ex
+    """
+    api: str = "/get_group_info_ex"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupInfoExReq
+    Response = GetGroupInfoExRes
+
+    request: GetGroupInfoExReq
+    response: GetGroupInfoExRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupInfoExAPI)
+
+# region }
+

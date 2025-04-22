@@ -1,72 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-全体禁言 API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
+@author: LIghtJUNction
+@builder: AI
+
+@build_id: 165
+@api_id: 226656802e0
+@endpoint: set_group_whole_ban
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226656802e0
+@llms.txt: https://api.napcat.com/226656802e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: set_group_whole_ban API
+@usage: 使用 `client.set_group_whole_ban()` 调用此API
+
 """
+# region METADATA
 
-from typing import Literal
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "set_group_whole_ban"
+__method__ = "POST"
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class SetGroupWholeBanReq(BaseHttpRequest):
     """
-    全体禁言请求参数
+    set_group_whole_ban 请求参数
     """
-    group_id: int = Field(description="群号")
-    enable: bool = Field(description="是否开启全体禁言")
 
-
-class ResponseData(BaseModel):
-    """
-    全体禁言响应数据模型
-    """
-    success: bool = Field(default=False, description="是否设置成功")
-    message: str = Field(default="", description="结果消息")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    全体禁言响应参数
-    """
     pass
 
 
-class SetGroupWholeBanAPI(BaseHttpAPI):
+class SetGroupWholeBanData(BaseModel):
     """
-    全体禁言 API
-    用于设置群全体禁言状态
-    接口地址: https://napcat.apifox.cn/226659191e0.md
-
-    参数：
-    {
-      "group_id": 123456789,
-      "enable": true  // true表示开启全体禁言，false表示关闭
-    }
-
-    返回：
-    - 设置全体禁言的结果状态，包含是否成功和相关消息
+    set_group_whole_ban 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class SetGroupWholeBanRes(BaseHttpResponse[SetGroupWholeBanData]):
+    """
+    set_group_whole_ban 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class SetGroupWholeBanAPI(BaseHttpAPI[SetGroupWholeBanReq, SetGroupWholeBanRes]):
+    """
+    全体禁言
+    """
     api: str = "/set_group_whole_ban"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = SetGroupWholeBanReq
+    Response = SetGroupWholeBanRes
+
+    request: SetGroupWholeBanReq
+    response: SetGroupWholeBanRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.group.set_group_whole_ban
-    test_model(Request)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(SetGroupWholeBanAPI)
+
+# region }
+

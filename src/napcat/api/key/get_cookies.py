@@ -1,92 +1,97 @@
 # -*- coding: utf-8 -*-
 """
-获取Cookies API
-开发完毕
-@作者：GitHub Copilot
-@日期：2025/04/20
-"""
+@author: LIghtJUNction
+@builder: AI
 
+@build_id: 165
+@api_id: 226657041e0
+@endpoint: get_cookies
+@tags: 密钥相关
+@homepage: https://api.napcat.com/226657041e0
+@llms.txt: https://api.napcat.com/226657041e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
+
+@description: get_cookies API
+@usage: 使用 `client.get_cookies()` 调用此API
+
+"""
+# region METADATA
+
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_cookies"
+__method__ = "POST"
+
+
+# region {
 from typing import Literal, Any
 
-from pydantic import ConfigDict, Field
-from ..base.models import BaseHttpAPI, BaseHttpRequest, BaseHttpResponse, BaseModel
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
 
-class Request(BaseHttpRequest):
+# request model
+class GetCookiesReq(BaseHttpRequest):
     """
-    获取Cookies请求参数
+    get_cookies 请求参数
     """
-    domain: str = Field(default="", description="要获取cookie的域名，默认为空表示获取所有域名的cookie")
 
-
-class CookieItem(BaseModel):
-    """
-    Cookie项数据模型
-    """
-    name: str = Field(default="", description="Cookie名称")
-    value: str = Field(default="", description="Cookie值")
-    domain: str = Field(default="", description="Cookie所属域名")
-    path: str = Field(default="/", description="Cookie路径")
-    expires: int = Field(default=0, description="过期时间戳")
-    size: int = Field(default=0, description="Cookie大小")
-    httponly: bool = Field(default=False, description="是否仅HTTP访问")
-    secure: bool = Field(default=False, description="是否安全Cookie")
-    session: bool = Field(default=True, description="是否会话Cookie")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class ResponseData(BaseModel):
-    """
-    获取Cookies响应数据模型
-    """
-    cookies: list[CookieItem] = Field(default_factory=list, description="Cookie列表")
-    
-    model_config = ConfigDict(
-        extra="allow",  # 允许额外字段
-        frozen=False,   # 不冻结模型
-        populate_by_name=True,  # 通过名称填充字段
-        arbitrary_types_allowed=True,  # 允许任意类型
-    )
-
-
-class Response(BaseHttpResponse[ResponseData]):
-    """
-    获取Cookies响应参数
-    """
     pass
 
 
-class GetCookiesAPI(BaseHttpAPI):
+class GetCookiesData(BaseModel):
     """
-    获取Cookies API
-    用于获取登录QQ的相关Cookie信息
-    接口地址: https://napcat.apifox.cn/250286964e0.md
-
-    参数：
-    {
-      "domain": "qun.qq.com"  # 可选，要获取cookie的域名，默认为空表示获取所有域名的cookie
-    }
-
-    返回：
-    - Cookie信息列表，包含名称、值、域名、过期时间等详细信息
+    get_cookies 数据结构
     """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
 
+
+# response model
+class GetCookiesRes(BaseHttpResponse[GetCookiesData]):
+    """
+    get_cookies 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetCookiesAPI(BaseHttpAPI[GetCookiesReq, GetCookiesRes]):
+    """
+    获取cookies
+    """
     api: str = "/get_cookies"
-    method: Literal['POST', 'GET'] = "POST"
-    request: BaseHttpRequest = Request()
-    response: BaseHttpResponse[ResponseData] = Response()
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetCookiesReq
+    Response = GetCookiesRes
+
+    request: GetCookiesReq
+    response: GetCookiesRes
+    
 
 if __name__ == "__main__":
-    from ..base.utils import test_model
-    # uv pip install -e . 
-    # python -m napcat.api.key.get_cookies
-    test_model(Request)
-    test_model(CookieItem)
-    test_model(ResponseData)
-    test_model(Response)
+
+    from napcat.base.utils import test_model
+    test_model(GetCookiesAPI)
+
+# region }
+

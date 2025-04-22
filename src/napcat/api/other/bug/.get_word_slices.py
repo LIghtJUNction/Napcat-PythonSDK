@@ -1,42 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取中文分词 API
-用于将中文文本进行分词处理，将连续的文本切分为有语义的词语单元
-接口地址: https://napcat.apifox.cn/228534368e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- content: 需要进行分词的文本内容
+@build_id: 165
+@api_id: 228534368e0
+@endpoint: .get_word_slices
+@tags: 其他/bug
+@homepage: https://api.napcat.com/228534368e0
+@llms.txt: https://api.napcat.com/228534368e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:35
 
-返回：
-- 包含分词结果的对象，通常是词语数组或带位置信息的分词列表
+@description: .get_word_slices API
+@usage: 使用 `client..get_word_slices()` 调用此API
 
-注意：
-- 此API目前标记为bug状态，可能存在稳定性或功能问题
-- 分词结果的准确性可能受到文本复杂度和语境的影响
-- 特殊领域的专业词汇可能无法被正确识别
-- 如无特殊需求，建议等待API修复后再使用
-
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from python_napcat.api.base.types import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = ".get_word_slices"
+__method__ = "POST"
 
-class GetWordSlicesReq(BaseModel):
-    """
-    获取中文分词 API 请求参数
-    """
-    content: str  # 需要进行分词的文本内容
 
-class WordSlice(BaseModel):
-    """
-    分词信息
-    """
-    word: str    # 分词结果
-    start: int   # 在原文中的起始位置
-    length: int  # 词语长度
+# region {
+from typing import Literal, Any
 
-class GetWordSlicesRes(BaseHttpResponse[list[WordSlice]]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetWordSlicesReq(BaseHttpRequest):
     """
-    获取中文分词 API 响应参数
+    .get_word_slices 请求参数
     """
+
     pass
+
+
+class GetWordSlicesData(BaseModel):
+    """
+    .get_word_slices 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetWordSlicesRes(BaseHttpResponse[GetWordSlicesData]):
+    """
+    .get_word_slices 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetWordSlicesAPI(BaseHttpAPI[GetWordSlicesReq, GetWordSlicesRes]):
+    """
+    获取中文分词
+    """
+    api: str = "/.get_word_slices"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetWordSlicesReq
+    Response = GetWordSlicesRes
+
+    request: GetWordSlicesReq
+    response: GetWordSlicesRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetWordSlicesAPI)
+
+# region }
+

@@ -1,54 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取被过滤的加群请求 API
-用于获取被系统自动过滤的加群请求列表
-接口地址: https://napcat.apifox.cn/226659234e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 226659234e0
+@endpoint: get_group_ignore_add_request
+@tags: 其他/bug
+@homepage: https://api.napcat.com/226659234e0
+@llms.txt: https://api.napcat.com/226659234e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:35
 
-返回：
-- 包含被过滤的加群请求列表，包括请求者信息、群信息、过滤原因等
-
-注意：
-- 此API目前标记为bug状态，可能存在稳定性或功能问题
-- 仅群主和管理员可以查看被过滤的加群请求
-- 过滤的请求可能已经过期，无法再进行操作
-
-# NapCat 开发中
-"""
+@description: get_group_ignore_add_request API
+@usage: 使用 `client.get_group_ignore_add_request()` 调用此API
 
 """
-获取群邀请自动处理状态 API
-用于获取群邀请的自动处理状态
-接口地址: https://napcat.apifox.cn/227495352e0.md
+# region METADATA
 
-参数：
-无需参数
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_ignore_add_request"
+__method__ = "POST"
 
-返回：
-- 群邀请自动处理状态
 
-# NapCat 开发中
-"""
+# region {
+from typing import Literal, Any
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class GetGroupIgnoreAddRequestReq(BaseModel):
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetGroupIgnoreAddRequestReq(BaseHttpRequest):
     """
-    获取群邀请自动处理状态 API 请求参数
+    get_group_ignore_add_request 请求参数
     """
-    pass  # 无需参数
 
-class IgnoreStatus(BaseModel):
-    """
-    群邀请自动处理状态
-    """
-    status: bool  # 是否启用自动忽略
-    list: list[int]  # 自动忽略的群号列表
-
-class GetGroupIgnoreAddRequestRes(BaseHttpResponse[IgnoreStatus]):
-    """
-    获取群邀请自动处理状态 API 响应参数
-    """
     pass
+
+
+class GetGroupIgnoreAddRequestData(BaseModel):
+    """
+    get_group_ignore_add_request 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupIgnoreAddRequestRes(BaseHttpResponse[GetGroupIgnoreAddRequestData]):
+    """
+    get_group_ignore_add_request 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupIgnoreAddRequestAPI(BaseHttpAPI[GetGroupIgnoreAddRequestReq, GetGroupIgnoreAddRequestRes]):
+    """
+    获取被过滤的加群请求
+    """
+    api: str = "/get_group_ignore_add_request"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupIgnoreAddRequestReq
+    Response = GetGroupIgnoreAddRequestRes
+
+    request: GetGroupIgnoreAddRequestReq
+    response: GetGroupIgnoreAddRequestRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupIgnoreAddRequestAPI)
+
+# region }
+

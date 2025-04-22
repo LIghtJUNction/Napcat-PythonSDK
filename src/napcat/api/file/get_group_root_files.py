@@ -1,61 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群根目录文件列表 API
-用于获取群文件系统根目录下的文件和文件夹列表
-接口地址: https://napcat.apifox.cn/227449787e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
+@build_id: 165
+@api_id: 226658823e0
+@endpoint: get_group_root_files
+@tags: 文件相关
+@homepage: https://api.napcat.com/226658823e0
+@llms.txt: https://api.napcat.com/226658823e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 根目录下的文件和文件夹列表
+@description: get_group_root_files API
+@usage: 使用 `client.get_group_root_files()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_root_files"
+__method__ = "POST"
 
-class GetGroupRootFilesReq(BaseModel):
-    """
-    获取群根目录文件列表 API 请求参数
-    """
-    group_id: int  # 群号
 
-class GroupFile(BaseModel):
-    """
-    群文件信息
-    """
-    file_id: str       # 文件ID
-    file_name: str     # 文件名
-    busid: int         # 文件类型
-    file_size: int     # 文件大小（字节）
-    upload_time: int   # 上传时间戳
-    dead_time: int     # 过期时间戳
-    modify_time: int   # 最后修改时间戳
-    download_times: int # 下载次数
-    uploader: int      # 上传者QQ号
-    uploader_name: str # 上传者名称
+# region {
+from typing import Literal, Any
 
-class GroupFolder(BaseModel):
-    """
-    群文件夹信息
-    """
-    folder_id: str     # 文件夹ID
-    folder_name: str   # 文件夹名称
-    create_time: int   # 创建时间戳
-    creator: int       # 创建者QQ号
-    creator_name: str  # 创建者名称
-    total_file_count: int  # 文件夹中文件总数
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class GroupRootFiles(BaseModel):
-    """
-    群根目录文件列表
-    """
-    files: list[GroupFile]      # 文件列表
-    folders: list[GroupFolder]  # 文件夹列表
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class GetGroupRootFilesRes(BaseHttpResponse[GroupRootFiles]):
+
+# request model
+class GetGroupRootFilesReq(BaseHttpRequest):
     """
-    获取群根目录文件列表 API 响应参数
+    get_group_root_files 请求参数
     """
+
     pass
+
+
+class GetGroupRootFilesData(BaseModel):
+    """
+    get_group_root_files 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupRootFilesRes(BaseHttpResponse[GetGroupRootFilesData]):
+    """
+    get_group_root_files 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupRootFilesAPI(BaseHttpAPI[GetGroupRootFilesReq, GetGroupRootFilesRes]):
+    """
+    获取群根目录文件列表
+    """
+    api: str = "/get_group_root_files"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupRootFilesReq
+    Response = GetGroupRootFilesRes
+
+    request: GetGroupRootFilesReq
+    response: GetGroupRootFilesRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupRootFilesAPI)
+
+# region }
+

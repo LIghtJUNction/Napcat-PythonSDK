@@ -161,8 +161,3 @@
 - 其他 > bug [获取被过滤的加群请求](https://napcat.apifox.cn/226659234e0.md): 
 - 其他 > bug [fetch_user_profile_like](https://napcat.apifox.cn/226659254e0.md): 
 - 其他 > bug [获取中文分词](https://napcat.apifox.cn/228534368e0.md): 
-
-注意：
-不要使用List Dict 等大写开头的类
-Optional 改为： | None
-Union 改为： |

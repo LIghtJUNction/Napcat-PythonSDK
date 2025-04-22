@@ -1,64 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取群荣誉信息 API
-用于获取群内荣誉信息，如龙王、群聊之火等
-接口地址: https://napcat.apifox.cn/227425479e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- group_id: 群号
-- type: 要获取的荣誉类型，可选值：talkative(龙王)、performer(群聊之火)、
-        legend(群聊炽焰)、strong_newbie(冒尖小春笋)、
-        emotion(快乐之源)，留空表示全部获取
+@build_id: 165
+@api_id: 226657036e0
+@endpoint: get_group_honor_info
+@tags: 群聊相关
+@homepage: https://api.napcat.com/226657036e0
+@llms.txt: https://api.napcat.com/226657036e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 群荣誉信息
+@description: get_group_honor_info API
+@usage: 使用 `client.get_group_honor_info()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import Literal
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_group_honor_info"
+__method__ = "POST"
 
-class GetGroupHonorInfoReq(BaseModel):
-    """
-    获取群荣誉信息 API 请求参数
-    """
-    group_id: int  # 群号
-    type: Literal["talkative", "performer", "legend", "strong_newbie", "emotion"]  # 荣誉类型
 
-class HonorOwnerInfo(BaseModel):
-    """
-    荣誉拥有者信息
-    """
-    user_id: int    # QQ号
-    nickname: str   # 昵称
-    avatar: str     # 头像URL
-    description: str # 描述
+# region {
+from typing import Literal, Any
 
-class CurrentTalkative(BaseModel):
-    """
-    当前龙王信息
-    """
-    user_id: int       # QQ号
-    nickname: str      # 昵称
-    avatar: str        # 头像URL
-    day_count: int     # 持续天数
-    expire_time: int   # 过期时间戳
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
 
-class GroupHonorInfo(BaseModel):
-    """
-    群荣誉信息
-    """
-    group_id: int                      # 群号
-    current_talkative: CurrentTalkative  # 当前龙王信息
-    talkative_list: list[HonorOwnerInfo] # 历史龙王列表
-    performer_list: list[HonorOwnerInfo] # 群聊之火列表
-    legend_list: list[HonorOwnerInfo]    # 群聊炽焰列表
-    strong_newbie_list: list[HonorOwnerInfo] # 冒尖小春笋列表
-    emotion_list: list[HonorOwnerInfo]    # 快乐之源列表
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
 
-class GetGroupHonorInfoRes(BaseHttpResponse[GroupHonorInfo]):
+
+# request model
+class GetGroupHonorInfoReq(BaseHttpRequest):
     """
-    获取群荣誉信息 API 响应参数
+    get_group_honor_info 请求参数
     """
+
     pass
+
+
+class GetGroupHonorInfoData(BaseModel):
+    """
+    get_group_honor_info 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetGroupHonorInfoRes(BaseHttpResponse[GetGroupHonorInfoData]):
+    """
+    get_group_honor_info 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetGroupHonorInfoAPI(BaseHttpAPI[GetGroupHonorInfoReq, GetGroupHonorInfoRes]):
+    """
+    获取群荣誉
+    """
+    api: str = "/get_group_honor_info"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetGroupHonorInfoReq
+    Response = GetGroupHonorInfoRes
+
+    request: GetGroupHonorInfoReq
+    response: GetGroupHonorInfoRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetGroupHonorInfoAPI)
+
+# region }
+

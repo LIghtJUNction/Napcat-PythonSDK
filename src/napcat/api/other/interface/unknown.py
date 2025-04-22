@@ -1,31 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-未知接口 API
-用于测试未定义的API功能
-接口地址: https://napcat.apifox.cn/227495462e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-- action: 接口动作名称
-- params: 接口参数，为JSON对象
+@build_id: 165
+@api_id: 226658925e0
+@endpoint: unknown
+@tags: 其他/接口
+@homepage: https://api.napcat.com/226658925e0
+@llms.txt: https://api.napcat.com/226658925e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:35
 
-返回：
-- 接口调用结果
+@description: unknown API
+@usage: 使用 `client.unknown()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from typing import Any
-from pydantic import BaseModel
-from napcat.api.base.types import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "unknown"
+__method__ = "POST"
 
-class UnknownReq(BaseModel):
-    """
-    未知接口 API 请求参数
-    """
-    action: str            # 接口动作名称
-    params: dict[str, Any] # 接口参数
 
-class UnknownRes(BaseHttpResponse[dict[str, Any]]):
+# region {
+from typing import Literal, Any
+
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class UnknownReq(BaseHttpRequest):
     """
-    未知接口 API 响应参数
+    unknown 请求参数
     """
+
     pass
+
+
+class UnknownData(BaseModel):
+    """
+    unknown 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class UnknownRes(BaseHttpResponse[UnknownData]):
+    """
+    unknown 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class UnknownAPI(BaseHttpAPI[UnknownReq, UnknownRes]):
+    """
+    unknown
+    """
+    api: str = "/unknown"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = UnknownReq
+    Response = UnknownRes
+
+    request: UnknownReq
+    response: UnknownRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(UnknownAPI)
+
+# region }
+

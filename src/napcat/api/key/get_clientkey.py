@@ -1,36 +1,97 @@
+# -*- coding: utf-8 -*-
 """
-获取clientkey API
-用于获取客户端密钥，此密钥用于身份验证和部分敏感操作
-接口地址: https://napcat.apifox.cn/250286915e0.md
+@author: LIghtJUNction
+@builder: AI
 
-参数：
-无需参数
+@build_id: 165
+@api_id: 250286915e0
+@endpoint: get_clientkey
+@tags: 密钥相关
+@homepage: https://api.napcat.com/250286915e0
+@llms.txt: https://api.napcat.com/250286915e0.md
+@version: 4.7.17
+@last_update: 2025-04-22 22:32:34
 
-返回：
-- 包含clientkey的对象，用于后续API调用的身份验证
+@description: get_clientkey API
+@usage: 使用 `client.get_clientkey()` 调用此API
 
-# NapCat 开发中
 """
+# region METADATA
 
-from pydantic import BaseModel
-from napcat.api.base.models import BaseHttpResponse
+__author__ = "LIghtJUNction"
+__version__ = "4.7.17"
+__endpoint__ = "get_clientkey"
+__method__ = "POST"
 
-class GetClientkeyReq(BaseModel):
-    """
-    获取clientkey API 请求参数
-    """
-    pass  # 无请求参数
 
-class ClientkeyData(BaseModel):
-    """
-    客户端密钥数据
-    """
-    client_key: str      # 客户端密钥字符串
-    expires_in: int      # 密钥有效期(秒)
-    created_at: int      # 创建时间戳
+# region {
+from typing import Literal, Any
 
-class GetClientkeyRes(BaseHttpResponse[ClientkeyData]):
+from pydantic import BaseModel, Field
+from napcat.base.models import BaseHttpAPI, BaseHttpResponse, BaseHttpRequest
+
+    # 示例 endpoint : send_group_message  特殊 endpoint : _开头 .开头 给类命名时 .忽略即可(如 _get_model_show -> GetModelShowAPI)
+    # 示例 class : SendGroupMessageAPI
+    # 示例 request : SendGroupMessageReq
+    # 示例 response : SendGroupMessageRes
+    # 示例 data : SendGroupMessageData
+    # 请将你需要展示给用户的注释符："#"放置于行首
+    # 否则将被清理掉
+
+
+# request model
+class GetClientkeyReq(BaseHttpRequest):
     """
-    获取clientkey API 响应参数
+    get_clientkey 请求参数
     """
+
     pass
+
+
+class GetClientkeyData(BaseModel):
+    """
+    get_clientkey 数据结构
+    """
+    # 定义可选数据字段
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# response model
+class GetClientkeyRes(BaseHttpResponse[GetClientkeyData]):
+    """
+    get_clientkey 响应参数
+    """
+    # 定义响应参数
+    # 例如：
+    # param1: str = Field(..., description="参数1的描述")
+    # param2: int = Field(..., description="参数2的描述")
+    
+    pass
+
+
+# API class
+class GetClientkeyAPI(BaseHttpAPI[GetClientkeyReq, GetClientkeyRes]):
+    """
+    获取clientkey
+    """
+    api: str = "/get_clientkey"
+    method: Literal["POST", "GET"] = "POST"
+
+    Request = GetClientkeyReq
+    Response = GetClientkeyRes
+
+    request: GetClientkeyReq
+    response: GetClientkeyRes
+    
+
+if __name__ == "__main__":
+
+    from napcat.base.utils import test_model
+    test_model(GetClientkeyAPI)
+
+# region }
+
