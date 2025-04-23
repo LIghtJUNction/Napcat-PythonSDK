@@ -1,0 +1,470 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_group_root_files": {
+      "post": {
+        "summary": "获取群根目录文件列表",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "文件相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  },
+                  "file_count": {
+                    "type": "number",
+                    "default": 50
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "file_count"
+                ],
+                "required": [
+                  "group_id",
+                  "file_count"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB774QDTM2KW6FK6WZP65F6X": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "files": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "group_id": {
+                                    "type": "number"
+                                  },
+                                  "file_id": {
+                                    "type": "string"
+                                  },
+                                  "file_name": {
+                                    "type": "string"
+                                  },
+                                  "busid": {
+                                    "type": "number"
+                                  },
+                                  "size": {
+                                    "type": "number"
+                                  },
+                                  "upload_time": {
+                                    "type": "number"
+                                  },
+                                  "dead_time": {
+                                    "type": "number"
+                                  },
+                                  "modify_time": {
+                                    "type": "number"
+                                  },
+                                  "download_times": {
+                                    "type": "number"
+                                  },
+                                  "uploader": {
+                                    "type": "number"
+                                  },
+                                  "uploader_name": {
+                                    "type": "string"
+                                  },
+                                  "file_size": {
+                                    "type": "number"
+                                  }
+                                },
+                                "x-apifox-orders": [
+                                  "group_id",
+                                  "file_id",
+                                  "file_name",
+                                  "busid",
+                                  "size",
+                                  "file_size",
+                                  "upload_time",
+                                  "dead_time",
+                                  "modify_time",
+                                  "download_times",
+                                  "uploader",
+                                  "uploader_name"
+                                ],
+                                "required": [
+                                  "group_id",
+                                  "upload_time",
+                                  "dead_time",
+                                  "size",
+                                  "busid",
+                                  "file_name",
+                                  "file_id",
+                                  "uploader_name",
+                                  "uploader",
+                                  "download_times",
+                                  "modify_time",
+                                  "file_size"
+                                ]
+                              },
+                              "description": "文件列表"
+                            },
+                            "folders": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "group_id": {
+                                    "type": "number"
+                                  },
+                                  "folder_id": {
+                                    "type": "string"
+                                  },
+                                  "folder": {
+                                    "type": "string"
+                                  },
+                                  "folder_name": {
+                                    "type": "string",
+                                    "description": "文件夹名称"
+                                  },
+                                  "create_time": {
+                                    "type": "number",
+                                    "description": "创建时间"
+                                  },
+                                  "creator": {
+                                    "type": "number",
+                                    "description": "创建人账号"
+                                  },
+                                  "creator_name": {
+                                    "type": "string",
+                                    "description": "创建人昵称"
+                                  },
+                                  "total_file_count": {
+                                    "type": "number",
+                                    "description": "文件数量"
+                                  }
+                                },
+                                "x-apifox-orders": [
+                                  "group_id",
+                                  "folder_id",
+                                  "folder",
+                                  "folder_name",
+                                  "create_time",
+                                  "creator",
+                                  "creator_name",
+                                  "total_file_count"
+                                ],
+                                "required": [
+                                  "group_id",
+                                  "create_time",
+                                  "folder_name",
+                                  "folder",
+                                  "folder_id",
+                                  "total_file_count",
+                                  "creator_name",
+                                  "creator"
+                                ]
+                              },
+                              "description": "文件夹列表"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "files",
+                            "folders"
+                          ],
+                          "required": [
+                            "files",
+                            "folders"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB774QDTM2KW6FK6WZP65F6X"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "files": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "group_id": {
+                                "type": "number"
+                              },
+                              "file_id": {
+                                "type": "string"
+                              },
+                              "file_name": {
+                                "type": "string"
+                              },
+                              "busid": {
+                                "type": "number"
+                              },
+                              "size": {
+                                "type": "number"
+                              },
+                              "file_size": {
+                                "type": "number"
+                              },
+                              "upload_time": {
+                                "type": "number"
+                              },
+                              "dead_time": {
+                                "type": "number"
+                              },
+                              "modify_time": {
+                                "type": "number"
+                              },
+                              "download_times": {
+                                "type": "number"
+                              },
+                              "uploader": {
+                                "type": "number"
+                              },
+                              "uploader_name": {
+                                "type": "string"
+                              }
+                            },
+                            "x-apifox-orders": [
+                              "group_id",
+                              "file_id",
+                              "file_name",
+                              "busid",
+                              "size",
+                              "file_size",
+                              "upload_time",
+                              "dead_time",
+                              "modify_time",
+                              "download_times",
+                              "uploader",
+                              "uploader_name"
+                            ],
+                            "required": [
+                              "group_id",
+                              "upload_time",
+                              "dead_time",
+                              "size",
+                              "busid",
+                              "file_name",
+                              "file_id",
+                              "uploader_name",
+                              "uploader",
+                              "download_times",
+                              "modify_time",
+                              "file_size"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "description": "文件列表"
+                        },
+                        "folders": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "group_id": {
+                                "type": "number"
+                              },
+                              "folder_id": {
+                                "type": "string"
+                              },
+                              "folder": {
+                                "type": "string"
+                              },
+                              "folder_name": {
+                                "type": "string",
+                                "description": "文件夹名称"
+                              },
+                              "create_time": {
+                                "type": "number",
+                                "description": "创建时间"
+                              },
+                              "creator": {
+                                "type": "number",
+                                "description": "创建人账号"
+                              },
+                              "creator_name": {
+                                "type": "string",
+                                "description": "创建人昵称"
+                              },
+                              "total_file_count": {
+                                "type": "number",
+                                "description": "文件数量"
+                              }
+                            },
+                            "x-apifox-orders": [
+                              "group_id",
+                              "folder_id",
+                              "folder",
+                              "folder_name",
+                              "create_time",
+                              "creator",
+                              "creator_name",
+                              "total_file_count"
+                            ],
+                            "required": [
+                              "group_id",
+                              "create_time",
+                              "folder_name",
+                              "folder",
+                              "folder_id",
+                              "total_file_count",
+                              "creator_name",
+                              "creator"
+                            ],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "description": "文件夹列表"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "files",
+                        "folders"
+                      ],
+                      "required": [
+                        "files",
+                        "folders"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "文件相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226658823-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

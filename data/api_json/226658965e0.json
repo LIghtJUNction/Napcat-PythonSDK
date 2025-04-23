@@ -1,0 +1,243 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/ArkSharePeer": {
+      "post": {
+        "summary": "获取推荐好友/群聊卡片",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "账号相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id",
+                    "description": "和user_id二选一"
+                  },
+                  "user_id": {
+                    "description": "和group_id二选一",
+                    "$ref": "#/components/schemas/user_id"
+                  },
+                  "phoneNumber": {
+                    "type": "string",
+                    "description": "对方手机号"
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "user_id",
+                  "phoneNumber"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB8Q9VGF6XC9CF2CQE2B018T": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "errCode": {
+                              "type": "number"
+                            },
+                            "errMsg": {
+                              "type": "string"
+                            },
+                            "arkJson": {
+                              "type": "string",
+                              "description": "卡片json"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "errCode",
+                            "errMsg",
+                            "arkJson"
+                          ],
+                          "required": [
+                            "errCode",
+                            "errMsg",
+                            "arkJson"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB8Q9VGF6XC9CF2CQE2B018T"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "errCode": {
+                          "type": "number"
+                        },
+                        "errMsg": {
+                          "type": "string"
+                        },
+                        "arkJson": {
+                          "type": "string",
+                          "description": "卡片json"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "errCode",
+                        "errMsg",
+                        "arkJson"
+                      ],
+                      "required": [
+                        "errCode",
+                        "errMsg",
+                        "arkJson"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "账号相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226658965-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

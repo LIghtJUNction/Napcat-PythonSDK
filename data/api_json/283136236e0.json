@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_rkey_server": {
+      "post": {
+        "summary": "获取rkey服务",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "密钥相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JRMGJM8T3Q8TWHQV3BZSC3Q8": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "private_rkey": {
+                              "type": "string"
+                            },
+                            "group_rkey": {
+                              "type": "string"
+                            },
+                            "expired_time": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "private_rkey",
+                            "group_rkey",
+                            "expired_time",
+                            "name"
+                          ],
+                          "required": [
+                            "private_rkey",
+                            "name",
+                            "expired_time",
+                            "group_rkey"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JRMGJM8T3Q8TWHQV3BZSC3Q8"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "private_rkey": {
+                          "type": "string"
+                        },
+                        "group_rkey": {
+                          "type": "string"
+                        },
+                        "expired_time": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "private_rkey",
+                        "group_rkey",
+                        "expired_time",
+                        "name"
+                      ],
+                      "required": [
+                        "private_rkey",
+                        "name",
+                        "expired_time",
+                        "group_rkey"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "密钥相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-283136236-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

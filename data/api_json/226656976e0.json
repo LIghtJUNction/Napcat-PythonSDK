@@ -1,0 +1,431 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_friend_list": {
+      "post": {
+        "summary": "获取好友列表",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "账号相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "no_cache": {
+                    "type": "boolean",
+                    "description": "不缓存",
+                    "default": false
+                  }
+                },
+                "x-apifox-orders": [
+                  "no_cache"
+                ],
+                "required": [
+                  "no_cache"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB6HTW75S48XCMK9GW95WXQ7": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {},
+                            "x-apifox-orders": [
+                              "01JB6J1DH9BRX8X9SDC508H7BZ"
+                            ],
+                            "x-apifox-refs": {
+                              "01JB6J1DH9BRX8X9SDC508H7BZ": {
+                                "$ref": "#/components/schemas/好友信息"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB6HTW75S48XCMK9GW95WXQ7"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "qid": {
+                            "type": "string",
+                            "description": "QQID"
+                          },
+                          "longNick": {
+                            "type": "string",
+                            "description": "个性签名"
+                          },
+                          "birthday_year": {
+                            "type": "number",
+                            "description": "生日_年"
+                          },
+                          "birthday_month": {
+                            "type": "number",
+                            "description": "生日_月"
+                          },
+                          "birthday_day": {
+                            "type": "number",
+                            "description": "生日_日"
+                          },
+                          "age": {
+                            "type": "number",
+                            "description": "年龄"
+                          },
+                          "sex": {
+                            "type": "string",
+                            "description": "性别"
+                          },
+                          "eMail": {
+                            "type": "string",
+                            "description": "邮箱"
+                          },
+                          "phoneNum": {
+                            "type": "string",
+                            "description": "手机号"
+                          },
+                          "categoryId": {
+                            "type": "number",
+                            "description": "分类"
+                          },
+                          "richTime": {
+                            "type": "number",
+                            "description": "注册时间"
+                          },
+                          "richBuffer": {
+                            "type": "object",
+                            "properties": {},
+                            "x-apifox-orders": [],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "uid": {
+                            "type": "string"
+                          },
+                          "uin": {
+                            "type": "string"
+                          },
+                          "nick": {
+                            "type": "string"
+                          },
+                          "remark": {
+                            "type": "string",
+                            "description": "备注"
+                          },
+                          "user_id": {
+                            "type": "number"
+                          },
+                          "nickname": {
+                            "type": "string"
+                          },
+                          "level": {
+                            "type": "number",
+                            "description": "等级"
+                          }
+                        },
+                        "x-apifox-orders": [
+                          "01JB6J1DH9BRX8X9SDC508H7BZ"
+                        ],
+                        "required": [
+                          "qid",
+                          "longNick",
+                          "birthday_year",
+                          "birthday_month",
+                          "birthday_day",
+                          "age",
+                          "sex",
+                          "eMail",
+                          "phoneNum",
+                          "categoryId",
+                          "richTime",
+                          "richBuffer",
+                          "uid",
+                          "uin",
+                          "nick",
+                          "remark",
+                          "user_id",
+                          "nickname",
+                          "level"
+                        ],
+                        "x-apifox-refs": {
+                          "01JB6J1DH9BRX8X9SDC508H7BZ": {
+                            "$ref": "#/components/schemas/好友信息"
+                          }
+                        },
+                        "x-apifox-ignore-properties": [
+                          "qid",
+                          "longNick",
+                          "birthday_year",
+                          "birthday_month",
+                          "birthday_day",
+                          "age",
+                          "sex",
+                          "eMail",
+                          "phoneNum",
+                          "categoryId",
+                          "richTime",
+                          "richBuffer",
+                          "uid",
+                          "uin",
+                          "nick",
+                          "remark",
+                          "user_id",
+                          "nickname",
+                          "level"
+                        ]
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "账号相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226656976-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "好友信息": {
+        "type": "object",
+        "properties": {
+          "qid": {
+            "type": "string",
+            "description": "QQID"
+          },
+          "longNick": {
+            "type": "string",
+            "description": "个性签名"
+          },
+          "birthday_year": {
+            "type": "number",
+            "description": "生日_年"
+          },
+          "birthday_month": {
+            "type": "number",
+            "description": "生日_月"
+          },
+          "birthday_day": {
+            "type": "number",
+            "description": "生日_日"
+          },
+          "age": {
+            "type": "number",
+            "description": "年龄"
+          },
+          "sex": {
+            "type": "string",
+            "description": "性别"
+          },
+          "eMail": {
+            "type": "string",
+            "description": "邮箱"
+          },
+          "phoneNum": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "categoryId": {
+            "type": "number",
+            "description": "分类"
+          },
+          "richTime": {
+            "type": "number",
+            "description": "注册时间"
+          },
+          "richBuffer": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "uid": {
+            "type": "string"
+          },
+          "uin": {
+            "type": "string"
+          },
+          "nick": {
+            "type": "string"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "nickname": {
+            "type": "string"
+          },
+          "level": {
+            "type": "number",
+            "description": "等级"
+          }
+        },
+        "required": [
+          "qid",
+          "longNick",
+          "birthday_year",
+          "birthday_month",
+          "birthday_day",
+          "age",
+          "sex",
+          "eMail",
+          "phoneNum",
+          "categoryId",
+          "richTime",
+          "richBuffer",
+          "uid",
+          "uin",
+          "nick",
+          "remark",
+          "user_id",
+          "nickname",
+          "level"
+        ],
+        "x-apifox-orders": [
+          "qid",
+          "longNick",
+          "birthday_year",
+          "birthday_month",
+          "birthday_day",
+          "age",
+          "sex",
+          "eMail",
+          "phoneNum",
+          "categoryId",
+          "richTime",
+          "richBuffer",
+          "uid",
+          "uin",
+          "nick",
+          "remark",
+          "user_id",
+          "nickname",
+          "level"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

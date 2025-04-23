@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /send_private_msg:
+    post:
+      summary: 发送私聊JSON
+      deprecated: false
+      description: 发送群消息
+      tags:
+        - 消息相关/发送私聊消息
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  $ref: '#/components/schemas/user_id'
+                message:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/JSON%E6%B6%88%E6%81%AF'
+              x-apifox-orders:
+                - user_id
+                - message
+              required:
+                - message
+                - user_id
+              x-apifox-ignore-properties: []
+            example: |-
+              {
+                  "user_id": "123456",
+                  "message": [
+                      {
+                          "type": "json",
+                          "data": {
+                              "data": "{}"
+                          }
+                      },
+                      
+                  ]
+              }
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB1Q69T4RDCE649BD88FSA0R:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          message_id: &ref_0
+                            type: number
+                            title: 消息ID
+                            description: 消息ID
+                        x-apifox-orders: &ref_1
+                          - message_id
+                        required:
+                          - message_id
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB1Q69T4RDCE649BD88FSA0R
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      message_id: *ref_0
+                    x-apifox-orders: *ref_1
+                    required:
+                      - message_id
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+              example:
+                status: ok
+                retcode: 0
+                data:
+                  message_id: 696124706
+                message: ''
+                wording: ''
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 消息相关/发送私聊消息
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226889555-run
+components:
+  schemas:
+    JSON消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: json
+        data:
+          type: object
+          properties:
+            data:
+              type: string
+          x-apifox-orders:
+            - data
+          required:
+            - data
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

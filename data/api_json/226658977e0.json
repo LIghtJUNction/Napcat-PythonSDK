@@ -1,0 +1,185 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/set_online_status": {
+      "post": {
+        "summary": "设置在线状态",
+        "deprecated": false,
+        "description": "## 状态列表\n\n### 在线\n\n```json5\n{ \"status\": 10, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### Q我吧\n\n```json5\n{ \"status\": 60, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### 离开\n\n```json5\n{ \"status\": 30, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### 忙碌\n\n```json5\n{ \"status\": 50, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### 请勿打扰\n\n```json5\n{ \"status\": 70, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### 隐身\n\n```json5\n{ \"status\": 40, \"ext_status\": 0, \"battery_status\": 0 } \n```\n\n### 听歌中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1028, \"battery_status\": 0 } \n```\n\n### 春日限定\n\n```json5\n{ \"status\": 10, \"ext_status\": 2037, \"battery_status\": 0 } \n```\n\n### 一起元梦\n\n```json5\n{ \"status\": 10, \"ext_status\": 2025, \"battery_status\": 0 } \n```\n\n### 求星搭子\n\n```json5\n{ \"status\": 10, \"ext_status\": 2026, \"battery_status\": 0 } \n```\n\n### 被掏空\n\n```json5\n{ \"status\": 10, \"ext_status\": 2014, \"battery_status\": 0 } \n```\n\n### 今日天气\n\n```json5\n{ \"status\": 10, \"ext_status\": 1030, \"battery_status\": 0 } \n```\n\n### 我crash了\n\n```json5\n{ \"status\": 10, \"ext_status\": 2019, \"battery_status\": 0 } \n```\n\n### 爱你\n\n```json5\n{ \"status\": 10, \"ext_status\": 2006, \"battery_status\": 0 } \n```\n\n### 恋爱中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1051, \"battery_status\": 0 } \n```\n\n### 好运锦鲤\n\n```json5\n{ \"status\": 10, \"ext_status\": 1071, \"battery_status\": 0 } \n```\n\n### 水逆退散\n\n```json5\n{ \"status\": 10, \"ext_status\": 1201, \"battery_status\": 0 } \n```\n\n### 嗨到飞起\n\n```json5\n{ \"status\": 10, \"ext_status\": 1056, \"battery_status\": 0 } \n```\n\n### 元气满满\n\n```json5\n{ \"status\": 10, \"ext_status\": 1058, \"battery_status\": 0 } \n```\n\n### 宝宝认证\n\n```json5\n{ \"status\": 10, \"ext_status\": 1070, \"battery_status\": 0 } \n```\n\n### 一言难尽\n\n```json5\n{ \"status\": 10, \"ext_status\": 1063, \"battery_status\": 0 } \n```\n\n### 难得糊涂\n\n```json5\n{ \"status\": 10, \"ext_status\": 2001, \"battery_status\": 0 } \n```\n\n### emo中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1401, \"battery_status\": 0 } \n```\n\n### 我太难了\n\n```json5\n{ \"status\": 10, \"ext_status\": 1062, \"battery_status\": 0 } \n```\n\n### 我想开了\n\n```json5\n{ \"status\": 10, \"ext_status\": 2013, \"battery_status\": 0 } \n```\n\n### 我没事\n\n```json5\n{ \"status\": 10, \"ext_status\": 1052, \"battery_status\": 0 } \n```\n\n### 想静静\n\n```json5\n{ \"status\": 10, \"ext_status\": 1061, \"battery_status\": 0 } \n```\n\n### 悠哉哉\n\n```json5\n{ \"status\": 10, \"ext_status\": 1059, \"battery_status\": 0 } \n```\n\n### 去旅行\n\n```json5\n{ \"status\": 10, \"ext_status\": 2015, \"battery_status\": 0 } \n```\n\n### 信号弱\n\n```json5\n{ \"status\": 10, \"ext_status\": 1011, \"battery_status\": 0 } \n```\n\n### 出去浪\n\n```json5\n{ \"status\": 10, \"ext_status\": 2003, \"battery_status\": 0 } \n```\n\n### 肝作业\n\n```json5\n{ \"status\": 10, \"ext_status\": 2012, \"battery_status\": 0 } \n```\n\n### 学习中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1018, \"battery_status\": 0 } \n```\n\n### 搬砖中\n\n```json5\n{ \"status\": 10, \"ext_status\": 2023, \"battery_status\": 0 } \n```\n\n### 摸鱼中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1300, \"battery_status\": 0 } \n```\n\n### 无聊中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1060, \"battery_status\": 0 } \n```\n\n### timi中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1027, \"battery_status\": 0 } \n```\n\n### 睡觉中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1016, \"battery_status\": 0 } \n```\n\n### 熬夜中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1032, \"battery_status\": 0 } \n```\n\n### 追剧中\n\n```json5\n{ \"status\": 10, \"ext_status\": 1021, \"battery_status\": 0 } \n```\n\n### 我的电量\n\n```json5\n{ \n    \"status\": 10, \n    \"ext_status\": 1000,\n    \"battery_status\": 0\n}\n```",
+        "tags": [
+          "账号相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "number",
+                    "description": "详情看顶部"
+                  },
+                  "extStatus": {
+                    "type": "number",
+                    "description": "详情看顶部"
+                  },
+                  "batteryStatus": {
+                    "type": "number",
+                    "description": "电量"
+                  }
+                },
+                "x-apifox-orders": [
+                  "status",
+                  "extStatus",
+                  "batteryStatus"
+                ],
+                "required": [
+                  "status",
+                  "batteryStatus",
+                  "extStatus"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "status": 10,
+                "ext_status": 0,
+                "battery_status": 0
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB9GKBCY2AMA3KGXQK6MMJH3": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB9GKBCY2AMA3KGXQK6MMJH3"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "null"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "账号相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226658977-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

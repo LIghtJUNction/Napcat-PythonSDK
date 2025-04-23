@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /translate_en2zh:
+    post:
+      summary: 英译中
+      deprecated: false
+      description: ''
+      tags:
+        - 个人操作
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                words:
+                  type: array
+                  items:
+                    type: string
+                  description: 英文数组
+              x-apifox-orders:
+                - words
+              required:
+                - words
+              x-apifox-ignore-properties: []
+            example:
+              words:
+                - word
+                - message
+                - group
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB9J66VBGWVFPAM24F0E5ZEY:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: array
+                        items: &ref_0
+                          type: string
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB9J66VBGWVFPAM24F0E5ZEY
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: array
+                    items: *ref_0
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+              example:
+                status: ok
+                retcode: 0
+                data:
+                  - 单词
+                  - 讯息
+                  - 群组
+                message: ''
+                wording: ''
+                echo: null
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 个人操作
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659102-run
+components:
+  schemas:
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

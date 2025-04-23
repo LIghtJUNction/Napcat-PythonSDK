@@ -1,0 +1,376 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_stranger_info": {
+      "post": {
+        "summary": "获取账号信息",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "账号相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "$ref": "#/components/schemas/user_id"
+                  }
+                },
+                "x-apifox-orders": [
+                  "user_id"
+                ],
+                "required": [
+                  "user_id"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "user_id": 1627126029
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB6H7GFGJ8GKR96RRJ2EG954": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "user_id": {
+                              "type": "number"
+                            },
+                            "uid": {
+                              "type": "string"
+                            },
+                            "nickname": {
+                              "type": "string",
+                              "description": "昵称"
+                            },
+                            "age": {
+                              "type": "number",
+                              "description": "年龄"
+                            },
+                            "qid": {
+                              "type": "string"
+                            },
+                            "qqLevel": {
+                              "type": "number",
+                              "description": "账号等级"
+                            },
+                            "sex": {
+                              "type": "string",
+                              "description": "性别"
+                            },
+                            "long_nick": {
+                              "type": "string",
+                              "description": "个性签名"
+                            },
+                            "reg_time": {
+                              "type": "number",
+                              "description": "注册时间"
+                            },
+                            "is_vip": {
+                              "type": "boolean",
+                              "description": "是否会员"
+                            },
+                            "is_years_vip": {
+                              "type": "boolean",
+                              "description": "是否年费会员"
+                            },
+                            "vip_level": {
+                              "type": "number",
+                              "description": "会员等级"
+                            },
+                            "remark": {
+                              "type": "string",
+                              "description": "备注"
+                            },
+                            "status": {
+                              "type": "number"
+                            },
+                            "login_days": {
+                              "type": "number",
+                              "description": "连续登录天数"
+                            },
+                            "uin": {
+                              "type": "string"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "user_id",
+                            "uid",
+                            "uin",
+                            "nickname",
+                            "age",
+                            "qid",
+                            "qqLevel",
+                            "sex",
+                            "long_nick",
+                            "reg_time",
+                            "is_vip",
+                            "is_years_vip",
+                            "vip_level",
+                            "remark",
+                            "status",
+                            "login_days"
+                          ],
+                          "required": [
+                            "user_id",
+                            "uid",
+                            "long_nick",
+                            "sex",
+                            "qqLevel",
+                            "qid",
+                            "age",
+                            "nickname",
+                            "login_days",
+                            "remark",
+                            "vip_level",
+                            "is_years_vip",
+                            "reg_time",
+                            "is_vip",
+                            "status",
+                            "uin"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB6H7GFGJ8GKR96RRJ2EG954"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "number"
+                        },
+                        "uid": {
+                          "type": "string"
+                        },
+                        "uin": {
+                          "type": "string"
+                        },
+                        "nickname": {
+                          "type": "string",
+                          "description": "昵称"
+                        },
+                        "age": {
+                          "type": "number",
+                          "description": "年龄"
+                        },
+                        "qid": {
+                          "type": "string"
+                        },
+                        "qqLevel": {
+                          "type": "number",
+                          "description": "账号等级"
+                        },
+                        "sex": {
+                          "type": "string",
+                          "description": "性别"
+                        },
+                        "long_nick": {
+                          "type": "string",
+                          "description": "个性签名"
+                        },
+                        "reg_time": {
+                          "type": "number",
+                          "description": "注册时间"
+                        },
+                        "is_vip": {
+                          "type": "boolean",
+                          "description": "是否会员"
+                        },
+                        "is_years_vip": {
+                          "type": "boolean",
+                          "description": "是否年费会员"
+                        },
+                        "vip_level": {
+                          "type": "number",
+                          "description": "会员等级"
+                        },
+                        "remark": {
+                          "type": "string",
+                          "description": "备注"
+                        },
+                        "status": {
+                          "type": "number"
+                        },
+                        "login_days": {
+                          "type": "number",
+                          "description": "连续登录天数"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "user_id",
+                        "uid",
+                        "uin",
+                        "nickname",
+                        "age",
+                        "qid",
+                        "qqLevel",
+                        "sex",
+                        "long_nick",
+                        "reg_time",
+                        "is_vip",
+                        "is_years_vip",
+                        "vip_level",
+                        "remark",
+                        "status",
+                        "login_days"
+                      ],
+                      "required": [
+                        "user_id",
+                        "uid",
+                        "long_nick",
+                        "sex",
+                        "qqLevel",
+                        "qid",
+                        "age",
+                        "nickname",
+                        "login_days",
+                        "remark",
+                        "vip_level",
+                        "is_years_vip",
+                        "reg_time",
+                        "is_vip",
+                        "status",
+                        "uin"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "账号相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226656970-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "user_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

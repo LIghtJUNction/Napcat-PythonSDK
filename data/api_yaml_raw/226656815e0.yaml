@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /set_group_admin:
+    post:
+      summary: 设置群管理
+      deprecated: false
+      description: ''
+      tags:
+        - 群聊相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+                user_id:
+                  $ref: '#/components/schemas/user_id'
+                enable:
+                  type: boolean
+              x-apifox-orders:
+                - group_id
+                - user_id
+                - enable
+              required:
+                - group_id
+                - user_id
+                - enable
+              x-apifox-ignore-properties: []
+            example:
+              group_id: 123456
+              user_id: 123456
+              enable: false
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB6FBX862Y7YV3V9JSPW1KDS:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data: &ref_0
+                        type: 'null'
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB6FBX862Y7YV3V9JSPW1KDS
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data: *ref_0
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 群聊相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226656815-run
+components:
+  schemas:
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

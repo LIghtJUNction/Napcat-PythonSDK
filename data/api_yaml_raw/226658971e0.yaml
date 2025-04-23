@@ -1,0 +1,123 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /ArkShareGroup:
+    post:
+      summary: 获取推荐群聊卡片
+      deprecated: false
+      description: ''
+      tags:
+        - 账号相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  type: string
+                  title: ''
+                  description: ''
+              x-apifox-orders:
+                - group_id
+              required:
+                - group_id
+              x-apifox-ignore-properties: []
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB8QHGS3CQJTVMDCFDJRBSD3:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data: &ref_0
+                        type: string
+                        description: 卡片json
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB8QHGS3CQJTVMDCFDJRBSD3
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data: *ref_0
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 账号相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226658971-run
+components:
+  schemas:
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

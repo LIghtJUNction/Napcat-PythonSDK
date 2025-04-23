@@ -1,0 +1,289 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_ai_characters": {
+      "post": {
+        "summary": "获取AI语音人物",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "个人操作"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  },
+                  "chat_type": {
+                    "oneOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "chat_type"
+                ],
+                "required": [
+                  "group_id",
+                  "chat_type"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JBRF62X0WQENKKB3AKESBMDC": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "类型"
+                              },
+                              "characters": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "character_id": {
+                                      "type": "string",
+                                      "description": "人物ID"
+                                    },
+                                    "character_name": {
+                                      "type": "string",
+                                      "description": "人物名字"
+                                    },
+                                    "preview_url": {
+                                      "type": "string",
+                                      "description": "试听网址"
+                                    }
+                                  },
+                                  "x-apifox-orders": [
+                                    "character_id",
+                                    "character_name",
+                                    "preview_url"
+                                  ],
+                                  "required": [
+                                    "character_id",
+                                    "preview_url",
+                                    "character_name"
+                                  ]
+                                },
+                                "description": "人物列表"
+                              }
+                            },
+                            "x-apifox-orders": [
+                              "type",
+                              "characters"
+                            ],
+                            "required": [
+                              "type",
+                              "characters"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JBRF62X0WQENKKB3AKESBMDC"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "类型"
+                          },
+                          "characters": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "character_id": {
+                                  "type": "string",
+                                  "description": "人物ID"
+                                },
+                                "character_name": {
+                                  "type": "string",
+                                  "description": "人物名字"
+                                },
+                                "preview_url": {
+                                  "type": "string",
+                                  "description": "试听网址"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "character_id",
+                                "character_name",
+                                "preview_url"
+                              ],
+                              "required": [
+                                "character_id",
+                                "preview_url",
+                                "character_name"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "description": "人物列表"
+                          }
+                        },
+                        "x-apifox-orders": [
+                          "type",
+                          "characters"
+                        ],
+                        "required": [
+                          "type",
+                          "characters"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "个人操作",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-229485683-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

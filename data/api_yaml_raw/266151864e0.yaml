@@ -1,0 +1,102 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /click_inline_keyboard_button:
+    post:
+      summary: 点击按钮
+      deprecated: false
+      description: ''
+      tags:
+        - 其他/接口
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+                bot_appid:
+                  type: string
+                button_id:
+                  type: string
+                callback_data:
+                  type: string
+                msg_seq:
+                  type: string
+              x-apifox-orders:
+                - group_id
+                - bot_appid
+                - button_id
+                - callback_data
+                - msg_seq
+              required:
+                - group_id
+                - msg_seq
+                - callback_data
+                - button_id
+                - bot_appid
+              x-apifox-ignore-properties: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result'
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 其他/接口
+      x-apifox-status: developing
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-266151864-run
+components:
+  schemas:
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

@@ -1,0 +1,226 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_robot_uin_range": {
+      "post": {
+        "summary": "获取机器人账号范围",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "系统操作"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB8QMZPF79D49D10CT2WA7NV": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "minUin": {
+                                "type": "string"
+                              },
+                              "maxUin": {
+                                "type": "string"
+                              }
+                            },
+                            "x-apifox-orders": [
+                              "minUin",
+                              "maxUin"
+                            ],
+                            "required": [
+                              "minUin",
+                              "maxUin"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB8QMZPF79D49D10CT2WA7NV"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "minUin": {
+                            "type": "string"
+                          },
+                          "maxUin": {
+                            "type": "string"
+                          }
+                        },
+                        "x-apifox-orders": [
+                          "minUin",
+                          "maxUin"
+                        ],
+                        "required": [
+                          "minUin",
+                          "maxUin"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                },
+                "example": {
+                  "status": "ok",
+                  "retcode": 0,
+                  "data": [
+                    {
+                      "minUin": "3328144510",
+                      "maxUin": "3328144510"
+                    },
+                    {
+                      "minUin": "2854196301",
+                      "maxUin": "2854216399"
+                    },
+                    {
+                      "minUin": "66600000",
+                      "maxUin": "66600000"
+                    },
+                    {
+                      "minUin": "3889000000",
+                      "maxUin": "3889999999"
+                    },
+                    {
+                      "minUin": "4010000000",
+                      "maxUin": "4019999999"
+                    }
+                  ],
+                  "message": "",
+                  "wording": "",
+                  "echo": null
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "系统操作",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226658975-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

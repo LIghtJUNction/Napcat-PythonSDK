@@ -1,0 +1,273 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /get_friends_with_category:
+    post:
+      summary: 获取好友分组列表
+      deprecated: false
+      description: ''
+      tags:
+        - 账号相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-ignore-properties: []
+              x-apifox-orders: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB9GQ1NWAZE2HJ9SM7RXGD0V:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            categoryId: &ref_0
+                              type: number
+                              description: 分组ID
+                            categorySortId: &ref_1
+                              type: number
+                              description: 分组排序ID
+                            categoryName: &ref_2
+                              type: string
+                              description: 分组名
+                            categoryMbCount: &ref_3
+                              type: number
+                              description: 好友数量
+                            onlineCount: &ref_4
+                              type: number
+                              description: 在线好友数量
+                            buddyList:
+                              type: array
+                              items: &ref_5
+                                $ref: >-
+                                  #/components/schemas/%E5%A5%BD%E5%8F%8B%E4%BF%A1%E6%81%AF
+                              description: 好友列表
+                          x-apifox-orders: &ref_6
+                            - categoryId
+                            - categorySortId
+                            - categoryName
+                            - categoryMbCount
+                            - onlineCount
+                            - buddyList
+                          required:
+                            - categoryId
+                            - buddyList
+                            - onlineCount
+                            - categoryMbCount
+                            - categoryName
+                            - categorySortId
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB9GQ1NWAZE2HJ9SM7RXGD0V
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        categoryId: *ref_0
+                        categorySortId: *ref_1
+                        categoryName: *ref_2
+                        categoryMbCount: *ref_3
+                        onlineCount: *ref_4
+                        buddyList:
+                          type: array
+                          items: *ref_5
+                          description: 好友列表
+                      x-apifox-orders: *ref_6
+                      required:
+                        - categoryId
+                        - buddyList
+                        - onlineCount
+                        - categoryMbCount
+                        - categoryName
+                        - categorySortId
+                      x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 账号相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226658978-run
+components:
+  schemas:
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    好友信息:
+      type: object
+      properties:
+        qid:
+          type: string
+          description: QQID
+        longNick:
+          type: string
+          description: 个性签名
+        birthday_year:
+          type: number
+          description: 生日_年
+        birthday_month:
+          type: number
+          description: 生日_月
+        birthday_day:
+          type: number
+          description: 生日_日
+        age:
+          type: number
+          description: 年龄
+        sex:
+          type: string
+          description: 性别
+        eMail:
+          type: string
+          description: 邮箱
+        phoneNum:
+          type: string
+          description: 手机号
+        categoryId:
+          type: number
+          description: 分类
+        richTime:
+          type: number
+          description: 注册时间
+        richBuffer:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        uid:
+          type: string
+        uin:
+          type: string
+        nick:
+          type: string
+        remark:
+          type: string
+          description: 备注
+        user_id:
+          type: number
+        nickname:
+          type: string
+        level:
+          type: number
+          description: 等级
+      required:
+        - qid
+        - longNick
+        - birthday_year
+        - birthday_month
+        - birthday_day
+        - age
+        - sex
+        - eMail
+        - phoneNum
+        - categoryId
+        - richTime
+        - richBuffer
+        - uid
+        - uin
+        - nick
+        - remark
+        - user_id
+        - nickname
+        - level
+      x-apifox-orders:
+        - qid
+        - longNick
+        - birthday_year
+        - birthday_month
+        - birthday_day
+        - age
+        - sex
+        - eMail
+        - phoneNum
+        - categoryId
+        - richTime
+        - richBuffer
+        - uid
+        - uin
+        - nick
+        - remark
+        - user_id
+        - nickname
+        - level
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

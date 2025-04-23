@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /upload_private_file:
+    post:
+      summary: 上传私聊文件
+      deprecated: false
+      description: ''
+      tags:
+        - 文件相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  $ref: '#/components/schemas/user_id'
+                file:
+                  type: string
+                name:
+                  type: string
+              x-apifox-orders:
+                - user_id
+                - file
+                - name
+              required:
+                - user_id
+                - file
+                - name
+              x-apifox-ignore-properties: []
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB794J3BQ17E16EZD8NGN8DF:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data: &ref_0
+                        type: 'null'
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB794J3BQ17E16EZD8NGN8DF
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data: *ref_0
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 文件相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226658883-run
+components:
+  schemas:
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

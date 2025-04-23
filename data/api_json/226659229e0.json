@@ -1,0 +1,457 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/get_group_info_ex": {
+      "post": {
+        "summary": "获取群信息ex",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "群聊相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id"
+                ],
+                "required": [
+                  "group_id"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "groupCode": {
+                          "type": "string"
+                        },
+                        "resultCode": {
+                          "type": "number"
+                        },
+                        "extInfo": {
+                          "type": "object",
+                          "properties": {
+                            "groupInfoExtSeq": {
+                              "type": "number"
+                            },
+                            "reserve": {
+                              "type": "number"
+                            },
+                            "luckyWordId": {
+                              "type": "string"
+                            },
+                            "lightCharNum": {
+                              "type": "number"
+                            },
+                            "luckyWord": {
+                              "type": "string"
+                            },
+                            "starId": {
+                              "type": "number"
+                            },
+                            "essentialMsgSwitch": {
+                              "type": "number"
+                            },
+                            "todoSeq": {
+                              "type": "number"
+                            },
+                            "blacklistExpireTime": {
+                              "type": "number"
+                            },
+                            "isLimitGroupRtc": {
+                              "type": "number"
+                            },
+                            "companyId": {
+                              "type": "number"
+                            },
+                            "hasGroupCustomPortrait": {
+                              "type": "number"
+                            },
+                            "bindGuildId": {
+                              "type": "string"
+                            },
+                            "groupOwnerId": {
+                              "type": "object",
+                              "properties": {
+                                "memberUin": {
+                                  "type": "string"
+                                },
+                                "memberUid": {
+                                  "type": "string"
+                                },
+                                "memberQid": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "memberUin",
+                                "memberUid",
+                                "memberQid"
+                              ],
+                              "x-apifox-orders": [
+                                "memberUin",
+                                "memberUid",
+                                "memberQid"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "essentialMsgPrivilege": {
+                              "type": "number"
+                            },
+                            "msgEventSeq": {
+                              "type": "string"
+                            },
+                            "inviteRobotSwitch": {
+                              "type": "number"
+                            },
+                            "gangUpId": {
+                              "type": "string"
+                            },
+                            "qqMusicMedalSwitch": {
+                              "type": "number"
+                            },
+                            "showPlayTogetherSwitch": {
+                              "type": "number"
+                            },
+                            "groupFlagPro1": {
+                              "type": "string"
+                            },
+                            "groupBindGuildIds": {
+                              "type": "object",
+                              "properties": {
+                                "guildIds": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "guildIds"
+                              ],
+                              "x-apifox-orders": [
+                                "guildIds"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "viewedMsgDisappearTime": {
+                              "type": "string"
+                            },
+                            "groupExtFlameData": {
+                              "type": "object",
+                              "properties": {
+                                "switchState": {
+                                  "type": "integer"
+                                },
+                                "state": {
+                                  "type": "integer"
+                                },
+                                "dayNums": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "version": {
+                                  "type": "integer"
+                                },
+                                "updateTime": {
+                                  "type": "string"
+                                },
+                                "isDisplayDayNum": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "required": [
+                                "switchState",
+                                "state",
+                                "dayNums",
+                                "version",
+                                "updateTime",
+                                "isDisplayDayNum"
+                              ],
+                              "x-apifox-orders": [
+                                "switchState",
+                                "state",
+                                "dayNums",
+                                "version",
+                                "updateTime",
+                                "isDisplayDayNum"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "groupBindGuildSwitch": {
+                              "type": "number"
+                            },
+                            "groupAioBindGuildId": {
+                              "type": "string"
+                            },
+                            "groupExcludeGuildIds": {
+                              "type": "object",
+                              "properties": {
+                                "guildIds": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "guildIds"
+                              ],
+                              "x-apifox-orders": [
+                                "guildIds"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "fullGroupExpansionSwitch": {
+                              "type": "number"
+                            },
+                            "fullGroupExpansionSeq": {
+                              "type": "string"
+                            },
+                            "inviteRobotMemberSwitch": {
+                              "type": "number"
+                            },
+                            "inviteRobotMemberExamine": {
+                              "type": "number"
+                            },
+                            "groupSquareSwitch": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "groupInfoExtSeq",
+                            "reserve",
+                            "luckyWordId",
+                            "lightCharNum",
+                            "luckyWord",
+                            "starId",
+                            "essentialMsgSwitch",
+                            "todoSeq",
+                            "blacklistExpireTime",
+                            "isLimitGroupRtc",
+                            "companyId",
+                            "hasGroupCustomPortrait",
+                            "bindGuildId",
+                            "groupOwnerId",
+                            "essentialMsgPrivilege",
+                            "msgEventSeq",
+                            "inviteRobotSwitch",
+                            "gangUpId",
+                            "qqMusicMedalSwitch",
+                            "showPlayTogetherSwitch",
+                            "groupFlagPro1",
+                            "groupBindGuildIds",
+                            "viewedMsgDisappearTime",
+                            "groupExtFlameData",
+                            "groupBindGuildSwitch",
+                            "groupAioBindGuildId",
+                            "groupExcludeGuildIds",
+                            "fullGroupExpansionSwitch",
+                            "fullGroupExpansionSeq",
+                            "inviteRobotMemberSwitch",
+                            "inviteRobotMemberExamine",
+                            "groupSquareSwitch"
+                          ],
+                          "x-apifox-orders": [
+                            "groupInfoExtSeq",
+                            "reserve",
+                            "luckyWordId",
+                            "lightCharNum",
+                            "luckyWord",
+                            "starId",
+                            "essentialMsgSwitch",
+                            "todoSeq",
+                            "blacklistExpireTime",
+                            "isLimitGroupRtc",
+                            "companyId",
+                            "hasGroupCustomPortrait",
+                            "bindGuildId",
+                            "groupOwnerId",
+                            "essentialMsgPrivilege",
+                            "msgEventSeq",
+                            "inviteRobotSwitch",
+                            "gangUpId",
+                            "qqMusicMedalSwitch",
+                            "showPlayTogetherSwitch",
+                            "groupFlagPro1",
+                            "groupBindGuildIds",
+                            "viewedMsgDisappearTime",
+                            "groupExtFlameData",
+                            "groupBindGuildSwitch",
+                            "groupAioBindGuildId",
+                            "groupExcludeGuildIds",
+                            "fullGroupExpansionSwitch",
+                            "fullGroupExpansionSeq",
+                            "inviteRobotMemberSwitch",
+                            "inviteRobotMemberExamine",
+                            "groupSquareSwitch"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "required": [
+                        "groupCode",
+                        "resultCode",
+                        "extInfo"
+                      ],
+                      "x-apifox-orders": [
+                        "groupCode",
+                        "resultCode",
+                        "extInfo"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "null"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-orders": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "example": {
+                  "status": "ok",
+                  "retcode": 0,
+                  "data": {
+                    "groupCode": "790514019",
+                    "resultCode": 0,
+                    "extInfo": {
+                      "groupInfoExtSeq": 1,
+                      "reserve": 0,
+                      "luckyWordId": "0",
+                      "lightCharNum": 0,
+                      "luckyWord": "",
+                      "starId": 0,
+                      "essentialMsgSwitch": 0,
+                      "todoSeq": 0,
+                      "blacklistExpireTime": 0,
+                      "isLimitGroupRtc": 0,
+                      "companyId": 0,
+                      "hasGroupCustomPortrait": 1,
+                      "bindGuildId": "0",
+                      "groupOwnerId": {
+                        "memberUin": "1129317309",
+                        "memberUid": "u_4_QA-QaFryh-Ocgsv4_8EQ",
+                        "memberQid": ""
+                      },
+                      "essentialMsgPrivilege": 0,
+                      "msgEventSeq": "0",
+                      "inviteRobotSwitch": 0,
+                      "gangUpId": "0",
+                      "qqMusicMedalSwitch": 0,
+                      "showPlayTogetherSwitch": 0,
+                      "groupFlagPro1": "0",
+                      "groupBindGuildIds": {
+                        "guildIds": []
+                      },
+                      "viewedMsgDisappearTime": "0",
+                      "groupExtFlameData": {
+                        "switchState": 0,
+                        "state": 0,
+                        "dayNums": [],
+                        "version": 0,
+                        "updateTime": "0",
+                        "isDisplayDayNum": false
+                      },
+                      "groupBindGuildSwitch": 0,
+                      "groupAioBindGuildId": "0",
+                      "groupExcludeGuildIds": {
+                        "guildIds": []
+                      },
+                      "fullGroupExpansionSwitch": 0,
+                      "fullGroupExpansionSeq": "0",
+                      "inviteRobotMemberSwitch": 0,
+                      "inviteRobotMemberExamine": 0,
+                      "groupSquareSwitch": 0
+                    }
+                  },
+                  "message": "",
+                  "wording": "",
+                  "echo": null
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "群聊相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226659229-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

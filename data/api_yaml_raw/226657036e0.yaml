@@ -1,0 +1,254 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /get_group_honor_info:
+    post:
+      summary: 获取群荣誉
+      deprecated: false
+      description: ''
+      tags:
+        - 群聊相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+              x-apifox-orders:
+                - group_id
+              required:
+                - group_id
+              x-apifox-ignore-properties: []
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB6N01XQFB2NWJGV4YP90MWR:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          group_id: &ref_1
+                            type: string
+                          current_talkative: &ref_0
+                            description: 当前龙王
+                            $ref: >-
+                              #/components/schemas/%E9%BE%99%E7%8E%8B%E4%BF%A1%E6%81%AF
+                          talkative_list:
+                            type: array
+                            items: *ref_0
+                            description: 历史龙王列表
+                          performer_list:
+                            type: array
+                            items:
+                              type: object
+                              x-apifox-refs: &ref_2
+                                01JB6NDNKN29RQFN4YXXNXWCV5: *ref_0
+                              x-apifox-orders: &ref_3
+                                - 01JB6NDNKN29RQFN4YXXNXWCV5
+                              properties: {}
+                            description: 群聊之火
+                          legend_list:
+                            type: array
+                            items: &ref_4
+                              type: string
+                            description: 群聊炽焰
+                          emotion_list:
+                            type: array
+                            items: &ref_5
+                              type: string
+                            description: 快乐之源
+                          strong_newbie_list:
+                            type: array
+                            items: &ref_6
+                              type: string
+                            description: 冒尖小春笋
+                        x-apifox-orders: &ref_7
+                          - group_id
+                          - current_talkative
+                          - talkative_list
+                          - performer_list
+                          - legend_list
+                          - emotion_list
+                          - strong_newbie_list
+                        required:
+                          - group_id
+                          - current_talkative
+                          - talkative_list
+                          - performer_list
+                          - legend_list
+                          - emotion_list
+                          - strong_newbie_list
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB6N01XQFB2NWJGV4YP90MWR
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      group_id: *ref_1
+                      current_talkative: *ref_0
+                      talkative_list:
+                        type: array
+                        items: *ref_0
+                        description: 历史龙王列表
+                      performer_list:
+                        type: array
+                        items:
+                          type: object
+                          x-apifox-refs: *ref_2
+                          x-apifox-orders: *ref_3
+                          properties:
+                            user_id:
+                              type: number
+                            avatar:
+                              type: string
+                              description: 头像
+                            nickname:
+                              type: string
+                            description:
+                              type: string
+                              description: 说明
+                          x-apifox-ignore-properties:
+                            - user_id
+                            - avatar
+                            - nickname
+                            - description
+                        description: 群聊之火
+                      legend_list:
+                        type: array
+                        items: *ref_4
+                        description: 群聊炽焰
+                      emotion_list:
+                        type: array
+                        items: *ref_5
+                        description: 快乐之源
+                      strong_newbie_list:
+                        type: array
+                        items: *ref_6
+                        description: 冒尖小春笋
+                    x-apifox-orders: *ref_7
+                    required:
+                      - group_id
+                      - current_talkative
+                      - talkative_list
+                      - performer_list
+                      - legend_list
+                      - emotion_list
+                      - strong_newbie_list
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 群聊相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226657036-run
+components:
+  schemas:
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    龙王信息:
+      type: object
+      properties:
+        user_id:
+          type: number
+        avatar:
+          type: string
+          description: 头像
+        nickname:
+          type: string
+        day_count:
+          type: number
+          description: 连续天数
+        description:
+          type: string
+          description: 说明
+      x-apifox-orders:
+        - user_id
+        - avatar
+        - nickname
+        - day_count
+        - description
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

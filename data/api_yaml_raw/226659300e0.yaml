@@ -1,0 +1,428 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /get_group_shut_list:
+    post:
+      summary: 获取群禁言列表
+      deprecated: false
+      description: ''
+      tags:
+        - 群聊相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+              x-apifox-orders:
+                - group_id
+              required:
+                - group_id
+              x-apifox-ignore-properties: []
+            example:
+              group_id: 123456789
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JBH9PP9TMP2EE9F6MTXYB2E3:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          uid: &ref_0
+                            type: string
+                          qid: &ref_1
+                            type: string
+                          uin: &ref_2
+                            type: string
+                          nick: &ref_3
+                            type: string
+                          remark: &ref_4
+                            type: string
+                          cardType: &ref_5
+                            type: number
+                          cardName: &ref_6
+                            type: string
+                          role: &ref_7
+                            type: number
+                          avatarPath: &ref_8
+                            type: string
+                          shutUpTime: &ref_9
+                            type: number
+                            description: 解禁时间
+                          isDelete: &ref_10
+                            type: boolean
+                          isSpecialConcerned: &ref_11
+                            type: boolean
+                          isSpecialShield: &ref_12
+                            type: boolean
+                          isRobot: &ref_13
+                            type: boolean
+                          groupHonor:
+                            type: object
+                            properties:
+                              '0': &ref_14
+                                type: number
+                              '1': &ref_15
+                                type: number
+                              '2': &ref_16
+                                type: number
+                              '3': &ref_17
+                                type: number
+                            x-apifox-orders: &ref_18
+                              - '0'
+                              - '1'
+                              - '2'
+                              - '3'
+                            required:
+                              - '0'
+                              - '3'
+                              - '1'
+                              - '2'
+                          memberRealLevel: &ref_19
+                            type: number
+                            description: 群聊等级
+                          memberLevel: &ref_20
+                            type: number
+                          globalGroupLevel: &ref_21
+                            type: number
+                          globalGroupPoint: &ref_22
+                            type: number
+                          memberTitleId: &ref_23
+                            type: number
+                          memberSpecialTitle: &ref_24
+                            type: string
+                          lastSpeakTime: &ref_35
+                            type: number
+                            description: 最后发言时间
+                          joinTime: &ref_34
+                            type: number
+                            description: 入群时间
+                          01JBHA466QHTSVPFFF54F8P2YT:
+                            type: string
+                          01JBHA46D3X7742C9TX0VM8SNR:
+                            type: string
+                          specialTitleExpireTime: &ref_25
+                            type: string
+                          userShowFlag: &ref_26
+                            type: number
+                          userShowFlagNew: &ref_27
+                            type: number
+                          richFlag: &ref_28
+                            type: number
+                          mssVipType: &ref_29
+                            type: number
+                          bigClubLevel: &ref_30
+                            type: number
+                          bigClubFlag: &ref_31
+                            type: number
+                          autoRemark: &ref_32
+                            type: string
+                          creditLevel: &ref_33
+                            type: number
+                          01JBHA5T79E4HEQ1DFJ0SY2YHV:
+                            type: string
+                          01JBHA5TECQZX10200ADAGYDD2:
+                            type: string
+                          01JBHA5VJS1NBN084ZBA24DK1C:
+                            type: string
+                          01JBHA5X1H6N1W1ZMZ5C54NA9X:
+                            type: string
+                          memberFlag: &ref_36
+                            type: number
+                          memberFlagExt: &ref_37
+                            type: number
+                          memberMobileFlag: &ref_38
+                            type: number
+                          memberFlagExt2: &ref_39
+                            type: number
+                          isSpecialShielded: &ref_40
+                            type: boolean
+                          cardNameId: &ref_41
+                            type: number
+                        x-apifox-orders: &ref_42
+                          - uid
+                          - qid
+                          - uin
+                          - nick
+                          - remark
+                          - cardType
+                          - cardName
+                          - role
+                          - avatarPath
+                          - shutUpTime
+                          - isDelete
+                          - isSpecialConcerned
+                          - isSpecialShield
+                          - isRobot
+                          - groupHonor
+                          - memberRealLevel
+                          - memberLevel
+                          - globalGroupLevel
+                          - globalGroupPoint
+                          - memberTitleId
+                          - memberSpecialTitle
+                          - specialTitleExpireTime
+                          - userShowFlag
+                          - userShowFlagNew
+                          - richFlag
+                          - mssVipType
+                          - bigClubLevel
+                          - bigClubFlag
+                          - autoRemark
+                          - creditLevel
+                          - joinTime
+                          - lastSpeakTime
+                          - memberFlag
+                          - memberFlagExt
+                          - memberMobileFlag
+                          - memberFlagExt2
+                          - isSpecialShielded
+                          - cardNameId
+                          - 01JBHA5TECQZX10200ADAGYDD2
+                          - 01JBHA5T79E4HEQ1DFJ0SY2YHV
+                          - 01JBHA46D3X7742C9TX0VM8SNR
+                          - 01JBHA5X1H6N1W1ZMZ5C54NA9X
+                          - 01JBHA5VJS1NBN084ZBA24DK1C
+                          - 01JBHA466QHTSVPFFF54F8P2YT
+                        required:
+                          - uid
+                          - globalGroupLevel
+                          - cardName
+                          - cardType
+                          - remark
+                          - nick
+                          - uin
+                          - qid
+                          - isRobot
+                          - isSpecialShield
+                          - isSpecialConcerned
+                          - isDelete
+                          - shutUpTime
+                          - role
+                          - avatarPath
+                          - memberLevel
+                          - memberRealLevel
+                          - groupHonor
+                          - memberFlagExt
+                          - memberFlag
+                          - lastSpeakTime
+                          - memberSpecialTitle
+                          - memberTitleId
+                          - globalGroupPoint
+                          - joinTime
+                          - userShowFlagNew
+                          - userShowFlag
+                          - specialTitleExpireTime
+                          - 01JBHA466QHTSVPFFF54F8P2YT
+                          - 01JBHA46D3X7742C9TX0VM8SNR
+                          - bigClubFlag
+                          - bigClubLevel
+                          - mssVipType
+                          - richFlag
+                          - autoRemark
+                          - creditLevel
+                          - 01JBHA5T79E4HEQ1DFJ0SY2YHV
+                          - 01JBHA5TECQZX10200ADAGYDD2
+                          - cardNameId
+                          - isSpecialShielded
+                          - memberMobileFlag
+                          - memberFlagExt2
+                          - 01JBHA5VJS1NBN084ZBA24DK1C
+                          - 01JBHA5X1H6N1W1ZMZ5C54NA9X
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JBH9PP9TMP2EE9F6MTXYB2E3
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      uid: *ref_0
+                      qid: *ref_1
+                      uin: *ref_2
+                      nick: *ref_3
+                      remark: *ref_4
+                      cardType: *ref_5
+                      cardName: *ref_6
+                      role: *ref_7
+                      avatarPath: *ref_8
+                      shutUpTime: *ref_9
+                      isDelete: *ref_10
+                      isSpecialConcerned: *ref_11
+                      isSpecialShield: *ref_12
+                      isRobot: *ref_13
+                      groupHonor:
+                        type: object
+                        properties:
+                          '0': *ref_14
+                          '1': *ref_15
+                          '2': *ref_16
+                          '3': *ref_17
+                        x-apifox-orders: *ref_18
+                        required:
+                          - '0'
+                          - '3'
+                          - '1'
+                          - '2'
+                        x-apifox-ignore-properties: []
+                      memberRealLevel: *ref_19
+                      memberLevel: *ref_20
+                      globalGroupLevel: *ref_21
+                      globalGroupPoint: *ref_22
+                      memberTitleId: *ref_23
+                      memberSpecialTitle: *ref_24
+                      specialTitleExpireTime: *ref_25
+                      userShowFlag: *ref_26
+                      userShowFlagNew: *ref_27
+                      richFlag: *ref_28
+                      mssVipType: *ref_29
+                      bigClubLevel: *ref_30
+                      bigClubFlag: *ref_31
+                      autoRemark: *ref_32
+                      creditLevel: *ref_33
+                      joinTime: *ref_34
+                      lastSpeakTime: *ref_35
+                      memberFlag: *ref_36
+                      memberFlagExt: *ref_37
+                      memberMobileFlag: *ref_38
+                      memberFlagExt2: *ref_39
+                      isSpecialShielded: *ref_40
+                      cardNameId: *ref_41
+                    x-apifox-orders: *ref_42
+                    required:
+                      - uid
+                      - globalGroupLevel
+                      - cardName
+                      - cardType
+                      - remark
+                      - nick
+                      - uin
+                      - qid
+                      - isRobot
+                      - isSpecialShield
+                      - isSpecialConcerned
+                      - isDelete
+                      - shutUpTime
+                      - role
+                      - avatarPath
+                      - memberLevel
+                      - memberRealLevel
+                      - groupHonor
+                      - memberFlagExt
+                      - memberFlag
+                      - lastSpeakTime
+                      - memberSpecialTitle
+                      - memberTitleId
+                      - globalGroupPoint
+                      - joinTime
+                      - userShowFlagNew
+                      - userShowFlag
+                      - specialTitleExpireTime
+                      - 01JBHA466QHTSVPFFF54F8P2YT
+                      - 01JBHA46D3X7742C9TX0VM8SNR
+                      - bigClubFlag
+                      - bigClubLevel
+                      - mssVipType
+                      - richFlag
+                      - autoRemark
+                      - creditLevel
+                      - 01JBHA5T79E4HEQ1DFJ0SY2YHV
+                      - 01JBHA5TECQZX10200ADAGYDD2
+                      - cardNameId
+                      - isSpecialShielded
+                      - memberMobileFlag
+                      - memberFlagExt2
+                      - 01JBHA5VJS1NBN084ZBA24DK1C
+                      - 01JBHA5X1H6N1W1ZMZ5C54NA9X
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 群聊相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659300-run
+components:
+  schemas:
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

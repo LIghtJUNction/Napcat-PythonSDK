@@ -1,0 +1,231 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /fetch_emoji_like:
+    post:
+      summary: 获取贴表情详情
+      deprecated: false
+      description: ''
+      tags:
+        - 消息相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message_id:
+                  $ref: '#/components/schemas/message_id'
+                emojiId:
+                  type: string
+                  description: 表情ID
+                emojiType:
+                  type: string
+                  description: 表情类型
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+                user_id:
+                  $ref: '#/components/schemas/user_id'
+                count:
+                  type: number
+              x-apifox-orders:
+                - message_id
+                - emojiId
+                - emojiType
+                - group_id
+                - user_id
+                - count
+              required:
+                - message_id
+                - emojiType
+                - emojiId
+              x-apifox-ignore-properties: []
+            example:
+              message_id: 123456
+              emojiId: '97'
+              emojiType: '1'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB9S3Q4AVV7RF2ZP878N716Z:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          result: &ref_0
+                            type: number
+                          errMsg: &ref_1
+                            type: string
+                          emojiLikesList:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                tinyId: &ref_2
+                                  type: string
+                                nickName: &ref_3
+                                  type: string
+                                headUrl: &ref_4
+                                  type: string
+                              x-apifox-orders: &ref_5
+                                - tinyId
+                                - nickName
+                                - headUrl
+                              required:
+                                - tinyId
+                                - nickName
+                                - headUrl
+                          cookie: &ref_6
+                            type: string
+                          isLastPage: &ref_7
+                            type: boolean
+                          isFirstPage: &ref_8
+                            type: boolean
+                        x-apifox-orders: &ref_9
+                          - result
+                          - errMsg
+                          - emojiLikesList
+                          - cookie
+                          - isLastPage
+                          - isFirstPage
+                        required:
+                          - result
+                          - isLastPage
+                          - cookie
+                          - errMsg
+                          - emojiLikesList
+                          - isFirstPage
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB9S3Q4AVV7RF2ZP878N716Z
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      result: *ref_0
+                      errMsg: *ref_1
+                      emojiLikesList:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tinyId: *ref_2
+                            nickName: *ref_3
+                            headUrl: *ref_4
+                          x-apifox-orders: *ref_5
+                          required:
+                            - tinyId
+                            - nickName
+                            - headUrl
+                          x-apifox-ignore-properties: []
+                      cookie: *ref_6
+                      isLastPage: *ref_7
+                      isFirstPage: *ref_8
+                    x-apifox-orders: *ref_9
+                    required:
+                      - result
+                      - isLastPage
+                      - cookie
+                      - errMsg
+                      - emojiLikesList
+                      - isFirstPage
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 消息相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659219-run
+components:
+  schemas:
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    message_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

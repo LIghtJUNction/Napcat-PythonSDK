@@ -1,0 +1,218 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/send_private_msg": {
+      "post": {
+        "summary": "发送私聊超级表情 骰子",
+        "deprecated": false,
+        "description": "发送群消息",
+        "tags": [
+          "消息相关/发送私聊消息"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  },
+                  "message": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "dice"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "result": {
+                              "type": "number",
+                              "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6
+                              ],
+                              "x-apifox-enum": [
+                                {
+                                  "value": 1,
+                                  "name": "",
+                                  "description": ""
+                                },
+                                {
+                                  "value": 2,
+                                  "name": "",
+                                  "description": ""
+                                },
+                                {
+                                  "value": 3,
+                                  "name": "",
+                                  "description": ""
+                                },
+                                {
+                                  "value": 4,
+                                  "name": "",
+                                  "description": ""
+                                },
+                                {
+                                  "value": 5,
+                                  "name": "",
+                                  "description": ""
+                                },
+                                {
+                                  "value": 6,
+                                  "name": "",
+                                  "description": ""
+                                }
+                              ]
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "result"
+                          ],
+                          "required": [
+                            "result"
+                          ],
+                          "description": "该参数暂不可用",
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "type",
+                        "data"
+                      ],
+                      "required": [
+                        "type"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    }
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "message"
+                ],
+                "required": [
+                  "group_id",
+                  "message"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "user_id": 123456,
+                "message": [
+                  {
+                    "type": "dice"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "message_id": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "message_id"
+                      ],
+                      "x-apifox-orders": [
+                        "message_id"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording"
+                  ],
+                  "x-apifox-orders": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "example": {
+                  "status": "ok",
+                  "retcode": 0,
+                  "data": {
+                    "message_id": 696124706
+                  },
+                  "message": "",
+                  "wording": ""
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "消息相关/发送私聊消息",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-228097912-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

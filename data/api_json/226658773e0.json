@@ -1,0 +1,428 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/create_group_file_folder": {
+      "post": {
+        "summary": "创建群文件文件夹",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "文件相关"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  },
+                  "folder_name": {
+                    "type": "string"
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "folder_name"
+                ],
+                "required": [
+                  "group_id",
+                  "folder_name"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-apifox-refs": {
+                    "01JB76GNYBF8FC5H0V4NMJF5KK": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "result": {
+                              "type": "object",
+                              "properties": {
+                                "retCode": {
+                                  "type": "number"
+                                },
+                                "retMsg": {
+                                  "type": "string"
+                                },
+                                "clientWording": {
+                                  "type": "string"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "retCode",
+                                "retMsg",
+                                "clientWording"
+                              ],
+                              "required": [
+                                "retCode",
+                                "retMsg",
+                                "clientWording"
+                              ]
+                            },
+                            "groupItem": {
+                              "type": "object",
+                              "properties": {
+                                "peerId": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "folderInfo": {
+                                  "type": "object",
+                                  "properties": {
+                                    "folderId": {
+                                      "type": "string"
+                                    },
+                                    "parentFolderId": {
+                                      "type": "string"
+                                    },
+                                    "folderName": {
+                                      "type": "string"
+                                    },
+                                    "createTime": {
+                                      "type": "number"
+                                    },
+                                    "modifyTime": {
+                                      "type": "number"
+                                    },
+                                    "createUin": {
+                                      "type": "string"
+                                    },
+                                    "creatorName": {
+                                      "type": "string"
+                                    },
+                                    "totalFileCount": {
+                                      "type": "string"
+                                    },
+                                    "modifyUin": {
+                                      "type": "string"
+                                    },
+                                    "modifyName": {
+                                      "type": "string"
+                                    },
+                                    "usedSpace": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "x-apifox-orders": [
+                                    "folderId",
+                                    "parentFolderId",
+                                    "folderName",
+                                    "createTime",
+                                    "modifyTime",
+                                    "createUin",
+                                    "creatorName",
+                                    "totalFileCount",
+                                    "modifyUin",
+                                    "modifyName",
+                                    "usedSpace"
+                                  ],
+                                  "description": "文件夹信息",
+                                  "required": [
+                                    "folderId",
+                                    "folderName",
+                                    "parentFolderId",
+                                    "creatorName",
+                                    "createUin",
+                                    "modifyTime",
+                                    "createTime",
+                                    "modifyName",
+                                    "modifyUin",
+                                    "totalFileCount",
+                                    "usedSpace"
+                                  ]
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "peerId",
+                                "type",
+                                "folderInfo"
+                              ],
+                              "required": [
+                                "peerId",
+                                "type",
+                                "folderInfo"
+                              ]
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "result",
+                            "groupItem"
+                          ],
+                          "required": [
+                            "result",
+                            "groupItem"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JB76GNYBF8FC5H0V4NMJF5KK"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "result": {
+                          "type": "object",
+                          "properties": {
+                            "retCode": {
+                              "type": "number"
+                            },
+                            "retMsg": {
+                              "type": "string"
+                            },
+                            "clientWording": {
+                              "type": "string"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "retCode",
+                            "retMsg",
+                            "clientWording"
+                          ],
+                          "required": [
+                            "retCode",
+                            "retMsg",
+                            "clientWording"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        },
+                        "groupItem": {
+                          "type": "object",
+                          "properties": {
+                            "peerId": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "folderInfo": {
+                              "type": "object",
+                              "properties": {
+                                "folderId": {
+                                  "type": "string"
+                                },
+                                "parentFolderId": {
+                                  "type": "string"
+                                },
+                                "folderName": {
+                                  "type": "string"
+                                },
+                                "createTime": {
+                                  "type": "number"
+                                },
+                                "modifyTime": {
+                                  "type": "number"
+                                },
+                                "createUin": {
+                                  "type": "string"
+                                },
+                                "creatorName": {
+                                  "type": "string"
+                                },
+                                "totalFileCount": {
+                                  "type": "string"
+                                },
+                                "modifyUin": {
+                                  "type": "string"
+                                },
+                                "modifyName": {
+                                  "type": "string"
+                                },
+                                "usedSpace": {
+                                  "type": "string"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "folderId",
+                                "parentFolderId",
+                                "folderName",
+                                "createTime",
+                                "modifyTime",
+                                "createUin",
+                                "creatorName",
+                                "totalFileCount",
+                                "modifyUin",
+                                "modifyName",
+                                "usedSpace"
+                              ],
+                              "description": "文件夹信息",
+                              "required": [
+                                "folderId",
+                                "folderName",
+                                "parentFolderId",
+                                "creatorName",
+                                "createUin",
+                                "modifyTime",
+                                "createTime",
+                                "modifyName",
+                                "modifyUin",
+                                "totalFileCount",
+                                "usedSpace"
+                              ],
+                              "x-apifox-ignore-properties": []
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "peerId",
+                            "type",
+                            "folderInfo"
+                          ],
+                          "required": [
+                            "peerId",
+                            "type",
+                            "folderInfo"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "result",
+                        "groupItem"
+                      ],
+                      "required": [
+                        "result",
+                        "groupItem"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "文件相关",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-226658773-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

@@ -1,0 +1,161 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/send_group_msg": {
+      "post": {
+        "summary": "发送群聊超级表情 猜拳",
+        "deprecated": false,
+        "description": "发送群消息",
+        "tags": [
+          "消息相关/发送群聊消息"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id"
+                  },
+                  "message": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "const": "rps"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "type"
+                      ],
+                      "required": [
+                        "type"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    }
+                  }
+                },
+                "x-apifox-orders": [
+                  "group_id",
+                  "message"
+                ],
+                "required": [
+                  "group_id",
+                  "message"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "group_id": 123456,
+                "message": [
+                  {
+                    "type": "rps"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "message_id": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "message_id"
+                      ],
+                      "x-apifox-orders": [
+                        "message_id"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording"
+                  ],
+                  "x-apifox-orders": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording"
+                  ],
+                  "x-apifox-ignore-properties": []
+                },
+                "example": {
+                  "status": "ok",
+                  "retcode": 0,
+                  "data": {
+                    "message_id": 696124706
+                  },
+                  "message": "",
+                  "wording": ""
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "消息相关/发送群聊消息",
+        "x-apifox-status": "released",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-228097933-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "group_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      }
+    },
+    "securitySchemes": {}
+  },
+  "servers": [],
+  "security": []
+}

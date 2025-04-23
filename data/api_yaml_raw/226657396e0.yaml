@@ -1,0 +1,573 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /send_group_forward_msg:
+    post:
+      summary: 发送群合并转发消息
+      deprecated: false
+      description: ''
+      tags:
+        - 消息相关/发送群聊消息
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group_id:
+                  $ref: '#/components/schemas/group_id'
+                messages:
+                  type: array
+                  items:
+                    $ref: >-
+                      #/components/schemas/%E4%B8%80%E7%BA%A7%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF
+                news:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      text:
+                        type: string
+                    x-apifox-orders:
+                      - text
+                    required:
+                      - text
+                    x-apifox-ignore-properties: []
+                prompt:
+                  type: string
+                  description: 外显
+                summary:
+                  type: string
+                  description: 底下文本
+                source:
+                  type: string
+                  description: 内容
+              x-apifox-orders:
+                - group_id
+                - messages
+                - news
+                - prompt
+                - summary
+                - source
+              required:
+                - group_id
+                - messages
+                - source
+                - summary
+                - prompt
+                - news
+              x-apifox-ignore-properties: []
+            example: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB6WTN8SH1FEQDAT26P1Q8CZ:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          message_id: &ref_0
+                            type: number
+                          res_id: &ref_1
+                            type: string
+                        x-apifox-orders: &ref_2
+                          - message_id
+                          - res_id
+                        required:
+                          - message_id
+                          - res_id
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB6WTN8SH1FEQDAT26P1Q8CZ
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      message_id: *ref_0
+                      res_id: *ref_1
+                    x-apifox-orders: *ref_2
+                    required:
+                      - message_id
+                      - res_id
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 消息相关/发送群聊消息
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226657396-run
+components:
+  schemas:
+    一级合并转发消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: node
+        data:
+          type: object
+          properties:
+            user_id:
+              oneOf:
+                - type: string
+                - type: number
+            nickname:
+              type: string
+            content:
+              type: array
+              items:
+                anyOf:
+                  - &ref_3
+                    $ref: '#/components/schemas/%E6%96%87%E6%9C%AC%E6%B6%88%E6%81%AF'
+                  - &ref_4
+                    $ref: '#/components/schemas/%E8%A1%A8%E6%83%85%E6%B6%88%E6%81%AF'
+                  - &ref_5
+                    $ref: '#/components/schemas/%E5%9B%BE%E7%89%87%E6%B6%88%E6%81%AF'
+                  - &ref_6
+                    $ref: '#/components/schemas/%E5%9B%9E%E5%A4%8D%E6%B6%88%E6%81%AF'
+                  - &ref_7
+                    $ref: '#/components/schemas/JSON%E6%B6%88%E6%81%AF'
+                  - &ref_8
+                    $ref: '#/components/schemas/%E8%A7%86%E9%A2%91%E6%B6%88%E6%81%AF'
+                  - &ref_9
+                    $ref: '#/components/schemas/%E6%96%87%E4%BB%B6%E6%B6%88%E6%81%AF'
+                  - &ref_10
+                    $ref: '#/components/schemas/markdown%E6%B6%88%E6%81%AF'
+                  - &ref_11
+                    $ref: '#/components/schemas/%E5%8F%91%E9%80%81forward'
+                  - &ref_12
+                    $ref: >-
+                      #/components/schemas/%E4%BA%8C%E7%BA%A7%E5%90%88%E5%B9%B6%E8%BD%AC%E5%8F%91%E6%B6%88%E6%81%AF
+              description: 构建
+          x-apifox-orders:
+            - user_id
+            - nickname
+            - content
+          required:
+            - user_id
+            - nickname
+            - content
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    二级合并转发消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: node
+        data:
+          type: object
+          properties:
+            user_id:
+              oneOf:
+                - type: string
+                - type: number
+            nickname:
+              type: string
+            content:
+              type: array
+              items:
+                anyOf:
+                  - *ref_3
+                  - *ref_4
+                  - *ref_5
+                  - *ref_6
+                  - *ref_7
+                  - *ref_8
+                  - *ref_9
+                  - *ref_10
+                  - *ref_11
+                  - *ref_12
+              description: 构建
+            news:
+              type: array
+              items:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    description: 内容
+                x-apifox-orders:
+                  - text
+                required:
+                  - text
+                x-apifox-ignore-properties: []
+              description: 外显
+            prompt:
+              type: string
+              description: 外显
+            summary:
+              type: string
+              description: 底下文本
+            source:
+              type: string
+              description: 标题
+          x-apifox-orders:
+            - user_id
+            - nickname
+            - content
+            - news
+            - prompt
+            - summary
+            - source
+          required:
+            - user_id
+            - nickname
+            - content
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    发送forward:
+      type: object
+      properties:
+        type:
+          type: string
+          const: node
+        data:
+          type: object
+          properties:
+            user_id:
+              $ref: '#/components/schemas/user_id'
+            nickname:
+              type: string
+            content:
+              type: object
+              properties:
+                type:
+                  type: string
+                  const: forward
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: res_id
+                  x-apifox-orders:
+                    - id
+                  required:
+                    - id
+                  x-apifox-ignore-properties: []
+              x-apifox-orders:
+                - type
+                - data
+              required:
+                - type
+                - data
+              x-apifox-ignore-properties: []
+          x-apifox-orders:
+            - user_id
+            - nickname
+            - content
+          required:
+            - content
+            - user_id
+            - nickname
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    markdown消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: record
+        data:
+          type: object
+          properties:
+            content:
+              type: string
+          x-apifox-orders:
+            - content
+          required:
+            - content
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    文件消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: file
+        data:
+          type: object
+          properties:
+            file:
+              type: string
+            name:
+              type: string
+          x-apifox-orders:
+            - file
+            - name
+          required:
+            - file
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    视频消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: video
+        data:
+          type: object
+          properties:
+            file:
+              type: string
+          x-apifox-orders:
+            - file
+          required:
+            - file
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    JSON消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: json
+        data:
+          type: object
+          properties:
+            data:
+              type: string
+          x-apifox-orders:
+            - data
+          required:
+            - data
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    回复消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: reply
+        data:
+          type: object
+          properties:
+            id:
+              oneOf:
+                - type: string
+                - type: number
+          x-apifox-orders:
+            - id
+          required:
+            - id
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    图片消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: image
+        data:
+          type: object
+          properties:
+            file:
+              type: string
+            summary:
+              type: string
+              default: '[图片]'
+          x-apifox-orders:
+            - file
+            - summary
+          required:
+            - file
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    表情消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: face
+        data:
+          type: object
+          properties:
+            id:
+              type: number
+          x-apifox-orders:
+            - id
+          required:
+            - id
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    文本消息:
+      type: object
+      properties:
+        type:
+          type: string
+          const: text
+        data:
+          type: object
+          properties:
+            text:
+              type: string
+          x-apifox-orders:
+            - text
+          required:
+            - text
+          x-apifox-ignore-properties: []
+      x-apifox-orders:
+        - type
+        - data
+      required:
+        - type
+        - data
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    group_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []

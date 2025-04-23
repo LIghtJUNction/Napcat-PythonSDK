@@ -1,0 +1,262 @@
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /get_profile_like:
+    post:
+      summary: 获取点赞列表
+      deprecated: false
+      description: ''
+      tags:
+        - 账号相关
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+              x-apifox-ignore-properties: []
+              x-apifox-orders: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                x-apifox-refs:
+                  01JB9P8CKB8KCYVEC5XNGJDPPQ:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          userInfos:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                uid: &ref_4
+                                  type: string
+                                src: &ref_5
+                                  type: number
+                                latestTime: &ref_6
+                                  type: number
+                                count: &ref_7
+                                  type: number
+                                giftCount: &ref_8
+                                  type: number
+                                customId: &ref_9
+                                  type: number
+                                lastCharged: &ref_10
+                                  type: number
+                                bAvailableCnt: &ref_11
+                                  type: number
+                                bTodayVotedCnt: &ref_12
+                                  type: number
+                                nick: &ref_13
+                                  type: string
+                                gender: &ref_14
+                                  type: number
+                                age: &ref_15
+                                  type: number
+                                isFriend: &ref_16
+                                  type: boolean
+                                isvip: &ref_17
+                                  type: boolean
+                                isSvip: &ref_18
+                                  type: boolean
+                                uin: &ref_19
+                                  type: number
+                              x-apifox-orders: &ref_20
+                                - uid
+                                - src
+                                - latestTime
+                                - count
+                                - giftCount
+                                - customId
+                                - lastCharged
+                                - bAvailableCnt
+                                - bTodayVotedCnt
+                                - nick
+                                - gender
+                                - age
+                                - isFriend
+                                - isvip
+                                - isSvip
+                                - uin
+                              required:
+                                - uid
+                                - src
+                                - latestTime
+                                - count
+                                - giftCount
+                                - age
+                                - gender
+                                - nick
+                                - bTodayVotedCnt
+                                - bAvailableCnt
+                                - customId
+                                - lastCharged
+                                - uin
+                                - isSvip
+                                - isvip
+                                - isFriend
+                          total_count: &ref_0
+                            type: number
+                            description: 总点赞数
+                          new_count: &ref_1
+                            type: number
+                            description: 新点赞数
+                          new_nearby_count: &ref_2
+                            type: number
+                          last_visit_time: &ref_3
+                            type: number
+                        x-apifox-orders: &ref_21
+                          - total_count
+                          - new_count
+                          - new_nearby_count
+                          - last_visit_time
+                          - userInfos
+                        required:
+                          - userInfos
+                          - total_count
+                          - last_visit_time
+                          - new_nearby_count
+                          - new_count
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JB9P8CKB8KCYVEC5XNGJDPPQ
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      total_count: *ref_0
+                      new_count: *ref_1
+                      new_nearby_count: *ref_2
+                      last_visit_time: *ref_3
+                      userInfos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            uid: *ref_4
+                            src: *ref_5
+                            latestTime: *ref_6
+                            count: *ref_7
+                            giftCount: *ref_8
+                            customId: *ref_9
+                            lastCharged: *ref_10
+                            bAvailableCnt: *ref_11
+                            bTodayVotedCnt: *ref_12
+                            nick: *ref_13
+                            gender: *ref_14
+                            age: *ref_15
+                            isFriend: *ref_16
+                            isvip: *ref_17
+                            isSvip: *ref_18
+                            uin: *ref_19
+                          x-apifox-orders: *ref_20
+                          required:
+                            - uid
+                            - src
+                            - latestTime
+                            - count
+                            - giftCount
+                            - age
+                            - gender
+                            - nick
+                            - bTodayVotedCnt
+                            - bAvailableCnt
+                            - customId
+                            - lastCharged
+                            - uin
+                            - isSvip
+                            - isvip
+                            - isFriend
+                          x-apifox-ignore-properties: []
+                    x-apifox-orders: *ref_21
+                    required:
+                      - userInfos
+                      - total_count
+                      - last_visit_time
+                      - new_nearby_count
+                      - new_count
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 账号相关
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659197-run
+components:
+  schemas:
+    result:
+      type: object
+      properties:
+        status:
+          type: string
+          const: ok
+        retcode:
+          type: number
+        data:
+          type: object
+          properties: {}
+          x-apifox-orders: []
+          x-apifox-ignore-properties: []
+        message:
+          type: string
+        wording:
+          type: string
+        echo:
+          type: string
+          nullable: true
+      required:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-orders:
+        - status
+        - retcode
+        - data
+        - message
+        - wording
+        - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers: []
+security: []
