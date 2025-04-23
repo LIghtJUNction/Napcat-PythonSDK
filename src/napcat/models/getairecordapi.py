@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 229486818e0
-@endpoint: get_ai_record
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/229486818e0
 @llms.txt: https://napcat.apifox.cn/229486818e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:18
 
 @description: 
 
@@ -19,34 +14,35 @@ summary:获取AI语音
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "get_ai_record"
+__id__ = "229486818e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class GetAiRecordReq(BaseModel): # type: ignore
+class GetAiRecordReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    character: str = Field(..., description="character_id")
+    text: str = Field(..., description="文本")
 # region req/
 
 
-
 # region res
-class GetAiRecordRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class GetAiRecordRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +54,5 @@ class GetAiRecordAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

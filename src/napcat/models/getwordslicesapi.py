@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 228534368e0
-@endpoint: .get_word_slices
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/228534368e0
 @llms.txt: https://napcat.apifox.cn/228534368e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:18
 
 @description: 
 
@@ -19,34 +14,27 @@ summary:获取中文分词
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = ".get_word_slices"
+__id__ = "228534368e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
 
 # region req
-class .getWordSlicesReq(BaseModel): # type: ignore
-    """
-    {{DESC_EndPointReq}}
-    """
 
-    pass
 # region req/
 
 
-
 # region res
-class .getWordSlicesRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class .getWordSlicesRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +46,5 @@ class .getWordSlicesAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

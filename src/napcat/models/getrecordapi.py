@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226657058e0
-@endpoint: get_record
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657058e0
 @llms.txt: https://napcat.apifox.cn/226657058e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:54
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,35 +14,38 @@ summary:获取语音消息详情
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "get_record"
+__id__ = "226657058e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
 
 # region req
-class GetRecordReq(BaseModel): # type: ignore
+class GetRecordReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    file: str = Field(..., description="")
+    out_format: str = Field(..., description="")
 # region req/
 
 
-
 # region res
-class GetRecordRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class GetRecordRes(BaseModel):
+    """
+    响应参数
+    """
+
+    file: str = Field(..., description="本地路径")
+    url: str = Field(..., description="网络路径")
+    file_size: str = Field(..., description="文件大小")
+    file_name: str = Field(..., description="文件名")
+    base64: str = Field(..., description="")
 # region res/
 
 # region api
@@ -58,9 +56,5 @@ class GetRecordAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

@@ -13,6 +13,16 @@
 
     "保留": "reserved",
     "接口": "interface",
-    "bug": "bug"
+    "bug": "bug",
+
+    "视频消息": "video",
+    "语音消息": "voice",
+    "图片消息": "image",
+    "文件消息": "file",
+    "文本消息": "text",
+    "markdown消息": "markdown",
+    "表情消息": "emoji",
+    "回复消息": "reply",
+    "JSON消息": "json"
 
 }

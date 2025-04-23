@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226657401e0
-@endpoint: get_group_msg_history
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657401e0
 @llms.txt: https://napcat.apifox.cn/226657401e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:54
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,35 +14,37 @@ summary:获取群历史消息
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "get_group_msg_history"
+__id__ = "226657401e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class GetGroupMsgHistoryReq(BaseModel): # type: ignore
+class GetGroupMsgHistoryReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    message_seq: float | str | None = Field(None, description="0为最新")
+    count: float | None = Field(20, description="数量")
+    reverseOrder: bool | None = Field(False, description="倒序")
 # region req/
 
 
-
 # region res
-class GetGroupMsgHistoryRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class GetGroupMsgHistoryRes(BaseModel):
+    """
+    响应参数
+    """
+
+    messages: list[消息详情] = Field(..., description="")
 # region res/
 
 # region api
@@ -58,9 +55,5 @@ class GetGroupMsgHistoryAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

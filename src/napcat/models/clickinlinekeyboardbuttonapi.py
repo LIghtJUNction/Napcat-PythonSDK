@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 266151864e0
-@endpoint: click_inline_keyboard_button
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/266151864e0
 @llms.txt: https://napcat.apifox.cn/266151864e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:18
 
 @description: 
 
@@ -19,34 +14,37 @@ summary:点击按钮
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "click_inline_keyboard_button"
+__id__ = "266151864e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class ClickInlineKeyboardButtonReq(BaseModel): # type: ignore
+class ClickInlineKeyboardButtonReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    bot_appid: str = Field(..., description="")
+    button_id: str = Field(..., description="")
+    callback_data: str = Field(..., description="")
+    msg_seq: str = Field(..., description="")
 # region req/
 
 
-
 # region res
-class ClickInlineKeyboardButtonRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class ClickInlineKeyboardButtonRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +56,5 @@ class ClickInlineKeyboardButtonAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

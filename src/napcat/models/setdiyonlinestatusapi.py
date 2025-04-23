@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 266151905e0
-@endpoint: set_diy_online_status
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/266151905e0
 @llms.txt: https://napcat.apifox.cn/266151905e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:18
 
 @description: 
 
@@ -19,34 +14,35 @@ summary:设置自定义在线状态
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "set_diy_online_status"
+__id__ = "266151905e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class SetDiyOnlineStatusReq(BaseModel): # type: ignore
+class SetDiyOnlineStatusReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    face_id: Any = Field(..., description="表情ID")
+    face_type: Any | None = Field(None, description="表情ID")
+    wording: str | None = Field(None, description="描述文本")
 # region req/
 
 
-
 # region res
-class SetDiyOnlineStatusRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class SetDiyOnlineStatusRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +54,5 @@ class SetDiyOnlineStatusAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

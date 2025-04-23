@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226658965e0
-@endpoint: ArkSharePeer
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658965e0
 @llms.txt: https://napcat.apifox.cn/226658965e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,35 +14,38 @@ summary:获取推荐好友/群聊卡片
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "ArkSharePeer"
+__id__ = "226658965e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class ArksharepeerReq(BaseModel): # type: ignore
+class ArksharepeerReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str | None = Field(None, description="和user_id二选一")
+    user_id: float | str | None = Field(None, description="和group_id二选一")
+    phoneNumber: str | None = Field(None, description="对方手机号")
 # region req/
 
 
-
 # region res
-class ArksharepeerRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class ArksharepeerRes(BaseModel):
+    """
+    响应参数
+    """
+
+    errCode: float = Field(..., description="")
+    errMsg: str = Field(..., description="")
+    arkJson: str = Field(..., description="卡片json")
 # region res/
 
 # region api
@@ -58,9 +56,5 @@ class ArksharepeerAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226656947e0
-@endpoint: set_group_add_request
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226656947e0
 @llms.txt: https://napcat.apifox.cn/226656947e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:54
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,34 +14,35 @@ summary:处理加群请求
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "set_group_add_request"
+__id__ = "226656947e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class SetGroupAddRequestReq(BaseModel): # type: ignore
+class SetGroupAddRequestReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    flag: str = Field(..., description="请求id")
+    approve: bool = Field(..., description="是否同意")
+    reason: str | None = Field(None, description="拒绝理由")
 # region req/
 
 
-
 # region res
-class SetGroupAddRequestRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class SetGroupAddRequestRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +54,5 @@ class SetGroupAddRequestAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

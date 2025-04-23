@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226656919e0
-@endpoint: set_group_name
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226656919e0
 @llms.txt: https://napcat.apifox.cn/226656919e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:54
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,34 +14,34 @@ summary:设置群名
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "set_group_name"
+__id__ = "226656919e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class SetGroupNameReq(BaseModel): # type: ignore
+class SetGroupNameReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    group_name: str = Field(..., description="")
 # region req/
 
 
-
 # region res
-class SetGroupNameRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class SetGroupNameRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +53,5 @@ class SetGroupNameAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

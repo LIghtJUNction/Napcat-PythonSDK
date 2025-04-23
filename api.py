@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: {{api_id}}
-@endpoint: {{endpoint}}
 @tags: {{tags}}
 @homepage: {{homepage}}
 @llms.txt: {{llms.txt}}
-@version: {{version}}
 @last_update: {{last_update}}
 
 @description: {{description}}
@@ -17,6 +12,7 @@
 __author__ = "LIghtJUNction"
 __version__ = "{{version}}"
 __endpoint__ = "{{endpoint}}"
+__id__ = "{{api_id}}"
 __method__ = "POST"
 
 # region METADATA/

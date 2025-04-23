@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226658660e0
-@endpoint: get_group_system_msg
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658660e0
 @llms.txt: https://napcat.apifox.cn/226658660e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:54
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,35 +14,35 @@ summary:获取群系统消息
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "get_group_system_msg"
+__id__ = "226658660e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class GetGroupSystemMsgReq(BaseModel): # type: ignore
+class GetGroupSystemMsgReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
 # region req/
 
 
-
 # region res
-class GetGroupSystemMsgRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class GetGroupSystemMsgRes(BaseModel):
+    """
+    响应参数
+    """
+
+    InvitedRequest: list[dict] = Field(..., description="")
+    join_requests: list[dict] = Field(..., description="")
 # region res/
 
 # region api
@@ -58,9 +53,5 @@ class GetGroupSystemMsgAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

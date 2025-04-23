@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226658865e0
-@endpoint: get_group_files_by_folder
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658865e0
 @llms.txt: https://napcat.apifox.cn/226658865e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:17
 
 @description: 
 
@@ -19,35 +14,38 @@ summary:获取群子目录文件列表
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "get_group_files_by_folder"
+__id__ = "226658865e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class GetGroupFilesByFolderReq(BaseModel): # type: ignore
+class GetGroupFilesByFolderReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    folder_id: str | None = Field(None, description="和 folder 二选一")
+    folder: str | None = Field(None, description="和 folder_id 二选一")
+    file_count: float | None = Field(50, description="一次性获取的文件数量")
 # region req/
 
 
-
 # region res
-class GetGroupFilesByFolderRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class GetGroupFilesByFolderRes(BaseModel):
+    """
+    响应参数
+    """
+
+    files: list[dict] = Field(..., description="文件列表")
+    folders: list[dict] | None = Field(None, description="文件夹列表")
 # region res/
 
 # region api
@@ -58,9 +56,5 @@ class GetGroupFilesByFolderAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 226658889e0
-@endpoint: .handle_quick_operation
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658889e0
 @llms.txt: https://napcat.apifox.cn/226658889e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:17
 
 @description: 相当于http的快速操作
 
@@ -19,34 +14,33 @@ summary:.对事件执行快速操作
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = ".handle_quick_operation"
+__id__ = "226658889e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
 
 # region req
-class .handleQuickOperationReq(BaseModel): # type: ignore
+class .handleQuickOperationReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    context: dict = Field(..., description="事件数据对象")
+    operation: dict = Field(..., description="快速操作对象")
 # region req/
 
 
-
 # region res
-class .handleQuickOperationRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
+class .handleQuickOperationRes(BaseModel):
+    """
+    响应参数
+    """
+
     pass
 # region res/
 
@@ -58,9 +52,5 @@ class .handleQuickOperationAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 

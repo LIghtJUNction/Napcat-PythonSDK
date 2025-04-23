@@ -1,7 +1,7 @@
 {
     "api_id": "226919954e0",
     "version": "4.7.17",
-    "last_update": "2025-04-23 20:09:55",
+    "last_update": "2025-04-23 20:23:17",
     "endpoint": "delete_msg",
     "homepage": "https://napcat.apifox.cn/226919954e0",
     "llms.txt": "https://napcat.apifox.cn/226919954e0.md",

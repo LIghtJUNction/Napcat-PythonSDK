@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@author: LIghtJUNction
-
-@api_id: 283136359e0
-@endpoint: move_group_file
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/283136359e0
 @llms.txt: https://napcat.apifox.cn/283136359e0.md
-@version: 4.7.17
-@last_update: 2025-04-23 20:09:55
+@last_update: 2025-04-23 20:23:18
 
 @description: 
 
@@ -19,35 +14,37 @@ summary:移动群文件
 __author__ = "LIghtJUNction"
 __version__ = "4.7.17"
 __endpoint__ = "move_group_file"
+__id__ = "283136359e0"
 __method__ = "POST"
 
 # region METADATA/
 
 
 # region code
-from typing import Any , Literal
-
+from typing import Any
 from pydantic import BaseModel, Field
+from typing import Union
 
 # region req
-class MoveGroupFileReq(BaseModel): # type: ignore
+class MoveGroupFileReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求参数
     """
 
-    pass
+    group_id: float | str = Field(..., description="")
+    file_id: str = Field(..., description="")
+    current_parent_directory: str = Field(..., description="当前父目录")
+    target_parent_directory: str = Field(..., description="目标父目录")
 # region req/
 
 
-
 # region res
-class MoveGroupFileRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
+class MoveGroupFileRes(BaseModel):
+    """
+    响应参数
+    """
+
+    ok: bool = Field(..., description="")
 # region res/
 
 # region api
@@ -58,9 +55,5 @@ class MoveGroupFileAPI(BaseModel):
 
 
 # region api/
-
-
-
-
 # region code/
 
