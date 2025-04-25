@@ -1,0 +1,4 @@
+修复代码:
+1. 移除多余的导入:typing.Any, logging
+2. 检查并修复所有字段的类型标注,添加默认值和描述信息
+3. 移除component_models, 将内部嵌套类移动到类里面, 简化result模型, 符合openapi定义

@@ -1,0 +1,4 @@
+1. 移除多余的导入: 移除了 `from typing import Any`
+2. 修复类型标注:  更正了 `user_id` 字段的类型, 使用 `str | int` 代替了 `user_id` 模型. 修复了`文件消息`中的data类型
+3. 补充了缺失的默认值和描述信息
+4. 调整`result`模型，data允许为None

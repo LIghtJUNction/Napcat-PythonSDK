@@ -1,0 +1,7 @@
+1. Removed unused imports.
+2. Enforced type annotations for all fields.
+3. Added descriptions and default values for all fields using Field.
+4. Adjusted nested models to be internal classes.
+5. Simplified the FriendPokeAPI class by removing unnecessary initialization and unimplemented method, keeping only the data model aspects relevant to pydantic.
+6. Modified user_id schema to use a Union (str | int) instead of oneOf for pydantic compatibility and clarity.
+7. Adjusted the ResponseData model to align more closely with the openapi schema.

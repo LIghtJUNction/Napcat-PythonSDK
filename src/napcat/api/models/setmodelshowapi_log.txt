@@ -1,0 +1,10 @@
+修复代码开始:
+1. 移除多余的导入: 移除 `from typing import Any`
+2. 修正组件模型result: 将status、retcode、data、message、wording、echo的默认值通过Field指定，并添加description。
+3. 修正请求模型SetModelShowReq: 为model和model_show添加description。
+4. 修正响应模型SetModelShowRes:
+   - 将内部类ResponseData移动到SetModelShowRes内部。
+   - 使用Field指定默认值和description。
+5. 修正API类SetModelShowAPI:  req参数和res参数类型从type[BaseModel]修改为实际类型
+
+修复完成。

@@ -1,0 +1,8 @@
+1.  修改类名为驼峰命名法：`.handleQuickOperationReq` -> `HandleQuickOperationReq`，`.handleQuickOperationRes` -> `HandleQuickOperationRes`，`.handleQuickOperationAPI` -> `HandleQuickOperationAPI`
+2.  为请求类`HandleQuickOperationReq`添加了`context`和`operation`字段，类型为`dict[str, Any]`，并添加了描述。
+3.  创建了嵌套模型`HandleQuickOperationResData`用于表示`data`字段的数据结构
+4.  为响应类`HandleQuickOperationRes`添加了`status`, `retcode`, `data`, `message`, `wording`, `echo`字段，并添加了描述和默认值。
+5.  修改了`HandleQuickOperationAPI`中的`endpoint`为`/.handle_quick_operation`
+6.  补充完整了字段的类型信息和注释
+7. 移除result定义
+8. 根据rest规范，status设置为const，并且默认值为ok

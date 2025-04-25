@@ -1,0 +1,4 @@
+修复代码：
+1. 移除多余的导入: 移除 `from typing import Any`。
+2. 修改user_id模型，根据openapi定义，可以为number或者string类型，因此直接使用 str | int 类型标注。
+3.  根据openapi定义修改result模型，将status 设置为 const = ok, 删除data的 properties，并移除user_id模型的name属性，将response模型删除，因为在openapi中没有定义。

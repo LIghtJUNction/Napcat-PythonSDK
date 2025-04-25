@@ -1,0 +1,8 @@
+1.  修正了GroupId模型，id字段允许为str或int类型。
+2.  在GetGroupSystemMsgReq模型中，为group_id字段添加了描述。
+3.  将InvitedrequestItem和JoinRequestsItem类定义为GetGroupSystemMsgRes的内部类。
+4.  为GetGroupSystemMsgRes的ResponseData模型以及InvitedrequestItem和JoinRequestsItem模型中的所有字段添加了描述。
+5.  为GetGroupSystemMsgRes的ResponseData模型以及InvitedRequest和join_requests字段添加了默认值。
+6.  修正了GetGroupSystemMsgAPI类中Req和Res的类型提示。
+7.  为GroupId, Result, GetGroupSystemMsgReq, GetGroupSystemMsgRes模型的所有字段都添加了描述和默认值(如果适用)。
+8. 移除未使用的导入.

@@ -1,0 +1,5 @@
+1.  `from typing import Any` 是必要的， 因为data字段类型为`dict[str, Any]`
+2.  `group_id` 可能是字符串或者数字，所以类型定义为`GroupId | str | int`
+3.  为每个字段添加了描述和默认值
+4.  ResponseData移动到UploadGroupFileRes内部
+5.  Result 的 status  添加 `const=True`

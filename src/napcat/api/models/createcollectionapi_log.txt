@@ -1,0 +1,7 @@
+模型修复过程:
+1. 移除多余的导入: `from typing import Any`
+2. 修正 result 模型，调整 data 字段类型为 dict[str, any]，同时添加默认值 None
+3. 修正 CreateCollectionRes 模型，ResponseData 内部类的 result 类型修正为 float | None，errMsg 类型修正为 str | None，并提供默认值。
+4. CreateCollectionRes 模型 data 字段默认值使用 default_factory=dict
+5. CreateCollectionAPI 的 __call__ 方法保留，但修改为抛出 NotImplementedError，并添加详细的注释。
+6. 确保所有字段都有类型标注和描述信息

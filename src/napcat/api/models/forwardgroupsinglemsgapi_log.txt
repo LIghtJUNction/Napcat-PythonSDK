@@ -1,0 +1,7 @@
+1.  检查并修复了MessageId和GroupId模型，使其id字段支持str或int类型。
+2.  修改了Result模型的data字段，允许为None，并添加了默认值None。
+3.  在ForwardGroupSingleMsgRes中，data字段的default_factory设置为ResponseData。
+4.  在ForwardGroupSingleMsgAPI中，所有字段都添加了默认值，并指定logger的类型为logging.Logger。
+5.  修改ForwardGroupSingleMsgAPI的__call__方法的返回类型为Result。
+6.  为req的group_id和message_id添加了描述。
+7.  修正了retcode的默认值为0.0

@@ -1,0 +1,7 @@
+修复代码:
+1. 移除多余的导入: `typing`模块的`Any`被移除, 因为不再使用。
+2. 修复类型标注: 完善所有字段的类型标注。
+3. 添加描述和初始值: 为所有字段添加了描述, 并根据需要设置了默认值。
+4. 移除不必要的内部类: 简化了`DeleteMsgRes`模型，根据openapi定义，data字段类型为null。
+5. 简化result模型，根据openapi定义，data字段类型为object
+6. message_id类型修改为str

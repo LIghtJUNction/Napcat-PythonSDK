@@ -1,0 +1,39 @@
+1.  `GroupId` 模型：
+    *   `id` 字段：保持 `str` 类型，添加描述信息 "标识ID"。
+    *   `name` 字段：类型保持 `str | None`，添加描述信息 "名称"，并设置默认值为 `None`。
+2.  `Result` 模型：
+    *   `status` 字段：类型保持 `str`，添加描述信息 "status字段"，并设置默认值为 `"ok"`。
+    *   `retcode` 字段：类型保持 `float`，添加描述信息 "retcode字段"，并设置默认值为 `0`。
+    *   `data` 字段：类型保持 `dict[str, Any]`，添加描述信息 "data字段"。
+    *   `message` 字段：类型保持 `str`，添加描述信息 "message字段"，并设置默认值为 `""`。
+    *   `wording` 字段：类型保持 `str`，添加描述信息 "wording字段"，并设置默认值为 `""`。
+    *   `echo` 字段：类型保持 `str | None`，添加描述信息 "echo字段"，并设置默认值为 `None`。
+3.  `DeleteGroupFileReq` 模型：
+    *   `group_id` 字段：修改为 `str | int` 类型，并添加描述信息 "群ID, 可以是字符串或者数字"。
+    *   `file_id` 字段：类型保持 `str`，添加描述信息 "文件ID"。
+4.  `DeleteGroupFileRes` 模型：
+    *   将内部类 `ResponseData`、`TransGroupFileResult` 和 `TransGroupFileResultResult` 移到 `DeleteGroupFileRes` 类内部。
+    *   `ResponseData` 类：
+        *   `result` 字段：类型保持 `float`，添加描述信息 "结果"。
+        *   `errMsg` 字段：类型保持 `str`，添加描述信息 "错误消息"。
+        *   `transGroupFileResult` 字段：类型保持 `TransGroupFileResult`，添加描述信息 "文件处理结果"。
+    *   `TransGroupFileResult` 类：
+        *   `result` 字段：类型保持 `TransGroupFileResultResult`，添加描述信息 "处理结果"。
+        *   `successFileIdList` 字段：类型保持 `list[str]`，添加描述信息 "成功文件ID列表"。
+        *   `failFileIdList` 字段：类型保持 `list[str]`，添加描述信息 "失败文件ID列表"。
+    *   `TransGroupFileResultResult` 类：
+        *   `retCode` 字段：类型保持 `float`，添加描述信息 "返回代码"。
+        *   `retMsg` 字段：类型保持 `str`，添加描述信息 "返回消息"。
+        *   `clientWording` 字段：类型保持 `str`，添加描述信息 "客户端提示语"。
+    *   `status` 字段：类型保持 `str`，添加描述信息 "状态"，设置默认值为 `"ok"`，并添加 `const=True`。
+    *   `retcode` 字段：类型保持 `float`，添加描述信息 "返回码"，并设置默认值为 `0`。
+    *   `data` 字段：类型保持 `ResponseData`，添加描述信息 "数据"。
+    *   `message` 字段：类型保持 `str`，添加描述信息 "消息"，并设置默认值为 `""`。
+    *   `wording` 字段：类型保持 `str`，添加描述信息 "提示语"，并设置默认值为 `""`。
+    *   `echo` 字段：类型保持 `str | None`，添加描述信息 "回声"，并设置默认值为 `None`。
+5.  `DeleteGroupFileAPI` 模型：
+    *   `endpoint` 字段：添加描述信息 "Endpoint"，设置默认值为 `"delete_group_file"`，并添加 `const=True`。
+    *   `method` 字段：添加描述信息 "Method"，设置默认值为 `"POST"`，并添加 `const=True`。
+    *   `Req` 字段：添加描述信息 "Request Model"，设置默认值为 `DeleteGroupFileReq`，并添加 `const=True`。
+    *   `Res` 字段：添加描述信息 "Response Model"，设置默认值为 `DeleteGroupFileRes`，并添加 `const=True`。
+    *   `logger` 字段：添加描述信息 "Logger"，使用 `default_factory` 设置默认值为 `logging.getLogger(__name__)`，并添加 `const=True`。

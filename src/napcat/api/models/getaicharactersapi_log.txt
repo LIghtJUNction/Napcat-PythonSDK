@@ -1,0 +1,10 @@
+修复代码开始:
+1. 移除多余的导入: 移除 `from typing import Any`
+2. 修正类型标注: `chat_type` 类型应该为 `float | str`
+3. 添加字段描述和默认值: 为所有字段添加描述和默认值(如果适用)
+4. 嵌套类处理: 修正 ResponseData的位置
+5. result的data字段修改为Any
+6. group_id 修改为 str | int
+7. api的调用方法修改为静态方法
+
+修复代码完成

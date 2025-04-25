@@ -1,0 +1,6 @@
+1. 移除多余的导入：typing.Any
+2. GetOnlineClientsReq: 为 `no_cache` 字段添加了默认值 False 和描述。
+3. GetOnlineClientsRes.ResponseData: 为 `clients` 字段添加了默认值 {} (空字典) 和描述。
+4. GetOnlineClientsRes: 为所有字段添加了默认值和描述。
+5. 修改GetOnlineClientsAPI类, 移除BaseModel继承
+6. 调整Result类位置

@@ -1,0 +1,6 @@
+1. 检查并移除多余的导入: `typing.Any` 保留，因为 `richBuffer` 字段使用了它。
+2. 确保所有字段都有类型标注: 所有字段都有类型标注。
+3. 确保所有字段都有描述和初始值: 添加了 `Field` 描述和默认值（如果适用）。
+4. 将内部嵌套类移动到类里面:  `ResponseData` 已经被移除，openapi定义data是数组,创建CategoryData代替，好友信息保持不变。
+5. 根据openapi文档，result schema已经修改，status为const ok, data为数组，因此删除result模型
+6. 完成所有修改。

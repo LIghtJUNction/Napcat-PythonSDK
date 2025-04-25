@@ -1,0 +1,6 @@
+1.  删除了多余的typing import，使用内置类型。
+2.  对所有字段添加了类型标注。
+3.  添加了字段描述和默认值。
+4.  将ResponseData移动到SetGroupLeaveRes里面
+5.  GroupId的id字段类型修改为str | int，以兼容openapi的定义
+6.  SetGroupLeaveAPI的__call__返回值修改为Result

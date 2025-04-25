@@ -1,0 +1,11 @@
+1. 移除多余的导入：删除 `from typing import Any`
+2. 修正组件模型：
+   - `ResponseData` 在组件模型中未定义，应该在 `SendPrivateForwardMsgRes` 中定义。
+   - 消息类型模型（文本消息、艾特消息等）中的 `data` 字段应使用具体的数据模型，而不是通用的 `ResponseData`。
+   - `user_id` 模型的 `id` 字段应该是 `str` 或 `int`，根据openapi定义修改。
+3. 修正请求模型：`SendPrivateForwardMsgReq` 中的 `messages` 字段的类型 `MessagesItem` 在组件模型中未定义，openapi定义应该为 node类型，需要创建
+4. 修正响应模型：
+   - 规范响应模型 `SendPrivateForwardMsgRes`，定义嵌套类 `ResponseData` 和 `MessagesItem`。
+   - 所有字段添加默认值。
+5. 修正API类：删除多余的 `__init__` 方法。
+6. 根据openapi定义修正所有类型定义

@@ -1,0 +1,5 @@
+1.  删除了多余的导入：`from typing import Any`
+2.  将 `ResponseData` 移动到 `ArksharepeerRes` 类里面
+3.  添加了所有字段的描述和默认值(使用Field设置)
+4.  RequestId和GroupId模型保持不变
+5.  更新了API模型，将endpoint, method, Req, Res使用Field固定，并添加描述

@@ -1,0 +1,6 @@
+修复 SendPacketAPI 模型:
+1. 移除多余的导入: `from typing import Any`
+2. 检查并添加所有字段的类型标注、描述和默认值。
+3. SendPacketReq由于没有请求参数,保留pass
+4. retcode类型修改为int
+5. 修改了API调用方式，现在返回一个 NotImplementedError

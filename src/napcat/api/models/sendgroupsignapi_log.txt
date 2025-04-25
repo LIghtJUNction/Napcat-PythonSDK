@@ -1,0 +1,12 @@
+1.  修改 SendGroupSignReq 模型：
+	*   将 group_id 改为 groupId，并添加类型标注 str 和描述信息。
+	*   添加了 populate_by_name=True，允许通过别名（如 group_id）进行填充。
+2.  修改 SendGroupSignRes 模型：
+	*   内部类 ResponseData 移动到 SendGroupSignRes 内部。
+	*   对 status、retcode、data、message、wording 和 echo 字段添加了类型标注和描述信息。
+	*   ResponseData 内部的 yes 和 reason 字段添加了类型标注和描述信息。
+3.  SendGroupSignAPI 模型：
+	*   保持不变，因为其结构和类型定义看起来是正确的。
+4.  其他：
+	*   保留了 extra = "allow" 配置，允许模型接收未定义的字段。
+	*   修正了 ResponseData 的 data 字段的类型提示，使用字符串前向引用。

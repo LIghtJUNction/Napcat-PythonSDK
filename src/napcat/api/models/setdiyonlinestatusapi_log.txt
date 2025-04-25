@@ -1,0 +1,7 @@
+修复代码开始:
+1. 修复了组件模型 `string | number` 的定义，使用了 `typing.Union` 并将其改为了python3.13的 `str | int | float`
+2. 移除result模型中status的默认值ok,因为openapi中未定义
+3. 修正了SetDiyOnlineStatusReq 中 face_id 和 face_type的类型为 `str | int | float | None`
+4. 修正了SetDiyOnlineStatusRes的ResponseData模型，data字段类型为 str | None
+5. 检查并添加了所有字段的类型标注和描述
+6. 移除所有多余的import

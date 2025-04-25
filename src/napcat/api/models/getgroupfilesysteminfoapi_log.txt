@@ -1,0 +1,6 @@
+1.  删除了多余的导入：`from typing import Any`， 因为没有直接使用Any类型
+2.  为所有的字段添加了类型标注，使用python3.9+的类型提示风格。
+3.  为所有的字段添加了描述， 使用`Field()`函数
+4.  为`GetGroupFileSystemInfoRes`的字段设置了默认值, 使用`Field(default=...)`函数
+5.  修改`group_id` 可以是字符串和数字, 使用`group_id: str | int`
+6.  将内部嵌套类`ResponseData` 移动到类外面，并重命名为`ResultData`

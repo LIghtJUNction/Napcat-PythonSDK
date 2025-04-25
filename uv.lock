@@ -86,6 +86,17 @@ wheels = [
 ]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892 },
+]
+
+[[package]]
 name = "griffe"
 version = "1.7.2"
 source = { registry = "https://pypi.org/simple" }
@@ -317,6 +328,7 @@ name = "python-napcat"
 version = "4.7.17"
 source = { editable = "." }
 dependencies = [
+    { name = "dotenv" },
     { name = "httpx-ws" },
     { name = "openai" },
     { name = "openai-agents" },
@@ -327,6 +339,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "dotenv", specifier = ">=0.9.9" },
     { name = "httpx-ws", specifier = ">=0.7.2" },
     { name = "openai", specifier = ">=1.75.0" },
     { name = "openai-agents", specifier = ">=0.0.11" },

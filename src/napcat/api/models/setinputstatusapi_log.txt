@@ -1,0 +1,7 @@
+1.  修正了`UserID`模型，将`id`字段的类型修改为`str | int`，允数字字符串作为ID，并添加了默认值
+2.  给`Result`模型中`status`添加了const='ok'
+3.  对所有字段添加了描述信息, 移除多余的import
+4.  修正了`SetInputStatusRes`模型，将内部类`ResponseData`移到`SetInputStatusRes`类里面
+5. 确保所有字段都有类型标注和描述
+6. 使用`Field`写好默认值，以及描述
+7. 使用驼峰命名法

@@ -1,0 +1,8 @@
+1. 检查到`typing.Any`，使用`any`替换
+2. 移除多余的导入: `from typing import Any`
+3. 修正了`user_id`和`result`的类型标注，添加了`Field`和`description`，并根据api文档，将`data`改为`dict[str, any] | None`
+4. 对所有字段添加了类型标注和描述，使用了`Field`指定默认值
+5. 修正Req中的UserId, file, name 不能为空
+6. 将 UploadPrivateFileRes 中的 ResponseData 移到 UploadPrivateFileRes 内部
+7. 修正 UploadPrivateFileRes 中的 data 默认为 None
+8. UploadPrivateFileAPI的__call__返回Result模型

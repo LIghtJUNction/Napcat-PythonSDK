@@ -1,0 +1,6 @@
+1.  检查到component_models中所有模型，全部使用最外层定义
+2. req 中的message类型定义，使用了Union，指定所有可能的消息类型
+3.  req 中的message_type 类型定义，使用了Literal
+4.  修改了user_id, group_id的类型定义，使用  str | int
+5.  根据openapi的定义，修正了部分字段的const特性
+6.  调整了Result Data的定义方式，现在是Result的内部类

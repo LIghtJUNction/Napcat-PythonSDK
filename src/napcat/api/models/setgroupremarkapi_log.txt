@@ -1,0 +1,5 @@
+1.  移除了多余的typing.Any 导入
+2.  为Result, SetGroupRemarkReq, SetGroupRemarkRes 类添加了更详细的注释。
+3.  为所有字段添加了类型标注、描述和默认值。
+4.  将ResponseData类移入SetGroupRemarkRes类中,并修改了default_factory。
+5. 修正Result.data字段，允许为None

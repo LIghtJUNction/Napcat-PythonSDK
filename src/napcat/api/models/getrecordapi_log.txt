@@ -1,0 +1,7 @@
+1.  移除了多余的导入：`from typing import Any`。
+2.  为 `GetRecordReq` 类的 `file` 和 `out_format` 字段添加了类型标注和描述，并将 `out_format` 字段改为了枚举类型。
+3.  为 `GetRecordRes` 类的 `ResponseData` 内部类的所有字段添加了类型标注和描述。
+4.  为 `GetRecordRes` 类的所有字段添加了类型标注、描述和默认值。
+5.  为 `Result` 类的所有字段添加了类型标注和描述。
+6. 创建 `OutFormatEnum` 作为枚举类型，限定 `out_format` 字段的取值范围。
+7. 修改 Result 的 status 字段，使用 const 限定值 ok。

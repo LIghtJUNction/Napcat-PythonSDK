@@ -1,0 +1,4 @@
+1.  删除了多余的typing导入，例如Dict,List,Optional等，使用内置类型。
+2.  为所有字段添加了类型标注，并根据openapi文档指定了默认值和描述信息。
+3.  RequestId和GroupId 字段的id可能是int或者str,所以修改为id: str | int
+4.  GetGroupMemberInfoRes 继承自Result

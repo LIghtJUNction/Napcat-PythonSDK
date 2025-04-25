@@ -1,0 +1,4 @@
+1.  移除了多余的typing 导入
+2.  为Result模型的所有字段添加了默认值和描述
+3.  将ResponseData移动到了GetCsrfTokenRes内部
+4.  为GetCsrfTokenAPI的字段添加了默认值和描述

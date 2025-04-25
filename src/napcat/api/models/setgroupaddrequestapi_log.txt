@@ -1,0 +1,8 @@
+Starting model update...
+- Removed unnecessary imports: `from typing import Any`.
+- Updated `result` model to match the OpenAPI schema, setting `data` to `dict[str, Any] | None`.
+- Updated `SetGroupAddRequestRes` model:
+    - Removed nested `ResponseData` class as the data field is now null.
+    - Updated `data` field to `dict[str, Any] | None = Field(default=None, description="data字段")`.
+- Corrected the api model, simplified the logic, and ensured type consistency.
+Model update complete.

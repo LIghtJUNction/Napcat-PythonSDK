@@ -1,0 +1,5 @@
+1. Removed unused imports.
+2. Added default values and descriptions to all fields in `UnknownReq` and `UnknownRes`.
+3. Ensured all fields have type annotations.
+4. Adjusted the `__init__` method to correctly initialize the base class and logger, while also correcting the call method implementation by removing unnecessary debug logging and providing a placeholder implementation with a `NotImplementedError`.
+5. Add a return type annotation to the `__call__` method.

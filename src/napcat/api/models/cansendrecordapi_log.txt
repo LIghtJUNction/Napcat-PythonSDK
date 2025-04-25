@@ -1,0 +1,7 @@
+修复代码：
+1. 移除多余的导入：删除了 `from typing import Any`
+2. 修正 ResponseData 模型，使其符合 OpenAPI 规范中的定义。
+3. 修正 CanSendRecordRes 模型，使其内部的 ResponseData 嵌套类定义在类内部。
+4. 增加API调用方法，使其不抛出异常
+5. 完善所有字段的描述和默认值(如有)
+6. 统一使用python3.13的类型标注

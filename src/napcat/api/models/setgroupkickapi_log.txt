@@ -1,0 +1,6 @@
+1.  删除了不必要的导入: `from typing import Any`
+2.  规范了类型标注，所有字段都有了明确的类型标注。
+3.  添加了缺失的字段描述和默认值，使用`Field`来定义描述和默认值。
+4.  修改了`UserID`和`GroupID`的id字段类型为 `str | int`，以兼容openapi的定义
+5.  根据openapi的定义，调整了Result 嵌套模型 
+6.  根据openapi的定义, SetGroupKickRes 里面的data类型为null，所以修改为 None

@@ -1,0 +1,6 @@
+1.  删除了多余的 typing.Any 导入。
+2.  为 DownloadFileReq 增加了默认值。
+3.  为 Result 模型添加了默认值
+4.  将 DownloadFileRes.ResponseData 移动到 DownloadFileRes 类里面
+5. 修正 Result 命名
+6.  为 DownloadFileRes 里的 data 字段设置了正确的 default_factory

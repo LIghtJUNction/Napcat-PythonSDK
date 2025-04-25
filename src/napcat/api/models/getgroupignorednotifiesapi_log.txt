@@ -1,0 +1,9 @@
+修复代码：
+1. 移除多余的导入：typing.Any
+2. 修正 group_id 模型：group_id 现在可以是字符串或数字，因此不再需要单独的模型类，改为简单的 str | int 类型标注。
+3. 完善 result 模型：根据 OpenAPI 规范，result 模型中的 data 字段类型应为 dict[str, Any]，但 OpenAPI 中 data 的具体结构在 GetGroupIgnoredNotifiesRes 中定义，因此这里简化 result 模型中的 data 定义。
+4. 完善 GetGroupIgnoredNotifiesRes 模型：添加 JoinRequestsItem 模型定义，并将 join_requests 字段的 default 设置为 []，以符合列表类型的常用做法。
+5. 修改 GetGroupIgnoredNotifiesAPI 模型：移除不必要的初始化方法，并保留 __call__ 方法的 NotImplementedError。
+6. 调整模型配置：将 model_config 移动到每个类的内部。
+7. 调整类型标注：将 retcode 的类型从 float 修改为 int，因为 OpenAPI 规范中没有 float 类型。
+8. 调整类型标注：为所有字段添加缺少的默认值，并使用 Field 添加描述信息。

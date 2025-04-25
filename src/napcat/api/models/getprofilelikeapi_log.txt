@@ -1,0 +1,5 @@
+1. 移除多余的import typing.Any
+2. 修复result类,添加描述和初始值
+3. 修复GetProfileLikeRes类,添加描述和初始值,将ResponseData移动到GetProfileLikeRes类内部
+4. 修复GetProfileLikeAPI类,添加描述和初始值
+5. 根据openapi定义,修改字段命名风格，userInfos->user_infos, latestTime->latest_time, bAvailableCnt->b_available_cnt, bTodayVotedCnt->b_today_voted_cnt, lastCharged->last_charged, customId->custom_id

@@ -1,0 +1,10 @@
+模型修复开始:
+1. 移除多余的导入: `from typing import Any`
+2. `group_id` 组件schema存在`oneOf`的情况,需要适配类型
+3. 修复 `MarkGroupMsgAsReadRes` 中 `data` 字段的类型定义，调整为 `dict[str, Any] | None`并提供默认值 `None`。
+4. 移除`MarkGroupMsgAsReadRes`中的内部类 `ResponseData`，直接使用 `dict[str, Any] | None`代替
+5. 更新 `MarkGroupMsgAsReadRes` 中的字段定义，包括默认值和描述。
+6. 移除 `MarkGroupMsgAsReadAPI` 类中的 `__init__` 方法和 `__call__` 方法，因为这些方法不属于数据模型定义的一部分，并且与API调用的实际实现无关。
+7. 根据openapi文档，调整`result`，并应用到`MarkGroupMsgAsReadRes`
+8. 将 `group_id` 修改为 `str | int`类型
+模型修复完成

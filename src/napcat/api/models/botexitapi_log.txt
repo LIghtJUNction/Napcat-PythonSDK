@@ -1,0 +1,5 @@
+开始修复代码...
+1. 移除多余的导入: `from typing import Any`
+2. 修正 `BotExitReq` 模型: 添加 `model_config` 和描述
+3. 修正 `BotExitRes` 模型: `retcode` 的类型改为 `int`，添加所有字段的描述
+4. 修正 `BotExitAPI` 模型: 修改`__init__`函数,参数改为self

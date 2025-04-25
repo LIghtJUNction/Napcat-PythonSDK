@@ -1,0 +1,7 @@
+1.  移除了多余的typing模块导入。
+2.  为所有字段添加了类型标注，包括嵌套模型中的字段。
+3.  为所有字段添加了描述，并设置了合适的初始值，使用了`Field`。
+4.  将内部嵌套类`ResponseData`移动到了`MarkMsgAsReadRes`类里面。
+5.  根据openapi文档修改了Result类，将data字段修改为 dict[str, any] | None
+6.  UserId和GroupId类型修改为str
+7.  为MarkMsgAsReadAPI添加了endpoint,method,Req,Res,logger的声明,并赋予了默认值和描述

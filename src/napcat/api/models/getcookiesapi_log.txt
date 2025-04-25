@@ -1,0 +1,8 @@
+开始修复代码...
+1. 移除多余的导入: 移除 typing.Any
+2. 检查并修复字段类型标注, 描述和默认值: 
+   - GetCookiesRes.ResponseData: cookies, bkn 设置默认值为 ''
+   - GetCookiesAPI: 移除不必要的初始化函数和未使用的logger属性, 简化调用方法
+3. 检查嵌套类: GetCookiesRes 包含嵌套类 ResponseData
+4. 移除未使用的 result 模型
+修复完成

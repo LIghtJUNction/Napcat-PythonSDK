@@ -1,0 +1,5 @@
+修复代码:
+1. 移除多余的导入，例如 typing.Any。
+2. 修正Component Model的定义，确保group_id和user_id字段为str类型
+3. 根据openapi定义修正request body和response body。
+4. 修正API调用方法，删除不必要的初始化和未实现异常。

@@ -1,0 +1,5 @@
+1.  移除了多余的import typing.Any,因为可以使用python内置的any替代
+2.  修改了Result模型中，data字段的默认值为`default_factory=dict`，确保它是一个可调用对象。
+3.  修改了GetPrivateFileUrlReq模型, file_id 添加了...,表示必填字段
+4.  修改了GetPrivateFileUrlRes模型, ResponseData url 字段添加了...,表示必填字段
+5.  GetPrivateFileUrlAPI.__call__返回值类型修改为Result

@@ -1,0 +1,5 @@
+1.  `GroupId` 模型：根据 OpenAPI 规范，`group_id` 字段可以是字符串或数字，因此类型设置为 `str | int`。
+2.  `RenameGroupFileRes` 模型：移除了 `default_factory=lambda: ResponseData()` 因为data是required字段
+3.  类型标注和默认值：为所有字段添加了类型标注和描述信息。
+4.  移除了不必要的导入：移除了 `typing` 模块的导入。
+5.  添加了 docstring, 增加了可读性。

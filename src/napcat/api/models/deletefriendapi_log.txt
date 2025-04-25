@@ -1,0 +1,7 @@
+开始修复代码...
+1. 移除多余的导入：typing.Any, logging
+2. 修正 user_id 模型：根据openapi的定义，user_id为number或者string类型，修正为str | int类型
+3. 修正 result 模型：status字段openapi中定义为const: ok,data字段openapi中定义为properties: {},即内部为空的对象，不需要额外定义
+4. 修改 DeleteFriendReq 模型：user_id 和 friend_id 字段的类型为 str | int 类型，同时根据openapi的定义，temp_block 和 temp_both_del 字段为必填项
+5. 修改 DeleteFriendRes 模型：根据openapi的定义，需要设置默认值
+6. 修改 DeleteFriendAPI 模型：移除无用的代码

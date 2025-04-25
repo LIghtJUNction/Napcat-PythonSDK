@@ -1,0 +1,8 @@
+模型修复开始:
+1. 移除多余的导入: `from typing import Any` 已移除.
+2. `group_id` 组件模型更新: 根据openapi定义, `group_id` 可以是 `str` 或 `int` 类型, 已更新.
+3. `result` 组件模型更新: `status` 字段的 `const` 约束已移除, 因为响应中需要使用该模型.
+4. `GetGroupMemberListReq` 模型更新: `group_id` 字段类型更新为 `str | int`.
+5. `GetGroupMemberListRes` 模型更新: `data` 字段类型更新为 `list[dict[str, any]]`, 符合openapi定义.
+6. `GetGroupMemberListAPI` 类更新: 移除不必要的初始化方法和未实现的调用方法.
+7. 完成模型修复.

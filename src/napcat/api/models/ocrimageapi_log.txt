@@ -1,0 +1,4 @@
+1. 移除多余的导入: 移除 `from typing import Any`
+2. 修正模型名称`.ocrImageReq`和`.ocrImageRes`，使其符合命名规范
+3. 根据openapi.yaml提供的定义，修改了`result`模型和`.ocrImageRes`模型，使其数据结构与openapi定义一致。
+4. 将ResponseData移动到了OCRImageRes内部

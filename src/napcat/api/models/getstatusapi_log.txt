@@ -1,0 +1,10 @@
+1. Removed unnecessary imports (typing.Any).
+2. Added default values to fields in `GetStatusRes.ResponseData`.
+3. Added docstrings to classes and methods.
+4. Modified the `GetStatusAPI` class to inherit from `object` instead of `BaseModel` because it is not a data model but rather a class for handling API calls.
+5. Removed the `__init__` method from the `GetStatusAPI` class as it was not doing anything beyond what the parent class was doing.
+6.  No request parameters defined, `GetStatusReq` remains an empty model.
+7. Add default=None to all optional fields.
+8. Fixed type annotations.
+9. Add description to all fields
+10. Fixed indentation issues

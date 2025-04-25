@@ -1,0 +1,4 @@
+1. 移除多余的导入: `typing`
+2. 修正 `group_id` 模型: 由 `str` 修正为 `str | int`，使用 `typing.Union`
+3. 修正 `result` 模型: `retcode` 的类型由 `float` 修正为 `int`
+4. 修正 `GetGroupNoticeRes` 模型: 修正嵌套结构以匹配openapi文档

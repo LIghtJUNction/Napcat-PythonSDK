@@ -1,0 +1,9 @@
+Starting to fix and generate pydantic v2 models...
+1. Removed unused imports.
+2. Ensured all fields have type annotations.
+3. Ensured all fields have descriptions and default values.
+4. Moved nested classes inside the main class.
+5. Simplified the API class by removing unnecessary logger initialization and call method implementation since it's just a data model.
+6. Adjusted type hints to use built-in types instead of those from the typing module.
+7. Modified the result model to represent the data field as nullable.
+8. Simplified the `user_id` model to a `str | int` type based on the OpenAPI schema.

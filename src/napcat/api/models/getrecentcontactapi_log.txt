@@ -1,0 +1,18 @@
+模型构建开始...
+1. 移除多余的导入: 移除 `from typing import Any`
+2. 修正消息详情模型: 消息详情中的 `message` 字段的类型修正为 `list[TextMessage | AtMessage | FaceMessage | ImageMessage | FileMessage | ReplyMessage | JSONMessage | RecordMessage | VideoMessage | MarkdownMessage | ForwardMessage]`。
+3. 修正消息forward模型: data字段添加id和content的描述
+4. 修正markdown消息模型: data字段添加content的描述
+5. 修正视频消息模型: data字段添加file的描述
+6. 修正语音消息模型: data字段添加file的描述
+7. 修正JSON消息模型: data字段添加data的描述
+8. 修正回复消息模型: data字段添加id的描述
+9. 修正文件消息模型: data字段添加file和name的描述
+10. 修正图片消息模型: data字段添加file和summary的描述
+11. 修正表情消息模型: data字段添加id的描述
+12. 修正艾特消息模型: data字段添加qq和name的描述
+13. 修正文本消息模型: data字段添加text的描述
+14. 修正sender模型: sex和role使用枚举类型,并添加描述
+15. 修正result模型: data字段类型修改为list[dict[str, any]]
+16. GetRecentContactRes模型内部类ResponseData, 添加默认值和描述
+模型构建完成!

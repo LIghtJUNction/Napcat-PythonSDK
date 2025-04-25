@@ -1,0 +1,9 @@
+开始修复代码：
+1. 移除多余的import，只保留pydantic和logging
+2. 为所有字段添加类型标注，描述和初始值
+3. 修正嵌套类定义方式, 将ResponseData移动到CanSendImageRes内部
+4. 修正result中的data字段类型,openapi定义是object，但没有具体类型，暂时设置为dict[str, Any]
+5. 修正CanSendImageReq没有请求参数的问题,保持为空模型
+6. CanSendImageAPI中的Req和Res使用类型提示
+7. 移除CanSendImageAPI init方法
+8. 移除CanSendImageAPI call 方法中的NotImplementedError
