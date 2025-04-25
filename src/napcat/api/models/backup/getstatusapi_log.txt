@@ -1,0 +1,16 @@
+Refactoring `get_status` API models based on OpenAPI specification.
+1. Removed unused import `typing.Any`.
+2. `GetStatusReq` remains `pass` as per spec (empty object).
+3. `GetStatusRes` structure defined according to the spec:
+    - Added nested `Data` model.
+    - Added nested `Stat` model inside `Data`.
+    - `Stat` model is `pass` as per spec (empty object).
+    - `Data` model contains `online` (bool), `good` (bool), and `stat` (Stat) fields.
+    - `GetStatusRes` contains `status` (str, const='ok'), `retcode` (float), `data` (Data), `message` (str), `wording` (str), `echo` (str | None).
+4. Added `Field` with descriptions for all fields in `GetStatusRes`, `Data`, and `Stat` models.
+5. Used `float` for `retcode` as OpenAPI `number` is often mapped to float in Python.
+6. Used `str | None` for nullable `echo` field.
+7. Moved nested classes `Data` and `Stat` inside `GetStatusRes` class.
+8. Kept `GetStatusAPI` class as is.
+9. Ensured all types are using built-in types or `| None` instead of `typing` aliases.
+10. Added docstrings to models.

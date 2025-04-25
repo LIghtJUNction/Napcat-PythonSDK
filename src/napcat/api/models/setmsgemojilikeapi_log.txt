@@ -1,4 +1,0 @@
-1. 移除多余的导入:typing,Any
-2. 修复message_id的数据结构
-3. 修复ResponseData的默认值问题
-4. 修复result的status为枚举类型

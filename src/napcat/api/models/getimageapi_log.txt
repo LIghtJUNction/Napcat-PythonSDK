@@ -1,6 +1,0 @@
-1.  删除多余的导入：删除了 typing.Any，因为没有直接使用。
-2.  添加类型标注：为所有字段添加了类型标注，确保数据类型的明确性。
-3.  添加描述和初始值：为所有字段添加了描述，并使用Field设置了默认值，以提供更清晰的文档和默认行为。
-4.  移动嵌套类：将 GetImageRes.ResponseData 和 Result.Data 移动到它们所属的类内部，使结构更清晰。
-5.  修改 Result 的定义, 修复了组件定义错误, data字段应该包含file/url/file_size/file_name/base64
-6.  修改了Req中file_id必须传递,否则报错

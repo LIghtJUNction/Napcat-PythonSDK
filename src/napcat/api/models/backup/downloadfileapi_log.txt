@@ -1,0 +1,12 @@
+Refactoring process:
+1. Analyzed the OpenAPI specification for the /download_file endpoint.
+2. Extracted request parameters: `base64`, `url`, `thread_count`, `headers`, `name`. Identified their types and required status.
+3. Extracted response parameters based on the successful response schema, including the nested `data` structure.
+4. Created `DownloadFileReq` model with fields matching the request parameters, including type annotations (`str | None` for optional fields, `str | list[str]` for `headers`), and `Field` with descriptions. Marked `thread_count` and `headers` as required using `Field(...)`. Used `float` for `thread_count` and `retcode` as OpenAPI 'number' maps to both int and float.
+5. Created a nested `DownloadFileData` model for the `data` field in the response, adding the required `file` field.
+6. Created `DownloadFileRes` model with fields matching the base response structure and the nested `data` field using `DownloadFileData`. Added type annotations and `Field` with descriptions.
+7. Removed unused import `Any`.
+8. Removed `type: ignore` comments.
+9. Ensured all fields have type annotations and descriptions using `Field`.
+10. Confirmed adherence to Python 3.13 type hinting guidelines (using `| None` and built-in types where appropriate).
+11. Kept the `DownloadFileAPI` structure as it provides useful metadata.

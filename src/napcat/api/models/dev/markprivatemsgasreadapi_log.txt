@@ -1,0 +1,6 @@
+根据 OpenAPI 文档修复了 MarkPrivateMsgAsReadReq 和 MarkPrivateMsgAsReadRes 模型。
+- MarkPrivateMsgAsReadReq 添加了必需的 user_id 字段 (int | str)。
+- MarkPrivateMsgAsReadRes 添加了 status (Literal['ok']), retcode (int), data (None), message (str), wording (str), echo (str | None) 字段，并根据规范设置了必需性、类型和默认值 (echo)。
+- 移除了未使用的 Any 导入。
+- 为所有字段添加了 Field(...) 并包含描述。
+- 确保使用了 Python 3.9+ 风格的类型提示 (int | str, str | None) 和 Literal。

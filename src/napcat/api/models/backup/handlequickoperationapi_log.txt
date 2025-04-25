@@ -1,0 +1,13 @@
+Refactoring the provided Python code based on the OpenAPI schema. 
+1. Removed unused import `Any`. 
+2. Replaced `typing.Any` usage (implicitly via `dict`) with `dict`. 
+3. Defined `HandleQuickOperationReq` with required `context` and `operation` fields of type `dict`, adding descriptions.
+4. Defined `HandleQuickOperationRes` based on the response schema, including required fields `status`, `retcode`, `data`, `message`, `wording`, `echo`. 
+5. Used `Literal["ok"]` for the `status` field, which is required and has a constant value.
+6. Used `int | float` for `retcode` (number type in schema).
+7. Used `None` for `data`, as it's specified as type null and required.
+8. Used `str | None` for `echo`, as it's specified as nullable and required.
+9. Added `Field` with appropriate descriptions and defaults/required markers.
+10. Removed placeholder comments.
+11. Ensured type hints comply with the guidelines (no deprecated `typing` imports for basic types).
+12. Kept the `HandleQuickOperationAPI` metadata class.

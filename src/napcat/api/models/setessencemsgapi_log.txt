@@ -1,4 +1,0 @@
-1. Removed unused imports.
-2. Added default values and descriptions to all fields.
-3. Updated model definitions to align with OpenAPI schema, especially handling the `message_id` which can be either a number or a string.
-4. Refactored the code to enhance readability and maintainability, adhering to pydantic V2 standards.

@@ -1,0 +1,13 @@
+Refactoring `GetRecentContactReq` to include the required `count` field (type int).
+Analyzing the complex `GetRecentContactRes` schema. Identifying nested objects and arrays.
+Defining specific models for each message component type (Text, At, Face, etc.). Using `Literal` for constant type strings.
+Defining a `Sender` model based on the schema.
+Defining `MessageDetail` and handling the forward reference due to the `forward` message content.
+Defining `LastestMessage` based on the specific properties listed in the response data item, acknowledging the complexity and potential discrepancies with the full `消息详情` schema but prioritizing the response body structure.
+Defining `RecentContactItem` to contain `LastestMessage` and other contact-specific fields.
+Defining the main `GetRecentContactRes` model with `status` (using `Literal["ok"]`), `retcode`, `data` (list of `RecentContactItem`), `message`, `wording`, and `echo` (`str | None`).
+Adding `Field` with descriptions for all fields in the models.
+Removing unused `typing.Any` import.
+Ensuring type annotations comply with the guidelines (using built-in types and `| None`).
+Keeping the `GetRecentContactAPI` model as it correctly links request/response.
+Adding `model_rebuild` for the forward reference in `MessageDetail`.

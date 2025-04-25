@@ -1,6 +1,0 @@
-1.  删除了多余的导入：删除了typing模块的导入，因为pydantic v2推荐使用内置类型。同时删除Any类型的导入
-2.  修正了字段类型和默认值：根据API文档，修正了`SetQqProfileRes`中的`ResponseData`的字段类型。根据文档，data为object类型，修正为dict[str, any]
-3. 修正Result模型，根据api文档，修正了status的默认值为ok,echo为nullable
-4. 将`SetQqProfileAPI`的call方法的返回值修改为Result类型
-5.  添加了字段描述和默认值：为所有字段添加了描述和默认值，使用了`Field`方法。
-6. 修正API模型，根据提供的openapi文档，删除了SetQqProfileRes的内部类，将返回值修改为Result

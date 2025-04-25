@@ -1,4 +1,0 @@
-1.  删除result model, 将 GetAiRecordRes  的 data 属性 修改为 string 类型
-2.  Group_id 类型修改为 str | int
-3.  Group_id model 移除没用的属性
-4.  修改 GetAiRecordAPI doc string

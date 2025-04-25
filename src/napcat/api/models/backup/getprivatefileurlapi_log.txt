@@ -1,0 +1,23 @@
+Analyzing OpenAPI spec for /get_private_file_url...
+- Request body requires `file_id` (string).
+- Response body includes `status` (string), `retcode` (number), `data` (object with `url` string), `message` (string), `wording` (string), `echo` (string, nullable).
+
+Fixing `GetPrivateFileUrlReq`:
+- Added `file_id: str = Field(..., description="文件ID")`.
+
+Fixing `GetPrivateFileUrlRes`:
+- Defined inner class `Data` with `url: str = Field(..., description="文件链接")`.
+- Added `status: str = Field("ok", description="状态")`.
+- Added `retcode: int = Field(..., description="返回码")`.
+- Added `data: Data = Field(..., description="响应数据")`.
+- Added `message: str = Field(..., description="消息")`.
+- Added `wording: str = Field(..., description="额外说明")`.
+- Added `echo: str | None = Field(None, description="发送时携带的 echo")` for the nullable field.
+- Removed unused import `Any`.
+- Ensured all fields have type hints and descriptions.
+- Ensured nested class `Data` is inside `GetPrivateFileUrlRes`.
+- Used built-in types and `str | None`.
+
+`GetPrivateFileUrlAPI` remains unchanged as it correctly links the Req/Res models and API metadata.
+
+Final code generated adheres to pydantic v2, Python 3.13 typing, and the provided guidelines.

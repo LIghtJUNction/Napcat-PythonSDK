@@ -1,8 +1,0 @@
-1.  移除了不必要的typing模块导入。
-2.  为所有字段添加了类型标注，包括显式使用`| None`代替`Optional`。
-3.  为所有字段添加了描述信息，通过`Field`的`description`参数实现。
-4.  使用`Field`为字段设置了合适的默认值。
-5.  修复了group_id类型，使用int | str
-6.  logger使用Field实例化
-7.  req模型中的group_id改为GroupId模型
-8.  使用default_factory代替lambda表达式

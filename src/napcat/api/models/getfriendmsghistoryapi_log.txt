@@ -1,9 +1,0 @@
-1. 移除多余的import typing
-2. 修复了result,user_id,message_id的类型定义
-3. 对所有model添加了description
-4. 对枚举类型的sex和role，增加了枚举类型的定义,类型标注为Literal类型
-5. 对所有float类型，修改为int类型,因为openapi定义为number类型
-6. 修正了消息forward,markdown消息, 视频消息, 语音消息,JSON消息,回复消息,文件消息,图片消息,表情消息,艾特消息,文本消息的data字段的类型定义,改为dict[str, Any]
-7. 修正了消息forward的data的类型定义,新增了ForwardData模型
-8. 修正了GetFriendMsgHistoryRes的ResponseData类型定义
-9. 修正了user_id和message_id的类型定义,使用str | int

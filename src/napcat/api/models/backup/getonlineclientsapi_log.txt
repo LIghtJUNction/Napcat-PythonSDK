@@ -1,0 +1,19 @@
+Analyzing the OpenAPI schema for the /get_online_clients endpoint. The request body requires a 'no_cache' boolean parameter. The response body is a nested structure based on a 'result' schema with an override for the 'data' field. The 'data' field contains a 'clients' field, which is an empty object. The 'result' schema includes 'status', 'retcode', 'data', 'message', 'wording', and 'echo'.
+
+Fixing the GetOnlineClientsReq model to include the 'no_cache' field with its type, default value, and description.
+
+Fixing the GetOnlineClientsRes model. Defining the base fields ('status', 'retcode', 'message', 'wording', 'echo') with appropriate types, descriptions, and nullability for 'echo'. Using `Literal['ok']` for the 'status' constant.
+
+Defining a nested Pydantic model `GetOnlineClientsResData` for the 'data' field within `GetOnlineClientsRes`. This nested model will contain the 'clients' field.
+
+Defining the 'clients' field within `GetOnlineClientsResData` as a `dict` since the schema specifies an object with no known properties.
+
+Updating the 'data' field in `GetOnlineClientsRes` to use the nested `GetOnlineClientsResData` model.
+
+Adding descriptions to all fields using `Field()`.
+
+Removing the unused import `typing.Any`.
+
+Ensuring no `type: ignore` comments are used where types can be correctly inferred or specified.
+
+Formatting the output into the required JSON structure with 'code' and 'log' fields.

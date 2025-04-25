@@ -1,0 +1,9 @@
+Based on the OpenAPI schema for the /set_group_card POST endpoint:
+- Created SetGroupCardReq model with `group_id` (int | str), `user_id` (int | str), and `card` (str), all required.
+- Added Field descriptions for request parameters.
+- Created SetGroupCardRes model with `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), and `echo` (str | None), all required.
+- Added Field descriptions for response parameters.
+- Removed unused `Any` import.
+- Removed `type: ignore` comments.
+- Ensured type hints are compliant with Python 3.13 style (e.g., `int | str`, `str | None`).
+- Kept the SetGroupCardAPI structure as it was correct.

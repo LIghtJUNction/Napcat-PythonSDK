@@ -1,5 +1,0 @@
-1.  移除了未使用的导入: 移除`from typing import Any`，因为data被定义为`list[dict[str, Any]]`
-2.  修改了result模型:openapi schema定义result为顶层schema，其下data为array，因此修改为GetGroupListRes，删除了ResponseData嵌套类
-3.  规范类型标注: retcode: float = Field(default=0.0, description="retcode字段")
-4.  修正了data字段的类型定义：openapi schema定义data为array，因此修改为data: list[dict[str, Any]] = Field(default_factory=list, description="data字段")
-5.  API模型定义：注释掉了Req和Res类型定义，因为pydantic v2 不支持type[BaseModel]，并且在实际使用中通常不需要在API类中预先定义请求和响应模型类型。

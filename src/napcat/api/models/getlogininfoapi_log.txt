@@ -1,5 +1,0 @@
-1. 移除typing模块中被弃用的导入: Any
-2. 组件模型Result：修改了status, message, wording默认值，设置了data的默认值为一个空字典。
-3. 请求模型GetLoginInfoReq：添加docstring
-4. 响应模型GetLoginInfoRes：将其中的ResponseData移入 GetLoginInfoRes 类中，并修改了字段 user_id, nickname 为必填字段, data为必填字段。
-5. 修改了API类，保持原有的模型

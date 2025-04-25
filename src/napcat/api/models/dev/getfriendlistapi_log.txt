@@ -1,0 +1,8 @@
+Based on the OpenAPI specification:
+1. Updated GetFriendListReq to include the required boolean field 'no_cache' with its default value and description.
+2. Created a nested Pydantic model 'FriendInfo' to represent the items in the 'data' list of the response, including all required fields with types and descriptions.
+3. Updated GetFriendListRes to match the response structure, including 'status' (Literal['ok']), 'retcode' (int), 'data' (list[FriendInfo]), 'message' (str), 'wording' (str), and 'echo' (str | None).
+4. Added descriptions and default values (where applicable) to fields.
+5. Ensured Python 3.13 type hints (e.g., list, str | None) are used.
+6. Removed unused imports and type ignores.
+7. Kept the GetFriendListAPI class as is.

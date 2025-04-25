@@ -1,7 +1,7 @@
 {
     "api_id": "226657071e0",
     "version": "4.7.17",
-    "last_update": "2025-04-25 23:00:49",
+    "last_update": "2025-04-26 01:17:44",
     "endpoint": "can_send_image",
     "homepage": "https://napcat.apifox.cn/226657071e0",
     "llms.txt": "https://napcat.apifox.cn/226657071e0.md",

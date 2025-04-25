@@ -1,0 +1,11 @@
+Analyzing OpenAPI spec for _get_group_notice.
+Request requires 'group_id' (int | str).
+Response is a standard Napcat result with a 'data' array.
+The 'data' array contains objects with 'notice_id' (str), 'sender_id' (int), 'publish_time' (int), and 'message' (array).
+The 'message' array contains objects with 'id' (str), 'height' (str), 'width' (str).
+Will create nested models for the response data structure.
+Updating GetGroupNoticeReq and GetGroupNoticeRes with correct types, fields, descriptions, and initial values.
+Removing unused imports.
+Ensuring Pydantic v2 syntax and type hints (e.g., `int | str`, `list`).
+Fixing metadata comments and docstrings.
+Generating the final Python code and wrapping it in JSON.

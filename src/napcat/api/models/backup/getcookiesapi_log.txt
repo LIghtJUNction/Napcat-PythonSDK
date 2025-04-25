@@ -1,0 +1,10 @@
+Based on the OpenAPI specification:
+1.  **GetCookiesReq:** Added `domain: str = Field(..., description="需要获取cookies的域名")` to match the request body schema.
+2.  **GetCookiesRes:**
+    *   Defined a nested `Data` class with `cookies: str` and `bkn: str` fields, both required.
+    *   Added base response fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) to `GetCookiesRes` with appropriate types and descriptions.
+    *   Used `str | None` for the nullable `echo` field.
+3.  **Imports:** Removed unused `Any` import.
+4.  **Descriptions:** Added descriptions using `Field` for all fields in request and response models.
+5.  **Type Hints:** Ensured all fields have mandatory type hints using built-in types or `| None`.
+6.  **Nesting:** Moved the data details into the nested `Data` class within `GetCookiesRes`.

@@ -1,0 +1,28 @@
+Based on the OpenAPI specification provided for the `/send_group_msg` endpoint (POST method), I have updated the Pydantic models.
+
+**Request Model (`SendGroupMsgReq`):**
+- Added `group_id` field with type `int | str` as per the `oneOf` in the spec.
+- Added `message` field with type `list[FileMessage]`, where `FileMessage` is a new model representing the '文件消息' component.
+- Defined `FileMessage` with a `type` (Literal['file']) and a nested `data` field.
+- Defined a nested `FileMessageData` model for the `data` within `FileMessage`, including `file` (str) and `name` (str | None).
+- Added descriptions using `Field`.
+- Marked `group_id` and `message` as required using `Field(...)`.
+
+**Response Model (`SendGroupMsgRes`):**
+- Defined the model based on the `result` schema override.
+- Added `status` (Literal['ok']), `retcode` (int), `data` (nested model), `message` (str), `wording` (str), and `echo` (str | None).
+- Defined a nested `SendGroupMsgResData` model for the `data` field, including `message_id` (int).
+- Added descriptions using `Field`.
+- Marked all top-level response fields and `message_id` as required where specified, using `Field(...)` or implicit requirement for non-optional fields.
+- Used `None` as the default for `echo` to handle the nullable type.
+
+**API Model (`SendGroupMsgAPI`):**
+- Updated `Req` and `Res` type hints to `type[SendGroupMsgReq]` and `type[SendGroupMsgRes]` respectively.
+- Used `Literal` for `endpoint` and `method` for stricter typing.
+
+**General Cleanups:**
+- Removed the placeholder `pass` in the original models.
+- Removed unused imports (`logging`, `logger`, `Any`).
+- Ensured all fields have type annotations and descriptions.
+- Followed the Python 3.13 type hinting conventions (e.g., `list[...]`, `str | None`).
+- Nested models (`FileMessageData`, `SendGroupMsgResData`) are placed where they are used, while `FileMessage` is a separate class as it corresponds to a component schema.

@@ -1,6 +1,0 @@
-1. Removed unnecessary import: `from typing import Any`
-2. Added default values and descriptions to all fields in `Result` and `GetClientkeyRes`.
-3. Replaced `float` with `float` and `dict` with `dict[str, Any]`.
-4. Enforced type annotations throughout the code.
-5. Modified ResponseData to require clientkey, removing default=None and adding ... (Ellipsis) to signify required fields.
-6. Changed `ResponseData` instantiation in GetClientkeyRes to directly instantiate `ResponseData()` instead of using a lambda function, assuming it's meant to be a default instance.

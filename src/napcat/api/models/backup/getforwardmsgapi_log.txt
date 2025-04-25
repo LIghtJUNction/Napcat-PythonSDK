@@ -1,0 +1,10 @@
+Based on the provided OpenAPI specification:
+1. Created the `GetForwardMsgReq` model with the required `message_id: str` field, including a description.
+2. Created the `GetForwardMsgRes` model.
+3. Added the required fields to `GetForwardMsgRes`: `status: str`, `retcode: int`, `data: dict`, `message: str`, `wording: str`, and `echo: str | None`.
+4. Defined the `data` field type based on the schema override which indicates an empty object, using `dict[str, any]` as a flexible type for an empty object.
+5. Added `Field` descriptions for all fields in both models.
+6. Ensured types use standard Python types (`str`, `int`, `dict`) and `| None` for nullable fields.
+7. Removed the unnecessary `typing.Any` import.
+8. Removed `type: ignore` comments as the models are now correctly defined.
+9. Kept the `GetForwardMsgAPI` class as it correctly defines the endpoint metadata.

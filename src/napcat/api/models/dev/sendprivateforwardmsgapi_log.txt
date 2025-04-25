@@ -1,0 +1,21 @@
+Based on the OpenAPI specification, I have refactored the `SendPrivateForwardMsgReq` and `SendPrivateForwardMsgRes` models.
+
+Request Model (`SendPrivateForwardMsgReq`):
+- Added `user_id` field (int | str).
+- Added `messages` field (list of `NodeMessage`).
+- Defined nested models `NodeMessage` and `NodeData`.
+- Defined various message segment models (Text, At, Face, Image, Reply, Json, Record, Video) as inner classes.
+- Created a `MessageSegment` type alias using Union of all segment types for the `content` field in `NodeData`.
+- Added descriptions and type hints to all fields.
+
+Response Model (`SendPrivateForwardMsgRes`):
+- Defined fields based on the common result structure and the specific data structure.
+- Added `status`, `retcode`, `data`, `message`, `wording`, and `echo` fields.
+- Defined nested model `SendPrivateForwardMsgDataRes` for the `data` field.
+- Added descriptions and type hints to all fields, including `str | None` for nullable `echo`.
+
+General Fixes:
+- Removed unused imports (logging, Any).
+- Removed `type: ignore` comments.
+- Used standard Python type hints (list, int, str, | for Union/Optional).
+- Ensured constant fields use `Literal`.

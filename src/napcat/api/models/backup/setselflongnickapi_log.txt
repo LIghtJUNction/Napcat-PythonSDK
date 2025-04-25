@@ -1,0 +1,8 @@
+Based on the OpenAPI spec, I have refactored the Pydantic v2 models:
+- Updated SetSelfLongnickReq to include the 'longNick' field with type 'str' and description.
+- Updated SetSelfLongnickRes to include the standard response fields (status, retcode, data, message, wording, echo).
+- Defined an inner class SetSelfLongnickResData for the 'data' field.
+- Set types according to the spec and common practice (e.g., Literal['ok'], int, str, str | None).
+- Added descriptions to all fields using pydantic.Field.
+- Removed unused imports (typing.Any).
+- Ensured all fields have type annotations.

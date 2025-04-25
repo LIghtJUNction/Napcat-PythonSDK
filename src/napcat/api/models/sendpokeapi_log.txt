@@ -1,6 +1,0 @@
-1.  Removed unnecessary imports: The `typing` module's deprecated members (Dict, List, Tuple, Set, Union, Optional) were not directly used after the modifications.
-2.  Added default values and descriptions to fields:  Ensured all fields in the models have default values and descriptions using `Field`. This improves readability and provides more context for each field.
-3.  Corrected nested model definition:  Moved the `ResponseData` model inside the `SendPokeRes` model to better represent the nested structure.
-4.  Updated `data` field in `Result` model: Changed the type annotation to `dict[str, Any] | None` and allowed None.
-5.  Added type annotation for `id` field in `GroupId` and `UserId`: Added type annotation `str | int`.
-6.  Initialized logger using `Field` and a default factory: Changed the logger initialization to use `Field` with a default factory to ensure it's properly initialized during model creation.

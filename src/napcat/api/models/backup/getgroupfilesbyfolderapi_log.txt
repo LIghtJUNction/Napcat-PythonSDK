@@ -1,0 +1,10 @@
+Refactored GetGroupFilesByFolderReq and GetGroupFilesByFolderRes based on the OpenAPI spec.
+- Added required fields `group_id`, optional fields `folder_id` and `folder`, and field `file_count` with a default value to `GetGroupFilesByFolderReq`.
+- Used `int | str` for `group_id` and `str | None` for optional string fields.
+- Created nested `File` and `Folder` models based on the structure defined in the response data.
+- Created a `Data` model to hold the lists of `File` and `Folder` objects.
+- Defined `GetGroupFilesByFolderRes` with standard response fields (`status`, `retcode`, `message`, `wording`, `echo`) and the nested `Data` model.
+- Added descriptions and required status using `Field`.
+- Removed unused imports (`logging`, `Any`).
+- Ensured all fields have type annotations.
+- Used built-in type hints and `| None`.

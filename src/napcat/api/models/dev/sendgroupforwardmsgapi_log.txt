@@ -1,0 +1,13 @@
+Analyzing OpenAPI spec for /send_group_forward_msg endpoint.
+Identified request body schema and response body schema.
+Defined nested Pydantic models for various message types (TextMessage, FaceMessage, ImageMessage, ReplyMessage, JsonMessage, VideoMessage, FileMessage, MarkdownMessage).
+Defined models for forward-specific structures (SendForwardMessage, ForwardNewsItem, Level2ForwardMessage, Level1ForwardMessage).
+Created a union type `AnyInnerMessageType` for message types allowed within node content, handling recursive definition with a string forward reference initially, then updating it.
+Defined SendGroupForwardMsgReq model based on the request schema, including required fields and their types.
+Defined SendGroupForwardMsgRes model based on the response schema, including the nested data structure and nullable echo field.
+Ensured correct type hints using built-in types, |, and Literal.
+Added Field descriptions to all model fields.
+Set default values for fields with defaults in the spec (e.g., ImageMessageData.summary, SendGroupForwardMsgRes.echo).
+Removed unused imports.
+Kept the API class structure.
+Code structure is clean with nested models defined separately for potential reusability.

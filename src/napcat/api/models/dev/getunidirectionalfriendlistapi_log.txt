@@ -1,0 +1,8 @@
+Based on the OpenAPI specification, the code has been fixed.
+1. Removed unused imports (logging, Any).
+2. Defined the `UnidirectionalFriend` model for the items in the response data array.
+3. Updated the `GetUnidirectionalFriendListRes` model to include the specified fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with correct types, required constraints (using `...` for required fields without defaults, and `None` for nullable), and descriptions using `Field`.
+4. Used Python 3.13 style type hints (e.g., `list[UnidirectionalFriend]`, `str | None`).
+5. Ensured the `GetUnidirectionalFriendListReq` remains empty as per the spec.
+6. Kept the `GetUnidirectionalFriendListAPI` referencing the corrected models.
+7. Added docstrings and field descriptions.

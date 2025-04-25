@@ -1,0 +1,7 @@
+Based on the OpenAPI specification, the /bot_exit endpoint expects an empty request body and returns an empty response body. The existing code correctly reflects this with `pass` in the `BotExitReq` and `BotExitRes` models. Fixes applied:
+1. Removed unused imports (`logging`, `Any`).
+2. Removed `# type: ignore` comments.
+3. Added docstrings to `BotExitReq` and `BotExitRes` for clarity, reflecting the API summary.
+4. Confirmed `BotExitReq` and `BotExitRes` remain empty as per spec.
+5. Kept the `BotExitAPI` helper class as it was in the original code structure.
+6. Added the metadata block.

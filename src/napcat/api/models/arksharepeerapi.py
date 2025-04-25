@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: {{tags}}
+@tags: ['账号相关']
 @homepage: https://napcat.apifox.cn/226658965e0
 @llms.txt: https://napcat.apifox.cn/226658965e0.md
-@last_update: 2025-04-25 23:00:49
+@last_update: 2025-04-26 01:17:44
 
 @description: 
 
@@ -17,115 +17,57 @@ __endpoint__ = "ArkSharePeer"
 __id__ = "226658965e0"
 __method__ = "POST"
 
-# region METADATA/
+# endregion METADATA
 
 
 # region code
 from pydantic import BaseModel, Field
-import logging
-
-logger = logging.getLogger(__name__)
-
-# region component_models
-class UserId(BaseModel):
-    id: str = Field(description="标识ID")
-    name: str | None = Field(default=None, description="名称")
-
-    model_config = {
-        "extra": "allow",
-    }
-
-
-class GroupId(BaseModel):
-    id: str = Field(description="标识ID")
-    name: str | None = Field(default=None, description="名称")
-
-    model_config = {
-        "extra": "allow",
-    }
-
-
-class ResultData(BaseModel):
-    errCode: float = Field(description="errCode字段")
-    errMsg: str = Field(description="errMsg字段")
-    arkJson: str = Field(description="卡片json")
-
-    model_config = {
-        "extra": "allow",
-    }
-
-
-class Result(BaseModel):
-    status: str = Field(default="ok", description="status字段")
-    retcode: float = Field(description="retcode字段")
-    data: ResultData = Field(description="data字段")
-    message: str = Field(description="message字段")
-    wording: str = Field(description="wording字段")
-    echo: str | None = Field(default=None, description="echo字段")
-
-    model_config = {
-        "extra": "allow",
-    }
-
-# region component_models/
 
 # region req
 class ArksharepeerReq(BaseModel):
-    """获取推荐好友/群聊卡片"""
-    group_id: GroupId | None = Field(default=None, description="和user_id二选一")
-    user_id: UserId | None = Field(default=None, description="和group_id二选一")
+    """
+    请求数据模型 for ArkSharePeer
+    Note: group_id 和 user_id 二选一必填
+    """
+    group_id: int | str | None = Field(default=None, description="和user_id二选一")
+    user_id: int | str | None = Field(default=None, description="和group_id二选一")
     phoneNumber: str | None = Field(default=None, description="对方手机号")
 
-    model_config = {
-        "extra": "allow",
-    }
-
-# region req/
+# endregion req
 
 
 # region res
+
+
 class ArksharepeerRes(BaseModel):
-    """获取推荐好友/群聊卡片"""
+    """
+    响应数据模型 for ArkSharePeer
+    """
+    class ArksharepeerData(BaseModel):
+        """
+        响应数据模型 for ArkSharePeer data字段
+        """
+        errCode: int = Field(..., description="错误代码")
+        errMsg: str = Field(..., description="错误信息")
+        arkJson: str = Field(..., description="卡片json")
 
-    status: str = Field(default="ok", description="status字段")
-    retcode: float = Field(default=0, description="retcode字段")
-    data: ResultData = Field(description="data字段")
-    message: str = Field(default="", description="message字段")
-    wording: str = Field(default="", description="wording字段")
-    echo: str | None = Field(default=None, description="echo字段")
+    status: str = Field("ok", description="状态")
+    retcode: int = Field(..., description="返回码")
+    data: ArksharepeerData = Field(..., description="响应数据")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="文字说明")
+    echo: str | None = Field(default=None, description="回显数据")
 
-    model_config = {
-        "extra": "allow",
-    }
-
-# region res/
+# endregion res
 
 # region api
 class ArksharepeerAPI(BaseModel):
     """ArkSharePeer接口数据模型"""
-    endpoint: str = Field(default="ArkSharePeer", description="endpoint")
-    method: str = Field(default="POST", description="method")
-    Req: type[BaseModel] = Field(default=ArksharepeerReq, description="请求模型")
-    Res: type[BaseModel] = Field(default=ArksharepeerRes, description="响应模型")
-    logger = logger
+    endpoint: str = "ArkSharePeer"
+    method: str = "POST"
+    Req: type[BaseModel] = ArksharepeerReq
+    Res: type[BaseModel] = ArksharepeerRes
+# endregion api
 
-    def __call__(self, req: ArksharepeerReq) -> ArksharepeerRes:
-        """
-        调用API的方法（仅作为接口定义，不包含实际请求逻辑）
 
-        Args:
-            req: 请求参数对象
-
-        Returns:
-            响应对象
-        """
-        # 调试日志
-        self.logger.debug(f"调用 ArksharepeerAPI API")
-        self.logger.debug(f"请求参数: {req.model_dump_json()}")
-
-        # 注意：这里不应该包含实际的请求逻辑
-        # 这个方法只是定义了接口，实际的请求应由适配器或客户端实现
-        raise NotImplementedError("此方法需要由实际的API客户端实现")
-
-# region api/
-# region code/
+# endregion code

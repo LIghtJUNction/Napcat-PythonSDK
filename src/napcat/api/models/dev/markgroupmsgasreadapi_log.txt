@@ -1,0 +1,14 @@
+Analyzing OpenAPI spec for /mark_group_msg_as_read (POST).
+Request body requires `group_id` which can be number or string. Mapping to `int | str`.
+Response body follows a result schema structure with `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+`data` is explicitly overridden to `null`. Mapping to `None`.
+`status` is string 'ok'. Mapping to `str` with description.
+`retcode` is number. Mapping to `int`.
+`message` and `wording` are strings. Mapping to `str`.
+`echo` is nullable string. Mapping to `str | None`.
+Updating `MarkGroupMsgAsReadReq` with `group_id: int | str = Field(..., description="群号")`.
+Updating `MarkGroupMsgAsReadRes` with the identified fields and types, adding descriptions using `Field`.
+Removing unused `typing.Any` import.
+Ensuring all fields have type annotations and descriptions.
+Replacing placeholder comments with spec details.
+Outputting the fixed code in the required JSON format.

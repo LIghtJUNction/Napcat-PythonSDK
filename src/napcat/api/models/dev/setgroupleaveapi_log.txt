@@ -1,0 +1,9 @@
+根据 OpenAPI 定义修复模型：
+1.  **SetGroupLeaveReq**: 添加 `group_id` 字段，类型为 `int | str`，并添加描述。
+2.  **SetGroupLeaveRes**: 根据响应 schema 添加 `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), `echo` (str | None) 字段。为每个字段添加描述。`echo` 字段是可空的，设置默认值为 `None`。
+3.  移除未使用的导入 `Any`。
+4.  移除 `# type: ignore`。
+5.  为请求和响应模型添加更具体的 docstrings。
+6.  导入 `Literal` 用于 `status` 字段的约束。
+7.  确保所有字段都有类型标注和描述。
+8.  确认 `SetGroupLeaveAPI` 结构正确。

@@ -1,0 +1,7 @@
+根据OpenAPI规范，修复了TranslateEn2zhReq和TranslateEn2zhRes模型。
+- TranslateEn2zhReq: 添加了`words`字段，类型为`list[str]`，必需，带描述。
+- TranslateEn2zhRes: 根据响应体Schema添加了`status`(`Literal["ok"]`)、`retcode`(`int`)、`data`(`list[str]`)、`message`(`str`)、`wording`(`str`)、`echo`(`str | None`)字段，均为必需且带描述。
+- 移除了未使用的导入（logging, Any）。
+- 移除了`pass`语句和`# type: ignore`。
+- 导入了`Literal`用于status字段的精确类型。
+- 保持了API定义类。

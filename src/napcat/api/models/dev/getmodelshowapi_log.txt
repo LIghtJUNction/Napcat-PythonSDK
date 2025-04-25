@@ -1,0 +1,16 @@
+分析OpenAPI spec，确定请求和响应结构。
+- Request body requires a `model` string.
+- Response body is a nested structure including `status`, `retcode`, `data` (list of objects), `message`, `wording`, and `echo`.
+- The `data` list contains objects with a `variants` object.
+- The `variants` object contains `model_show` (string) and `need_pay` (boolean).
+根据分析创建或修改Pydantic模型。
+- `GetModelShowReq`: Added `model` field with type `str` and description.
+- `GetModelShowRes`: Defined nested models `Variants` and `DataItem` inside `GetModelShowRes`.
+- Added fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) to `GetModelShowRes` with appropriate types, descriptions, and required status.
+- Used `list[DataItem]` for the `data` field type.
+- Used `str|None` for the `echo` field type and set `default=None`.
+- Used `const="ok"` for the `status` field.
+- Cleaned up imports: Removed unused `typing.Any`.
+- Ensured all fields have descriptions using `Field`.
+- Updated metadata based on OpenAPI spec tags and summary.
+- Preserved the overall structure of `Req`, `Res`, and `API` classes.

@@ -1,5 +1,0 @@
-1. 检查到不必要的import typing.Any，已经移除
-2. 确保了所有字段都有类型标注,为所有字段添加默认值和描述
-3. UserId和GroupId的id字段添加...,表示必填字段
-4. API 接口的status,retcode,data,message,wording,echo都被忽略了,将openapi的定义应用到pydantic模型中,但是由于openapi定义不明确,本次忽略了.
-5.  API 接口的data类型被定义为null,无法正确推断出类型

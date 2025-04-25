@@ -1,7 +1,0 @@
-开始修复代码...
-1. 移除多余的导入: typing, logging
-2. 修复 result 模型的 status, retcode, message, wording, echo 字段的默认值和描述
-3. 修复 MarkAllAsReadRes 模型的 status, retcode, message, wording, echo 字段的默认值和描述
-4. 根据openapi定义，data字段允许为空，修改 MarkAllAsReadRes.ResponseData 的结构
-5. 移除 MarkAllAsReadAPI 类中不必要的 logger 和方法
-代码修复完成。

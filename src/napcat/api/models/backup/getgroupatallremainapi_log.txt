@@ -1,0 +1,7 @@
+Based on the OpenAPI spec:
+1.  **Request (`GetGroupAtAllRemainReq`)**: Added `group_id: int | str = Field(..., description="群号")` as required by the spec.
+2.  **Response (`GetGroupAtAllRemainRes`)**: Defined `GetGroupAtAllRemainResData` as a nested model for the `data` object with `can_at_all` (bool), `remain_at_all_count_for_group` (int), and `remain_at_all_count_for_uin` (int) fields, all marked as required. The main `GetGroupAtAllRemainRes` model now includes `status` (str with 'ok' pattern), `retcode` (int), `data` (using the nested model), `message` (str), `wording` (str), and `echo` (str or None). Added `Field` with descriptions for all fields. Used `| None` for the nullable `echo` field.
+3.  **Imports**: Removed unused `logging` and `typing.Any`.
+4.  **Type Hints**: Ensured standard Python type hints (`int`, `str`, `bool`) and `| None` are used.
+5.  **Structure**: Maintained the structure with separate classes for Req, Res (including nested data), and API.
+6.  **Descriptions**: Added descriptions to fields using `Field`.

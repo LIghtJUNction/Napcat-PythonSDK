@@ -1,0 +1,7 @@
+根据 OpenAPI 文档和用户提供的代码进行了修复。主要修改如下：
+1.  移除了未使用的导入 `logging` 和 `Any`。
+2.  `GetGuildServiceProfileReq` 和 `GetGuildServiceProfileRes` 模型根据 OpenAPI 文档（请求体和响应体均为 `{}` 空对象）保持为 `pass`，并在注释中说明原因。
+3.  在 `GetGuildServiceProfileAPI` 模型中，为字段添加了 `Field` 并提供了描述，使其更符合规范和可读性。
+4.  确保所有模型字段都使用了强制类型标注。
+5.  没有发现需要移动的内部嵌套类或需要定义的枚举类。
+6.  代码符合 Pydantic v2 和 Python 3.13 的编码指南。

@@ -1,0 +1,10 @@
+Based on the OpenAPI specification for `/get_version_info`:
+1.  The request body is an empty object, so `GetVersionInfoReq` remains an empty `BaseModel`.
+2.  The response body requires a nested `data` object with `app_name`, `protocol_version`, and `app_version` (all strings and required). A nested `Data` class was created inside `GetVersionInfoRes` to represent this structure.
+3.  The top-level fields in the response (`status`, `retcode`, `data`, `message`, `wording`, `echo`) were added to `GetVersionInfoRes`.
+4.  Field types were assigned (`str`, `int`, `Data`, `str | None`). `Literal['ok']` was used for the `status` field to reflect the `const` constraint.
+5.  `Field` was used for all response fields to provide descriptions and mark them as required (`...`) as per the spec.
+6.  Nullable fields (`echo`) now use the `str | None` syntax.
+7.  Unused imports (`logging`, `typing.Any`) were removed.
+8.  The import `Literal` from `typing` was added as it's needed for `Literal["ok"]`.
+9.  Nested class `Data` was defined inside `GetVersionInfoRes`.

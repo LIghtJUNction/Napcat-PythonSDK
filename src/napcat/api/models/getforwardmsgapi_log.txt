@@ -1,6 +1,0 @@
-1. 移除 typing.Any 导入，因为 dict 可以直接使用。
-2. 为 `GetForwardMsgReq` 的 `message_id` 字段添加了描述和初始值（使用 ... 表示必填）。
-3. 修正 `GetForwardMsgRes` 模型，添加了默认值和描述信息。
-4. 将 `ResponseData` 嵌套类移除，并替换为 `dict`。
-5. 为`GetForwardMsgAPI`的字段添加了描述信息
-6. 为`GetForwardMsgAPI`的logger添加了默认值

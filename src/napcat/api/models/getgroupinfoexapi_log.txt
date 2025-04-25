@@ -1,7 +1,0 @@
-1. 移除了未使用的 typing.Any 导入。
-2. 使用了更精确的类型标注，例如将 float 改为 int 或 str。
-3. 为所有字段添加了描述，并使用 Field 指定了默认值。
-4. 将内部嵌套类（如 ResponseData, Extinfo, GroupOwnerId, GroupBindGuildIds, GroupExtFlameData, GroupExcludeGuildIds）移动到了它们所属的类里面。
-5. 根据openapi定义, GroupId 的id字段 兼容 str 和 int
-6. 修正了GetGroupInfoExReq 中 group_id 字段类型定义
-7. GetGroupInfoExAPI的字段添加默认值,避免实例化报错

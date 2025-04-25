@@ -1,0 +1,10 @@
+Analyzing the OpenAPI specification for the /get_ai_record endpoint.
+Identified request parameters: group_id (int | str), character (str), text (str), all required.
+Identified response parameters: status (Literal['ok']), retcode (int), data (str - link), message (str), wording (str), echo (str | None), all required.
+Refactoring GetAiRecordReq to include group_id, character, and text with correct types and descriptions.
+Refactoring GetAiRecordRes to include status, retcode, data, message, wording, and echo with correct types and descriptions, using Literal for status and handling nullable echo.
+Ensuring pydantic v2 type hints (int | str, str | None).
+Adding Field with descriptions for all parameters.
+Removing unused import `Any`.
+Keeping the GetAiRecordAPI class as is, as it correctly uses the Req and Res models.
+Formatting output as JSON.

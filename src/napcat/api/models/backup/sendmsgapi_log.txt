@@ -1,0 +1,12 @@
+Refactoring based on OpenAPI spec:
+- Defined specific models for message segments (TextSegment, AtSegment, etc.) based on component schemas.
+- Created a Union type `MessageSegment` for the `message` list in the request.
+- Defined `SendMsgReq` with mandatory fields and correct types.
+- Defined `SendMsgResData` for the specific 'data' payload in the response.
+- Defined `ResultBase` for common response fields.
+- Defined `SendMsgRes` inheriting from `ResultBase` and overriding the 'data' field with `SendMsgResData`.
+- Added Field descriptions and default values where specified in the spec.
+- Removed unused imports (`Any`).
+- Updated `SendMsgAPI` to reference the new Req/Res models.
+- Ensured type hints follow Python 3.13 standards (e.g., `|`, `list`).
+- Note: The OpenAPI spec defines the 'markdown消息' type as 'record'. This seems unusual and potentially an error in the spec, but the code follows the spec literally.

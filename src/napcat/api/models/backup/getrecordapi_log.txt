@@ -1,0 +1,8 @@
+Based on the OpenAPI specification, I have generated the Pydantic v2 models for the `get_record` endpoint. This includes:
+
+1.  **Request Model (`GetRecordReq`):** Defined `file` and `out_format` fields with appropriate types (`str` and an `Enum`) and descriptions based on the API spec.
+2.  **Enum (`OutFormatEnum`):** Created a Python `Enum` to represent the allowed values for `out_format`.
+3.  **Response Model (`GetRecordRes`):** Defined the top-level fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with correct types (`Literal['ok']`, `int`, a nested model, `str`, `str | None`) and descriptions.
+4.  **Nested Response Data Model (`GetRecordResData`):** Defined this as an inner class within `GetRecordRes` as requested, including fields for `file`, `url`, `file_size`, `file_name`, and `base64` with types (`str`) and descriptions.
+5.  **API Model (`GetRecordAPI`):** Updated the `Req` and `Res` types to the newly defined models.
+6.  **Code Cleanup:** Removed unused imports (`logging`, `typing.Any`) and ensured all type hints follow the Python 3.13+ style (e.g., `str | None` instead of `Optional`). Added `Field` with descriptions for all model attributes.

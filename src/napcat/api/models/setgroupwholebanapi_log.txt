@@ -1,7 +1,0 @@
-模型修复与增强过程:
-1. 移除未使用的导入: 移除typing中的Any.
-2. group_id模型调整: 根据openapi定义,group_id 应该是 str | int类型,移除原有的模型定义,直接使用 Union[str, int].
-3. result模型调整: 根据openapi定义,data字段固定为null,类型修改为 None
-4. SetGroupWholeBanRes模型调整: 根据openapi定义, 响应中data字段固定为null,类型修改为 None, 移除内部嵌套的ResponseData模型.
-5. 为所有的field添加描述.
-6. 修复了SetGroupWholeBanAPI中的错误，现在可以正确运行。

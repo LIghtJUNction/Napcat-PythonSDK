@@ -1,0 +1,16 @@
+修复日志：
+1. 移除了未使用的导入 `logging` 和 `typing.Any`。
+2. 根据OpenAPI spec定义了 `CreateCollectionReq` 模型，添加了 `rawData` 和 `brief` 字段。
+3. 强制所有字段进行类型标注。
+4. 为 `rawData` 和 `brief` 添加了 `Field` 描述。
+5. 为了兼容可能的snake_case输入，为`rawData`和`errMsg`使用了`AliasChoices`。
+6. 根据OpenAPI spec定义了嵌套的 `CreateCollectionResData` 模型，包含了 `result` 和 `errMsg` 字段。
+7. 定义了 `CreateCollectionRes` 模型，包含了 `status`, `retcode`, `data`, `message`, `wording`, `echo` 字段。
+8. 使用 `Literal['ok']` 强制 `status` 字段为常量字符串。
+9. 为所有响应字段添加了 `Field` 描述。
+10. 将 `echo` 字段类型改为 `str | None` 并设置 `default=None`。
+11. 将嵌套模型 `CreateCollectionResData` 定义在 `CreateCollectionRes` 模型的外部（Pydantic的最佳实践通常是外部定义）。
+12. 确保所有字段都使用了 `Field` 提供了描述。
+13. 移除了 BaseModel 后面的 `# type: ignore`。
+14. 导入了 `Literal` 用于 `status` 字段，导入了 `AliasChoices` 用于字段名兼容。
+15. 更新了字段名为snake_case (`raw_data`, `err_msg`)并在需要兼容原名 (`rawData`, `errMsg`) 的地方使用 `AliasChoices`。

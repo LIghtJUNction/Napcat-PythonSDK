@@ -1,0 +1,9 @@
+Based on the OpenAPI specification:
+1. Updated `GetCollectionListReq` to include `category` and `count` fields as required by the request body schema, adding type hints (`str`) and `Field` descriptions.
+2. Updated `GetCollectionListRes` to match the response schema properties (`status`, `retcode`, `data`, `message`, `wording`, `echo`).
+3. Added appropriate type hints: `str`, `int`, `list[str]`, `str | None`. Used `str | None` for the nullable `echo` field.
+4. Added `Field` descriptions for all response fields.
+5. Set a default value for `echo` (`None`) as it's nullable.
+6. Removed the unused `Any` import.
+7. Updated the METADATA tags to match the OpenAPI specification (`其他/bug`).
+8. Ensured all fields have type annotations and descriptions.

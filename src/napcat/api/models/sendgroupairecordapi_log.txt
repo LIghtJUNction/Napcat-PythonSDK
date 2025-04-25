@@ -1,6 +1,0 @@
-1.  修改模型名称group_id为GroupId
-2.  修改模型名称result为Result
-3.  GroupId.id类型修改为str | int
-4.  SendGroupAiRecordReq.group_id类型修改为GroupId
-5.  SendGroupAiRecordRes.data: ResponseData = Field(default_factory=lambda: ResponseData(), description="data字段") 修改为 SendGroupAiRecordRes.data: ResponseData = Field(description="data字段")
-6.  移除default_factory=lambda: ResponseData()

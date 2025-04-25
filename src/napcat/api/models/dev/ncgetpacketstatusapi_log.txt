@@ -1,0 +1,10 @@
+Analyzing the OpenAPI specification for the `/nc_get_packet_status` endpoint.
+The request body is an empty object, so `NcGetPacketStatusReq` remains an empty BaseModel.
+The response body is an object with fields `status`, `retcode`, `data`, `message`, `wording`, and `echo`.
+The `data` field is specifically overridden to be `null` in the response schema, so it will be typed as `None`.
+`status`, `retcode`, `message`, `wording` are required fields with basic types (string, number).
+`echo` is a nullable string, so it should be typed as `str | None`.
+All required fields will be added to `NcGetPacketStatusRes` with appropriate types and descriptions using `pydantic.Field`.
+Removed unused `typing.Any` import.
+Ensured type annotations follow Python 3.13 guidelines (`str | None` instead of `Optional[str]`).
+Removed `type: ignore` comments.

@@ -1,8 +1,0 @@
-1. Removed unused imports: `from typing import Any`
-2. Modified `result` model's `data` field type from `dict[str, Any]` to `list[dict[str, str]]` based on the provided OpenAPI specification.
-3. Implemented nested `UinRange` model for representing minUin and maxUin.
-4. Updated `GetRobotUinRangeRes` to reflect the correct data structure from the OpenAPI specification.
-5. Removed redundant `model_config` entries to streamline the code.
-6. Adjusted docstrings for better readability and clarity.
-7. Updated the `GetRobotUinRangeAPI` class to align with the corrected data models.
-8. Added default values and descriptions to all fields as per the specifications.

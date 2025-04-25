@@ -1,0 +1,18 @@
+根据API文档和OpenAPI规范，对模型进行了以下修复和优化：
+1.  **请求模型 (DeleteEssenceMsgReq):**
+    *   添加了必填字段 `message_id`。
+    *   根据schema `oneOf number or string`，将字段类型设置为 `int | str`。
+    *   使用 `Field(...)` 添加了字段描述并标记为必填。
+2.  **响应模型 (DeleteEssenceMsgRes):**
+    *   根据 `$ref: '#/components/schemas/result'` schema 定义了响应字段 `status`, `retcode`, `data`, `message`, `wording`, `echo`。
+    *   `status`: 使用 `Literal["ok"]` 强制其值为 "ok"。
+    *   `retcode`: 类型为 `int`。
+    *   `data`: 根据schema `properties: {}`，将其类型设置为 `dict` 并提供 `default_factory=dict`，虽然API示例显示复杂结构，但严格按schema定义。
+    *   `message`, `wording`: 类型为 `str`。
+    *   `echo`: 类型为 `str | None` (因为 schema `nullable: true`)。
+    *   所有字段都使用 `Field(...)` 添加了描述并标记为必填 (根据 schema required 列表)。
+    *   删除了空的内部 `DeleteEssenceMsgResData`类，因为schema for `data` was just `{}`.
+3.  **导入:** 删除了未使用的 `typing.Any`，添加了 `Literal`。
+4.  **代码风格:** 遵循编码指南，使用内置类型、`| None`，并添加了字段描述。
+5.  **元数据:** 更新了 `@tags` 根据API文档。
+保留了 `DeleteEssenceMsgAPI` 的结构。

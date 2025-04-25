@@ -1,0 +1,13 @@
+根据 OpenAPI 规范修复模型：
+1. 移除了未使用的 logging 导入。
+2. `GetRkeyServerReq` 保持为空，符合 OpenAPI 规范中空请求体的定义。
+3. 重构 `GetRkeyServerRes` 以匹配 OpenAPI 规范的响应结构。
+4. 定义了内部嵌套模型 `Data` 来表示响应中的 `data` 字段。
+5. 为 `Data` 模型中的所有字段 (`private_rkey`, `group_rkey`, `expired_time`, `name`) 添加了类型标注 (`str`, `float`), descriptions (使用 `Field`), 并标识为必须字段 (`...`).
+6. 为 `GetRkeyServerRes` 的顶级字段 (`status`, `retcode`, `data`, `message`, `wording`, `echo`) 添加了类型标注 (`Literal["ok"]`, `int`, `Data`, `str`, `str`, `str | None`), descriptions (使用 `Field`), 并标识为必须字段 (`...`) 或可选 (`None`)。
+7. 使用 `Literal["ok"]` 表示 `status` 字段的常量值。
+8. 使用 `str | None` 表示可空字段 `echo`。
+9. 移除了 `typing.Any` 导入，因为它不再需要。
+10. 遵循了编码指南，使用了内置类型和 `| None` 表示可选/可空。
+11. 确保所有字段都有描述信息。
+12. `GetRkeyServerAPI` 模型保持不变，因为它是一个元数据/包装模型。

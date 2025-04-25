@@ -1,0 +1,8 @@
+Refactoring `SetInputStatusReq` and `SetInputStatusRes` based on OpenAPI spec.
+- Added `eventType` (aliased as `event_type` for Python) and `user_id` fields to `SetInputStatusReq` with appropriate types (`int | float`, `int | str`) and descriptions using `Field`. Added `AliasGenerator` for camelCase conversion.
+- Added fields `status`, `retcode`, `data`, `message`, `wording`, `echo` to `SetInputStatusRes` with correct types (`str`, `int`, nested model, `str`, `str`, `str | None`).
+- Defined a nested `Data` model within `SetInputStatusRes` for the `data` field, including `result` (`int | float`) and `errMsg` (`str`).
+- Used `|` for `Union` and `Optional` types (Pydantic V2 standard).
+- Added descriptions and default values using `Field`.
+- Removed unused import `Any`.
+- Ensured `SetInputStatusAPI` references the updated models.

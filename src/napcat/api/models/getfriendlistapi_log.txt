@@ -1,6 +1,0 @@
-1.  删除了未使用的 typing 模块的导入，例如 Dict, List, Tuple, Set, Union, Optional，并使用了内置类型 dict, list, tuple, set, any, str, int, float, | None。
-2.  修正了 result 模型，将其更名为 Result，并且根据openapi文档将data的类型修改为 list[好友信息]。
-3.  为所有字段添加了类型标注和描述，并根据需要添加了默认值。
-4.  根据openapi文档修改了GetFriendListRes的结构，使其data字段的类型为list[好友信息]
-5.  在合适的地方添加了默认值。
-6.  为组件模型添加了文档字符串

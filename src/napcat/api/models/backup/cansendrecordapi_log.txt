@@ -1,0 +1,12 @@
+Starting refactoring based on OpenAPI spec. The request body is empty. The response body is based on a result schema with an overridden 'data' field containing a required boolean 'yes'.
+
+Steps:
+1. Keep CanSendRecordReq as an empty BaseModel.
+2. Create a nested BaseModel `CanSendRecordData` for the 'data' object, containing the required boolean field 'yes'.
+3. Create CanSendRecordRes with fields matching the root response structure (status, retcode, data, message, wording, echo).
+4. Use appropriate type hints (bool, int, str, CanSendRecordData, str | None).
+5. Add Field with descriptions and default/const values.
+6. Remove unused imports (typing.Any).
+7. Keep CanSendRecordAPI.
+
+Finished refactoring and code generation.

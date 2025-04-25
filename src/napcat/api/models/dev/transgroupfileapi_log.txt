@@ -1,0 +1,21 @@
+Starting code repair based on OpenAPI spec.
+1. Removed unused imports: `logging`, `Any`.
+2. Added `Literal` import for the `status` field.
+3. Updated `TransGroupFileReq`:
+   - Added `group_id: int | str = Field(..., description="群号")` based on `oneOf: [number, string]` and required status.
+   - Added `file_id: str = Field(..., description="文件 ID")` based on `string` type and required status.
+   - Removed `pass`.
+4. Updated `TransGroupFileRes`:
+   - Created nested class `TransGroupFileData` for the `data` object.
+   - Added `ok: bool = Field(..., description="是否成功")` to `TransGroupFileData`.
+   - Added `status: Literal['ok'] = Field(..., description="状态码")` to `TransGroupFileRes`.
+   - Added `retcode: int = Field(..., description="返回码")`.
+   - Added `data: TransGroupFileData = Field(..., description="响应数据")`.
+   - Added `message: str = Field(..., description="消息")`.
+   - Added `wording: str = Field(..., description="wording")`.
+   - Added `echo: str | None = Field(default=None, description="echo")` based on `nullable: true`.
+   - Removed `pass`.
+5. Removed `type: ignore`.
+6. Ensured all fields have type annotations, descriptions, and appropriate defaults or are marked as required (`...`).
+7. The `TransGroupFileAPI` model already correctly references the request and response models.
+Code repair complete.

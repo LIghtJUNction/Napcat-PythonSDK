@@ -1,0 +1,9 @@
+Refactoring `SendPokeReq` and `SendPokeRes` based on the OpenAPI spec.
+- Added `user_id` (required, int | str) and `group_id` (optional, int | str | None) fields to `SendPokeReq` with descriptions.
+- Added `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), and `echo` (str | None) fields to `SendPokeRes` with descriptions, matching the response schema including the data null override.
+- Removed `pass` from models.
+- Added `Literal` import for the status field.
+- Ensured type annotations comply with Python 3.13 standards (using `| None`, `int | str`).
+- Added descriptions to fields using `Field`.
+- Removed unused imports (`Any`).
+- Kept `SendPokeAPI` as is, referencing the updated models.

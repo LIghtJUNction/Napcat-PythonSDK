@@ -1,0 +1,10 @@
+Building Pydantic model for get_group_info based on OpenAPI spec.
+- Removed unused import `Any`.
+- Updated `GetGroupInfoReq` to include `group_id: int | str` with `Field` description.
+- Updated `GetGroupInfoRes` to include `status: str`, `retcode: int`, `data: dict`, `message: str`, `wording: str`, `echo: str | None` with `Field` descriptions.
+- Set `echo` default to `None` as it is nullable.
+- Added basic docstrings to models.
+- Kept `GetGroupInfoAPI` structure.
+- Ensured Python 3.13 type hints (int | str, str | None, dict).
+- Added descriptions using `Field` for all model fields.
+- Confirmed no nested classes were needed based on the provided spec.

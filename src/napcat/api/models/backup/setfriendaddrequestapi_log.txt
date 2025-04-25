@@ -1,0 +1,14 @@
+Refactoring the provided Python code based on the OpenAPI specification for `/set_friend_add_request`.
+
+Steps taken:
+1. Analyzed the OpenAPI specification for the request body of `POST /set_friend_add_request`.
+2. Defined the `SetFriendAddRequestReq` model with fields `flag` (str), `approve` (bool), and `remark` (str), all marked as required and including descriptions from the spec using `Field(...)`.
+3. Analyzed the OpenAPI specification for the successful response body (status 200).
+4. Defined the `SetFriendAddRequestRes` model with fields `status` (str), `retcode` (int), `data` (None), `message` (str), `wording` (str), and `echo` (str | None). Used `Field(...)` for descriptions and handled the `null` type for `data` (mapped to `None`) and the `nullable` type for `echo` (mapped to `str | None`). Set a default value for the const `status` field.
+5. Updated the `SetFriendAddRequestAPI` class to correctly reference the refined `SetFriendAddRequestReq` and `SetFriendAddRequestRes` models.
+6. Removed the unused `Any` import from the `typing` module.
+7. Ensured all fields have type annotations and descriptions.
+8. Removed `pass` statements from the model definitions.
+9. Verified adherence to Python 3.13 type hinting standards (`| None`, `type[]`).
+10. Verified adherence to the restriction on deprecated `typing` imports.
+11. Maintained the original metadata structure.

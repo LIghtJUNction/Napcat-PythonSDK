@@ -1,7 +1,0 @@
-修复代码:
-1. 移除多余的导入
-2. 确保所有字段都有类型标注,添加默认值和描述
-3. 修正了group_id的类型定义，使用 Union[str, int] | str，并添加了默认值。
-4. GetGroupInfoRes的ResponseData内部类保留，以符合原设计。
-5. group_id 模型改用 str | int,并删除嵌套模型。
-6. 移除API类,并保留req/res模型

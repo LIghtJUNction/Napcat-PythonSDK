@@ -1,6 +1,0 @@
-1.  为CheckUrlSafelyReq添加了url字段，类型为str, 带有默认值和描述。
-2.  为CheckUrlSafelyRes.retcode 的类型修改为int
-3.  为CheckUrlSafelyAPI的属性添加了默认值和描述, 使用Field.
-4.  为CheckUrlSafelyRes.data添加了default_factory, 防止多实例之间共享数据。
-5.  CheckUrlSafelyAPI的属性logger, 使用default_factory生成logger实例。
-6. 修复CheckUrlSafelyAPI的属性类型定义，避免了type[BaseModel]类型提示错误。

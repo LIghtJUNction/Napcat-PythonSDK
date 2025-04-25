@@ -1,7 +1,7 @@
 {
     "api_id": "229485683e0",
     "version": "4.7.17",
-    "last_update": "2025-04-25 23:00:50",
+    "last_update": "2025-04-26 01:17:45",
     "endpoint": "get_ai_characters",
     "homepage": "https://napcat.apifox.cn/229485683e0",
     "llms.txt": "https://napcat.apifox.cn/229485683e0.md",

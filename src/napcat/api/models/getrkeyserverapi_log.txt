@@ -1,6 +1,0 @@
-修复代码开始:
-1. 移除多余的导入: 移除 typing.Any
-2. 为result模型添加默认值
-3. 根据openapi文档，更新GetRkeyServerRes.ResponseData模型，设置必填字段
-4. 更新GetRkeyServerRes模型，data类型修改
-修复完成

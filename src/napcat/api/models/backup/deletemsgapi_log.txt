@@ -1,0 +1,7 @@
+Based on the OpenAPI spec:
+1.  Identified the request body requires `message_id` which can be a number or a string. Refactored `DeleteMsgReq` to include `message_id: int | str = Field(..., description="...")`.
+2.  Identified the response body structure based on the `result` schema override, where `data` is null. Refactored `DeleteMsgRes` to include required fields `status: str`, `retcode: int`, `data: None`, `message: str`, `wording: str`, and `echo: str | None`, adding descriptions and default/required indicators.
+3.  Removed unused import `typing.Any`.
+4.  Ensured all fields in request and response models have type annotations and descriptions using `Field`.
+5.  Maintained the structure of `DeleteMsgAPI`.
+6.  Adhered to the encoding guidelines: using `|` for union/optional, built-in types, mandatory type hints, and removing deprecated typing imports.

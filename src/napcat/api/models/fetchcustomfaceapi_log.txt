@@ -1,4 +1,0 @@
-开始修复代码：
-1. 移除多余的导入: `typing`
-2. 修正 `FetchCustomFaceRes` 中的 `ResponseData` 为内部类
-3. 根据openapi文档，data字段的类型被修改为list[str]

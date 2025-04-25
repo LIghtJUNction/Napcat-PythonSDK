@@ -1,0 +1,1 @@
+分析OpenAPI文档，确定GroupPokeReq和GroupPokeRes的字段、类型和描述。修复GroupPokeReq，添加group_id和user_id字段，类型为int | str。修复GroupPokeRes，添加status, retcode, message, wording, echo字段，根据文档设置类型（status为str且const='ok'，echo为str | None）。添加Field描述。移除未使用的导入和pass语句。移除type: ignore。保持GroupPokeAPI结构不变。

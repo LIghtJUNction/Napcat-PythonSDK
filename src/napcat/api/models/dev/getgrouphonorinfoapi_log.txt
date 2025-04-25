@@ -1,0 +1,12 @@
+Based on the OpenAPI specification:
+1. Analyzed the request body to identify the `group_id` field, which can be `int` or `str`.
+2. Analyzed the response body structure, noting the nested `data` object within the standard `result` schema.
+3. Defined a base `Result` model mirroring the common response structure.
+4. Defined nested models `TalkativeInfo` and `PerformerInfo` for the complex objects within the `data`.
+5. Defined the `GetGroupHonorInfoData` model to hold the specific fields (`group_id`, `current_talkative`, `talkative_list`, `performer_list`, `legend_list`, `emotion_list`, `strong_newbie_list`), using the nested models and appropriate list types.
+6. Defined `GetGroupHonorInfoReq` with the `group_id` field.
+7. Defined `GetGroupHonorInfoRes` by inheriting from `Result` and setting the `data` field to `GetGroupHonorInfoData`.
+8. Added `Field` descriptions for all model fields based on the OpenAPI spec.
+9. Ensured type annotations use standard Python types and `| None`.
+10. Removed unused imports and type ignore comments.
+11. Kept the `GetGroupHonorInfoAPI` linking class.

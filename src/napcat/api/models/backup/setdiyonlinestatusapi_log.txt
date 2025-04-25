@@ -1,0 +1,25 @@
+Refactoring `SetDiyOnlineStatusReq`:
+- Added fields `face_id`, `face_type`, and `wording` based on the OpenAPI spec request body.
+- Used `str | int | float` for `face_id` and `face_type` as per the `anyOf: [number, string]` definition.
+- Made `face_id` required (`...`) and `face_type`, `wording` optional (`| None`, `default=None`) based on the required list in the spec.
+- Added descriptions using `Field`.
+- Removed `pass` and `type: ignore`.
+- Removed unused `typing.Any` import.
+
+Refactoring `SetDiyOnlineStatusRes`:
+- Added fields `status`, `retcode`, `data`, `message`, `wording`, and `echo` based on the OpenAPI spec response body.
+- Used `Literal["ok"]` for the `status` field.
+- Used `str` for `data` as specified in the response override.
+- Used `str | None` for the nullable `echo` field.
+- Added descriptions using `Field`.
+- Removed `pass` and `type: ignore`.
+- Added `typing.Literal` import.
+
+Refactoring `SetDiyOnlineStatusAPI`:
+- Kept as is, referencing the updated Req and Res models.
+
+General:
+- Ensured all fields have type annotations.
+- Ensured all required fields use `...` and optional fields use `| None` and `default=None`.
+- Removed redundant imports.
+- Followed pydanticV2 and Python 3.13+ type hinting guidelines.

@@ -1,0 +1,9 @@
+Refactored the code based on the OpenAPI specification:
+1.  Removed unused import `Any`.
+2.  Added type hints `int | str` for `user_id` and `message_id` in `ForwardFriendSingleMsgReq`.
+3.  Used `Field(...)` for `user_id` and `message_id` to mark them as required and add descriptions.
+4.  Defined the `ForwardFriendSingleMsgRes` model fields based on the OpenAPI response schema, including `status` (with default "ok"), `retcode`, `data` (explicitly typed as `None`), `message`, `wording`, and `echo` (`str | None`).
+5.  Used `Field` for all response fields to provide descriptions and indicate required/optional status.
+6.  Removed `# type: ignore` annotations.
+7.  Updated docstrings for models.
+8.  Kept the `ForwardFriendSingleMsgAPI` class structure as it's used for API metadata.

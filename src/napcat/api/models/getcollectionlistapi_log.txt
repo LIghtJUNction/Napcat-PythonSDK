@@ -1,5 +1,0 @@
-模型修复开始:
-1. 移除未使用的导入: typing.Any
-2. GetCollectionListRes.ResponseData 添加默认值
-3. result.data 修复为 dict[str, str]
-模型修复完成

@@ -1,0 +1,45 @@
+Analyzing the OpenAPI spec for `/get_group_msg_history`.
+
+**Request Model (GetGroupMsgHistoryReq):**
+- Defined fields: `group_id`, `message_seq`, `count`, `reverseOrder`.
+- Used `int | str` for `group_id` and `message_seq` based on `oneOf(number, string)`.
+- Used `int` for `count` (default 20 implies integer).
+- Used `bool` for `reverseOrder`.
+- Added `Field` with descriptions and default values.
+- Added a docstring for the class.
+
+**Response Model (GetGroupMsgHistoryRes):**
+- Analyzed the response structure which follows a standard pattern (`status`, `retcode`, `data`, etc.).
+- Created `GetGroupMsgHistoryResData` for the nested `data` object.
+- `GetGroupMsgHistoryResData` contains `messages: list[MessageDetail]`.
+- Created `GetGroupMsgHistoryRes` with fields `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+- Used `str` for `status` (with const `ok`).
+- Used `int` for `retcode`.
+- Used `GetGroupMsgHistoryResData` for the `data` field.
+- Used `str` for `message` and `wording`.
+- Used `str | None` for `echo` based on `nullable: true`.
+- Added `Field` with descriptions and appropriate default/required settings.
+
+**Common Models (Used in Response):**
+- Defined `Sender` model based on the `sender` schema, including `user_id`, `nickname`, `sex`, `age`, `card`, `role`.
+- Created `Sex` and `Role` enums based on the `enum` definitions.
+- Used `int` for `user_id`, `age`. `str` for `nickname`, `card`. `Sex | None` for `sex`. `Role | None` for `role`. Used `| None` for optional fields.
+- Defined models for each message content type: `TextMsg`, `AtMsg`, `FaceMsg`, `ImageMsg`, `FileMsg`, `ReplyMsg`, `JsonMsg`, `VoiceMsg`, `VideoMsg`, `MarkdownMsg`, `ForwardMsg`.
+- Each message type model has a `type` field (const) and a nested `data` model (e.g., `TextData`, `AtData`).
+- Handled `oneOf` in `AtData.qq` (`int | str`) and `ReplyData.id` (`int | str`).
+- Handled `anyOf` in `MessageDetail.message` by creating a `list` with a `|` union of all message content types.
+- Defined `MessageDetail` model with all specified fields.
+- Noticed `MessageDetail` contains `ForwardMsg` which contains `MessageDetail`, requiring a forward reference.
+- Added `MessageDetail.model_rebuild()` to handle the forward reference correctly.
+- Used type hints `int`, `str`, `bool`, `list`, `|`, `type[]`, `Enum`.
+- Removed unused imports (`logging`, `Any`).
+- Ensured all fields have descriptions.
+- Ensured required fields are marked correctly (using `...` in `Field`).
+- Moved nested data models (like `TextData`) inside their respective message type models (`TextMsg`) for better organization, but kept reusable components (`Sender`, `MessageDetail`, message types) as separate classes.
+- Added docstrings for clarity.
+- Fixed `VoiceMsg` and `MarkdownMsg` `type` to be `record` as per the spec.
+
+**API Model (GetGroupMsgHistoryAPI):**
+- Kept the structure as provided, updating `Req` and `Res` references to the newly defined models.
+
+The code now adheres to the pydanticV2 and Python 3.13 guidelines, including type hints, `|` for unions/optional, `Field` for metadata, and nested model structure based on the OpenAPI specification.

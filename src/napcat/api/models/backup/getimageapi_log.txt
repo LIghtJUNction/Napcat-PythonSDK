@@ -1,0 +1,8 @@
+Refactoring code based on OpenAPI spec for get_image endpoint.
+- Removed unused import `typing.Any`.
+- Defined `GetImageReq` with the required `file_id` field.
+- Defined a nested `GetImageResData` model for the `data` property in the response.
+- Defined `GetImageRes` with top-level fields (`status`, `retcode`, `message`, `wording`, `echo`) and the nested `data` field.
+- Added type annotations, descriptions using `Field`, and specified required fields or nullable types (`str | None`).
+- `status` field in `GetImageRes` is set to default 'ok' based on the spec's `const: ok`.
+- Ensured adherence to Python 3.13 and pydanticV2 guidelines.

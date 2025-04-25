@@ -1,4 +1,0 @@
-1. 修正了Group_id模型，根据openapi，他的类型是string | int，并且移除了不必要的嵌套
-2. 修正了Result模型，他的data模型被定义为了ResultData模型
-3. API模型添加了模型默认值，以及logger的默认构建函数
-4. 修复GetGroupFileUrlReq中group_id的类型定义,定义为string | int

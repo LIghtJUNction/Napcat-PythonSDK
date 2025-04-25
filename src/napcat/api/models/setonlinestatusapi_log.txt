@@ -1,5 +1,0 @@
-1. 移除多余的 component_models 定义，将 result 模型与 SetOnlineStatusRes 模型合并，并简化了数据结构。
-2. 使用 alias 来兼容openapi中的驼峰命名法
-3. 使用更精确的类型标注，如 float, str, bool。
-4. 保持了每个字段的 description。
-5. requestBody 中的 required 字段在 pydantic 中通过字段是否为 Optional 来体现，这里假设所有字段都是required,如果不是，请使用 | None。

@@ -1,6 +1,0 @@
-修复代码:
-1. 移除多余的result模型
-2. SetFriendAddRequestRes中的ResponseData移到SetFriendAddRequestRes内部
-3. 为所有字段添加类型标注,描述和默认值
-4. 移除多余的import
-5. 修正了api调用中的错误

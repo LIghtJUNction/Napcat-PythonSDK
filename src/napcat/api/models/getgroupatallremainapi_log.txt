@@ -1,4 +1,0 @@
-1.  Deleted the `result` model because the return value already contains a complete return value. Keeping the `ResponseData` as the return `data` field
-2.  Modified `group_id` to `GroupId`, field `id` support `int` or `str`
-3.  Added descriptions for each field, and provided default values for `ResponseData`
-4.  Ensured consistent naming conventions and descriptions for all fields.

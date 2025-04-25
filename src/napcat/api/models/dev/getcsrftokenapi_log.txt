@@ -1,0 +1,25 @@
+Analyzing OpenAPI spec for /get_csrf_token endpoint.
+Request body is empty, so GetCsrfTokenReq remains minimal.
+Response body follows the 'result' schema with an override for the 'data' field.
+'result' schema fields: status (const 'ok'), retcode (number), data (object), message (string), wording (string), echo (string, nullable).
+'data' override: contains a 'token' (number), which is required.
+Mapping OpenAPI types to Python:
+- 'string' -> `str`
+- 'number' -> `float` (strict mapping) or `int` (common usage for retcode/token, assumed here for practicality)
+- 'object' -> nested `BaseModel`
+- 'nullable: true' -> `| None`
+- 'const: ok' -> `Literal['ok']`
+
+Refactoring GetCsrfTokenRes:
+- Create a nested Data model for the 'data' field.
+- Add fields status, retcode, data, message, wording, echo with appropriate types, descriptions, and default/required status.
+- Use `Literal['ok']` for the status field.
+- Use `int` for retcode and token based on common API patterns, despite 'number' in spec.
+- Use `| None` for the nullable echo field.
+- Use Field for descriptions and default values.
+
+Refactoring GetCsrfTokenReq: Remains empty as per spec.
+Refactoring GetCsrfTokenAPI: Links Req and Res models.
+Clean up imports: Remove unused logging and typing.Any. Keep BaseModel, Field, Literal.
+Add docstrings and Field descriptions.
+Remove type: ignore.

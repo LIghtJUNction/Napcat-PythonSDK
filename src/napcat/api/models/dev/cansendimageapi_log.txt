@@ -1,0 +1,1 @@
+根据openapi文档修复了CanSendImageRes模型。移除了未使用的导入typing.Any。在CanSendImageRes中添加了status, retcode, data, message, wording, echo字段，并根据openapi规范定义了它们的类型（包括使用Literal["ok"]和str | None）和描述。创建了嵌套的Data模型来表示响应中的data对象，并在其中添加了yes字段。为所有字段添加了Field描述，并设置了默认值或Required标记(...)。

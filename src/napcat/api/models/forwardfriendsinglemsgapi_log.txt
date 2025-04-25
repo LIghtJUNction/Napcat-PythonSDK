@@ -1,4 +1,0 @@
-1.  移除未使用的导入: `from typing import Any` 已被移除，因为 `Any` 可以直接使用。
-2.  添加字段描述和默认值: 为所有字段添加了描述，并根据需要提供了默认值。
-3.  更新类型标注:  对message_id,user_id的id字段添加了int类型支持,因为openapi中定义了oneOf类型,值为number,string
-4.  简化ResponseData，根据openapi返回的schema结构，data实际类型为any,并且可以为null

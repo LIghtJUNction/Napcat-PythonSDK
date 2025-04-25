@@ -1,0 +1,12 @@
+Refactoring steps:
+1. Analyzed the OpenAPI schema for the `/get_file` endpoint.
+2. Updated `GetFileReq` to include the required `file_id: str` field with description, based on the requestBody schema.
+3. Updated `GetFileRes` to match the response schema:
+   - Defined an inner `Data` class for the nested `data` object, including required fields `file`, `url`, `file_size`, `file_name`, and `base64`, all as `str` with descriptions.
+   - Defined the top-level fields in `GetFileRes`: `status` (str, const='ok'), `retcode` (int), `data` (instance of `Data`), `message` (str), `wording` (str), and `echo` (str | None).
+   - Added descriptions and required status based on the schema.
+   - Used `| None` for the nullable `echo` field.
+4. Removed unused import `typing.Any`.
+5. Ensured all fields have type annotations and descriptions using `Field`.
+6. Kept the `GetFileAPI` class as it seems specific to the NapcatAPI framework structure.
+7. Followed Python 3.13 guidelines regarding type hints and deprecated types.

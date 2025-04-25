@@ -1,0 +1,12 @@
+Analyzing the OpenAPI specification for `/upload_private_file` POST endpoint.
+Identified the request body schema with `user_id` (oneOf number/string), `file` (string), and `name` (string), all required.
+Identified the response schema (200) based on a common `result` schema, specifically noting that the `data` field should be `null` (None in Python) and `echo` is nullable.
+Reviewed the provided Python code, noting placeholder models `UploadPrivateFileReq` and `UploadPrivateFileRes`.
+Detected the use of `typing.Any` and `typing.type` which should be replaced according to guidelines.
+Planned the necessary fixes:
+- Define `UploadPrivateFileReq` with fields `user_id` (`int | str`), `file` (`str`), `name` (`str`), all required.
+- Define `UploadPrivateFileRes` with fields `status` (`Literal['ok']`), `retcode` (`int`), `data` (`None`), `message` (`str`), `wording` (`str`), `echo` (`str | None`), all required based on the final required list in the response schema.
+- Add descriptions using `Field` for all fields.
+- Remove unnecessary imports and `type: ignore` comments.
+- Update type hints to follow the guidelines (`int | str`, `str | None`, `Literal`).
+Generated the corrected Python code based on this plan.

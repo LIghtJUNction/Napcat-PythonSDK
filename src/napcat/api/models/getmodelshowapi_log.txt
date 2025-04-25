@@ -1,6 +1,0 @@
-1.  Removed unused imports: Removed `Any` from `typing`.
-2.  Added type annotations: Ensured all fields have type annotations.
-3.  Added descriptions and default values: Added descriptions and default values to all fields using `Field`.
-4.  Modified nested classes: Moved internal nested class `ResponseData` inside `GetModelShowRes`.
-5.  Modified nested data structure in response model. The `data` field in `GetModelShowRes` and `Result` is modified to comply with the openapi definition.
-6. Fixed the response model of API,Response is Result

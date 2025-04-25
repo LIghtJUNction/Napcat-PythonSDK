@@ -1,6 +1,0 @@
-1.  `from typing import Any` is kept because `Any` is used for the `data` field in the `Result` model.
-2.  All fields now have type annotations.
-3.  All fields now have descriptions and default values using `Field`.
-4.  Nested class `ResponseData` and `EmojiLikesListItem` are moved inside `FetchEmojiLikeRes`.
-5.  `UserId`, `GroupId` and `MessageId`'s id field type changed to `str | int` to comply with the provided openapi spec.
-6.  Add default_factory for data field in Result class

@@ -1,0 +1,10 @@
+Based on the OpenAPI specification, the following changes were made:
+1.  Added missing fields to `MoveGroupFileReq`: `group_id` (union of int and str), `file_id` (str), `current_parent_directory` (str), and `target_parent_directory` (str). All are marked as required.
+2.  Added descriptions for each field in `MoveGroupFileReq` using `Field`.
+3.  Removed unused `Any` import.
+4.  Removed `# type: ignore` comments from `MoveGroupFileReq` and `MoveGroupFileRes`.
+5.  Defined an inner class `Data` within `MoveGroupFileRes` to represent the structure of the `data` field, which contains a required boolean field `ok`.
+6.  Added the main response fields to `MoveGroupFileRes`: `status` (str), `retcode` (int), `data` (Data model), `message` (str), `wording` (str), and `echo` (str or None).
+7.  Added descriptions and default values (where applicable, like `None` for `echo`) for fields in `MoveGroupFileRes` using `Field`.
+8.  Ensured type hints follow the guidelines (using `int | str`, `str | None`, and built-in types).
+9.  Updated the docstrings for `MoveGroupFileReq` and `MoveGroupFileRes`.

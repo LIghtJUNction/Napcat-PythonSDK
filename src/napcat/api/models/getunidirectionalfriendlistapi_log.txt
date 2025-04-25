@@ -1,6 +1,0 @@
-1.  Deleted unused imports: `from typing import Any`.
-2.  Modified `GetUnidirectionalFriendListRes` to have `data` as `list[dict[str, any]]` based on the provided OpenAPI schema.
-3.  Removed the nested `ResponseData` class from `GetUnidirectionalFriendListRes` as it was not necessary according to the OpenAPI definition.
-4.  Added default values and descriptions to `endpoint`, `method`, `Req`, and `Res` fields in `GetUnidirectionalFriendListAPI`.
-5.  Assigned the logger instance directly instead of creating a new one in `GetUnidirectionalFriendListAPI`.
-6. Added default value in GetUnidirectionalFriendListAPI

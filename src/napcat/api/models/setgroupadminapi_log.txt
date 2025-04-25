@@ -1,5 +1,0 @@
-1. 移除未使用的typing导入
-2. 修正了UserID和GroupID的类型,并添加了默认值。
-3. 根据openapi调整了ResultData模型
-4. 修正了Result中data的类型，并添加了默认值。
-5. 修正了SetGroupAdminRes中data的类型，并添加了默认值。

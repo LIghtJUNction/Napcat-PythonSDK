@@ -1,0 +1,8 @@
+Refactoring code based on OpenAPI spec for /send_like.
+- Added `user_id` and `times` fields to `SendLikeReq` with appropriate types (`str | int` and `int`) and descriptions based on requestBody schema.
+- Added `status`, `retcode`, `data`, `message`, `wording`, `echo` fields to `SendLikeRes` with appropriate types (`Literal["ok"]`, `int`, `None`, `str`, `str`, `str | None`) and descriptions based on response schema (specifically overriding the $ref for `data`).
+- Removed unused import `logging` and `Any`.
+- Ensured all fields have type annotations and descriptions.
+- Used `|` for union types and `None` for null types.
+- Set default values where specified or implied (e.g., `status`). Used `...` for required fields without defaults.
+- Kept the API definition structure consistent.

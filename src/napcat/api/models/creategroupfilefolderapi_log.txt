@@ -1,8 +1,0 @@
-1.  移除多余的导入: 移除了typing中的Any,因为可以直接使用内置的any。
-2.  类型标注: 确保所有字段都有类型标注，包括请求和响应模型。
-3.  描述和默认值: 为每个字段添加了描述，并根据需要设置了默认值。
-4.  嵌套类: 将内部嵌套类（如ResponseData, ResultData, GroupItem, FolderInfo）移动到CreateGroupFileFolderRes类中，保持了模型的结构清晰。
-5.  重命名字段: 将result内部data的字段retCode,retMsg,clientWording分别修改为驼峰命名法的ret_code,ret_msg,client_wording
-6. 修复group_id类型：  group_id的类型修改为str | int,result data 为 dict[str, Any]
-7.  修改group_id：修改为str | int,名称修改为id
-8.  修改引用，使用字符串引用。

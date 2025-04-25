@@ -1,0 +1,8 @@
+Analyzing OpenAPI spec for /get_group_member_info endpoint.
+Identified request body fields: group_id (int | str), user_id (int | str), no_cache (bool). All required.
+Identified response body fields based on 'result' schema override: status (str), retcode (int), data (dict), message (str), wording (str), echo (str | None). All required.
+Fixing GetGroupMemberInfoReq model to include group_id, user_id, no_cache with appropriate types, descriptions, and required status.
+Fixing GetGroupMemberInfoRes model to include status, retcode, data, message, wording, echo with appropriate types, descriptions, and required status.
+Ensuring proper Pydantic v2 syntax and type hints (using `|` for union and `| None` for nullable).
+Removing unused imports.
+Adding basic field descriptions.

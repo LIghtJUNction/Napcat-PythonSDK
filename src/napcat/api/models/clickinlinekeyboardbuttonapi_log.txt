@@ -1,6 +1,0 @@
-开始修复代码
-1. 移除多余的导入
-2. 检查并添加所有字段的类型标注
-3. 检查并添加所有字段的描述和初始值
-4. 根据openapi文档，重构模型结构
-5. 移除ClickInlineKeyboardButtonAPI类，openapi文档中没有相关信息

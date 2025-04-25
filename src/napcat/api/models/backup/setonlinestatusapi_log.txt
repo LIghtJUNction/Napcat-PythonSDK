@@ -1,0 +1,7 @@
+Based on the OpenAPI specification and the provided Python code, the following changes were made:
+1. The `SetOnlineStatusReq` model was updated to include the required fields: `status`, `ext_status`, and `battery_status`. All are typed as `int` based on the example values in the documentation, and descriptions were added using `Field`.
+2. The `SetOnlineStatusRes` model was updated to reflect the standard response structure: `status` (str), `retcode` (int), `data` (None, as per spec `type: 'null'`), `message` (str), `wording` (str), and `echo` (str | None, as per spec `nullable: true`). Descriptions were added using `Field`.
+3. Removed the unused `typing.Any` import, as it's not needed for `type[BaseModel]` hint with standard Python typing.
+4. Ensured mandatory type annotations are used.
+5. Followed the guideline to use built-in types where possible (e.g., `int`, `str`, `None`).
+6. Retained the `SetOnlineStatusAPI` structure.

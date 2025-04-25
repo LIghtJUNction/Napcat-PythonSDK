@@ -1,0 +1,7 @@
+Based on the OpenAPI specification:
+1. Removed unused import `typing.Any`.
+2. Updated `FriendPokeReq` to include the required `user_id` field with type `int | str` and a description.
+3. Updated `FriendPokeRes` to match the successful response schema, including `status` (as Literal['ok']), `retcode`, `message`, `wording`, and `echo` (as `str | None`). The `data` field was omitted as the API response explicitly sets it to `null`.
+4. Added descriptions using `Field` for all fields in `FriendPokeReq` and `FriendPokeRes`.
+5. Removed `type: ignore` comments as types are now correctly specified.
+6. Cleaned up metadata placeholders like `{{tags}}`.

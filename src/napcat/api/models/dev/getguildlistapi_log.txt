@@ -1,0 +1,10 @@
+Based on the OpenAPI specification, the request body and response body for the `/get_guild_list` endpoint are defined as empty objects. The existing Python code correctly reflects this by defining `GetGuildListReq` and `GetGuildListRes` as empty `BaseModel` classes using `pass`. 
+
+Fixes applied:
+1. Removed the unused import `typing.Any`.
+2. Removed the unnecessary `type: ignore` comments from the class definitions.
+3. Ensured the models remain empty as per the OpenAPI spec.
+4. Kept the `GetGuildListAPI` model as it correctly structures the endpoint information.
+5. Added basic docstrings to the Req/Res models even though they are empty, for potential future expansion and clarity.
+
+No nested models or enums were required based on the provided spec.

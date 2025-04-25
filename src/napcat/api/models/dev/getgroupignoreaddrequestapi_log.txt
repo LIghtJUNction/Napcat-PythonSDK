@@ -1,0 +1,10 @@
+Refactoring steps:
+1. Removed unused imports (typing.Any).
+2. Defined `GetGroupIgnoreAddRequestReq` as pass as per spec.
+3. Created a nested model `GroupIgnoreAddRequestData` for items within the `data` array based on the OpenAPI schema properties.
+4. Used native types (int, str, bool, list) and `| None` for nullable fields.
+5. Added `Field` with descriptions and default values/ellipses for all fields in `GroupIgnoreAddRequestData` and `GetGroupIgnoreAddRequestRes`.
+6. Defined `GetGroupIgnoreAddRequestRes` based on the OpenAPI response structure, including `status`, `retcode`, `data` (using the nested model), `message`, `wording`, and `echo`.
+7. Kept `GetGroupIgnoreAddRequestAPI` as is, using `type[BaseModel]` for type hints.
+8. Ensured all fields have descriptions and appropriate typing for required/nullable status based on the spec.
+9. Added docstrings to models.

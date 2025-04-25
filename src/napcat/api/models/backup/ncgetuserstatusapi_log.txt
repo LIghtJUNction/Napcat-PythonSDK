@@ -1,0 +1,14 @@
+Based on the OpenAPI specification, I have made the following changes:
+1.  Removed unused imports (`logging`, `Any`).
+2.  Defined the `NcGetUserStatusReq` model with the `user_id` field, using `int | str` as per the spec and adding a description using `Field`.
+3.  Created a nested model `NcGetUserStatusResData` for the `data` field in the response, including `status` and `ext_status` fields typed as `float` (as `number` can be integer or float) and added descriptions.
+4.  Updated the `NcGetUserStatusRes` model:
+    *   Added fields `status`, `retcode`, `data`, `message`, `wording`, `echo` as specified.
+    *   Used `str`, `int`, `NcGetUserStatusResData`, `str`, `str`, `str | None` for type annotations.
+    *   Added descriptions using `Field` for all fields.
+    *   Set the default value for `echo` to `None` as it's nullable.
+    *   Used `Literal["ok"]` for the `status` field as it has a `const` value.
+5.  Ensured all fields have appropriate descriptions and initial values/required status.
+6.  Maintained the `NcGetUserStatusAPI` class structure, ensuring `Req` and `Res` point to the corrected models.
+7.  Adhered to Python 3.13 type hinting conventions (`| None` instead of `Optional`, built-in types).
+8.  Ensured snake_case for field names as used in the API spec.

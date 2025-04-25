@@ -1,0 +1,16 @@
+Based on the provided OpenAPI specification for the `/delete_group_folder` endpoint:
+
+1.  **Identified Request Schema:** The request requires `group_id` (type `number` or `string`) and `folder_id` (type `string`). Both are required.
+    -   Created `DeleteGroupFolderReq` with fields `group_id: int | str` and `folder_id: str`. Added `Field` with descriptions.
+
+2.  **Identified Response Schema (200):** The response includes `status` (`string`, const `ok`), `retcode` (`number`), `data` (`object`), `message` (`string`), `wording` (`string`), and `echo` (`string`, nullable). All are required.
+    -   The `data` field is a nested object with `retCode` (`number`), `retMsg` (`string`), and `clientWording` (`string`), all required.
+    -   Defined a nested `Data` class within `DeleteGroupFolderRes` to model the `data` field.
+    -   Created `DeleteGroupFolderRes` with fields matching the schema, using `int | str | None` or specific types. Used `str | None` for `echo` as it's nullable.
+    -   Added `Field` with descriptions for all response fields.
+
+3.  **Cleaned Imports:** Removed `typing.Any` as it was not used.
+
+4.  **Refined API Model:** Kept the `DeleteGroupFolderAPI` model, ensuring `Req` and `Res` point to the newly defined models.
+
+5.  **Followed Coding Guidelines:** Ensured type annotations are present, used built-in types where possible, and used `| None` for nullable fields.

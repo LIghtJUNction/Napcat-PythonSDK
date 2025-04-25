@@ -1,0 +1,11 @@
+Based on the OpenAPI specification:
+- The `/unknown` endpoint (POST method) has no request body parameters.
+- The response for `/unknown` (POST, 200) is an empty object (`{}`).
+
+Refactoring steps:
+1. Removed the unused `Any` import.
+2. Kept `UnknownReq` and `UnknownRes` as empty `BaseModel` subclasses since the API spec defines no request body or response properties.
+3. Removed `type: ignore` comments as the models are now correctly defined.
+4. Updated the metadata comments (@tags, @description, summary) based on the OpenAPI spec.
+5. Added a description to the `UnknownAPI` model.
+6. Ensured all types are correctly annotated using standard Python types where possible.

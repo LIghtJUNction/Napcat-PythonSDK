@@ -1,6 +1,0 @@
-1.  删除了未使用的typing模块的导入。
-2.  对 `UserId` 和 `GroupId` 类中的 `id` 字段类型修改为 `str | int`，以匹配openapi的定义,并注释了未使用的`name`字段
-3.  给`Result`类中的`data`添加了默认值None
-4.  修复了 `SetGroupCardRes` 中的 `data` 字段的 `default_factory`，使用 `SetGroupCardRes.ResponseData`。
-5.  给`SetGroupCardAPI`添加了endpoint,method以及logger的默认值
-6.  修改了`SetGroupCardAPI`的__call__的返回值类型为`Result`

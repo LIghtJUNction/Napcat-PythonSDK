@@ -1,4 +1,0 @@
-1. 检查到message_id类型不明确，修改为str | int
-2. 移除未使用的内部嵌套类ResponseData, 修改res为Result模型
-3. 检查DeleteEssenceMsgAPI的__call__返回类型, 修改为Result模型
-4. message_id 字段类型修改为str | int

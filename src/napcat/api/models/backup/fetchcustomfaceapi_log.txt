@@ -1,0 +1,11 @@
+Building Pydantic v2 models for fetch_custom_face.
+- Identified the request body schema with a 'count' field (number, likely int).
+- Updated `FetchCustomFaceReq` to include `count: int` with a description using `Field`.
+- Identified the response body schema with fields: status (string, const ok), retcode (number), data (array of strings), message (string), wording (string), echo (string, nullable). All are required.
+- Updated `FetchCustomFaceRes` to include the identified fields with appropriate types (`Literal["ok"]`, `int`, `list[str]`, `str`, `str | None`).
+- Added descriptions to all fields using `Field`.
+- Removed unused imports (`logging`, `typing.Any`).
+- Ensured correct type hints according to Python 3.13 and Pydantic v2 guidelines (e.g., `list[str]`, `str | None`).
+- Kept `FetchCustomFaceAPI` as is, verifying type hints.
+- Ensured no deprecated typing modules were used.
+- Confirmed all fields have type annotations and descriptions.

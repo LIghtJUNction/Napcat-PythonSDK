@@ -1,4 +1,0 @@
-1. 移除多余的import typing.Any
-2. MessageId的id字段类型支持string | int
-3. 所有字段添加了描述和默认值
-4. 移除Req和Res中的内部类，与Result合并

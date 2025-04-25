@@ -1,0 +1,8 @@
+Refactoring DeleteFriendReq and DeleteFriendRes based on OpenAPI spec. 
+- Updated DeleteFriendReq with `user_id` (int|str, optional), `friend_id` (int|str, optional), `temp_block` (bool, required), and `temp_both_del` (bool, required), adding descriptions via Field.
+- Created nested model DeleteFriendResData for the `data` field with `result` (int|float, required) and `errMsg` (str, required).
+- Updated DeleteFriendRes with fields `status` (str, required), `retcode` (int|float, required), `data` (DeleteFriendResData, required), `message` (str, required), `wording` (str, required), and `echo` (str|None, required), adding descriptions via Field.
+- Removed unused imports (logging, Any).
+- Ensured type hints conform to guidelines (using `|` for Union/Optional).
+- Removed `# type: ignore` comments.
+- Kept DeleteFriendAPI structure.

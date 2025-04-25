@@ -1,6 +1,0 @@
-1.  删除了多余的导入: `from typing import Any`
-2.  为 `GetMiniAppArkReq` 类的所有字段添加了类型标注, 使用`| None` 替换 `Optional[]`
-3.  使用 `Field` 为 `GetMiniAppArkReq` 类的字段添加了描述和初始值, 使用 `...` 替换 `Required`
-4.  添加了枚举类 `MiniAppType`，并将 `GetMiniAppArkReq` 中的 `type` 字段类型设置为该枚举类
-5.  修改了 `ResponseData` 的 `data` 字段默认工厂函数，使用 `lambda: GetMiniAppArkRes.ResponseData()`
-6. 修复了 GetMiniAppArkAPI 中的ResponseData 没有定义，引起的错误

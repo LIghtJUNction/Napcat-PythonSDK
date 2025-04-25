@@ -1,0 +1,19 @@
+根据OpenAPI文档修复模型。
+
+修复内容：
+1.  **请求模型 `GetEssenceMsgListReq`**: 添加 `group_id` 字段，类型为 `int | str` (对应 OpenAPI 的 oneOf number, string)，并添加描述。
+2.  **响应模型 `GetEssenceMsgListRes`**: 
+    *   根据 OpenAPI 定义，添加 `status` (Literal['ok']), `retcode` (int), `data` (list), `message` (str), `wording` (str), `echo` (str | None) 字段，并添加描述和默认值。
+    *   定义嵌套模型 `EssenceMessage` 来表示 `data` 列表中的每个精华消息对象，包含 `msg_seq`, `msg_random`, `sender_id`, `sender_nick`, `operator_id`, `operator_nick`, `message_id`, `operator_time` 和 `content` 字段。
+    *   `content` 字段的类型为 `list`，其元素可以是多种消息类型。
+3.  **消息内容模型**: 根据 OpenAPI 的 components.schemas 部分，定义了 `TextMessage`, `AtMessage`, `FaceMessage`, `ImageMessage`, `ReplyMessage`, `JsonMessage`, `RecordMessage`, `VideoMessage`, `MarkdownMessage` 等 Pydantic 模型。
+    *   每个消息模型包含 `type` (Literal 类型) 和 `data` (嵌套模型) 字段。
+    *   将各消息类型的具体数据模型（如 `TextMessage.Data`）定义为其父消息模型的内部类。
+    *   处理了 `group_id`, `reply.data.id`, `at.data.qq` 的 oneOf (number | string) 类型。
+    *   注意到 `Markdown消息` 在 OpenAPI 中 type 被误写为 `record`，根据其名称，将其 type 修正为 `markdown`。
+    *   使用 Union (`|`) 定义 `MessageContent` 类型别名，表示所有可能的 संदेश类型，用于 `EssenceMessage.content` 字段。
+4.  **清理**: 移除未使用的导入 `Any`，添加必需的导入 `Literal`。
+5.  **规范**: 确保所有字段都有类型标注和 Field 描述，符合 Pydantic v2 和编码指南的要求。
+6.  **API 模型**: `GetEssenceMsgListAPI` 保持不变，引用修正后的 Req 和 Res 模型。
+
+整个过程遵循了用户提供的编码指南和修复建议，特别是关于类型标注、导入、Field 使用、嵌套类以及字段描述的要求。

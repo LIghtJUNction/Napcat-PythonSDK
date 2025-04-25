@@ -1,0 +1,1 @@
+根据OpenAPI规范修复了Python Pydantic模型。更新了请求模型`ClickInlineKeyboardButtonReq`，添加了所有必需字段及其类型标注（使用int | str 表示group_id，str表示其他字段）和Field描述。更新了响应模型`ClickInlineKeyboardButtonRes`，使其结构符合`result` schema，包含status (Literal['ok']), retcode (int), data (dict), message (str), wording (str), echo (str | None)，并为每个字段添加了Field描述。移除了未使用的导入。遵循了类型标注和编码指南（如使用int | str代替Union）。

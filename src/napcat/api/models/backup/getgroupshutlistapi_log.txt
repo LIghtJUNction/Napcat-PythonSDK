@@ -1,0 +1,8 @@
+Based on the OpenAPI specification:
+1. Corrected GetGroupShutListReq to include the required 'group_id' field, allowing both int and str types as per the 'oneOf' schema.
+2. Created nested models GroupHonor and BannedMember to represent the structure of a single banned member, including the internal placeholder fields using Field(alias='...').
+3. Defined the main response model GetGroupShutListRes with standard response fields (status, retcode, message, wording, echo) and a 'data' field which is a list of BannedMember models. Assumed 'data' is a list based on the endpoint name '获取群禁言列表', despite the OpenAPI spec incorrectly defining it as an object containing member properties directly.
+4. Added docstrings, descriptions using Field(...), and mandatory type hints.
+5. Removed unused imports (Any).
+6. Ensured all required fields from the spec's 'required' list are present in the models.
+7. Updated GetGroupShutListAPI to correctly reference the refined Req and Res models.

@@ -1,0 +1,1 @@
+Based on the OpenAPI spec, I have refactored the SendGroupSignReq model to include the required 'group_id' field of type string with a description. The SendGroupSignRes model remains empty as per the spec. Unused imports have been removed, and Field is used for descriptions. The API definition class is updated accordingly.

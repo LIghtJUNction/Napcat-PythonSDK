@@ -1,7 +1,0 @@
-1.  移除了未使用的导入: `Any`。
-2.  修正了`文件消息`模型，将type字段的默认值设置为`file`，并添加const=True
-3.  修正了`SendGroupMsgReq`模型,将`group_id`修改为 str | int
-4.  修正了`SendGroupMsgRes`模型，保留了ResponseData内部类
-5.  为所有字段添加了类型标注,描述和初始值。
-6.  统一了所有字段的描述信息。
-7.  将内部嵌套类移动到类里面

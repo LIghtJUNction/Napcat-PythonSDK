@@ -1,0 +1,7 @@
+Refactored the Pydantic models based on the OpenAPI spec.
+Removed unused imports.
+Implemented FetchEmojiLikeReq with required and optional fields, using appropriate types (int | str, int | str | None, int | None) and adding descriptions.
+Defined nested models EmojiLikeItem and FetchEmojiLikeData for the response structure.
+Implemented FetchEmojiLikeRes with top-level fields and the nested data model, using appropriate types (Literal['ok'], int, str, str | None, bool) and adding descriptions.
+Added Field with descriptions to all model fields.
+Ensured all fields have type annotations.

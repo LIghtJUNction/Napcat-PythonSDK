@@ -1,0 +1,6 @@
+Refining code based on OpenAPI spec for /_set_model_show.
+Removed unused imports (logging, Any).
+Defined SetModelShowReq with 'model' and 'model_show' fields based on requestBody schema. Both are required strings.
+Defined SetModelShowRes based on the response schema (which references 'result' but overrides 'data' to null). Included status (str), retcode (int), data (None), message (str), wording (str), and echo (str | None). Added descriptions to all fields using Field(...).
+Ensured correct type hints using built-in types and | None for nullable fields.
+Maintained the SetModelShowAPI class referencing the updated models.

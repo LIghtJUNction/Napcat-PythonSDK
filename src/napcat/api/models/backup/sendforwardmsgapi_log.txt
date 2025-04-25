@@ -1,0 +1,14 @@
+Based on the provided OpenAPI specification, I have refactored the Pydantic models for the `send_forward_msg` endpoint.
+
+Key changes made:
+1.  Defined nested models for each specific message type (`ReqTextMsgData`, `ReqTextMsg`, etc.) as separate classes to handle the complex structure of the `messages` content.
+2.  Defined recursive models (`ReqNodeMsgV1`, `ReqNodeMsgV2`) which represent the levels of combined forward messages.
+3.  Created a `TypeAlias` (`MessageContent`) to represent the possible types within the `content` list of forward nodes, handling the recursive structure.
+4.  Added `Field` with descriptions for all model fields based on the OpenAPI spec.
+5.  Used `Literal` for constant string values like message types, endpoint, and method.
+6.  Corrected type hints to use Python 3.10+ native types (`list`, `dict`, `str | int`, `str | None`, `TypeAlias`).
+7.  Marked required fields in the request (`messages`, `news`, `prompt`, `summary`, `source`) using `Field(...)` and optional fields (`group_id`, `user_id`) using `| None` and default `None`.
+8.  Defined the response model (`SendForwardMsgRes`) including all required fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) and correctly typed the nullable `echo` field as `str | None`.
+9.  Updated the `SendForwardMsgAPI` model to reference the correctly defined `Req` and `Res` models and used `Literal` for `endpoint` and `method`.
+10. Removed unnecessary imports and added necessary ones (`Literal`, `TypeAlias`).
+11. Added `model_rebuild()` calls for the recursive models.

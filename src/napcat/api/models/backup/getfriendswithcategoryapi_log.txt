@@ -1,0 +1,13 @@
+Based on the OpenAPI specification provided:
+1. The request body is empty, so the `GetFriendsWithCategoryReq` model remains `pass`.
+2. The response body contains a standard wrapper (`status`, `retcode`, etc.) and a `data` field which is a list of friend categories.
+3. Each friend category contains fields like `categoryId`, `categoryName`, `buddyList`, etc.
+4. The `buddyList` is a list of friend information objects, defined in the `好友信息` schema.
+5. Defined `FriendInfo` model based on the `好友信息` schema.
+6. Defined `FriendCategory` model based on the structure of items in the `data` array, including the `buddyList` which is a list of `FriendInfo`.
+7. Defined the main `GetFriendsWithCategoryRes` model including the standard response fields and the `data` field as a list of `FriendCategory`.
+8. Used `list[...]` for arrays and `... | None` for nullable fields (`echo`).
+9. Added `Field(..., description=...)` for all required fields and included descriptions from the spec.
+10. Removed the unused `Any` import.
+11. Ensured type hints conform to the guidelines (Python 3.9+ built-ins where applicable).
+12. Kept the API metadata and the main API model (`GetFriendsWithCategoryAPI`).

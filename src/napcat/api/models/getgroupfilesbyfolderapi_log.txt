@@ -1,8 +1,0 @@
-1. Removed unused imports.
-2. Added type annotations to all fields.
-3. Added descriptions and default values to all fields using `Field`.
-4. Created nested classes `FilesItem` and `FoldersItem` inside `ResponseData`.
-5. Adjusted the `__init__` method in `GetGroupFilesByFolderAPI` to properly initialize the base class.
-6. Ensured correct usage of `model_dump_json()` for debugging.
-7. Removed redundant `model_config` definitions.
-8. Updated group_id schema to accept both string and number, and represent it as a str type in pydantic.

@@ -1,6 +1,0 @@
-1.  `from typing import Any` 已删除, 因为 `Any` 可以直接使用 `any`。
-2.  `group_id` 模型的 `id` 字段类型更改为 `str | int`，以匹配 OpenAPI 规范中的 `oneOf` 类型。
-3.  为 `Result` 模型的 `data` 字段添加了默认值 `{}`, 并将类型设置为 `dict`。
-4.  `GroupId` 模型的名称从 `group_id` 更新为 `GroupId`，以符合驼峰命名法。
-5. 为req模型添加了描述
-6. 为group_id字段添加了描述

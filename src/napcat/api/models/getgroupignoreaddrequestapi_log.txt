@@ -1,7 +1,0 @@
-开始修复代码...
-1. 移除多余的导入: typing.Any, logging
-2. 修改 result 模型: data字段类型修改为 list[dict[str, any]], 并为所有字段添加默认值和描述
-3. 修改 GetGroupIgnoreAddRequestReq 模型: 保持不变，因为没有请求参数
-4. 修改 GetGroupIgnoreAddRequestRes 模型: 保持不变，所有字段都有类型标注和描述
-5. 修改 GetGroupIgnoreAddRequestAPI 模型: 去除logger实例化，避免循环引用
-代码修复完成。

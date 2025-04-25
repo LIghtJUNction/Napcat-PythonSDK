@@ -1,0 +1,22 @@
+修复过程：
+1. 检查导入：移除了未使用的 `Any` 导入。
+2. 修复请求模型 `SetGroupSpecialTitleReq`：
+   - 添加 `group_id` 字段，类型为 `int | str`，添加描述。
+   - 添加 `user_id` 字段，类型为 `int | str`，添加描述。
+   - 添加 `special_title` 字段，类型为 `str`，添加描述。
+   - 移除了 `pass`。
+   - 添加模型描述。
+3. 修复响应模型 `SetGroupSpecialTitleRes`：
+   - 添加 `status` 字段，根据 OpenAPI constant "ok" 使用 `Literal["ok"]` 类型，添加描述。
+   - 添加 `retcode` 字段，类型为 `int`，添加描述。
+   - 添加 `data` 字段，根据 OpenAPI 覆盖为 `null`，类型为 `None`，添加描述。
+   - 添加 `message` 字段，类型为 `str`，添加描述。
+   - 添加 `wording` 字段，类型为 `str`，添加描述。
+   - 添加 `echo` 字段，根据 OpenAPI `nullable: true` 使用 `str | None` 类型，添加描述。
+   - 移除了 `pass`。
+   - 添加模型描述。
+4. 移除了 `type: ignore` 注释。
+5. 确保所有字段都有适当的类型标注和描述。
+6. 移除了多余的注释。
+7. 修正了METADATA中的tags。
+8. 遵循了 Pydantic v2 和 Python 3.13+ 的类型标注规范（`|` 语法）。

@@ -1,0 +1,1 @@
+Refactoring the `fetch_user_profile_like` model. Defined `FetchUserProfileLikeReq` with `user_id` as `str | int`. Defined `FetchUserProfileLikeRes` based on the `result` schema, including `status`, `retcode`, `data` (as a nested empty model), `message`, `wording`, and nullable `echo`. Added descriptions using `Field`. Removed unnecessary imports and type ignores.

@@ -1,4 +1,0 @@
-1. 移除多余的typing import
-2. 补全类型标注和描述
-3. 基于paths生成对应的数据结构,因为Result里面的data是一个列表，所以类型也改为list[ResultData]
-4. 调整模型结构和常量,以及logger初始化方式

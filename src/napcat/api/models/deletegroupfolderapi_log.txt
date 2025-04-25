@@ -1,6 +1,0 @@
-1.  `group_id` in `DeleteGroupFolderReq` is now `str | int` to align with the OpenAPI schema.
-2. Removed unused import `Any`.
-3. The `status` field in `Result` is now defined with `const=True` and a more descriptive description.
-4.  `ResultData` is created as nested class, fields includes `retCode: float, retMsg: str, clientWording: str`
-5.  `DeleteGroupFolderRes` is now inherit from `Result`.
-6. Refactor  `DeleteGroupFolderAPI`, fields includes `endpoint, method, Req, Res, logger`

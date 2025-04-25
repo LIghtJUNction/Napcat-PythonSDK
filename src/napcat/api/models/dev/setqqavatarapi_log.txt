@@ -1,0 +1,33 @@
+Analyzing the OpenAPI specification for the `/set_qq_avatar` endpoint.
+- Request body requires a `file` field of type string.
+- Response body follows a standard structure with `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+- The `data` field in the response is explicitly defined as `null`.
+
+Refactoring `SetQqAvatarReq`:
+- Add the `file: str` field.
+- Mark `file` as required using `Field(...)` and add a description.
+
+Refactoring `SetQqAvatarRes`:
+- Add fields `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+- Assign appropriate types: `status: str`, `retcode: int`, `data: None`, `message: str`, `wording: str`, `echo: str | None`.
+- Add default values and descriptions using `Field`.
+- `status` has a default of 'ok'.
+- `data` is `None` as per the spec override.
+- `echo` is nullable (`str | None`).
+
+Reviewing Imports:
+- Remove `typing.Any` as specific types are used.
+- Keep `logging` as it might be used elsewhere (though not strictly in the models).
+- Keep `BaseModel` and `Field`.
+
+Reviewing `SetQqAvatarAPI`:
+- The structure seems correct for linking the request and response models.
+
+Applying Guidelines:
+- Use built-in types and `| None`.
+- Add `Field` with descriptions and defaults.
+- Remove unused imports.
+- No nested classes or enums are required based on this spec.
+- Field names are already snake_case in the spec, aligning with Python standards.
+
+Generating the corrected Python code.
