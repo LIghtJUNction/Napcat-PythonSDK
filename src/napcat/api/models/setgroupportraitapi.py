@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -57,8 +58,8 @@ class SetGroupPortraitRes(BaseModel):
     设置群头像响应模型
     """
 
-    status: str = Field(
-        ..., description="响应状态", const="ok"
+    status: Literal["ok"] = Field(
+        ..., description="响应状态"
     )
     retcode: int = Field(
         ..., description="响应码"

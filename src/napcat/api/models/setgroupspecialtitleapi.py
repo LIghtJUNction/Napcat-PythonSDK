@@ -52,7 +52,7 @@ class SetGroupSpecialTitleRes(BaseModel):
     设置群头衔响应模型
     """
 
-    status: Literal["ok"] = Field(..., description="状态: 'ok'")
+    status: Literal["ok"] = Field("ok", description="状态: 'ok'")
     retcode: int = Field(..., description="返回码")
     data: None = Field(None, description="固定为 null") # According to OpenAPI spec override
     message: str = Field(..., description="消息")

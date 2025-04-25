@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -44,7 +45,7 @@ class SetGroupWholeBanRes(BaseModel):
     SetGroupWholeBan Endpoint Response Model
     """
 
-    status: str = Field(..., description="状态")
+    status: Literal["ok"] = Field("ok", description="状态")
     retcode: int = Field(..., description="返回码")
     data: None = Field(..., description="数据 (总是 null)")
     message: str = Field(..., description="消息")

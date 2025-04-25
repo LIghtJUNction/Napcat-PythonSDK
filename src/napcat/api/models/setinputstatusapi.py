@@ -34,8 +34,8 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
-from pydantic import AliasGenerator # Import AliasGenerator for camelCase conversion
 
 logger = logging.getLogger(__name__)
 
@@ -44,16 +44,9 @@ class SetInputStatusReq(BaseModel):
     """
     设置输入状态请求模型
     """
-    # Pydantic V2 AliasGenerator to convert camelCase (eventType) to snake_case (event_type)
-    model_config = {
-        "alias_generator": AliasGenerator(
-            validation_alias='eventType',
-            serialization_alias='eventType'
-        )
-    }
 
     # eventType: number (int or float likely), required
-    event_type: int | float = Field(..., description="状态类型，0为正在说话，1为正在输入")
+    eventType: int | float = Field(..., description="状态类型，0为正在说话，1为正在输入")
 
     # user_id: number or string, required
     user_id: int | str = Field(..., description="用户ID")
@@ -71,7 +64,7 @@ class SetInputStatusRes(BaseModel):
         result: int | float = Field(..., description="操作结果") # number in spec
         errMsg: str = Field(..., description="错误信息")
 
-    status: str = Field("ok", description="状态，永远是ok")
+    status: Literal["ok"] = Field("ok", description="状态，永远是ok")
     retcode: int = Field(..., description="返回码")
     data: Data = Field(..., description="响应数据") # Use the nested Data model
     message: str = Field(..., description="消息")

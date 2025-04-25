@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -45,7 +46,7 @@ class SetGroupAddRequestRes(BaseModel): # type: ignore
     处理加群请求 响应模型
     """
 
-    status: str = Field("ok", description="状态")
+    status: Literal["ok"] = Field("ok", description="状态")
     retcode: int | float = Field(..., description="返回码")
     data: None = Field(None, description="数据")
     message: str = Field(..., description="消息")

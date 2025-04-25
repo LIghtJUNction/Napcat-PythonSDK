@@ -21,6 +21,7 @@ __method__ = "POST"
 
 
 # region code
+from typing import Literal
 from pydantic import BaseModel, Field
 
 # region req
@@ -39,7 +40,7 @@ class SetModelShowRes(BaseModel):
     """
     设置在线机型的响应参数
     """
-    status: str = Field(..., description="状态，通常为 'ok'")
+    status: Literal["ok"] = Field(..., description="状态，通常为 'ok'")
     retcode: int = Field(..., description="返回码")
     data: None = Field(..., description="数据，在此接口中为 null") # OpenAPI spec indicates data is null
     message: str = Field(..., description="消息")

@@ -22,7 +22,8 @@ __method__ = "POST"
 
 # region code
 import logging
-from pydantic import BaseModel, Field, Literal
+from typing import Literal
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ class SetGroupLeaveRes(BaseModel):
     """
     退群响应模型
     """
-    status: Literal['ok'] = Field(..., description="响应状态")
+    status: Literal["ok"] = Field("ok", description="响应状态")
     retcode: int = Field(..., description="响应码")
     data: None = Field(..., description="响应数据") # Based on OpenAPI override
     message: str = Field(..., description="信息")

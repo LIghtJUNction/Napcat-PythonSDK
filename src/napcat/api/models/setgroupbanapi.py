@@ -21,6 +21,7 @@ __method__ = "POST"
 
 
 # region code
+from typing import Literal
 from pydantic import BaseModel, Field
 
 # region req
@@ -43,7 +44,7 @@ class SetGroupBanRes(BaseModel):
     {{DESC_EndPointRes}}
     """
 
-    status: str = Field(..., description="响应状态", const="ok")
+    status: Literal["ok"] = Field("ok", description="响应状态")
     retcode: float = Field(..., description="返回码")
     data: None = Field(None, description="响应数据，此接口无数据返回")
     message: str = Field(..., description="错误信息")
