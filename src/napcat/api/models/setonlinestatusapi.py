@@ -256,7 +256,6 @@
     "ext_status": 1000,
     "battery_status": 0
 }
-```
 
 summary:设置在线状态
 
@@ -272,7 +271,9 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
+from napcat.base.enums import OnlineStatus , ExtStatus
 
 logger = logging.getLogger(__name__)
 
@@ -281,30 +282,16 @@ class SetOnlineStatusReq(BaseModel):
     """
     设置在线状态请求模型
 
-    ## 状态列表
-
-    ### 在线
-
-    ```json5
-    { "status": 10, "ext_status": 0, "battery_status": 0 } 
-    ```
-
-    ...
-
-    ### 我的电量
-
-    ```json5
-    { 
-        "status": 10, 
-        "ext_status": 1000,
-        "battery_status": 0
-    }
-    ```
+    
+    可以使用 OnlineStatus 或 在线状态 枚举来设置状态值，例如：
+    - status: OnlineStatus.ONLINE.value 或 在线状态.在线.value
+    - ext_status: OnlineStatus.LISTENING_MUSIC.value 或 在线状态.听歌中.value
     """
 
-    status: int = Field(..., description="详情看顶部")
-    ext_status: int = Field(..., description="详情看顶部")
-    battery_status: int = Field(..., description="电量")
+    status: OnlineStatus = Field(..., description="基本状态值")
+    ext_status: ExtStatus = Field(..., description="扩展状态值")
+    battery_status: int = Field(0, ge=0, le=100, description="电量状态，通常为0")
+
 # endregion req
 
 
@@ -314,12 +301,13 @@ class SetOnlineStatusRes(BaseModel):
     """
     设置在线状态响应模型
     """
-    status: str = Field(..., description="响应状态，通常为 'ok'")
-    retcode: int = Field(..., description="返回码")
-    data: None = Field(..., description="响应数据体，根据文档此处为null")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应词语")
-    echo: str | None = Field(None, description="请求的echo，可能为null")
+    status: Literal["ok"] = Field(default="ok", description="响应状态，通常为 'ok'")
+    retcode: int = Field(default=0, description="返回码")
+    data: None = Field(default=None, description="响应数据体，根据文档此处为null")
+    message: str = Field(default="", description="响应消息")
+    wording: str = Field(default="", description="响应词语")
+    echo: str | None = Field(default=None, description="请求的echo，可能为null")
+
 # endregion res
 
 # region api

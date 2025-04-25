@@ -21,7 +21,7 @@ __method__ = "POST"
 
 
 # region code
-from pydantic import BaseModel, Field, Literal
+from pydantic import BaseModel, Field
 
 
 # region req
@@ -42,7 +42,7 @@ class ForwardGroupSingleMsgRes(BaseModel):
     消息转发到群 响应模型
     """
 
-    status: Literal["ok"] = Field("ok", description="响应状态，固定为 'ok'")
+    status: str = Field("ok", description="响应状态，固定为 'ok'")
     retcode: int = Field(..., description="返回码")
     data: None = Field(None, description="响应数据，固定为 null")
     message: str = Field(..., description="响应消息")

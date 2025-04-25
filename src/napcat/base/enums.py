@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, IntEnum
 # region ActionType
 class ActionType(Enum):
     """API动作类型枚举"""
@@ -70,69 +70,82 @@ class ActionType(Enum):
 
 
 # region OLStatus
-class OnlineStatus(Enum):
-    """在线状态枚举
-    
-    {
-      "status": 10, 
-      "ext_status": 0, 
-      "battery_status": 0 
-    } 
-    
-    """
-    # 基本状态 - status 值
-    ONLINE = 10  # 在线状态
-    AWAY = 30    # 离开
+# 基本状态枚举
+class OnlineStatus(IntEnum):
+    ONLINE = 10  # 在线
+    AWAY = 30   # 离开
     INVISIBLE = 40  # 隐身
-    BUSY = 50    # 忙碌
-    QME = 60     # Q我吧
+    BUSY = 50   # 忙碌
+    QME = 60    # Q我吧
     DO_NOT_DISTURB = 70  # 请勿打扰
-    
-    # 扩展状态 - ext_status 值
-    BATTERY_STATUS = 1000  # 我的电量
-    WEAK_SIGNAL = 1011     # 信号弱
-    SLEEPING = 1016        # 睡觉中
-    STUDYING = 1018        # 学习中
-    WATCHING_SERIES = 1021  # 追剧中
-    GAMING = 1027          # timi中
-    LISTENING_MUSIC = 1028  # 听歌中
-    WEATHER = 1030         # 今日天气
-    STAYING_UP = 1032      # 熬夜中
-    IN_LOVE = 1051         # 恋爱中
-    IM_FINE = 1052         # 我没事
-    EXCITED = 1056         # 嗨到飞起
-    ENERGETIC = 1058       # 元气满满
-    RELAXING = 1059        # 悠哉哉
-    BORED = 1060           # 无聊中
-    NEED_PEACE = 1061      # 想静静
-    TOO_HARD = 1062        # 我太难了
-    COMPLICATED = 1063     # 一言难尽
-    BABY_CERTIFIED = 1070  # 宝宝认证
-    LUCKY_KOI = 1071       # 好运锦鲤
-    SLACKING = 1300        # 摸鱼中
-    IN_EMO = 1401          # emo中
-    MERCURY_RETROGRADE = 1201  # 水逆退散
-    
-    # 2000系列扩展状态
-    MUDDLED = 2001         # 难得糊涂
-    HANGING_OUT = 2003     # 出去浪
-    LOVE_YOU = 2006        # 爱你
-    ENLIGHTENED = 2013     # 我想开了
-    DRAINED = 2014         # 被掏空
-    TRAVELING = 2015       # 去旅行
-    CRASHED = 2019         # 我crash了
-    WORKING_HARD = 2023    # 搬砖中
-    DREAM_TOGETHER = 2025  # 一起元梦
-    SEEKING_STAR = 2026    # 求星搭子
-    SPRING_LIMITED = 2037  # 春日限定
-    DOING_HOMEWORK = 2012  # 肝作业
 
-# region 在线状态
-class 在线状态(Enum):
+# 扩展状态枚举
+class ExtStatus(IntEnum):
+    NONE = 0  # 无扩展状态
+    LISTENING_MUSIC = 1028  # 听歌中
+    SPRING_LIMITED = 2037  # 春日限定
+    YUANMENG = 2025  # 一起元梦
+    SEEKING_STAR = 2026  # 求星搭子
+    DRAINED = 2014  # 被掏空
+    WEATHER = 1030  # 今日天气
+    CRASHED = 2019  # 我crash了
+    LOVE = 2006  # 爱你
+    IN_LOVE = 1051  # 恋爱中
+    GOOD_LUCK = 1071  # 好运锦鲤
+    RETROGRADE = 1201  # 水逆退散
+    HYPED = 1056  # 嗨到飞起
+    ENERGETIC = 1058  # 元气满满
+    BABY_CERTIFIED = 1070  # 宝宝认证
+    HARD_TO_EXPLAIN = 1063  # 一言难尽
+    RARELY_CONFUSED = 2001  # 难得糊涂
+    EMO = 1401  # emo中
+    TOUGH = 1062  # 我太难了
+    MOVED_ON = 2013  # 我想开了
+    IM_FINE = 1052  # 我没事
+    NEED_QUIET = 1061  # 想静静
+    RELAXED = 1059  # 悠哉哉
+    TRAVELING = 2015  # 去旅行
+    WEAK_SIGNAL = 1011  # 信号弱
+    OUT_HAVING_FUN = 2003  # 出去浪
+    HOMEWORK = 2012  # 肝作业
+    STUDYING = 1018  # 学习中
+    WORKING = 2023  # 搬砖中
+    SLACKING = 1300  # 摸鱼中
+    BORED = 1060  # 无聊中
+    TIMI = 1027  # timi中
+    SLEEPING = 1016  # 睡觉中
+    STAYING_UP = 1032  # 熬夜中
+    BINGE_WATCHING = 1021  # 追剧中
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# region 状态
+class 状态(Enum):
     """ 中文版在线状态枚举 
-    让人耳目一新的感觉
-    对新版python而言
-    一点问题也没有
+    ...
     """
     在线 = 10  # Online
     离开 = 30  # Away

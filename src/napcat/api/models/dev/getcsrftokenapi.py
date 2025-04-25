@@ -22,7 +22,7 @@ __method__ = "POST"
 
 # region code
 
-from pydantic import BaseModel, Field, Literal
+from pydantic import BaseModel, Field
 
 # region req
 class GetCsrfTokenReq(BaseModel):
@@ -41,7 +41,7 @@ class GetCsrfTokenRes(BaseModel):
     """
     获取 CSRF Token 响应模型
     """
-    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    status: str = Field("ok", description="状态码，固定为 'ok'")
     retcode: int = Field(..., description="返回码")
     data: "GetCsrfTokenRes.Data" = Field(..., description="响应数据")
     message: str = Field(..., description="信息")

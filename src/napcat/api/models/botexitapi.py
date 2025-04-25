@@ -21,7 +21,7 @@ __method__ = "POST"
 
 
 # region code
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 # region req
 class BotExitReq(BaseModel):
