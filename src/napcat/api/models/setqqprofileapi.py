@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -50,7 +51,7 @@ class SetQqProfileRes(BaseModel):
         result: float = Field(..., description="结果")
         errMsg: str = Field(..., description="错误信息")
 
-    status: str = Field(..., description="状态", pattern="^ok$") # 状态 (ok)
+    status: Literal["ok"] = Field("ok", description="状态") # 状态 (ok)
     retcode: float = Field(..., description="返回码") # 返回码
     data: Data = Field(..., description="数据") # 数据
     message: str = Field(..., description="消息") # 消息

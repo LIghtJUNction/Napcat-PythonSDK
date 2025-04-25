@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -41,7 +42,7 @@ class SetQqAvatarRes(BaseModel):
     """
     设置头像响应模型
     """
-    status: str = Field('ok', description="状态, 总是 ok")
+    status: Literal["ok"] = Field('ok', description="状态, 总是 ok")
     retcode: int = Field(..., description="状态码")
     data: None = Field(None, description="数据字段，总是 null")
     message: str = Field(..., description="错误信息")

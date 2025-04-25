@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 
+from typing import Literal
 from pydantic import BaseModel, Field
 
 # region req
@@ -43,7 +44,7 @@ class UploadGroupFileRes(BaseModel):
     """
     上传群文件响应体
     """
-    status: str = Field(..., description="状态", const='ok')
+    status: Literal["ok"] = Field("ok", description="状态")
     retcode: int | float = Field(..., description="状态码")
     data: None = Field(..., description="响应数据，在此接口中固定为null") # 根据响应体data schema定义
     message: str = Field(..., description="消息")

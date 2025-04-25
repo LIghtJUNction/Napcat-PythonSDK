@@ -21,6 +21,7 @@ __method__ = "POST"
 
 
 # region code
+from typing import Literal
 from pydantic import BaseModel, Field
 
 # region req
@@ -51,7 +52,7 @@ class ArksharepeerRes(BaseModel):
         errMsg: str = Field(..., description="错误信息")
         arkJson: str = Field(..., description="卡片json")
 
-    status: str = Field("ok", description="状态")
+    status: Literal["ok"] = Field("ok", description="状态")
     retcode: int = Field(..., description="返回码")
     data: ArksharepeerData = Field(..., description="响应数据")
     message: str = Field(..., description="消息")
