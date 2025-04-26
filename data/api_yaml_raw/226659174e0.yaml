@@ -26,6 +26,7 @@ paths:
                 count:
                   type: number
                   description: 数量
+                  default: 20
                 reverseOrder:
                   type: boolean
                   description: 倒序
@@ -432,6 +433,7 @@ components:
             summary:
               type: string
               default: '[图片]'
+              description: 外显
           x-apifox-orders:
             - file
             - summary
@@ -578,6 +580,7 @@ components:
       required:
         - user_id
         - nickname
+        - card
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

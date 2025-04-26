@@ -37,6 +37,11 @@ paths:
                 - current_parent_directory
                 - file_id
               x-apifox-ignore-properties: []
+            example:
+              group_id: 123456
+              file_id: 27c94e1fff104282b8b07368c984e221
+              current_parent_directory: /ca0f1860-6362-4777-bc50-9f31993c6877
+              new_name: 吃糖葫芦.mp4
       responses:
         '200':
           description: ''

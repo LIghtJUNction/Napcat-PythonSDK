@@ -33,8 +33,6 @@ paths:
                     x-apifox-overrides:
                       data: &ref_0
                         type: 'null'
-                    required:
-                      - data
                 x-apifox-orders:
                   - 01JBB1CF6SG5SVYKF30XXZPC7Q
                 properties:
@@ -54,7 +52,6 @@ paths:
                 required:
                   - status
                   - retcode
-                  - data
                   - message
                   - wording
                   - echo

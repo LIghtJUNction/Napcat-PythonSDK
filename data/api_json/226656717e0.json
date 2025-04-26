@@ -22,18 +22,12 @@
                 "type": "object",
                 "properties": {
                   "user_id": {
-                    "oneOf": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "number"
-                      }
-                    ]
+                    "$ref": "#/components/schemas/user_id"
                   },
                   "times": {
                     "type": "number",
-                    "description": "点赞次数"
+                    "description": "点赞次数",
+                    "default": 1
                   }
                 },
                 "x-apifox-orders": [
@@ -41,8 +35,7 @@
                   "times"
                 ],
                 "required": [
-                  "user_id",
-                  "times"
+                  "user_id"
                 ],
                 "x-apifox-ignore-properties": []
               },
@@ -127,6 +120,17 @@
   },
   "components": {
     "schemas": {
+      "user_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
       "result": {
         "type": "object",
         "properties": {

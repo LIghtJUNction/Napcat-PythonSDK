@@ -40,8 +40,7 @@
                   "chat_type"
                 ],
                 "required": [
-                  "group_id",
-                  "chat_type"
+                  "group_id"
                 ],
                 "x-apifox-ignore-properties": []
               },

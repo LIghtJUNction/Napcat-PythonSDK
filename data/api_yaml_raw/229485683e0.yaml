@@ -29,7 +29,6 @@ paths:
                 - chat_type
               required:
                 - group_id
-                - chat_type
               x-apifox-ignore-properties: []
             example: ''
       responses:

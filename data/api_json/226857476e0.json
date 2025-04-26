@@ -41,7 +41,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": "{\n    \"group_id\": \"123456\",\n    \"message\": [\n        {\n            \"type\": \"image\",\n            \"data\": {\n                // 本地路径\n                \"file\": \"file://D:/a.jpg\"\n                \n                // 网络路径\n                // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\n                \n                //base64编码\n                // \"file\": \"base64://xxxxxxxx\"\n            }\n        }\n    ]\n}"
+              "example": "{\n    \"group_id\": \"123456\",\n    \"message\": [\n        {\n            \"type\": \"image\",\n            \"data\": {\n                // 本地路径\n                \"file\": \"file://D:/a.jpg\",\n                \"summary\": \"[图片]\"\n                \n                // 网络路径\n                // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\n                \n                //base64编码\n                // \"file\": \"base64://xxxxxxxx\"\n            }\n        }\n    ]\n}"
             }
           }
         },
@@ -173,7 +173,8 @@
               },
               "summary": {
                 "type": "string",
-                "default": "[图片]"
+                "default": "[图片]",
+                "description": "外显"
               }
             },
             "x-apifox-orders": [

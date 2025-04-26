@@ -33,9 +33,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "group_id": 123456789
-              }
+              "example": ""
             }
           }
         },
@@ -51,263 +49,212 @@
                       "$ref": "#/components/schemas/result",
                       "x-apifox-overrides": {
                         "data": {
-                          "type": "object",
-                          "properties": {
-                            "uid": {
-                              "type": "string"
-                            },
-                            "qid": {
-                              "type": "string"
-                            },
-                            "uin": {
-                              "type": "string"
-                            },
-                            "nick": {
-                              "type": "string"
-                            },
-                            "remark": {
-                              "type": "string"
-                            },
-                            "cardType": {
-                              "type": "number"
-                            },
-                            "cardName": {
-                              "type": "string"
-                            },
-                            "role": {
-                              "type": "number"
-                            },
-                            "avatarPath": {
-                              "type": "string"
-                            },
-                            "shutUpTime": {
-                              "type": "number",
-                              "description": "解禁时间"
-                            },
-                            "isDelete": {
-                              "type": "boolean"
-                            },
-                            "isSpecialConcerned": {
-                              "type": "boolean"
-                            },
-                            "isSpecialShield": {
-                              "type": "boolean"
-                            },
-                            "isRobot": {
-                              "type": "boolean"
-                            },
-                            "groupHonor": {
-                              "type": "object",
-                              "properties": {
-                                "0": {
-                                  "type": "number"
-                                },
-                                "1": {
-                                  "type": "number"
-                                },
-                                "2": {
-                                  "type": "number"
-                                },
-                                "3": {
-                                  "type": "number"
-                                }
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "uid": {
+                                "type": "string"
                               },
-                              "x-apifox-orders": [
-                                "0",
-                                "1",
-                                "2",
-                                "3"
-                              ],
-                              "required": [
-                                "0",
-                                "3",
-                                "1",
-                                "2"
-                              ]
+                              "qid": {
+                                "type": "string"
+                              },
+                              "uin": {
+                                "type": "string"
+                              },
+                              "nick": {
+                                "type": "string"
+                              },
+                              "remark": {
+                                "type": "string"
+                              },
+                              "cardType": {
+                                "type": "number"
+                              },
+                              "cardName": {
+                                "type": "string"
+                              },
+                              "role": {
+                                "type": "number"
+                              },
+                              "avatarPath": {
+                                "type": "string"
+                              },
+                              "shutUpTime": {
+                                "type": "number",
+                                "description": "解禁时间"
+                              },
+                              "isDelete": {
+                                "type": "boolean"
+                              },
+                              "isSpecialConcerned": {
+                                "type": "boolean"
+                              },
+                              "isSpecialShield": {
+                                "type": "boolean"
+                              },
+                              "isRobot": {
+                                "type": "boolean"
+                              },
+                              "groupHonor": {
+                                "type": "object",
+                                "properties": {},
+                                "x-apifox-orders": []
+                              },
+                              "memberRealLevel": {
+                                "type": "number",
+                                "description": "群聊等级"
+                              },
+                              "memberLevel": {
+                                "type": "number"
+                              },
+                              "globalGroupLevel": {
+                                "type": "number"
+                              },
+                              "globalGroupPoint": {
+                                "type": "number"
+                              },
+                              "memberTitleId": {
+                                "type": "number"
+                              },
+                              "memberSpecialTitle": {
+                                "type": "string"
+                              },
+                              "lastSpeakTime": {
+                                "type": "number",
+                                "description": "最后发言时间"
+                              },
+                              "joinTime": {
+                                "type": "number",
+                                "description": "入群时间"
+                              },
+                              "specialTitleExpireTime": {
+                                "type": "string"
+                              },
+                              "userShowFlag": {
+                                "type": "number"
+                              },
+                              "userShowFlagNew": {
+                                "type": "number"
+                              },
+                              "richFlag": {
+                                "type": "number"
+                              },
+                              "mssVipType": {
+                                "type": "number"
+                              },
+                              "bigClubLevel": {
+                                "type": "number"
+                              },
+                              "bigClubFlag": {
+                                "type": "number"
+                              },
+                              "autoRemark": {
+                                "type": "string"
+                              },
+                              "creditLevel": {
+                                "type": "number"
+                              },
+                              "memberFlag": {
+                                "type": "number"
+                              },
+                              "memberFlagExt": {
+                                "type": "number"
+                              },
+                              "memberMobileFlag": {
+                                "type": "number"
+                              },
+                              "memberFlagExt2": {
+                                "type": "number"
+                              },
+                              "isSpecialShielded": {
+                                "type": "boolean"
+                              },
+                              "cardNameId": {
+                                "type": "number"
+                              }
                             },
-                            "memberRealLevel": {
-                              "type": "number",
-                              "description": "群聊等级"
-                            },
-                            "memberLevel": {
-                              "type": "number"
-                            },
-                            "globalGroupLevel": {
-                              "type": "number"
-                            },
-                            "globalGroupPoint": {
-                              "type": "number"
-                            },
-                            "memberTitleId": {
-                              "type": "number"
-                            },
-                            "memberSpecialTitle": {
-                              "type": "string"
-                            },
-                            "lastSpeakTime": {
-                              "type": "number",
-                              "description": "最后发言时间"
-                            },
-                            "joinTime": {
-                              "type": "number",
-                              "description": "入群时间"
-                            },
-                            "01JBHA466QHTSVPFFF54F8P2YT": {
-                              "type": "string"
-                            },
-                            "01JBHA46D3X7742C9TX0VM8SNR": {
-                              "type": "string"
-                            },
-                            "specialTitleExpireTime": {
-                              "type": "string"
-                            },
-                            "userShowFlag": {
-                              "type": "number"
-                            },
-                            "userShowFlagNew": {
-                              "type": "number"
-                            },
-                            "richFlag": {
-                              "type": "number"
-                            },
-                            "mssVipType": {
-                              "type": "number"
-                            },
-                            "bigClubLevel": {
-                              "type": "number"
-                            },
-                            "bigClubFlag": {
-                              "type": "number"
-                            },
-                            "autoRemark": {
-                              "type": "string"
-                            },
-                            "creditLevel": {
-                              "type": "number"
-                            },
-                            "01JBHA5T79E4HEQ1DFJ0SY2YHV": {
-                              "type": "string"
-                            },
-                            "01JBHA5TECQZX10200ADAGYDD2": {
-                              "type": "string"
-                            },
-                            "01JBHA5VJS1NBN084ZBA24DK1C": {
-                              "type": "string"
-                            },
-                            "01JBHA5X1H6N1W1ZMZ5C54NA9X": {
-                              "type": "string"
-                            },
-                            "memberFlag": {
-                              "type": "number"
-                            },
-                            "memberFlagExt": {
-                              "type": "number"
-                            },
-                            "memberMobileFlag": {
-                              "type": "number"
-                            },
-                            "memberFlagExt2": {
-                              "type": "number"
-                            },
-                            "isSpecialShielded": {
-                              "type": "boolean"
-                            },
-                            "cardNameId": {
-                              "type": "number"
-                            }
-                          },
-                          "x-apifox-orders": [
-                            "uid",
-                            "qid",
-                            "uin",
-                            "nick",
-                            "remark",
-                            "cardType",
-                            "cardName",
-                            "role",
-                            "avatarPath",
-                            "shutUpTime",
-                            "isDelete",
-                            "isSpecialConcerned",
-                            "isSpecialShield",
-                            "isRobot",
-                            "groupHonor",
-                            "memberRealLevel",
-                            "memberLevel",
-                            "globalGroupLevel",
-                            "globalGroupPoint",
-                            "memberTitleId",
-                            "memberSpecialTitle",
-                            "specialTitleExpireTime",
-                            "userShowFlag",
-                            "userShowFlagNew",
-                            "richFlag",
-                            "mssVipType",
-                            "bigClubLevel",
-                            "bigClubFlag",
-                            "autoRemark",
-                            "creditLevel",
-                            "joinTime",
-                            "lastSpeakTime",
-                            "memberFlag",
-                            "memberFlagExt",
-                            "memberMobileFlag",
-                            "memberFlagExt2",
-                            "isSpecialShielded",
-                            "cardNameId",
-                            "01JBHA5TECQZX10200ADAGYDD2",
-                            "01JBHA5T79E4HEQ1DFJ0SY2YHV",
-                            "01JBHA46D3X7742C9TX0VM8SNR",
-                            "01JBHA5X1H6N1W1ZMZ5C54NA9X",
-                            "01JBHA5VJS1NBN084ZBA24DK1C",
-                            "01JBHA466QHTSVPFFF54F8P2YT"
-                          ],
-                          "required": [
-                            "uid",
-                            "globalGroupLevel",
-                            "cardName",
-                            "cardType",
-                            "remark",
-                            "nick",
-                            "uin",
-                            "qid",
-                            "isRobot",
-                            "isSpecialShield",
-                            "isSpecialConcerned",
-                            "isDelete",
-                            "shutUpTime",
-                            "role",
-                            "avatarPath",
-                            "memberLevel",
-                            "memberRealLevel",
-                            "groupHonor",
-                            "memberFlagExt",
-                            "memberFlag",
-                            "lastSpeakTime",
-                            "memberSpecialTitle",
-                            "memberTitleId",
-                            "globalGroupPoint",
-                            "joinTime",
-                            "userShowFlagNew",
-                            "userShowFlag",
-                            "specialTitleExpireTime",
-                            "01JBHA466QHTSVPFFF54F8P2YT",
-                            "01JBHA46D3X7742C9TX0VM8SNR",
-                            "bigClubFlag",
-                            "bigClubLevel",
-                            "mssVipType",
-                            "richFlag",
-                            "autoRemark",
-                            "creditLevel",
-                            "01JBHA5T79E4HEQ1DFJ0SY2YHV",
-                            "01JBHA5TECQZX10200ADAGYDD2",
-                            "cardNameId",
-                            "isSpecialShielded",
-                            "memberMobileFlag",
-                            "memberFlagExt2",
-                            "01JBHA5VJS1NBN084ZBA24DK1C",
-                            "01JBHA5X1H6N1W1ZMZ5C54NA9X"
-                          ]
+                            "x-apifox-orders": [
+                              "uid",
+                              "qid",
+                              "uin",
+                              "nick",
+                              "remark",
+                              "cardType",
+                              "cardName",
+                              "role",
+                              "avatarPath",
+                              "shutUpTime",
+                              "isDelete",
+                              "isSpecialConcerned",
+                              "isSpecialShield",
+                              "isRobot",
+                              "groupHonor",
+                              "memberRealLevel",
+                              "memberLevel",
+                              "globalGroupLevel",
+                              "globalGroupPoint",
+                              "memberTitleId",
+                              "memberSpecialTitle",
+                              "specialTitleExpireTime",
+                              "userShowFlag",
+                              "userShowFlagNew",
+                              "richFlag",
+                              "mssVipType",
+                              "bigClubLevel",
+                              "bigClubFlag",
+                              "autoRemark",
+                              "creditLevel",
+                              "joinTime",
+                              "lastSpeakTime",
+                              "memberFlag",
+                              "memberFlagExt",
+                              "memberMobileFlag",
+                              "memberFlagExt2",
+                              "isSpecialShielded",
+                              "cardNameId"
+                            ],
+                            "required": [
+                              "uid",
+                              "globalGroupLevel",
+                              "cardName",
+                              "cardType",
+                              "remark",
+                              "nick",
+                              "uin",
+                              "qid",
+                              "isRobot",
+                              "isSpecialShield",
+                              "isSpecialConcerned",
+                              "isDelete",
+                              "shutUpTime",
+                              "role",
+                              "avatarPath",
+                              "memberLevel",
+                              "memberRealLevel",
+                              "groupHonor",
+                              "memberFlagExt",
+                              "memberFlag",
+                              "lastSpeakTime",
+                              "memberSpecialTitle",
+                              "memberTitleId",
+                              "globalGroupPoint",
+                              "joinTime",
+                              "userShowFlagNew",
+                              "userShowFlag",
+                              "specialTitleExpireTime",
+                              "bigClubFlag",
+                              "bigClubLevel",
+                              "mssVipType",
+                              "richFlag",
+                              "autoRemark",
+                              "creditLevel",
+                              "cardNameId",
+                              "isSpecialShielded",
+                              "memberMobileFlag",
+                              "memberFlagExt2"
+                            ]
+                          }
                         }
                       },
                       "required": [
@@ -327,247 +274,214 @@
                       "type": "number"
                     },
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "uid": {
-                          "type": "string"
-                        },
-                        "qid": {
-                          "type": "string"
-                        },
-                        "uin": {
-                          "type": "string"
-                        },
-                        "nick": {
-                          "type": "string"
-                        },
-                        "remark": {
-                          "type": "string"
-                        },
-                        "cardType": {
-                          "type": "number"
-                        },
-                        "cardName": {
-                          "type": "string"
-                        },
-                        "role": {
-                          "type": "number"
-                        },
-                        "avatarPath": {
-                          "type": "string"
-                        },
-                        "shutUpTime": {
-                          "type": "number",
-                          "description": "解禁时间"
-                        },
-                        "isDelete": {
-                          "type": "boolean"
-                        },
-                        "isSpecialConcerned": {
-                          "type": "boolean"
-                        },
-                        "isSpecialShield": {
-                          "type": "boolean"
-                        },
-                        "isRobot": {
-                          "type": "boolean"
-                        },
-                        "groupHonor": {
-                          "type": "object",
-                          "properties": {
-                            "0": {
-                              "type": "number"
-                            },
-                            "1": {
-                              "type": "number"
-                            },
-                            "2": {
-                              "type": "number"
-                            },
-                            "3": {
-                              "type": "number"
-                            }
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "uid": {
+                            "type": "string"
                           },
-                          "x-apifox-orders": [
-                            "0",
-                            "1",
-                            "2",
-                            "3"
-                          ],
-                          "required": [
-                            "0",
-                            "3",
-                            "1",
-                            "2"
-                          ],
-                          "x-apifox-ignore-properties": []
+                          "qid": {
+                            "type": "string"
+                          },
+                          "uin": {
+                            "type": "string"
+                          },
+                          "nick": {
+                            "type": "string"
+                          },
+                          "remark": {
+                            "type": "string"
+                          },
+                          "cardType": {
+                            "type": "number"
+                          },
+                          "cardName": {
+                            "type": "string"
+                          },
+                          "role": {
+                            "type": "number"
+                          },
+                          "avatarPath": {
+                            "type": "string"
+                          },
+                          "shutUpTime": {
+                            "type": "number",
+                            "description": "解禁时间"
+                          },
+                          "isDelete": {
+                            "type": "boolean"
+                          },
+                          "isSpecialConcerned": {
+                            "type": "boolean"
+                          },
+                          "isSpecialShield": {
+                            "type": "boolean"
+                          },
+                          "isRobot": {
+                            "type": "boolean"
+                          },
+                          "groupHonor": {
+                            "type": "object",
+                            "properties": {},
+                            "x-apifox-orders": [],
+                            "x-apifox-ignore-properties": []
+                          },
+                          "memberRealLevel": {
+                            "type": "number",
+                            "description": "群聊等级"
+                          },
+                          "memberLevel": {
+                            "type": "number"
+                          },
+                          "globalGroupLevel": {
+                            "type": "number"
+                          },
+                          "globalGroupPoint": {
+                            "type": "number"
+                          },
+                          "memberTitleId": {
+                            "type": "number"
+                          },
+                          "memberSpecialTitle": {
+                            "type": "string"
+                          },
+                          "specialTitleExpireTime": {
+                            "type": "string"
+                          },
+                          "userShowFlag": {
+                            "type": "number"
+                          },
+                          "userShowFlagNew": {
+                            "type": "number"
+                          },
+                          "richFlag": {
+                            "type": "number"
+                          },
+                          "mssVipType": {
+                            "type": "number"
+                          },
+                          "bigClubLevel": {
+                            "type": "number"
+                          },
+                          "bigClubFlag": {
+                            "type": "number"
+                          },
+                          "autoRemark": {
+                            "type": "string"
+                          },
+                          "creditLevel": {
+                            "type": "number"
+                          },
+                          "joinTime": {
+                            "type": "number",
+                            "description": "入群时间"
+                          },
+                          "lastSpeakTime": {
+                            "type": "number",
+                            "description": "最后发言时间"
+                          },
+                          "memberFlag": {
+                            "type": "number"
+                          },
+                          "memberFlagExt": {
+                            "type": "number"
+                          },
+                          "memberMobileFlag": {
+                            "type": "number"
+                          },
+                          "memberFlagExt2": {
+                            "type": "number"
+                          },
+                          "isSpecialShielded": {
+                            "type": "boolean"
+                          },
+                          "cardNameId": {
+                            "type": "number"
+                          }
                         },
-                        "memberRealLevel": {
-                          "type": "number",
-                          "description": "群聊等级"
-                        },
-                        "memberLevel": {
-                          "type": "number"
-                        },
-                        "globalGroupLevel": {
-                          "type": "number"
-                        },
-                        "globalGroupPoint": {
-                          "type": "number"
-                        },
-                        "memberTitleId": {
-                          "type": "number"
-                        },
-                        "memberSpecialTitle": {
-                          "type": "string"
-                        },
-                        "specialTitleExpireTime": {
-                          "type": "string"
-                        },
-                        "userShowFlag": {
-                          "type": "number"
-                        },
-                        "userShowFlagNew": {
-                          "type": "number"
-                        },
-                        "richFlag": {
-                          "type": "number"
-                        },
-                        "mssVipType": {
-                          "type": "number"
-                        },
-                        "bigClubLevel": {
-                          "type": "number"
-                        },
-                        "bigClubFlag": {
-                          "type": "number"
-                        },
-                        "autoRemark": {
-                          "type": "string"
-                        },
-                        "creditLevel": {
-                          "type": "number"
-                        },
-                        "joinTime": {
-                          "type": "number",
-                          "description": "入群时间"
-                        },
-                        "lastSpeakTime": {
-                          "type": "number",
-                          "description": "最后发言时间"
-                        },
-                        "memberFlag": {
-                          "type": "number"
-                        },
-                        "memberFlagExt": {
-                          "type": "number"
-                        },
-                        "memberMobileFlag": {
-                          "type": "number"
-                        },
-                        "memberFlagExt2": {
-                          "type": "number"
-                        },
-                        "isSpecialShielded": {
-                          "type": "boolean"
-                        },
-                        "cardNameId": {
-                          "type": "number"
-                        }
-                      },
-                      "x-apifox-orders": [
-                        "uid",
-                        "qid",
-                        "uin",
-                        "nick",
-                        "remark",
-                        "cardType",
-                        "cardName",
-                        "role",
-                        "avatarPath",
-                        "shutUpTime",
-                        "isDelete",
-                        "isSpecialConcerned",
-                        "isSpecialShield",
-                        "isRobot",
-                        "groupHonor",
-                        "memberRealLevel",
-                        "memberLevel",
-                        "globalGroupLevel",
-                        "globalGroupPoint",
-                        "memberTitleId",
-                        "memberSpecialTitle",
-                        "specialTitleExpireTime",
-                        "userShowFlag",
-                        "userShowFlagNew",
-                        "richFlag",
-                        "mssVipType",
-                        "bigClubLevel",
-                        "bigClubFlag",
-                        "autoRemark",
-                        "creditLevel",
-                        "joinTime",
-                        "lastSpeakTime",
-                        "memberFlag",
-                        "memberFlagExt",
-                        "memberMobileFlag",
-                        "memberFlagExt2",
-                        "isSpecialShielded",
-                        "cardNameId",
-                        "01JBHA5TECQZX10200ADAGYDD2",
-                        "01JBHA5T79E4HEQ1DFJ0SY2YHV",
-                        "01JBHA46D3X7742C9TX0VM8SNR",
-                        "01JBHA5X1H6N1W1ZMZ5C54NA9X",
-                        "01JBHA5VJS1NBN084ZBA24DK1C",
-                        "01JBHA466QHTSVPFFF54F8P2YT"
-                      ],
-                      "required": [
-                        "uid",
-                        "globalGroupLevel",
-                        "cardName",
-                        "cardType",
-                        "remark",
-                        "nick",
-                        "uin",
-                        "qid",
-                        "isRobot",
-                        "isSpecialShield",
-                        "isSpecialConcerned",
-                        "isDelete",
-                        "shutUpTime",
-                        "role",
-                        "avatarPath",
-                        "memberLevel",
-                        "memberRealLevel",
-                        "groupHonor",
-                        "memberFlagExt",
-                        "memberFlag",
-                        "lastSpeakTime",
-                        "memberSpecialTitle",
-                        "memberTitleId",
-                        "globalGroupPoint",
-                        "joinTime",
-                        "userShowFlagNew",
-                        "userShowFlag",
-                        "specialTitleExpireTime",
-                        "01JBHA466QHTSVPFFF54F8P2YT",
-                        "01JBHA46D3X7742C9TX0VM8SNR",
-                        "bigClubFlag",
-                        "bigClubLevel",
-                        "mssVipType",
-                        "richFlag",
-                        "autoRemark",
-                        "creditLevel",
-                        "01JBHA5T79E4HEQ1DFJ0SY2YHV",
-                        "01JBHA5TECQZX10200ADAGYDD2",
-                        "cardNameId",
-                        "isSpecialShielded",
-                        "memberMobileFlag",
-                        "memberFlagExt2",
-                        "01JBHA5VJS1NBN084ZBA24DK1C",
-                        "01JBHA5X1H6N1W1ZMZ5C54NA9X"
-                      ],
-                      "x-apifox-ignore-properties": []
+                        "x-apifox-orders": [
+                          "uid",
+                          "qid",
+                          "uin",
+                          "nick",
+                          "remark",
+                          "cardType",
+                          "cardName",
+                          "role",
+                          "avatarPath",
+                          "shutUpTime",
+                          "isDelete",
+                          "isSpecialConcerned",
+                          "isSpecialShield",
+                          "isRobot",
+                          "groupHonor",
+                          "memberRealLevel",
+                          "memberLevel",
+                          "globalGroupLevel",
+                          "globalGroupPoint",
+                          "memberTitleId",
+                          "memberSpecialTitle",
+                          "specialTitleExpireTime",
+                          "userShowFlag",
+                          "userShowFlagNew",
+                          "richFlag",
+                          "mssVipType",
+                          "bigClubLevel",
+                          "bigClubFlag",
+                          "autoRemark",
+                          "creditLevel",
+                          "joinTime",
+                          "lastSpeakTime",
+                          "memberFlag",
+                          "memberFlagExt",
+                          "memberMobileFlag",
+                          "memberFlagExt2",
+                          "isSpecialShielded",
+                          "cardNameId"
+                        ],
+                        "required": [
+                          "uid",
+                          "globalGroupLevel",
+                          "cardName",
+                          "cardType",
+                          "remark",
+                          "nick",
+                          "uin",
+                          "qid",
+                          "isRobot",
+                          "isSpecialShield",
+                          "isSpecialConcerned",
+                          "isDelete",
+                          "shutUpTime",
+                          "role",
+                          "avatarPath",
+                          "memberLevel",
+                          "memberRealLevel",
+                          "groupHonor",
+                          "memberFlagExt",
+                          "memberFlag",
+                          "lastSpeakTime",
+                          "memberSpecialTitle",
+                          "memberTitleId",
+                          "globalGroupPoint",
+                          "joinTime",
+                          "userShowFlagNew",
+                          "userShowFlag",
+                          "specialTitleExpireTime",
+                          "bigClubFlag",
+                          "bigClubLevel",
+                          "mssVipType",
+                          "richFlag",
+                          "autoRemark",
+                          "creditLevel",
+                          "cardNameId",
+                          "isSpecialShielded",
+                          "memberMobileFlag",
+                          "memberFlagExt2"
+                        ],
+                        "x-apifox-ignore-properties": []
+                      }
                     },
                     "message": {
                       "type": "string"

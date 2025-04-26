@@ -19,18 +19,16 @@ paths:
               type: object
               properties:
                 user_id:
-                  oneOf:
-                    - type: string
-                    - type: number
+                  $ref: '#/components/schemas/user_id'
                 times:
                   type: number
                   description: 点赞次数
+                  default: 1
               x-apifox-orders:
                 - user_id
                 - times
               required:
                 - user_id
-                - times
               x-apifox-ignore-properties: []
             example: ''
       responses:
@@ -86,6 +84,11 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226656717-run
 components:
   schemas:
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
     result:
       type: object
       properties:

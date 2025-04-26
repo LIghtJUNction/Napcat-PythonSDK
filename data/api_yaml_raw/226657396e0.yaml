@@ -465,6 +465,7 @@ components:
             summary:
               type: string
               default: '[图片]'
+              description: 外显
           x-apifox-orders:
             - file
             - summary

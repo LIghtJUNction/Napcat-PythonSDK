@@ -47,7 +47,66 @@
                   "x-apifox-refs": {
                     "01JB75K2F1Z8Y2AHPSBMAE32BB": {
                       "$ref": "#/components/schemas/result",
-                      "x-apifox-overrides": {},
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "errCode": {
+                              "type": "string"
+                            },
+                            "errMsg": {
+                              "type": "string"
+                            },
+                            "result": {
+                              "type": "object",
+                              "properties": {
+                                "wording": {
+                                  "type": "string",
+                                  "description": "正常为空，异常有文本提示"
+                                },
+                                "digestUin": {
+                                  "type": "string"
+                                },
+                                "digestTime": {
+                                  "type": "number"
+                                },
+                                "msg": {
+                                  "type": "object",
+                                  "properties": {},
+                                  "x-apifox-orders": []
+                                },
+                                "errorCode": {
+                                  "type": "number"
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "wording",
+                                "digestUin",
+                                "digestTime",
+                                "msg",
+                                "errorCode"
+                              ],
+                              "required": [
+                                "wording",
+                                "errorCode",
+                                "msg",
+                                "digestTime",
+                                "digestUin"
+                              ]
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "errCode",
+                            "errMsg",
+                            "result"
+                          ],
+                          "required": [
+                            "errCode",
+                            "result",
+                            "errMsg"
+                          ]
+                        }
+                      },
                       "required": [
                         "data"
                       ]
@@ -66,8 +125,63 @@
                     },
                     "data": {
                       "type": "object",
-                      "properties": {},
-                      "x-apifox-orders": [],
+                      "properties": {
+                        "errCode": {
+                          "type": "string"
+                        },
+                        "errMsg": {
+                          "type": "string"
+                        },
+                        "result": {
+                          "type": "object",
+                          "properties": {
+                            "wording": {
+                              "type": "string",
+                              "description": "正常为空，异常有文本提示"
+                            },
+                            "digestUin": {
+                              "type": "string"
+                            },
+                            "digestTime": {
+                              "type": "number"
+                            },
+                            "msg": {
+                              "type": "object",
+                              "properties": {},
+                              "x-apifox-orders": [],
+                              "x-apifox-ignore-properties": []
+                            },
+                            "errorCode": {
+                              "type": "number"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "wording",
+                            "digestUin",
+                            "digestTime",
+                            "msg",
+                            "errorCode"
+                          ],
+                          "required": [
+                            "wording",
+                            "errorCode",
+                            "msg",
+                            "digestTime",
+                            "digestUin"
+                          ],
+                          "x-apifox-ignore-properties": []
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "errCode",
+                        "errMsg",
+                        "result"
+                      ],
+                      "required": [
+                        "errCode",
+                        "result",
+                        "errMsg"
+                      ],
                       "x-apifox-ignore-properties": []
                     },
                     "message": {

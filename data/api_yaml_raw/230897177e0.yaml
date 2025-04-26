@@ -24,8 +24,7 @@ paths:
                 - group_id
               required:
                 - group_id
-            example:
-              group_id: 123456
+            example: ''
       responses:
         '200':
           description: ''

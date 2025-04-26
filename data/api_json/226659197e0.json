@@ -20,10 +20,28 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {},
-                "x-apifox-ignore-properties": [],
-                "x-apifox-orders": []
-              }
+                "properties": {
+                  "user_id": {
+                    "$ref": "#/components/schemas/user_id",
+                    "description": "指定用户，不填为获取所有"
+                  },
+                  "start": {
+                    "type": "number",
+                    "default": 0
+                  },
+                  "count": {
+                    "type": "number",
+                    "default": 10
+                  }
+                },
+                "x-apifox-orders": [
+                  "user_id",
+                  "start",
+                  "count"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": ""
             }
           }
         },
@@ -41,126 +59,100 @@
                         "data": {
                           "type": "object",
                           "properties": {
-                            "userInfos": {
-                              "type": "array",
-                              "items": {
-                                "type": "object",
-                                "properties": {
-                                  "uid": {
-                                    "type": "string"
-                                  },
-                                  "src": {
-                                    "type": "number"
-                                  },
-                                  "latestTime": {
-                                    "type": "number"
-                                  },
-                                  "count": {
-                                    "type": "number"
-                                  },
-                                  "giftCount": {
-                                    "type": "number"
-                                  },
-                                  "customId": {
-                                    "type": "number"
-                                  },
-                                  "lastCharged": {
-                                    "type": "number"
-                                  },
-                                  "bAvailableCnt": {
-                                    "type": "number"
-                                  },
-                                  "bTodayVotedCnt": {
-                                    "type": "number"
-                                  },
-                                  "nick": {
-                                    "type": "string"
-                                  },
-                                  "gender": {
-                                    "type": "number"
-                                  },
-                                  "age": {
-                                    "type": "number"
-                                  },
-                                  "isFriend": {
-                                    "type": "boolean"
-                                  },
-                                  "isvip": {
-                                    "type": "boolean"
-                                  },
-                                  "isSvip": {
-                                    "type": "boolean"
-                                  },
-                                  "uin": {
-                                    "type": "number"
-                                  }
+                            "uid": {
+                              "type": "string"
+                            },
+                            "time": {
+                              "type": "number"
+                            },
+                            "favoriteInfo": {
+                              "type": "object",
+                              "properties": {
+                                "total_count": {
+                                  "type": "number",
+                                  "description": "总次数"
                                 },
-                                "x-apifox-orders": [
-                                  "uid",
-                                  "src",
-                                  "latestTime",
-                                  "count",
-                                  "giftCount",
-                                  "customId",
-                                  "lastCharged",
-                                  "bAvailableCnt",
-                                  "bTodayVotedCnt",
-                                  "nick",
-                                  "gender",
-                                  "age",
-                                  "isFriend",
-                                  "isvip",
-                                  "isSvip",
-                                  "uin"
-                                ],
-                                "required": [
-                                  "uid",
-                                  "src",
-                                  "latestTime",
-                                  "count",
-                                  "giftCount",
-                                  "age",
-                                  "gender",
-                                  "nick",
-                                  "bTodayVotedCnt",
-                                  "bAvailableCnt",
-                                  "customId",
-                                  "lastCharged",
-                                  "uin",
-                                  "isSvip",
-                                  "isvip",
-                                  "isFriend"
-                                ]
-                              }
+                                "last_time": {
+                                  "type": "number",
+                                  "description": "最后点赞时间（不是时间戳）"
+                                },
+                                "today_count": {
+                                  "type": "number",
+                                  "description": "上次次数"
+                                },
+                                "userInfos": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/点赞信息"
+                                  }
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "total_count",
+                                "last_time",
+                                "today_count",
+                                "userInfos"
+                              ],
+                              "required": [
+                                "total_count",
+                                "userInfos",
+                                "today_count",
+                                "last_time"
+                              ],
+                              "description": "互赞信息"
                             },
-                            "total_count": {
-                              "type": "number",
-                              "description": "总点赞数"
-                            },
-                            "new_count": {
-                              "type": "number",
-                              "description": "新点赞数"
-                            },
-                            "new_nearby_count": {
-                              "type": "number"
-                            },
-                            "last_visit_time": {
-                              "type": "number"
+                            "voteInfo": {
+                              "type": "object",
+                              "properties": {
+                                "total_count": {
+                                  "type": "number",
+                                  "description": "总次数"
+                                },
+                                "new_count": {
+                                  "type": "number",
+                                  "description": "点赞次数"
+                                },
+                                "new_nearby_count": {
+                                  "type": "number"
+                                },
+                                "last_visit_time": {
+                                  "type": "number"
+                                },
+                                "userInfos": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/components/schemas/点赞信息"
+                                  }
+                                }
+                              },
+                              "x-apifox-orders": [
+                                "total_count",
+                                "new_count",
+                                "new_nearby_count",
+                                "last_visit_time",
+                                "userInfos"
+                              ],
+                              "required": [
+                                "total_count",
+                                "userInfos",
+                                "last_visit_time",
+                                "new_count",
+                                "new_nearby_count"
+                              ],
+                              "description": "点赞信息"
                             }
                           },
                           "x-apifox-orders": [
-                            "total_count",
-                            "new_count",
-                            "new_nearby_count",
-                            "last_visit_time",
-                            "userInfos"
+                            "uid",
+                            "time",
+                            "favoriteInfo",
+                            "voteInfo"
                           ],
                           "required": [
-                            "userInfos",
-                            "total_count",
-                            "last_visit_time",
-                            "new_nearby_count",
-                            "new_count"
+                            "uid",
+                            "voteInfo",
+                            "favoriteInfo",
+                            "time"
                           ]
                         }
                       },
@@ -183,127 +175,102 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "total_count": {
-                          "type": "number",
-                          "description": "总点赞数"
+                        "uid": {
+                          "type": "string"
                         },
-                        "new_count": {
-                          "type": "number",
-                          "description": "新点赞数"
-                        },
-                        "new_nearby_count": {
+                        "time": {
                           "type": "number"
                         },
-                        "last_visit_time": {
-                          "type": "number"
-                        },
-                        "userInfos": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "uid": {
-                                "type": "string"
-                              },
-                              "src": {
-                                "type": "number"
-                              },
-                              "latestTime": {
-                                "type": "number"
-                              },
-                              "count": {
-                                "type": "number"
-                              },
-                              "giftCount": {
-                                "type": "number"
-                              },
-                              "customId": {
-                                "type": "number"
-                              },
-                              "lastCharged": {
-                                "type": "number"
-                              },
-                              "bAvailableCnt": {
-                                "type": "number"
-                              },
-                              "bTodayVotedCnt": {
-                                "type": "number"
-                              },
-                              "nick": {
-                                "type": "string"
-                              },
-                              "gender": {
-                                "type": "number"
-                              },
-                              "age": {
-                                "type": "number"
-                              },
-                              "isFriend": {
-                                "type": "boolean"
-                              },
-                              "isvip": {
-                                "type": "boolean"
-                              },
-                              "isSvip": {
-                                "type": "boolean"
-                              },
-                              "uin": {
-                                "type": "number"
-                              }
+                        "favoriteInfo": {
+                          "type": "object",
+                          "properties": {
+                            "total_count": {
+                              "type": "number",
+                              "description": "总次数"
                             },
-                            "x-apifox-orders": [
-                              "uid",
-                              "src",
-                              "latestTime",
-                              "count",
-                              "giftCount",
-                              "customId",
-                              "lastCharged",
-                              "bAvailableCnt",
-                              "bTodayVotedCnt",
-                              "nick",
-                              "gender",
-                              "age",
-                              "isFriend",
-                              "isvip",
-                              "isSvip",
-                              "uin"
-                            ],
-                            "required": [
-                              "uid",
-                              "src",
-                              "latestTime",
-                              "count",
-                              "giftCount",
-                              "age",
-                              "gender",
-                              "nick",
-                              "bTodayVotedCnt",
-                              "bAvailableCnt",
-                              "customId",
-                              "lastCharged",
-                              "uin",
-                              "isSvip",
-                              "isvip",
-                              "isFriend"
-                            ],
-                            "x-apifox-ignore-properties": []
-                          }
+                            "last_time": {
+                              "type": "number",
+                              "description": "最后点赞时间（不是时间戳）"
+                            },
+                            "today_count": {
+                              "type": "number",
+                              "description": "上次次数"
+                            },
+                            "userInfos": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/点赞信息"
+                              }
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "total_count",
+                            "last_time",
+                            "today_count",
+                            "userInfos"
+                          ],
+                          "required": [
+                            "total_count",
+                            "userInfos",
+                            "today_count",
+                            "last_time"
+                          ],
+                          "description": "互赞信息",
+                          "x-apifox-ignore-properties": []
+                        },
+                        "voteInfo": {
+                          "type": "object",
+                          "properties": {
+                            "total_count": {
+                              "type": "number",
+                              "description": "总次数"
+                            },
+                            "new_count": {
+                              "type": "number",
+                              "description": "点赞次数"
+                            },
+                            "new_nearby_count": {
+                              "type": "number"
+                            },
+                            "last_visit_time": {
+                              "type": "number"
+                            },
+                            "userInfos": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/点赞信息"
+                              }
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "total_count",
+                            "new_count",
+                            "new_nearby_count",
+                            "last_visit_time",
+                            "userInfos"
+                          ],
+                          "required": [
+                            "total_count",
+                            "userInfos",
+                            "last_visit_time",
+                            "new_count",
+                            "new_nearby_count"
+                          ],
+                          "description": "点赞信息",
+                          "x-apifox-ignore-properties": []
                         }
                       },
                       "x-apifox-orders": [
-                        "total_count",
-                        "new_count",
-                        "new_nearby_count",
-                        "last_visit_time",
-                        "userInfos"
+                        "uid",
+                        "time",
+                        "favoriteInfo",
+                        "voteInfo"
                       ],
                       "required": [
-                        "userInfos",
-                        "total_count",
-                        "last_visit_time",
-                        "new_nearby_count",
-                        "new_count"
+                        "uid",
+                        "voteInfo",
+                        "favoriteInfo",
+                        "time"
                       ],
                       "x-apifox-ignore-properties": []
                     },
@@ -350,6 +317,17 @@
   },
   "components": {
     "schemas": {
+      "user_id": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
       "result": {
         "type": "object",
         "properties": {
@@ -392,6 +370,97 @@
           "message",
           "wording",
           "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "点赞信息": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string"
+          },
+          "src": {
+            "type": "number"
+          },
+          "latestTime": {
+            "type": "number"
+          },
+          "count": {
+            "type": "number"
+          },
+          "giftCount": {
+            "type": "number"
+          },
+          "customId": {
+            "type": "number"
+          },
+          "lastCharged": {
+            "type": "number"
+          },
+          "bAvailableCnt": {
+            "type": "number"
+          },
+          "bTodayVotedCnt": {
+            "type": "number"
+          },
+          "nick": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "number"
+          },
+          "age": {
+            "type": "number"
+          },
+          "isFriend": {
+            "type": "boolean"
+          },
+          "isvip": {
+            "type": "boolean"
+          },
+          "isSvip": {
+            "type": "boolean"
+          },
+          "uin": {
+            "type": "number"
+          }
+        },
+        "x-apifox-orders": [
+          "uid",
+          "src",
+          "latestTime",
+          "count",
+          "giftCount",
+          "customId",
+          "lastCharged",
+          "bAvailableCnt",
+          "bTodayVotedCnt",
+          "nick",
+          "gender",
+          "age",
+          "isFriend",
+          "isvip",
+          "isSvip",
+          "uin"
+        ],
+        "required": [
+          "uid",
+          "uin",
+          "isSvip",
+          "isvip",
+          "isFriend",
+          "age",
+          "gender",
+          "nick",
+          "bTodayVotedCnt",
+          "bAvailableCnt",
+          "lastCharged",
+          "customId",
+          "giftCount",
+          "count",
+          "src",
+          "latestTime"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

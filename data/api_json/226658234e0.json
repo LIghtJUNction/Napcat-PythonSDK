@@ -33,7 +33,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": "{\r\n    \"image\": \"https://greasyfork.org/vite/assets/blacklogo96-CxYTSM_T.png\"\r\n    // 本地路径\r\n    //\"image\": \"file://D:/a.jpg\"\r\n}"
+              "example": "{\r\n    \"image\": \"https://assets.cdn.ifixit.com/static/images/home/search-hero-backgrounds/car_tire-2180.avif\"\r\n    // 本地路径\r\n    //\"image\": \"file://D:/a.jpg\"\r\n}"
             }
           }
         },

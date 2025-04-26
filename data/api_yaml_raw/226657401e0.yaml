@@ -30,7 +30,7 @@ paths:
                 reverseOrder:
                   type: boolean
                   description: 倒序
-                  default: false
+                  default: true
               x-apifox-orders:
                 - group_id
                 - message_seq
@@ -433,6 +433,7 @@ components:
             summary:
               type: string
               default: '[图片]'
+              description: 外显
           x-apifox-orders:
             - file
             - summary
@@ -579,6 +580,7 @@ components:
       required:
         - user_id
         - nickname
+        - card
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

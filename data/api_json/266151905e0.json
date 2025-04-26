@@ -22,12 +22,12 @@
                 "type": "object",
                 "properties": {
                   "face_id": {
-                    "$ref": "#/components/schemas/string | number",
+                    "$ref": "#/components/schemas/number | string",
                     "title": "表情ID",
                     "description": "表情ID"
                   },
                   "face_type": {
-                    "$ref": "#/components/schemas/string | number",
+                    "$ref": "#/components/schemas/number | string",
                     "title": "表情ID",
                     "description": "表情ID"
                   },
@@ -131,7 +131,7 @@
   },
   "components": {
     "schemas": {
-      "string | number": {
+      "number | string": {
         "anyOf": [
           {
             "type": "number"

@@ -31,12 +31,32 @@
                   "image": {
                     "type": "string",
                     "description": "图片路径"
+                  },
+                  "pinned": {
+                    "$ref": "#/components/schemas/number | string"
+                  },
+                  "type": {
+                    "$ref": "#/components/schemas/number | string"
+                  },
+                  "confirm_required": {
+                    "$ref": "#/components/schemas/number | string"
+                  },
+                  "is_show_edit_card": {
+                    "$ref": "#/components/schemas/number | string"
+                  },
+                  "tip_window_type": {
+                    "$ref": "#/components/schemas/number | string"
                   }
                 },
                 "x-apifox-orders": [
                   "group_id",
                   "content",
-                  "image"
+                  "image",
+                  "pinned",
+                  "type",
+                  "confirm_required",
+                  "is_show_edit_card",
+                  "tip_window_type"
                 ],
                 "required": [
                   "group_id",
@@ -125,6 +145,17 @@
   },
   "components": {
     "schemas": {
+      "number | string": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
       "group_id": {
         "oneOf": [
           {

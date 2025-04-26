@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -52,7 +53,7 @@ class SendGroupAiRecordRes(BaseModel):
         """
         message_id: str = Field(..., description="消息id")
 
-    status: str = Field(..., description="状态，总是ok")
+    status: Literal["ok"] = Field("ok", description="状态，总是ok")
     retcode: int = Field(..., description="返回码")
     data: Data = Field(..., description="响应数据")
     message: str = Field(..., description="信息")

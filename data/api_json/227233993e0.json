@@ -20,22 +20,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "model": {
-                    "type": "string"
-                  },
-                  "model_show": {
-                    "type": "string"
-                  }
-                },
-                "x-apifox-orders": [
-                  "model",
-                  "model_show"
-                ],
-                "required": [
-                  "model",
-                  "model_show"
-                ],
+                "properties": {},
+                "x-apifox-orders": [],
                 "x-apifox-ignore-properties": []
               }
             }

@@ -20,10 +20,13 @@ paths:
               properties:
                 file_id:
                   type: string
+                  description: 二选一
+                file:
+                  type: string
+                  description: 二选一
               x-apifox-orders:
                 - file_id
-              required:
-                - file_id
+                - file
               x-apifox-ignore-properties: []
             example: ''
       responses:

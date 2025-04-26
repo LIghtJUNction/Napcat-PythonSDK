@@ -8,7 +8,15 @@ paths:
     post:
       summary: 获取群荣誉
       deprecated: false
-      description: ''
+      description: |-
+        |  type                   |         类型                    |
+        |  ----------------- | ------------------------ |
+        | all                       |  所有（默认）             |
+        | talkative              | 群聊之火                     |
+        | performer           | 群聊炽焰                     |
+        | legend                | 龙王                             |
+        | strong_newbie   | 冒尖小春笋（R.I.P）     |
+        | emotion              | 快乐源泉                      |
       tags:
         - 群聊相关
       parameters: []
@@ -20,8 +28,11 @@ paths:
               properties:
                 group_id:
                   $ref: '#/components/schemas/group_id'
+                type:
+                  type: string
               x-apifox-orders:
                 - group_id
+                - type
               required:
                 - group_id
               x-apifox-ignore-properties: []
@@ -45,37 +56,28 @@ paths:
                           current_talkative: &ref_0
                             description: 当前龙王
                             $ref: >-
-                              #/components/schemas/%E9%BE%99%E7%8E%8B%E4%BF%A1%E6%81%AF
+                              #/components/schemas/%E7%BE%A4%E8%8D%A3%E8%AA%89%E4%BF%A1%E6%81%AF
                           talkative_list:
                             type: array
                             items: *ref_0
-                            description: 历史龙王列表
+                            description: 群聊之火
                           performer_list:
                             type: array
-                            items:
-                              type: object
-                              x-apifox-refs: &ref_2
-                                01JB6NDNKN29RQFN4YXXNXWCV5: *ref_0
-                              x-apifox-orders: &ref_3
-                                - 01JB6NDNKN29RQFN4YXXNXWCV5
-                              properties: {}
-                            description: 群聊之火
+                            items: *ref_0
+                            description: 群聊炽焰
                           legend_list:
                             type: array
-                            items: &ref_4
-                              type: string
-                            description: 群聊炽焰
+                            items: *ref_0
+                            description: 龙王
                           emotion_list:
                             type: array
-                            items: &ref_5
-                              type: string
-                            description: 快乐之源
+                            items: *ref_0
+                            description: 快乐源泉
                           strong_newbie_list:
                             type: array
-                            items: &ref_6
-                              type: string
+                            items: *ref_0
                             description: 冒尖小春笋
-                        x-apifox-orders: &ref_7
+                        x-apifox-orders: &ref_2
                           - group_id
                           - current_talkative
                           - talkative_list
@@ -109,43 +111,24 @@ paths:
                       talkative_list:
                         type: array
                         items: *ref_0
-                        description: 历史龙王列表
+                        description: 群聊之火
                       performer_list:
                         type: array
-                        items:
-                          type: object
-                          x-apifox-refs: *ref_2
-                          x-apifox-orders: *ref_3
-                          properties:
-                            user_id:
-                              type: number
-                            avatar:
-                              type: string
-                              description: 头像
-                            nickname:
-                              type: string
-                            description:
-                              type: string
-                              description: 说明
-                          x-apifox-ignore-properties:
-                            - user_id
-                            - avatar
-                            - nickname
-                            - description
-                        description: 群聊之火
+                        items: *ref_0
+                        description: 群聊炽焰
                       legend_list:
                         type: array
-                        items: *ref_4
-                        description: 群聊炽焰
+                        items: *ref_0
+                        description: 龙王
                       emotion_list:
                         type: array
-                        items: *ref_5
-                        description: 快乐之源
+                        items: *ref_0
+                        description: 快乐源泉
                       strong_newbie_list:
                         type: array
-                        items: *ref_6
+                        items: *ref_0
                         description: 冒尖小春笋
-                    x-apifox-orders: *ref_7
+                    x-apifox-orders: *ref_2
                     required:
                       - group_id
                       - current_talkative
@@ -225,27 +208,22 @@ components:
         - echo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    龙王信息:
+    群荣誉信息:
       type: object
       properties:
         user_id:
           type: number
-        avatar:
-          type: string
-          description: 头像
         nickname:
           type: string
-        day_count:
+        avatar:
           type: number
-          description: 连续天数
         description:
           type: string
           description: 说明
       x-apifox-orders:
         - user_id
-        - avatar
         - nickname
-        - day_count
+        - avatar
         - description
       x-apifox-ignore-properties: []
       x-apifox-folder: ''

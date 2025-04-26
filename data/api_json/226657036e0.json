@@ -10,7 +10,7 @@
       "post": {
         "summary": "获取群荣誉",
         "deprecated": false,
-        "description": "",
+        "description": "|  type                   |         类型                    |\n|  ----------------- | ------------------------ |\n| all                       |  所有（默认）             |\n| talkative              | 群聊之火                     |\n| performer           | 群聊炽焰                     |\n| legend                | 龙王                             |\n| strong_newbie   | 冒尖小春笋（R.I.P）     |\n| emotion              | 快乐源泉                      |",
         "tags": [
           "群聊相关"
         ],
@@ -23,10 +23,14 @@
                 "properties": {
                   "group_id": {
                     "$ref": "#/components/schemas/group_id"
+                  },
+                  "type": {
+                    "type": "string"
                   }
                 },
                 "x-apifox-orders": [
-                  "group_id"
+                  "group_id",
+                  "type"
                 ],
                 "required": [
                   "group_id"
@@ -56,51 +60,45 @@
                             },
                             "current_talkative": {
                               "description": "当前龙王",
-                              "$ref": "#/components/schemas/龙王信息"
+                              "$ref": "#/components/schemas/群荣誉信息"
                             },
                             "talkative_list": {
                               "type": "array",
                               "items": {
                                 "description": "当前龙王",
-                                "$ref": "#/components/schemas/龙王信息"
+                                "$ref": "#/components/schemas/群荣誉信息"
                               },
-                              "description": "历史龙王列表"
+                              "description": "群聊之火"
                             },
                             "performer_list": {
                               "type": "array",
                               "items": {
-                                "type": "object",
-                                "x-apifox-refs": {
-                                  "01JB6NDNKN29RQFN4YXXNXWCV5": {
-                                    "description": "当前龙王",
-                                    "$ref": "#/components/schemas/龙王信息"
-                                  }
-                                },
-                                "x-apifox-orders": [
-                                  "01JB6NDNKN29RQFN4YXXNXWCV5"
-                                ],
-                                "properties": {}
+                                "description": "当前龙王",
+                                "$ref": "#/components/schemas/群荣誉信息"
                               },
-                              "description": "群聊之火"
+                              "description": "群聊炽焰"
                             },
                             "legend_list": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "description": "当前龙王",
+                                "$ref": "#/components/schemas/群荣誉信息"
                               },
-                              "description": "群聊炽焰"
+                              "description": "龙王"
                             },
                             "emotion_list": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "description": "当前龙王",
+                                "$ref": "#/components/schemas/群荣誉信息"
                               },
-                              "description": "快乐之源"
+                              "description": "快乐源泉"
                             },
                             "strong_newbie_list": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "description": "当前龙王",
+                                "$ref": "#/components/schemas/群荣誉信息"
                               },
                               "description": "冒尖小春笋"
                             }
@@ -149,72 +147,45 @@
                         },
                         "current_talkative": {
                           "description": "当前龙王",
-                          "$ref": "#/components/schemas/龙王信息"
+                          "$ref": "#/components/schemas/群荣誉信息"
                         },
                         "talkative_list": {
                           "type": "array",
                           "items": {
                             "description": "当前龙王",
-                            "$ref": "#/components/schemas/龙王信息"
+                            "$ref": "#/components/schemas/群荣誉信息"
                           },
-                          "description": "历史龙王列表"
+                          "description": "群聊之火"
                         },
                         "performer_list": {
                           "type": "array",
                           "items": {
-                            "type": "object",
-                            "x-apifox-refs": {
-                              "01JB6NDNKN29RQFN4YXXNXWCV5": {
-                                "description": "当前龙王",
-                                "$ref": "#/components/schemas/龙王信息"
-                              }
-                            },
-                            "x-apifox-orders": [
-                              "01JB6NDNKN29RQFN4YXXNXWCV5"
-                            ],
-                            "properties": {
-                              "user_id": {
-                                "type": "number"
-                              },
-                              "avatar": {
-                                "type": "string",
-                                "description": "头像"
-                              },
-                              "nickname": {
-                                "type": "string"
-                              },
-                              "description": {
-                                "type": "string",
-                                "description": "说明"
-                              }
-                            },
-                            "x-apifox-ignore-properties": [
-                              "user_id",
-                              "avatar",
-                              "nickname",
-                              "description"
-                            ]
+                            "description": "当前龙王",
+                            "$ref": "#/components/schemas/群荣誉信息"
                           },
-                          "description": "群聊之火"
+                          "description": "群聊炽焰"
                         },
                         "legend_list": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "description": "当前龙王",
+                            "$ref": "#/components/schemas/群荣誉信息"
                           },
-                          "description": "群聊炽焰"
+                          "description": "龙王"
                         },
                         "emotion_list": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "description": "当前龙王",
+                            "$ref": "#/components/schemas/群荣誉信息"
                           },
-                          "description": "快乐之源"
+                          "description": "快乐源泉"
                         },
                         "strong_newbie_list": {
                           "type": "array",
                           "items": {
-                            "type": "string"
+                            "description": "当前龙王",
+                            "$ref": "#/components/schemas/群荣誉信息"
                           },
                           "description": "冒尖小春笋"
                         }
@@ -339,22 +310,17 @@
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""
       },
-      "龙王信息": {
+      "群荣誉信息": {
         "type": "object",
         "properties": {
           "user_id": {
             "type": "number"
           },
-          "avatar": {
-            "type": "string",
-            "description": "头像"
-          },
           "nickname": {
             "type": "string"
           },
-          "day_count": {
-            "type": "number",
-            "description": "连续天数"
+          "avatar": {
+            "type": "number"
           },
           "description": {
             "type": "string",
@@ -363,9 +329,8 @@
         },
         "x-apifox-orders": [
           "user_id",
-          "avatar",
           "nickname",
-          "day_count",
+          "avatar",
           "description"
         ],
         "x-apifox-ignore-properties": [],

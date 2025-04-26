@@ -17,9 +17,22 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                user_id:
+                  $ref: '#/components/schemas/user_id'
+                  description: 指定用户，不填为获取所有
+                start:
+                  type: number
+                  default: 0
+                count:
+                  type: number
+                  default: 10
+              x-apifox-orders:
+                - user_id
+                - start
+                - count
               x-apifox-ignore-properties: []
-              x-apifox-orders: []
+            example: ''
       responses:
         '200':
           description: ''
@@ -34,99 +47,77 @@ paths:
                       data:
                         type: object
                         properties:
-                          userInfos:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                uid: &ref_4
-                                  type: string
-                                src: &ref_5
-                                  type: number
-                                latestTime: &ref_6
-                                  type: number
-                                count: &ref_7
-                                  type: number
-                                giftCount: &ref_8
-                                  type: number
-                                customId: &ref_9
-                                  type: number
-                                lastCharged: &ref_10
-                                  type: number
-                                bAvailableCnt: &ref_11
-                                  type: number
-                                bTodayVotedCnt: &ref_12
-                                  type: number
-                                nick: &ref_13
-                                  type: string
-                                gender: &ref_14
-                                  type: number
-                                age: &ref_15
-                                  type: number
-                                isFriend: &ref_16
-                                  type: boolean
-                                isvip: &ref_17
-                                  type: boolean
-                                isSvip: &ref_18
-                                  type: boolean
-                                uin: &ref_19
-                                  type: number
-                              x-apifox-orders: &ref_20
-                                - uid
-                                - src
-                                - latestTime
-                                - count
-                                - giftCount
-                                - customId
-                                - lastCharged
-                                - bAvailableCnt
-                                - bTodayVotedCnt
-                                - nick
-                                - gender
-                                - age
-                                - isFriend
-                                - isvip
-                                - isSvip
-                                - uin
-                              required:
-                                - uid
-                                - src
-                                - latestTime
-                                - count
-                                - giftCount
-                                - age
-                                - gender
-                                - nick
-                                - bTodayVotedCnt
-                                - bAvailableCnt
-                                - customId
-                                - lastCharged
-                                - uin
-                                - isSvip
-                                - isvip
-                                - isFriend
-                          total_count: &ref_0
+                          uid: &ref_1
+                            type: string
+                          time: &ref_2
                             type: number
-                            description: 总点赞数
-                          new_count: &ref_1
-                            type: number
-                            description: 新点赞数
-                          new_nearby_count: &ref_2
-                            type: number
-                          last_visit_time: &ref_3
-                            type: number
-                        x-apifox-orders: &ref_21
-                          - total_count
-                          - new_count
-                          - new_nearby_count
-                          - last_visit_time
-                          - userInfos
+                          favoriteInfo:
+                            type: object
+                            properties:
+                              total_count: &ref_3
+                                type: number
+                                description: 总次数
+                              last_time: &ref_4
+                                type: number
+                                description: 最后点赞时间（不是时间戳）
+                              today_count: &ref_5
+                                type: number
+                                description: 上次次数
+                              userInfos:
+                                type: array
+                                items: &ref_0
+                                  $ref: >-
+                                    #/components/schemas/%E7%82%B9%E8%B5%9E%E4%BF%A1%E6%81%AF
+                            x-apifox-orders: &ref_6
+                              - total_count
+                              - last_time
+                              - today_count
+                              - userInfos
+                            required:
+                              - total_count
+                              - userInfos
+                              - today_count
+                              - last_time
+                            description: 互赞信息
+                          voteInfo:
+                            type: object
+                            properties:
+                              total_count: &ref_7
+                                type: number
+                                description: 总次数
+                              new_count: &ref_8
+                                type: number
+                                description: 点赞次数
+                              new_nearby_count: &ref_9
+                                type: number
+                              last_visit_time: &ref_10
+                                type: number
+                              userInfos:
+                                type: array
+                                items: *ref_0
+                            x-apifox-orders: &ref_11
+                              - total_count
+                              - new_count
+                              - new_nearby_count
+                              - last_visit_time
+                              - userInfos
+                            required:
+                              - total_count
+                              - userInfos
+                              - last_visit_time
+                              - new_count
+                              - new_nearby_count
+                            description: 点赞信息
+                        x-apifox-orders: &ref_12
+                          - uid
+                          - time
+                          - favoriteInfo
+                          - voteInfo
                         required:
-                          - userInfos
-                          - total_count
-                          - last_visit_time
-                          - new_nearby_count
-                          - new_count
+                          - uid
+                          - voteInfo
+                          - favoriteInfo
+                          - time
                     required:
                       - data
                 x-apifox-orders:
@@ -140,57 +131,50 @@ paths:
                   data:
                     type: object
                     properties:
-                      total_count: *ref_0
-                      new_count: *ref_1
-                      new_nearby_count: *ref_2
-                      last_visit_time: *ref_3
-                      userInfos:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            uid: *ref_4
-                            src: *ref_5
-                            latestTime: *ref_6
-                            count: *ref_7
-                            giftCount: *ref_8
-                            customId: *ref_9
-                            lastCharged: *ref_10
-                            bAvailableCnt: *ref_11
-                            bTodayVotedCnt: *ref_12
-                            nick: *ref_13
-                            gender: *ref_14
-                            age: *ref_15
-                            isFriend: *ref_16
-                            isvip: *ref_17
-                            isSvip: *ref_18
-                            uin: *ref_19
-                          x-apifox-orders: *ref_20
-                          required:
-                            - uid
-                            - src
-                            - latestTime
-                            - count
-                            - giftCount
-                            - age
-                            - gender
-                            - nick
-                            - bTodayVotedCnt
-                            - bAvailableCnt
-                            - customId
-                            - lastCharged
-                            - uin
-                            - isSvip
-                            - isvip
-                            - isFriend
-                          x-apifox-ignore-properties: []
-                    x-apifox-orders: *ref_21
+                      uid: *ref_1
+                      time: *ref_2
+                      favoriteInfo:
+                        type: object
+                        properties:
+                          total_count: *ref_3
+                          last_time: *ref_4
+                          today_count: *ref_5
+                          userInfos:
+                            type: array
+                            items: *ref_0
+                        x-apifox-orders: *ref_6
+                        required:
+                          - total_count
+                          - userInfos
+                          - today_count
+                          - last_time
+                        description: 互赞信息
+                        x-apifox-ignore-properties: []
+                      voteInfo:
+                        type: object
+                        properties:
+                          total_count: *ref_7
+                          new_count: *ref_8
+                          new_nearby_count: *ref_9
+                          last_visit_time: *ref_10
+                          userInfos:
+                            type: array
+                            items: *ref_0
+                        x-apifox-orders: *ref_11
+                        required:
+                          - total_count
+                          - userInfos
+                          - last_visit_time
+                          - new_count
+                          - new_nearby_count
+                        description: 点赞信息
+                        x-apifox-ignore-properties: []
+                    x-apifox-orders: *ref_12
                     required:
-                      - userInfos
-                      - total_count
-                      - last_visit_time
-                      - new_nearby_count
-                      - new_count
+                      - uid
+                      - voteInfo
+                      - favoriteInfo
+                      - time
                     x-apifox-ignore-properties: []
                   message:
                     type: string
@@ -221,6 +205,11 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659197-run
 components:
   schemas:
+    user_id:
+      oneOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
     result:
       type: object
       properties:
@@ -255,6 +244,77 @@ components:
         - message
         - wording
         - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    点赞信息:
+      type: object
+      properties:
+        uid:
+          type: string
+        src:
+          type: number
+        latestTime:
+          type: number
+        count:
+          type: number
+        giftCount:
+          type: number
+        customId:
+          type: number
+        lastCharged:
+          type: number
+        bAvailableCnt:
+          type: number
+        bTodayVotedCnt:
+          type: number
+        nick:
+          type: string
+        gender:
+          type: number
+        age:
+          type: number
+        isFriend:
+          type: boolean
+        isvip:
+          type: boolean
+        isSvip:
+          type: boolean
+        uin:
+          type: number
+      x-apifox-orders:
+        - uid
+        - src
+        - latestTime
+        - count
+        - giftCount
+        - customId
+        - lastCharged
+        - bAvailableCnt
+        - bTodayVotedCnt
+        - nick
+        - gender
+        - age
+        - isFriend
+        - isvip
+        - isSvip
+        - uin
+      required:
+        - uid
+        - uin
+        - isSvip
+        - isvip
+        - isFriend
+        - age
+        - gender
+        - nick
+        - bTodayVotedCnt
+        - bAvailableCnt
+        - lastCharged
+        - customId
+        - giftCount
+        - count
+        - src
+        - latestTime
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

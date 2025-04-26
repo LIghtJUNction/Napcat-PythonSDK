@@ -22,7 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,9 @@ class SendPacketReq(BaseModel):
     根据API文档，请求体为空对象。
     """
     # API文档定义请求体为 `{}`，因此模型为空。
-    pass
+    model_config = {
+        "extra": "allow",  # 允许额外字段
+    }
 # endregion req
 
 
@@ -47,7 +49,9 @@ class SendPacketRes(BaseModel):
     根据API文档，响应体为空对象。
     """
     # API文档定义响应体为 `{}`，因此模型为空。
-    pass
+    model_config = {
+        "extra": "allow",  # 允许额外字段
+    }
 # endregion res
 
 # region api

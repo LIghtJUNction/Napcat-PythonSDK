@@ -25,8 +25,7 @@ paths:
               required:
                 - group_id
               x-apifox-ignore-properties: []
-            example:
-              group_id: 819085771
+            example: ''
       responses:
         '200':
           description: ''

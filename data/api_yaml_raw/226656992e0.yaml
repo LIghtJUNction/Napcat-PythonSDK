@@ -41,9 +41,8 @@ paths:
                     x-apifox-overrides:
                       data:
                         type: array
-                        items:
-                          type: object
-                          properties: {}
+                        items: &ref_0
+                          $ref: '#/components/schemas/%E7%BE%A4%E4%BF%A1%E6%81%AF'
                     required:
                       - data
                 x-apifox-orders:
@@ -56,11 +55,7 @@ paths:
                     type: number
                   data:
                     type: array
-                    items:
-                      type: object
-                      properties: {}
-                      x-apifox-ignore-properties: []
-                      x-apifox-orders: []
+                    items: *ref_0
                   message:
                     type: string
                   wording:
@@ -124,6 +119,42 @@ components:
         - message
         - wording
         - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    群信息:
+      type: object
+      properties:
+        group_all_shut:
+          type: number
+        group_remark:
+          type: string
+          description: 群备注
+        group_id:
+          type: string
+          description: 群号
+        group_name:
+          type: string
+          description: 群名
+        member_count:
+          type: number
+          description: 成员数量
+        max_member_count:
+          type: number
+          description: 最大成员数量
+      x-apifox-orders:
+        - group_all_shut
+        - group_remark
+        - group_id
+        - group_name
+        - member_count
+        - max_member_count
+      required:
+        - group_all_shut
+        - max_member_count
+        - member_count
+        - group_name
+        - group_id
+        - group_remark
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

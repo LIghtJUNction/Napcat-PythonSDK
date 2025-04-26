@@ -40,15 +40,9 @@ paths:
                     x-apifox-overrides:
                       data:
                         type: array
-                        items:
-                          type: object
-                          properties: {}
-                          x-apifox-orders: &ref_0
-                            - 01JB6J1DH9BRX8X9SDC508H7BZ
-                          x-apifox-refs: &ref_1
-                            01JB6J1DH9BRX8X9SDC508H7BZ:
-                              $ref: >-
-                                #/components/schemas/%E5%A5%BD%E5%8F%8B%E4%BF%A1%E6%81%AF
+                        items: &ref_0
+                          $ref: >-
+                            #/components/schemas/%E5%A5%BD%E5%8F%8B%E4%BF%A1%E6%81%AF
                     required:
                       - data
                 x-apifox-orders:
@@ -61,105 +55,7 @@ paths:
                     type: number
                   data:
                     type: array
-                    items:
-                      type: object
-                      properties:
-                        qid:
-                          type: string
-                          description: QQID
-                        longNick:
-                          type: string
-                          description: 个性签名
-                        birthday_year:
-                          type: number
-                          description: 生日_年
-                        birthday_month:
-                          type: number
-                          description: 生日_月
-                        birthday_day:
-                          type: number
-                          description: 生日_日
-                        age:
-                          type: number
-                          description: 年龄
-                        sex:
-                          type: string
-                          description: 性别
-                        eMail:
-                          type: string
-                          description: 邮箱
-                        phoneNum:
-                          type: string
-                          description: 手机号
-                        categoryId:
-                          type: number
-                          description: 分类
-                        richTime:
-                          type: number
-                          description: 注册时间
-                        richBuffer:
-                          type: object
-                          properties: {}
-                          x-apifox-orders: []
-                          x-apifox-ignore-properties: []
-                        uid:
-                          type: string
-                        uin:
-                          type: string
-                        nick:
-                          type: string
-                        remark:
-                          type: string
-                          description: 备注
-                        user_id:
-                          type: number
-                        nickname:
-                          type: string
-                        level:
-                          type: number
-                          description: 等级
-                      x-apifox-orders: *ref_0
-                      required:
-                        - qid
-                        - longNick
-                        - birthday_year
-                        - birthday_month
-                        - birthday_day
-                        - age
-                        - sex
-                        - eMail
-                        - phoneNum
-                        - categoryId
-                        - richTime
-                        - richBuffer
-                        - uid
-                        - uin
-                        - nick
-                        - remark
-                        - user_id
-                        - nickname
-                        - level
-                      x-apifox-refs: *ref_1
-                      x-apifox-ignore-properties:
-                        - qid
-                        - longNick
-                        - birthday_year
-                        - birthday_month
-                        - birthday_day
-                        - age
-                        - sex
-                        - eMail
-                        - phoneNum
-                        - categoryId
-                        - richTime
-                        - richBuffer
-                        - uid
-                        - uin
-                        - nick
-                        - remark
-                        - user_id
-                        - nickname
-                        - level
+                    items: *ref_0
                   message:
                     type: string
                   wording:
@@ -228,100 +124,68 @@ components:
     好友信息:
       type: object
       properties:
-        qid:
-          type: string
-          description: QQID
-        longNick:
-          type: string
-          description: 个性签名
         birthday_year:
           type: number
-          description: 生日_年
+          description: 生日年
         birthday_month:
           type: number
-          description: 生日_月
+          description: 生日月
         birthday_day:
           type: number
-          description: 生日_日
+          description: 生日日
+        user_id:
+          type: number
+          description: 账号
         age:
           type: number
           description: 年龄
-        sex:
+        phone_num:
           type: string
-          description: 性别
-        eMail:
+          description: 电话号码
+        email:
           type: string
           description: 邮箱
-        phoneNum:
-          type: string
-          description: 手机号
-        categoryId:
+        category_id:
           type: number
-          description: 分类
-        richTime:
-          type: number
-          description: 注册时间
-        richBuffer:
-          type: object
-          properties: {}
-          x-apifox-orders: []
-          x-apifox-ignore-properties: []
-        uid:
+          description: 分组ID
+        nickname:
           type: string
-        uin:
-          type: string
-        nick:
-          type: string
+          description: 昵称
         remark:
           type: string
           description: 备注
-        user_id:
-          type: number
-        nickname:
+        sex:
           type: string
+          description: 性别
         level:
           type: number
           description: 等级
-      required:
-        - qid
-        - longNick
-        - birthday_year
-        - birthday_month
-        - birthday_day
-        - age
-        - sex
-        - eMail
-        - phoneNum
-        - categoryId
-        - richTime
-        - richBuffer
-        - uid
-        - uin
-        - nick
-        - remark
-        - user_id
-        - nickname
-        - level
       x-apifox-orders:
-        - qid
-        - longNick
         - birthday_year
         - birthday_month
         - birthday_day
-        - age
-        - sex
-        - eMail
-        - phoneNum
-        - categoryId
-        - richTime
-        - richBuffer
-        - uid
-        - uin
-        - nick
-        - remark
         - user_id
+        - age
+        - phone_num
+        - email
+        - category_id
         - nickname
+        - remark
+        - sex
         - level
+      required:
+        - birthday_year
+        - level
+        - sex
+        - remark
+        - nickname
+        - category_id
+        - email
+        - phone_num
+        - age
+        - user_id
+        - birthday_day
+        - birthday_month
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

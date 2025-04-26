@@ -33,9 +33,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "group_id": 819085771
-              }
+              "example": ""
             }
           }
         },

@@ -20,17 +20,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "group_id": {
-                    "$ref": "#/components/schemas/group_id"
-                  }
-                },
-                "x-apifox-orders": [
-                  "group_id"
-                ],
-                "required": [
-                  "group_id"
-                ],
+                "properties": {},
+                "x-apifox-orders": [],
                 "x-apifox-ignore-properties": []
               },
               "example": ""
@@ -54,63 +45,23 @@
                             "join_requests": {
                               "type": "array",
                               "items": {
-                                "type": "object",
-                                "properties": {
-                                  "request_id": {
-                                    "type": "string"
-                                  },
-                                  "requester_uin": {
-                                    "type": "string"
-                                  },
-                                  "requester_nick": {
-                                    "type": "string"
-                                  },
-                                  "group_id": {
-                                    "type": "string"
-                                  },
-                                  "group_name": {
-                                    "type": "string"
-                                  },
-                                  "checked": {
-                                    "type": "boolean"
-                                  },
-                                  "actor": {
-                                    "oneOf": [
-                                      {
-                                        "type": "string"
-                                      },
-                                      {
-                                        "type": "number"
-                                      }
-                                    ]
-                                  }
-                                },
-                                "x-apifox-orders": [
-                                  "request_id",
-                                  "requester_uin",
-                                  "requester_nick",
-                                  "group_id",
-                                  "group_name",
-                                  "checked",
-                                  "actor"
-                                ],
-                                "required": [
-                                  "request_id",
-                                  "actor",
-                                  "checked",
-                                  "group_name",
-                                  "group_id",
-                                  "requester_nick",
-                                  "requester_uin"
-                                ]
+                                "$ref": "#/components/schemas/系统信息"
+                              }
+                            },
+                            "InvitedRequest": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/系统信息"
                               }
                             }
                           },
                           "x-apifox-orders": [
+                            "InvitedRequest",
                             "join_requests"
                           ],
                           "required": [
-                            "join_requests"
+                            "join_requests",
+                            "InvitedRequest"
                           ]
                         }
                       },
@@ -133,67 +84,26 @@
                     "data": {
                       "type": "object",
                       "properties": {
+                        "InvitedRequest": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/系统信息"
+                          }
+                        },
                         "join_requests": {
                           "type": "array",
                           "items": {
-                            "type": "object",
-                            "properties": {
-                              "request_id": {
-                                "type": "string"
-                              },
-                              "requester_uin": {
-                                "type": "string"
-                              },
-                              "requester_nick": {
-                                "type": "string"
-                              },
-                              "group_id": {
-                                "type": "string"
-                              },
-                              "group_name": {
-                                "type": "string"
-                              },
-                              "checked": {
-                                "type": "boolean"
-                              },
-                              "actor": {
-                                "oneOf": [
-                                  {
-                                    "type": "string"
-                                  },
-                                  {
-                                    "type": "number"
-                                  }
-                                ]
-                              }
-                            },
-                            "x-apifox-orders": [
-                              "request_id",
-                              "requester_uin",
-                              "requester_nick",
-                              "group_id",
-                              "group_name",
-                              "checked",
-                              "actor"
-                            ],
-                            "required": [
-                              "request_id",
-                              "actor",
-                              "checked",
-                              "group_name",
-                              "group_id",
-                              "requester_nick",
-                              "requester_uin"
-                            ],
-                            "x-apifox-ignore-properties": []
+                            "$ref": "#/components/schemas/系统信息"
                           }
                         }
                       },
                       "x-apifox-orders": [
+                        "InvitedRequest",
                         "join_requests"
                       ],
                       "required": [
-                        "join_requests"
+                        "join_requests",
+                        "InvitedRequest"
                       ],
                       "x-apifox-ignore-properties": []
                     },
@@ -240,17 +150,6 @@
   },
   "components": {
     "schemas": {
-      "group_id": {
-        "oneOf": [
-          {
-            "type": "number"
-          },
-          {
-            "type": "string"
-          }
-        ],
-        "x-apifox-folder": ""
-      },
       "result": {
         "type": "object",
         "properties": {
@@ -293,6 +192,62 @@
           "message",
           "wording",
           "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "系统信息": {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "number"
+          },
+          "invitor_uin": {
+            "type": "number"
+          },
+          "invitor_nick": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "group_name": {
+            "type": "string"
+          },
+          "checked": {
+            "type": "boolean"
+          },
+          "actor": {
+            "type": "number"
+          },
+          "requester_nick": {
+            "type": "string"
+          }
+        },
+        "x-apifox-orders": [
+          "request_id",
+          "invitor_uin",
+          "invitor_nick",
+          "group_id",
+          "message",
+          "group_name",
+          "checked",
+          "actor",
+          "requester_nick"
+        ],
+        "required": [
+          "request_id",
+          "invitor_uin",
+          "actor",
+          "group_name",
+          "group_id",
+          "invitor_nick",
+          "checked",
+          "message",
+          "requester_nick"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

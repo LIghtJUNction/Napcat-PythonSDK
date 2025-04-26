@@ -55,7 +55,7 @@ class SendGroupNoticeRes(BaseModel):
     发送群公告响应体
     """
     # Based on the overridden schema, data is null and required
-    status: Literal['ok'] = Field(..., description="状态")
+    status: Literal['ok'] = Field("ok", description="状态")
     retcode: int = Field(..., description="返回码")
     data: None = Field(..., description="数据部分，此接口为null")
     message: str = Field(..., description="消息")

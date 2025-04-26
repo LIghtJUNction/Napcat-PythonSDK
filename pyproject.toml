@@ -1,6 +1,6 @@
 [project]
 name = "python-napcat"
-version = "4.7.17"
+version = "4.7.43"
 description = "From napcat.fastnc import FastNC"
 readme = "README.md"
 authors = [

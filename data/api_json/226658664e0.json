@@ -33,7 +33,9 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": ""
+              "example": {
+                "group_id": 1012451981
+              }
             }
           }
         },
@@ -76,10 +78,10 @@
                                 "description": "设精人昵称"
                               },
                               "message_id": {
-                                "type": "string"
+                                "type": "number"
                               },
                               "operator_time": {
-                                "type": "string",
+                                "type": "number",
                                 "description": "设精时间"
                               },
                               "content": {
@@ -90,28 +92,35 @@
                                       "$ref": "#/components/schemas/文本消息"
                                     },
                                     {
-                                      "$ref": "#/components/schemas/艾特消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/表情消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/图片消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/回复消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/JSON消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/语音消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/视频消息"
-                                    },
-                                    {
-                                      "$ref": "#/components/schemas/markdown消息"
+                                      "type": "object",
+                                      "x-apifox-refs": {
+                                        "01JSS7T2Z6DVGZ3AJF8WDDM2R7": {
+                                          "$ref": "#/components/schemas/图片消息",
+                                          "x-apifox-overrides": {
+                                            "data": {
+                                              "type": "object",
+                                              "properties": {
+                                                "url": {
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "x-apifox-orders": [
+                                                "url"
+                                              ],
+                                              "required": [
+                                                "url"
+                                              ]
+                                            }
+                                          },
+                                          "required": [
+                                            "data"
+                                          ]
+                                        }
+                                      },
+                                      "x-apifox-orders": [
+                                        "01JSS7T2Z6DVGZ3AJF8WDDM2R7"
+                                      ],
+                                      "properties": {}
                                     }
                                   ]
                                 },
@@ -187,10 +196,10 @@
                             "description": "设精人昵称"
                           },
                           "message_id": {
-                            "type": "string"
+                            "type": "number"
                           },
                           "operator_time": {
-                            "type": "string",
+                            "type": "number",
                             "description": "设精时间"
                           },
                           "content": {
@@ -201,28 +210,63 @@
                                   "$ref": "#/components/schemas/文本消息"
                                 },
                                 {
-                                  "$ref": "#/components/schemas/艾特消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/表情消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/图片消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/回复消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/JSON消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/语音消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/视频消息"
-                                },
-                                {
-                                  "$ref": "#/components/schemas/markdown消息"
+                                  "type": "object",
+                                  "x-apifox-refs": {
+                                    "01JSS7T2Z6DVGZ3AJF8WDDM2R7": {
+                                      "$ref": "#/components/schemas/图片消息",
+                                      "x-apifox-overrides": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "url": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "x-apifox-orders": [
+                                            "url"
+                                          ],
+                                          "required": [
+                                            "url"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "data"
+                                      ]
+                                    }
+                                  },
+                                  "x-apifox-orders": [
+                                    "01JSS7T2Z6DVGZ3AJF8WDDM2R7"
+                                  ],
+                                  "properties": {
+                                    "type": {
+                                      "type": "string",
+                                      "const": "image"
+                                    },
+                                    "data": {
+                                      "type": "object",
+                                      "properties": {
+                                        "url": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "x-apifox-orders": [
+                                        "url"
+                                      ],
+                                      "required": [
+                                        "url"
+                                      ],
+                                      "x-apifox-ignore-properties": []
+                                    }
+                                  },
+                                  "required": [
+                                    "type",
+                                    "data"
+                                  ],
+                                  "x-apifox-ignore-properties": [
+                                    "type",
+                                    "data"
+                                  ]
                                 }
                               ]
                             },
@@ -354,183 +398,6 @@
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""
       },
-      "markdown消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "record"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "content": {
-                "type": "string"
-              }
-            },
-            "x-apifox-orders": [
-              "content"
-            ],
-            "required": [
-              "content"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "视频消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "video"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "file": {
-                "type": "string"
-              }
-            },
-            "x-apifox-orders": [
-              "file"
-            ],
-            "required": [
-              "file"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "语音消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "record"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "file": {
-                "type": "string"
-              }
-            },
-            "x-apifox-orders": [
-              "file"
-            ],
-            "required": [
-              "file"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "JSON消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "json"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "string"
-              }
-            },
-            "x-apifox-orders": [
-              "data"
-            ],
-            "required": [
-              "data"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "回复消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "reply"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  }
-                ]
-              }
-            },
-            "x-apifox-orders": [
-              "id"
-            ],
-            "required": [
-              "id"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
       "图片消息": {
         "type": "object",
         "properties": {
@@ -546,7 +413,8 @@
               },
               "summary": {
                 "type": "string",
-                "default": "[图片]"
+                "default": "[图片]",
+                "description": "外显"
               }
             },
             "x-apifox-orders": [
@@ -555,89 +423,6 @@
             ],
             "required": [
               "file"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "表情消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "face"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              }
-            },
-            "x-apifox-orders": [
-              "id"
-            ],
-            "required": [
-              "id"
-            ],
-            "x-apifox-ignore-properties": []
-          }
-        },
-        "x-apifox-orders": [
-          "type",
-          "data"
-        ],
-        "required": [
-          "type",
-          "data"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": ""
-      },
-      "艾特消息": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "const": "at"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "qq": {
-                "oneOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "number"
-                  },
-                  {
-                    "type": "string",
-                    "const": "all"
-                  }
-                ]
-              },
-              "name": {
-                "type": "string"
-              }
-            },
-            "x-apifox-orders": [
-              "qq",
-              "name"
-            ],
-            "required": [
-              "qq"
             ],
             "x-apifox-ignore-properties": []
           }

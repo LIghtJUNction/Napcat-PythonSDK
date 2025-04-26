@@ -20,11 +20,14 @@ paths:
               properties:
                 model:
                   type: string
+                  default: napcat
               x-apifox-orders:
                 - model
               required:
                 - model
               x-apifox-ignore-properties: []
+            example:
+              model: napcat
       responses:
         '200':
           description: ''

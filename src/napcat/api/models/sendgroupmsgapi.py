@@ -26,20 +26,23 @@ from typing import Literal
 
 
 # region req
-class FileMessageData(BaseModel):
-    """文件消息数据"""
-    file: str = Field(..., description="文件路径，可以是本地路径、网络路径或base64编码")
-    name: str | None = Field(None, description="文件名称")
-
-class FileMessage(BaseModel):
-    """文件消息类型"""
-    type: Literal["file"] = Field("file", description="消息类型，固定为 file")
-    data: FileMessageData = Field(..., description="文件消息数据")
 
 class SendGroupMsgReq(BaseModel):
     """
     发送群消息请求模型
     """
+    class FileMessage(BaseModel):
+        """文件消息类型"""
+        class FileMessageData(BaseModel):
+            """文件消息数据"""
+            file: str = Field(..., description="文件路径，可以是本地路径、网络路径或base64编码")
+            name: str | None = Field(None, description="文件名称")
+
+
+        type: Literal["file"] = Field("file", description="消息类型，固定为 file")
+        data: FileMessageData = Field(..., description="文件消息数据")
+
+
     group_id: int | str = Field(..., description="群号")
     message: list[FileMessage] = Field(..., description="消息内容，只支持文件消息列表")
 # endregion req
@@ -47,15 +50,17 @@ class SendGroupMsgReq(BaseModel):
 
 
 # region res
-class SendGroupMsgResData(BaseModel):
-    """发送群消息响应数据"""
-    message_id: int = Field(..., description="消息ID")
+
 
 class SendGroupMsgRes(BaseModel):
     """
     发送群消息响应模型
     """
-    status: Literal["ok"] = Field(..., description="响应状态")
+    class SendGroupMsgResData(BaseModel):
+        """发送群消息响应数据"""
+        message_id: int = Field(..., description="消息ID")
+    
+    status: Literal["ok"] = Field("ok", description="响应状态")
     retcode: int = Field(..., description="响应码")
     data: SendGroupMsgResData = Field(..., description="响应数据")
     message: str = Field(..., description="响应消息")

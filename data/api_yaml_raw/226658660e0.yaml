@@ -17,13 +17,8 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                group_id:
-                  $ref: '#/components/schemas/group_id'
-              x-apifox-orders:
-                - group_id
-              required:
-                - group_id
+              properties: {}
+              x-apifox-orders: []
               x-apifox-ignore-properties: []
             example: ''
       responses:
@@ -42,83 +37,13 @@ paths:
                         properties:
                           InvitedRequest:
                             type: array
-                            items:
-                              type: object
-                              properties:
-                                request_id: &ref_0
-                                  type: string
-                                invitor_uin: &ref_1
-                                  type: string
-                                invitor_nick: &ref_2
-                                  type: string
-                                group_id: &ref_3
-                                  type: string
-                                group_name: &ref_4
-                                  type: string
-                                checked: &ref_5
-                                  type: boolean
-                                actor:
-                                  oneOf:
-                                    - &ref_6
-                                      type: string
-                                    - &ref_7
-                                      type: number
-                              x-apifox-orders: &ref_8
-                                - request_id
-                                - invitor_uin
-                                - invitor_nick
-                                - group_id
-                                - group_name
-                                - checked
-                                - actor
-                              required:
-                                - request_id
-                                - invitor_uin
-                                - actor
-                                - group_name
-                                - group_id
-                                - invitor_nick
-                                - checked
+                            items: &ref_0
+                              $ref: >-
+                                #/components/schemas/%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF
                           join_requests:
                             type: array
-                            items:
-                              type: object
-                              properties:
-                                request_id: &ref_9
-                                  type: string
-                                requester_uin: &ref_10
-                                  type: string
-                                requester_nick: &ref_11
-                                  type: string
-                                group_id: &ref_12
-                                  type: string
-                                group_name: &ref_13
-                                  type: string
-                                checked: &ref_14
-                                  type: boolean
-                                actor:
-                                  oneOf:
-                                    - &ref_15
-                                      type: string
-                                    - &ref_16
-                                      type: number
-                              x-apifox-orders: &ref_17
-                                - request_id
-                                - requester_uin
-                                - requester_nick
-                                - group_id
-                                - group_name
-                                - checked
-                                - actor
-                              required:
-                                - request_id
-                                - actor
-                                - checked
-                                - group_name
-                                - group_id
-                                - requester_nick
-                                - requester_uin
-                        x-apifox-orders: &ref_18
+                            items: *ref_0
+                        x-apifox-orders: &ref_1
                           - InvitedRequest
                           - join_requests
                         required:
@@ -139,55 +64,11 @@ paths:
                     properties:
                       InvitedRequest:
                         type: array
-                        items:
-                          type: object
-                          properties:
-                            request_id: *ref_0
-                            invitor_uin: *ref_1
-                            invitor_nick: *ref_2
-                            group_id: *ref_3
-                            group_name: *ref_4
-                            checked: *ref_5
-                            actor:
-                              oneOf:
-                                - *ref_6
-                                - *ref_7
-                          x-apifox-orders: *ref_8
-                          required:
-                            - request_id
-                            - invitor_uin
-                            - actor
-                            - group_name
-                            - group_id
-                            - invitor_nick
-                            - checked
-                          x-apifox-ignore-properties: []
+                        items: *ref_0
                       join_requests:
                         type: array
-                        items:
-                          type: object
-                          properties:
-                            request_id: *ref_9
-                            requester_uin: *ref_10
-                            requester_nick: *ref_11
-                            group_id: *ref_12
-                            group_name: *ref_13
-                            checked: *ref_14
-                            actor:
-                              oneOf:
-                                - *ref_15
-                                - *ref_16
-                          x-apifox-orders: *ref_17
-                          required:
-                            - request_id
-                            - actor
-                            - checked
-                            - group_name
-                            - group_id
-                            - requester_nick
-                            - requester_uin
-                          x-apifox-ignore-properties: []
-                    x-apifox-orders: *ref_18
+                        items: *ref_0
+                    x-apifox-orders: *ref_1
                     required:
                       - InvitedRequest
                       - join_requests
@@ -221,11 +102,6 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226658660-run
 components:
   schemas:
-    group_id:
-      oneOf:
-        - type: number
-        - type: string
-      x-apifox-folder: ''
     result:
       type: object
       properties:
@@ -260,6 +136,49 @@ components:
         - message
         - wording
         - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    系统信息:
+      type: object
+      properties:
+        request_id:
+          type: number
+        invitor_uin:
+          type: number
+        invitor_nick:
+          type: string
+        group_id:
+          type: number
+        message:
+          type: string
+        group_name:
+          type: string
+        checked:
+          type: boolean
+        actor:
+          type: number
+        requester_nick:
+          type: string
+      x-apifox-orders:
+        - request_id
+        - invitor_uin
+        - invitor_nick
+        - group_id
+        - message
+        - group_name
+        - checked
+        - actor
+        - requester_nick
+      required:
+        - request_id
+        - invitor_uin
+        - actor
+        - group_name
+        - group_id
+        - invitor_nick
+        - checked
+        - message
+        - requester_nick
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

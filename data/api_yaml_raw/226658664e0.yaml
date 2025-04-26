@@ -25,7 +25,8 @@ paths:
               required:
                 - group_id
               x-apifox-ignore-properties: []
-            example: ''
+            example:
+              group_id: 1012451981
       responses:
         '200':
           description: ''
@@ -59,9 +60,9 @@ paths:
                               type: string
                               description: 设精人昵称
                             message_id: &ref_6
-                              type: string
+                              type: number
                             operator_time: &ref_7
-                              type: string
+                              type: number
                               description: 设精时间
                             content:
                               type: array
@@ -70,32 +71,28 @@ paths:
                                   - &ref_8
                                     $ref: >-
                                       #/components/schemas/%E6%96%87%E6%9C%AC%E6%B6%88%E6%81%AF
-                                  - &ref_9
-                                    $ref: >-
-                                      #/components/schemas/%E8%89%BE%E7%89%B9%E6%B6%88%E6%81%AF
-                                  - &ref_10
-                                    $ref: >-
-                                      #/components/schemas/%E8%A1%A8%E6%83%85%E6%B6%88%E6%81%AF
-                                  - &ref_11
-                                    $ref: >-
-                                      #/components/schemas/%E5%9B%BE%E7%89%87%E6%B6%88%E6%81%AF
-                                  - &ref_12
-                                    $ref: >-
-                                      #/components/schemas/%E5%9B%9E%E5%A4%8D%E6%B6%88%E6%81%AF
-                                  - &ref_13
-                                    $ref: >-
-                                      #/components/schemas/JSON%E6%B6%88%E6%81%AF
-                                  - &ref_14
-                                    $ref: >-
-                                      #/components/schemas/%E8%AF%AD%E9%9F%B3%E6%B6%88%E6%81%AF
-                                  - &ref_15
-                                    $ref: >-
-                                      #/components/schemas/%E8%A7%86%E9%A2%91%E6%B6%88%E6%81%AF
-                                  - &ref_16
-                                    $ref: >-
-                                      #/components/schemas/markdown%E6%B6%88%E6%81%AF
+                                  - type: object
+                                    x-apifox-refs: &ref_9
+                                      01JSS7T2Z6DVGZ3AJF8WDDM2R7:
+                                        $ref: >-
+                                          #/components/schemas/%E5%9B%BE%E7%89%87%E6%B6%88%E6%81%AF
+                                        x-apifox-overrides:
+                                          data:
+                                            type: object
+                                            properties:
+                                              url: &ref_11
+                                                type: string
+                                            x-apifox-orders: &ref_12
+                                              - url
+                                            required:
+                                              - url
+                                        required:
+                                          - data
+                                    x-apifox-orders: &ref_10
+                                      - 01JSS7T2Z6DVGZ3AJF8WDDM2R7
+                                    properties: {}
                               description: 消息内容
-                          x-apifox-orders: &ref_17
+                          x-apifox-orders: &ref_13
                             - msg_seq
                             - msg_random
                             - sender_id
@@ -143,16 +140,29 @@ paths:
                           items:
                             anyOf:
                               - *ref_8
-                              - *ref_9
-                              - *ref_10
-                              - *ref_11
-                              - *ref_12
-                              - *ref_13
-                              - *ref_14
-                              - *ref_15
-                              - *ref_16
+                              - type: object
+                                x-apifox-refs: *ref_9
+                                x-apifox-orders: *ref_10
+                                properties:
+                                  type:
+                                    type: string
+                                    const: image
+                                  data:
+                                    type: object
+                                    properties:
+                                      url: *ref_11
+                                    x-apifox-orders: *ref_12
+                                    required:
+                                      - url
+                                    x-apifox-ignore-properties: []
+                                required:
+                                  - type
+                                  - data
+                                x-apifox-ignore-properties:
+                                  - type
+                                  - data
                           description: 消息内容
-                      x-apifox-orders: *ref_17
+                      x-apifox-orders: *ref_13
                       required:
                         - msg_seq
                         - message_id
@@ -234,128 +244,6 @@ components:
         - echo
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
-    markdown消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: record
-        data:
-          type: object
-          properties:
-            content:
-              type: string
-          x-apifox-orders:
-            - content
-          required:
-            - content
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    视频消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: video
-        data:
-          type: object
-          properties:
-            file:
-              type: string
-          x-apifox-orders:
-            - file
-          required:
-            - file
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    语音消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: record
-        data:
-          type: object
-          properties:
-            file:
-              type: string
-          x-apifox-orders:
-            - file
-          required:
-            - file
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    JSON消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: json
-        data:
-          type: object
-          properties:
-            data:
-              type: string
-          x-apifox-orders:
-            - data
-          required:
-            - data
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    回复消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: reply
-        data:
-          type: object
-          properties:
-            id:
-              oneOf:
-                - type: string
-                - type: number
-          x-apifox-orders:
-            - id
-          required:
-            - id
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
     图片消息:
       type: object
       properties:
@@ -370,66 +258,12 @@ components:
             summary:
               type: string
               default: '[图片]'
+              description: 外显
           x-apifox-orders:
             - file
             - summary
           required:
             - file
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    表情消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: face
-        data:
-          type: object
-          properties:
-            id:
-              type: number
-          x-apifox-orders:
-            - id
-          required:
-            - id
-          x-apifox-ignore-properties: []
-      x-apifox-orders:
-        - type
-        - data
-      required:
-        - type
-        - data
-      x-apifox-ignore-properties: []
-      x-apifox-folder: ''
-    艾特消息:
-      type: object
-      properties:
-        type:
-          type: string
-          const: at
-        data:
-          type: object
-          properties:
-            qq:
-              oneOf:
-                - type: string
-                - type: number
-                - type: string
-                  const: all
-            name:
-              type: string
-          x-apifox-orders:
-            - qq
-            - name
-          required:
-            - qq
           x-apifox-ignore-properties: []
       x-apifox-orders:
         - type

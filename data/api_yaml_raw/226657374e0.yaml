@@ -33,8 +33,6 @@ paths:
                 - sex
               required:
                 - nickname
-                - personal_note
-                - sex
               x-apifox-ignore-properties: []
             example: ''
       responses:

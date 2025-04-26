@@ -55,102 +55,17 @@ paths:
                         properties:
                           files:
                             type: array
-                            items:
-                              type: object
-                              properties:
-                                group_id: &ref_0
-                                  type: number
-                                file_id: &ref_1
-                                  type: string
-                                file_name: &ref_2
-                                  type: string
-                                busid: &ref_3
-                                  type: number
-                                size: &ref_4
-                                  type: number
-                                upload_time: &ref_5
-                                  type: number
-                                dead_time: &ref_6
-                                  type: number
-                                modify_time: &ref_7
-                                  type: number
-                                download_times: &ref_8
-                                  type: number
-                                uploader: &ref_9
-                                  type: number
-                                uploader_name: &ref_10
-                                  type: string
-                              x-apifox-orders: &ref_11
-                                - group_id
-                                - file_id
-                                - file_name
-                                - busid
-                                - size
-                                - upload_time
-                                - dead_time
-                                - modify_time
-                                - download_times
-                                - uploader
-                                - uploader_name
-                              required:
-                                - group_id
-                                - upload_time
-                                - dead_time
-                                - size
-                                - busid
-                                - file_name
-                                - file_id
-                                - uploader_name
-                                - uploader
-                                - download_times
-                                - modify_time
+                            items: &ref_0
+                              $ref: >-
+                                #/components/schemas/%E7%BE%A4%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF
                             description: 文件列表
                           folders:
                             type: array
-                            items:
-                              type: object
-                              properties:
-                                group_id: &ref_12
-                                  type: number
-                                folder_id: &ref_13
-                                  type: string
-                                folder: &ref_14
-                                  type: string
-                                folder_name: &ref_15
-                                  type: string
-                                  description: 文件夹名称
-                                create_time: &ref_16
-                                  type: string
-                                  description: 创建时间
-                                creator: &ref_17
-                                  type: string
-                                  description: 创建人账号
-                                creator_name: &ref_18
-                                  type: string
-                                  description: 创建人昵称
-                                total_file_count: &ref_19
-                                  type: string
-                                  description: 文件数量
-                              x-apifox-orders: &ref_20
-                                - group_id
-                                - folder_id
-                                - folder
-                                - folder_name
-                                - create_time
-                                - creator
-                                - creator_name
-                                - total_file_count
-                              required:
-                                - group_id
-                                - create_time
-                                - folder_name
-                                - folder
-                                - folder_id
-                                - total_file_count
-                                - creator_name
-                                - creator
+                            items: &ref_1
+                              $ref: >-
+                                #/components/schemas/%E7%BE%A4%E6%96%87%E4%BB%B6%E5%A4%B9%E4%BF%A1%E6%81%AF
                             description: 文件夹列表
-                        x-apifox-orders: &ref_21
+                        x-apifox-orders: &ref_2
                           - files
                           - folders
                         required:
@@ -170,61 +85,13 @@ paths:
                     properties:
                       files:
                         type: array
-                        items:
-                          type: object
-                          properties:
-                            group_id: *ref_0
-                            file_id: *ref_1
-                            file_name: *ref_2
-                            busid: *ref_3
-                            size: *ref_4
-                            upload_time: *ref_5
-                            dead_time: *ref_6
-                            modify_time: *ref_7
-                            download_times: *ref_8
-                            uploader: *ref_9
-                            uploader_name: *ref_10
-                          x-apifox-orders: *ref_11
-                          required:
-                            - group_id
-                            - upload_time
-                            - dead_time
-                            - size
-                            - busid
-                            - file_name
-                            - file_id
-                            - uploader_name
-                            - uploader
-                            - download_times
-                            - modify_time
-                          x-apifox-ignore-properties: []
+                        items: *ref_0
                         description: 文件列表
                       folders:
                         type: array
-                        items:
-                          type: object
-                          properties:
-                            group_id: *ref_12
-                            folder_id: *ref_13
-                            folder: *ref_14
-                            folder_name: *ref_15
-                            create_time: *ref_16
-                            creator: *ref_17
-                            creator_name: *ref_18
-                            total_file_count: *ref_19
-                          x-apifox-orders: *ref_20
-                          required:
-                            - group_id
-                            - create_time
-                            - folder_name
-                            - folder
-                            - folder_id
-                            - total_file_count
-                            - creator_name
-                            - creator
-                          x-apifox-ignore-properties: []
+                        items: *ref_1
                         description: 文件夹列表
-                    x-apifox-orders: *ref_21
+                    x-apifox-orders: *ref_2
                     required:
                       - files
                     x-apifox-ignore-properties: []
@@ -296,6 +163,105 @@ components:
         - message
         - wording
         - echo
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    群文件夹信息:
+      type: object
+      properties:
+        group_id:
+          type: number
+        folder_id:
+          type: string
+        folder:
+          type: string
+        folder_name:
+          type: string
+          description: 文件夹名称
+        create_time:
+          type: number
+          description: 创建时间
+        creator:
+          type: number
+          description: 创建人账号
+        creator_name:
+          type: string
+          description: 创建人昵称
+        total_file_count:
+          type: number
+          description: 文件数量
+      x-apifox-orders:
+        - group_id
+        - folder_id
+        - folder
+        - folder_name
+        - create_time
+        - creator
+        - creator_name
+        - total_file_count
+      required:
+        - group_id
+        - create_time
+        - folder_name
+        - folder
+        - folder_id
+        - total_file_count
+        - creator_name
+        - creator
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    群文件信息:
+      type: object
+      properties:
+        group_id:
+          type: number
+        file_id:
+          type: string
+        file_name:
+          type: string
+        busid:
+          type: number
+        size:
+          type: number
+        file_size:
+          type: number
+        upload_time:
+          type: number
+        dead_time:
+          type: number
+        modify_time:
+          type: number
+        download_times:
+          type: number
+        uploader:
+          type: number
+        uploader_name:
+          type: string
+      x-apifox-orders:
+        - group_id
+        - file_id
+        - file_name
+        - busid
+        - size
+        - file_size
+        - upload_time
+        - dead_time
+        - modify_time
+        - download_times
+        - uploader
+        - uploader_name
+      required:
+        - group_id
+        - upload_time
+        - dead_time
+        - size
+        - busid
+        - file_name
+        - file_id
+        - uploader_name
+        - uploader
+        - download_times
+        - modify_time
+        - file_size
       x-apifox-ignore-properties: []
       x-apifox-folder: ''
   securitySchemes: {}

@@ -29,7 +29,9 @@ paths:
                 - group_id
                 - folder_name
               x-apifox-ignore-properties: []
-            example: ''
+            example:
+              group_id: 790514019
+              folder_name: ABC
       responses:
         '200':
           description: ''
@@ -67,7 +69,7 @@ paths:
                               peerId: &ref_4
                                 type: string
                               type: &ref_5
-                                type: string
+                                type: number
                               folderInfo:
                                 type: object
                                 properties:
@@ -86,7 +88,7 @@ paths:
                                   creatorName: &ref_12
                                     type: string
                                   totalFileCount: &ref_13
-                                    type: string
+                                    type: number
                                   modifyUin: &ref_14
                                     type: string
                                   modifyName: &ref_15
@@ -118,15 +120,20 @@ paths:
                                   - modifyUin
                                   - totalFileCount
                                   - usedSpace
-                            x-apifox-orders: &ref_18
+                              fileInfo: &ref_18
+                                type: string
+                                nullable: true
+                            x-apifox-orders: &ref_19
                               - peerId
                               - type
                               - folderInfo
+                              - fileInfo
                             required:
                               - peerId
                               - type
                               - folderInfo
-                        x-apifox-orders: &ref_19
+                              - fileInfo
+                        x-apifox-orders: &ref_20
                           - result
                           - groupItem
                         required:
@@ -191,13 +198,15 @@ paths:
                               - totalFileCount
                               - usedSpace
                             x-apifox-ignore-properties: []
-                        x-apifox-orders: *ref_18
+                          fileInfo: *ref_18
+                        x-apifox-orders: *ref_19
                         required:
                           - peerId
                           - type
                           - folderInfo
+                          - fileInfo
                         x-apifox-ignore-properties: []
-                    x-apifox-orders: *ref_19
+                    x-apifox-orders: *ref_20
                     required:
                       - result
                       - groupItem

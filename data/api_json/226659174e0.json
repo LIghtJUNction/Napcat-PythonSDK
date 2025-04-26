@@ -30,7 +30,8 @@
                   },
                   "count": {
                     "type": "number",
-                    "description": "数量"
+                    "description": "数量",
+                    "default": 20
                   },
                   "reverseOrder": {
                     "type": "boolean",
@@ -626,7 +627,8 @@
               },
               "summary": {
                 "type": "string",
-                "default": "[图片]"
+                "default": "[图片]",
+                "description": "外显"
               }
             },
             "x-apifox-orders": [
@@ -843,7 +845,8 @@
         ],
         "required": [
           "user_id",
-          "nickname"
+          "nickname",
+          "card"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

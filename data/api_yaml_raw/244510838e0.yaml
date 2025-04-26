@@ -39,13 +39,14 @@ paths:
                           "type": "file",
                           "data": {
                               // 本地路径
-                              "file": "file://D:/a.jpg"
+                              "file": "file://D:/a.jpg",
                               
                               // 网络路径
-                              // "file": "http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png"
+                              // "file": "http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png",
                               
-                              //base64编码
-                              // "file": "base64://xxxxxxxx"
+                              // "file": "base64或DataUrl编码",
+
+                              "name": "a.jpg"
                           }
                       }
                   ]

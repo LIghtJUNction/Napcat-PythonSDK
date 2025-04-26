@@ -25,6 +25,7 @@ paths:
                 current_parent_directory:
                   type: string
                   title: 当前父目录
+                  description: 根目录填  /
                 target_parent_directory:
                   type: string
                   title: 目标父目录
@@ -39,6 +40,11 @@ paths:
                 - current_parent_directory
                 - file_id
               x-apifox-ignore-properties: []
+            example:
+              group_id: 123456
+              file_id: ee87348ece794e778a4ac9e81f2edb17
+              current_parent_directory: /
+              target_parent_directory: /ca0f1860-6362-4777-bc50-9f31993c6877
       responses:
         '200':
           description: ''

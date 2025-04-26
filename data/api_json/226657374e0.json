@@ -40,9 +40,7 @@
                   "sex"
                 ],
                 "required": [
-                  "nickname",
-                  "personal_note",
-                  "sex"
+                  "nickname"
                 ],
                 "x-apifox-ignore-properties": []
               },

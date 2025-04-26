@@ -17,14 +17,8 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                no_cache:
-                  type: boolean
-                  default: false
-              x-apifox-orders:
-                - no_cache
-              required:
-                - no_cache
+              properties: {}
+              x-apifox-orders: []
               x-apifox-ignore-properties: []
             example: ''
       responses:
@@ -39,14 +33,9 @@ paths:
                     $ref: '#/components/schemas/result'
                     x-apifox-overrides:
                       data:
-                        type: object
-                        properties:
-                          clients:
-                            type: object
-                            properties: {}
-                            x-apifox-orders: &ref_0 []
-                        x-apifox-orders: &ref_1
-                          - clients
+                        type: array
+                        items: &ref_0
+                          type: string
                     required:
                       - data
                 x-apifox-orders:
@@ -58,15 +47,8 @@ paths:
                   retcode:
                     type: number
                   data:
-                    type: object
-                    properties:
-                      clients:
-                        type: object
-                        properties: {}
-                        x-apifox-orders: *ref_0
-                        x-apifox-ignore-properties: []
-                    x-apifox-orders: *ref_1
-                    x-apifox-ignore-properties: []
+                    type: array
+                    items: *ref_0
                   message:
                     type: string
                   wording:

@@ -22,7 +22,8 @@
                 "type": "object",
                 "properties": {
                   "count": {
-                    "type": "number"
+                    "type": "number",
+                    "default": 48
                   }
                 },
                 "x-apifox-orders": [

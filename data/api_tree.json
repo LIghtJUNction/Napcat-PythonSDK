@@ -601,7 +601,7 @@
         "url": "https://napcat.apifox.cn/226657036e0.md",
         "id": "226657036e0",
         "type": "e0",
-        "description": ""
+        "description": "|  type                   |         类型                    |"
       },
       "获取群信息ex": {
         "url": "https://napcat.apifox.cn/226659229e0.md",
@@ -948,6 +948,18 @@
           "type": "e0",
           "description": ""
         }
+      },
+      "get_doubt_friends_add_request": {
+        "url": "https://napcat.apifox.cn/289565516e0.md",
+        "id": "289565516e0",
+        "type": "e0",
+        "description": ""
+      },
+      "set_doubt_friends_add_request": {
+        "url": "https://napcat.apifox.cn/289565525e0.md",
+        "id": "289565525e0",
+        "type": "e0",
+        "description": ""
       }
     }
   }

@@ -21,6 +21,7 @@ __method__ = "POST"
 
 
 # region code
+from typing import Literal
 from pydantic import BaseModel, Field
 
 
@@ -52,8 +53,8 @@ class RenameGroupFileRes(BaseModel):
         """
         ok: bool = Field(..., description="是否成功")
 
-    status: str = Field(
-        'ok', description="响应状态", const=True
+    status: Literal["ok"] = Field(
+        'ok', description="响应状态"
     ) # Pydantic v2 const is True for literal values
     retcode: int = Field(..., description="响应码")
     data: Data = Field(..., description="响应数据")

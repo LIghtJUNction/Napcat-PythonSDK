@@ -24,6 +24,9 @@
                   "file": {
                     "type": "string"
                   },
+                  "file_id": {
+                    "type": "string"
+                  },
                   "out_format": {
                     "type": "string",
                     "enum": [
@@ -82,18 +85,15 @@
                 },
                 "x-apifox-orders": [
                   "file",
+                  "file_id",
                   "out_format"
                 ],
                 "required": [
-                  "file",
                   "out_format"
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "file_id": "000000924e61704361744f6e65426f747c4d736746696c657c327c3739303531343031397c373433313532313837383033323238303633367c373433313532313837383033323238303633357c.cd8e41763598ae7c0b7dd348d5d4804f.amr",
-                "out_format": "amr"
-              }
+              "example": ""
             }
           }
         },

@@ -19,7 +19,7 @@ paths:
               type: object
               properties:
                 face_id: &ref_0
-                  $ref: '#/components/schemas/string%20%7C%20number'
+                  $ref: '#/components/schemas/number%20%7C%20string'
                   title: 表情ID
                   description: 表情ID
                 face_type: *ref_0
@@ -90,7 +90,7 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-266151905-run
 components:
   schemas:
-    string | number:
+    number | string:
       anyOf:
         - type: number
         - type: string

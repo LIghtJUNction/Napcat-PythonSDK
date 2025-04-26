@@ -20,8 +20,11 @@ paths:
               properties:
                 group_id:
                   $ref: '#/components/schemas/group_id'
+                is_dismiss:
+                  type: boolean
               x-apifox-orders:
                 - group_id
+                - is_dismiss
               required:
                 - group_id
               x-apifox-ignore-properties: []

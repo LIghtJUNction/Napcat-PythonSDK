@@ -29,32 +29,30 @@ logger = logging.getLogger(__name__)
 
 
 # region req
-class FileMessageData(BaseModel):
-    """文件消息数据"""
-
-    file: str = Field(
-        ..., description="文件路径 (本地路径/网络路径/base64)"
-    )
-    name: str | None = Field(
-        None, description="文件名 (可选)"
-    )
-
-
-class FileMessage(BaseModel):
-    """文件消息"""
-
-    type: Literal["file"] = Field(
-        "file", description="消息类型"
-    )
-    data: FileMessageData = Field(
-        ..., description="消息数据"
-    )
-
 
 class SendPrivateMsgReq(BaseModel):
     """
     发送私聊文件请求模型
     """
+
+    class FileMessage(BaseModel):
+        """文件消息"""
+        class FileMessageData(BaseModel):
+            """文件消息数据"""
+
+            file: str = Field(
+                ..., description="文件路径 (本地路径/网络路径/base64)"
+            )
+            name: str | None = Field(
+                None, description="文件名 (可选)"
+            )
+
+        type: Literal["file"] = Field(
+            "file", description="消息类型"
+        )
+        data: FileMessageData = Field(
+            ..., description="消息数据"
+        )
 
     user_id: int | str = Field(
         ..., description="用户ID"
@@ -68,18 +66,19 @@ class SendPrivateMsgReq(BaseModel):
 
 
 # region res
-class ResponseData(BaseModel):
-    """响应数据"""
-
-    message_id: int = Field(
-        ..., description="消息ID"
-    )
 
 
 class SendPrivateMsgRes(BaseModel):
     """
     发送私聊文件响应模型
     """
+    class ResponseData(BaseModel):
+        """响应数据"""
+    
+        message_id: int = Field(
+            ..., description="消息ID"
+        )
+
 
     status: Literal["ok"] = Field(
         "ok", description="响应状态"

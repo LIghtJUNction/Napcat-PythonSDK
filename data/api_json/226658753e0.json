@@ -30,31 +30,30 @@
                   "name": {
                     "type": "string"
                   },
+                  "folder": {
+                    "type": "string",
+                    "description": "文件夹ID（二选一）"
+                  },
                   "folder_id": {
                     "type": "string",
-                    "description": "文件夹ID"
+                    "description": "文件夹ID（二选一）"
                   }
                 },
                 "x-apifox-orders": [
                   "group_id",
                   "file",
                   "name",
+                  "folder",
                   "folder_id"
                 ],
                 "required": [
                   "group_id",
                   "file",
-                  "name",
-                  "folder_id"
+                  "name"
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "group_id": 123456,
-                "file": "E:/.../logo.png",
-                "name": "logo.png",
-                "folder_id": "/10b1bef8-f36c-4dea-884d-eeeed225407d"
-              }
+              "example": ""
             }
           }
         },

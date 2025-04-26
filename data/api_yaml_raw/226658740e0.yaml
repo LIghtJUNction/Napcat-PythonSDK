@@ -26,10 +26,21 @@ paths:
                 image:
                   type: string
                   description: 图片路径
+                pinned: &ref_0
+                  $ref: '#/components/schemas/number%20%7C%20string'
+                type: *ref_0
+                confirm_required: *ref_0
+                is_show_edit_card: *ref_0
+                tip_window_type: *ref_0
               x-apifox-orders:
                 - group_id
                 - content
                 - image
+                - pinned
+                - type
+                - confirm_required
+                - is_show_edit_card
+                - tip_window_type
               required:
                 - group_id
                 - content
@@ -46,7 +57,7 @@ paths:
                   01JB75W8QAWHC6CCS07KYHCTBN:
                     $ref: '#/components/schemas/result'
                     x-apifox-overrides:
-                      data: &ref_0
+                      data: &ref_1
                         type: 'null'
                     required:
                       - data
@@ -58,7 +69,7 @@ paths:
                     const: ok
                   retcode:
                     type: number
-                  data: *ref_0
+                  data: *ref_1
                   message:
                     type: string
                   wording:
@@ -88,6 +99,11 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226658740-run
 components:
   schemas:
+    number | string:
+      anyOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
     group_id:
       oneOf:
         - type: number

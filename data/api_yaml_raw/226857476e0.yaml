@@ -39,7 +39,8 @@ paths:
                           "type": "image",
                           "data": {
                               // 本地路径
-                              "file": "file://D:/a.jpg"
+                              "file": "file://D:/a.jpg",
+                              "summary": "[图片]"
                               
                               // 网络路径
                               // "file": "http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png"
@@ -140,6 +141,7 @@ components:
             summary:
               type: string
               default: '[图片]'
+              description: 外显
           x-apifox-orders:
             - file
             - summary

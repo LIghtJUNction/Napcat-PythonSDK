@@ -54,9 +54,21 @@
                     },
                     "data": {
                       "type": "object",
-                      "properties": {},
-                      "x-apifox-ignore-properties": [],
-                      "x-apifox-orders": []
+                      "properties": {
+                        "message": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/获取合并转发消息"
+                          }
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "message"
+                      ],
+                      "required": [
+                        "message"
+                      ],
+                      "x-apifox-ignore-properties": []
                     },
                     "message": {
                       "type": "string"
@@ -75,7 +87,20 @@
                       "x-apifox-overrides": {
                         "data": {
                           "type": "object",
-                          "properties": {}
+                          "properties": {
+                            "message": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/获取合并转发消息"
+                              }
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "message"
+                          ],
+                          "required": [
+                            "message"
+                          ]
                         }
                       },
                       "required": [
@@ -160,6 +185,844 @@
           "message",
           "wording",
           "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "获取合并转发消息": {
+        "type": "object",
+        "x-apifox-refs": {
+          "01JBRHHDHY30Q2JGPSN783J5AA": {
+            "$ref": "#/components/schemas/消息详情",
+            "x-apifox-overrides": {
+              "message": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/文本消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/艾特消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/表情消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/图片消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/回复消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/JSON消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/语音消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/视频消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/markdown消息"
+                    },
+                    {
+                      "$ref": "#/components/schemas/获取合并转发消息"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "message"
+            ]
+          }
+        },
+        "x-apifox-orders": [
+          "01JBRHHDHY30Q2JGPSN783J5AA"
+        ],
+        "properties": {
+          "self_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "time": {
+            "type": "number"
+          },
+          "message_id": {
+            "type": "number"
+          },
+          "message_seq": {
+            "type": "number"
+          },
+          "real_id": {
+            "type": "number"
+          },
+          "real_seq": {
+            "type": "string"
+          },
+          "message_type": {
+            "type": "string"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/sender"
+          },
+          "raw_message": {
+            "type": "string"
+          },
+          "font": {
+            "type": "number"
+          },
+          "sub_type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/文本消息"
+                },
+                {
+                  "$ref": "#/components/schemas/艾特消息"
+                },
+                {
+                  "$ref": "#/components/schemas/表情消息"
+                },
+                {
+                  "$ref": "#/components/schemas/图片消息"
+                },
+                {
+                  "$ref": "#/components/schemas/回复消息"
+                },
+                {
+                  "$ref": "#/components/schemas/JSON消息"
+                },
+                {
+                  "$ref": "#/components/schemas/语音消息"
+                },
+                {
+                  "$ref": "#/components/schemas/视频消息"
+                },
+                {
+                  "$ref": "#/components/schemas/markdown消息"
+                },
+                {
+                  "$ref": "#/components/schemas/获取合并转发消息"
+                }
+              ]
+            }
+          },
+          "message_format": {
+            "type": "string"
+          },
+          "post_type": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "self_id",
+          "user_id",
+          "time",
+          "message_id",
+          "message_seq",
+          "real_id",
+          "real_seq",
+          "message_type",
+          "sender",
+          "raw_message",
+          "font",
+          "sub_type",
+          "message",
+          "message_format",
+          "post_type"
+        ],
+        "x-apifox-ignore-properties": [
+          "self_id",
+          "user_id",
+          "time",
+          "message_id",
+          "message_seq",
+          "real_id",
+          "real_seq",
+          "message_type",
+          "sender",
+          "raw_message",
+          "font",
+          "sub_type",
+          "message",
+          "message_format",
+          "post_type",
+          "group_id"
+        ],
+        "x-apifox-folder": ""
+      },
+      "sender": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number"
+          },
+          "nickname": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female",
+              "unknown"
+            ],
+            "x-apifox-enum": [
+              {
+                "value": "male",
+                "name": "",
+                "description": ""
+              },
+              {
+                "value": "female",
+                "name": "",
+                "description": ""
+              },
+              {
+                "value": "unknown",
+                "name": "",
+                "description": ""
+              }
+            ]
+          },
+          "age": {
+            "type": "number"
+          },
+          "card": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "owner",
+              "admin",
+              "member"
+            ],
+            "x-apifox-enum": [
+              {
+                "value": "owner",
+                "name": "",
+                "description": ""
+              },
+              {
+                "value": "admin",
+                "name": "",
+                "description": ""
+              },
+              {
+                "value": "member",
+                "name": "",
+                "description": ""
+              }
+            ]
+          }
+        },
+        "x-apifox-orders": [
+          "user_id",
+          "nickname",
+          "sex",
+          "age",
+          "card",
+          "role"
+        ],
+        "required": [
+          "user_id",
+          "nickname",
+          "card"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "消息详情": {
+        "type": "object",
+        "properties": {
+          "self_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "time": {
+            "type": "number"
+          },
+          "message_id": {
+            "type": "number"
+          },
+          "message_seq": {
+            "type": "number"
+          },
+          "real_id": {
+            "type": "number"
+          },
+          "real_seq": {
+            "type": "string"
+          },
+          "message_type": {
+            "type": "string"
+          },
+          "sender": {
+            "$ref": "#/components/schemas/sender"
+          },
+          "raw_message": {
+            "type": "string"
+          },
+          "font": {
+            "type": "number"
+          },
+          "sub_type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/文本消息"
+                },
+                {
+                  "$ref": "#/components/schemas/艾特消息"
+                },
+                {
+                  "$ref": "#/components/schemas/表情消息"
+                },
+                {
+                  "$ref": "#/components/schemas/图片消息"
+                },
+                {
+                  "$ref": "#/components/schemas/文件消息"
+                },
+                {
+                  "$ref": "#/components/schemas/回复消息"
+                },
+                {
+                  "$ref": "#/components/schemas/JSON消息"
+                },
+                {
+                  "$ref": "#/components/schemas/语音消息"
+                },
+                {
+                  "$ref": "#/components/schemas/视频消息"
+                },
+                {
+                  "$ref": "#/components/schemas/markdown消息"
+                },
+                {
+                  "$ref": "#/components/schemas/消息forward"
+                }
+              ]
+            }
+          },
+          "message_format": {
+            "type": "string"
+          },
+          "post_type": {
+            "type": "string"
+          },
+          "group_id": {
+            "type": "number"
+          }
+        },
+        "x-apifox-orders": [
+          "self_id",
+          "user_id",
+          "time",
+          "message_id",
+          "message_seq",
+          "real_id",
+          "real_seq",
+          "message_type",
+          "sender",
+          "raw_message",
+          "font",
+          "sub_type",
+          "message",
+          "message_format",
+          "post_type",
+          "group_id"
+        ],
+        "required": [
+          "self_id",
+          "sub_type",
+          "font",
+          "raw_message",
+          "sender",
+          "message_type",
+          "real_id",
+          "message_seq",
+          "message_id",
+          "time",
+          "user_id",
+          "post_type",
+          "message_format",
+          "message",
+          "real_seq"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "消息forward": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "forward"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "content": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/消息详情",
+                  "x-apifox-overrides": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/文本消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/艾特消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/表情消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/图片消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/回复消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/JSON消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/语音消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/视频消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/markdown消息"
+                          },
+                          {
+                            "$ref": "#/components/schemas/获取合并转发消息"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            },
+            "x-apifox-orders": [
+              "id",
+              "content"
+            ],
+            "required": [
+              "id",
+              "content"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "文件消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "file"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "file",
+              "name"
+            ],
+            "required": [
+              "file"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "markdown消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "record"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "content"
+            ],
+            "required": [
+              "content"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "视频消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "video"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "file"
+            ],
+            "required": [
+              "file"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "语音消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "record"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "file"
+            ],
+            "required": [
+              "file"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "JSON消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "json"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "data"
+            ],
+            "required": [
+              "data"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "回复消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "reply"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ]
+              }
+            },
+            "x-apifox-orders": [
+              "id"
+            ],
+            "required": [
+              "id"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "图片消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "image"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string",
+                "default": "[图片]",
+                "description": "外显"
+              }
+            },
+            "x-apifox-orders": [
+              "file",
+              "summary"
+            ],
+            "required": [
+              "file"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "表情消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "face"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "x-apifox-orders": [
+              "id"
+            ],
+            "required": [
+              "id"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "艾特消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "at"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "qq": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "const": "all"
+                  }
+                ]
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "qq",
+              "name"
+            ],
+            "required": [
+              "qq"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "文本消息": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "text"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              }
+            },
+            "x-apifox-orders": [
+              "text"
+            ],
+            "required": [
+              "text"
+            ],
+            "x-apifox-ignore-properties": []
+          }
+        },
+        "x-apifox-orders": [
+          "type",
+          "data"
+        ],
+        "required": [
+          "type",
+          "data"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

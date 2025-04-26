@@ -29,9 +29,6 @@
                 "x-apifox-orders": [
                   "count"
                 ],
-                "required": [
-                  "count"
-                ],
                 "x-apifox-ignore-properties": []
               },
               "example": {
@@ -57,23 +54,22 @@
                             "type": "object",
                             "properties": {
                               "lastestMsg": {
+                                "description": "最新消息内容",
                                 "type": "object",
                                 "x-apifox-refs": {
-                                  "01JB9NHHBCPEJ2B2ASMXSP2VVX": {
+                                  "01JSPJFSRT0FMPC54J5D95KVW5": {
                                     "$ref": "#/components/schemas/消息详情",
                                     "x-apifox-overrides": {
                                       "message_id": null,
                                       "message_seq": null,
-                                      "real_id": null,
-                                      "message_sent_type": null
+                                      "real_id": null
                                     }
                                   }
                                 },
                                 "x-apifox-orders": [
-                                  "01JB9NHHBCPEJ2B2ASMXSP2VVX"
+                                  "01JSPJFSRT0FMPC54J5D95KVW5"
                                 ],
-                                "properties": {},
-                                "description": "最新消息内容"
+                                "properties": {}
                               },
                               "peerUin": {
                                 "type": "string",
@@ -150,20 +146,20 @@
                         "type": "object",
                         "properties": {
                           "lastestMsg": {
+                            "description": "最新消息内容",
                             "type": "object",
                             "x-apifox-refs": {
-                              "01JB9NHHBCPEJ2B2ASMXSP2VVX": {
+                              "01JSPJFSRT0FMPC54J5D95KVW5": {
                                 "$ref": "#/components/schemas/消息详情",
                                 "x-apifox-overrides": {
                                   "message_id": null,
                                   "message_seq": null,
-                                  "real_id": null,
-                                  "message_sent_type": null
+                                  "real_id": null
                                 }
                               }
                             },
                             "x-apifox-orders": [
-                              "01JB9NHHBCPEJ2B2ASMXSP2VVX"
+                              "01JSPJFSRT0FMPC54J5D95KVW5"
                             ],
                             "properties": {
                               "self_id": {
@@ -243,7 +239,6 @@
                                 "type": "number"
                               }
                             },
-                            "description": "最新消息内容",
                             "required": [
                               "self_id",
                               "user_id",
@@ -390,8 +385,7 @@
                   "x-apifox-overrides": {
                     "message_id": null,
                     "message_seq": null,
-                    "real_id": null,
-                    "message_sent_type": null
+                    "real_id": null
                   }
                 }
               }
@@ -648,7 +642,8 @@
               },
               "summary": {
                 "type": "string",
-                "default": "[图片]"
+                "default": "[图片]",
+                "description": "外显"
               }
             },
             "x-apifox-orders": [
@@ -865,7 +860,8 @@
         ],
         "required": [
           "user_id",
-          "nickname"
+          "nickname",
+          "card"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

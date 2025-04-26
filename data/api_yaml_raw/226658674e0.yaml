@@ -36,7 +36,50 @@ paths:
                 x-apifox-refs:
                   01JB75K2F1Z8Y2AHPSBMAE32BB:
                     $ref: '#/components/schemas/result'
-                    x-apifox-overrides: {}
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          errCode: &ref_0
+                            type: string
+                          errMsg: &ref_1
+                            type: string
+                          result:
+                            type: object
+                            properties:
+                              wording: &ref_2
+                                type: string
+                                description: 正常为空，异常有文本提示
+                              digestUin: &ref_3
+                                type: string
+                              digestTime: &ref_4
+                                type: number
+                              msg:
+                                type: object
+                                properties: {}
+                                x-apifox-orders: &ref_5 []
+                              errorCode: &ref_6
+                                type: number
+                            x-apifox-orders: &ref_7
+                              - wording
+                              - digestUin
+                              - digestTime
+                              - msg
+                              - errorCode
+                            required:
+                              - wording
+                              - errorCode
+                              - msg
+                              - digestTime
+                              - digestUin
+                        x-apifox-orders: &ref_8
+                          - errCode
+                          - errMsg
+                          - result
+                        required:
+                          - errCode
+                          - result
+                          - errMsg
                     required:
                       - data
                 x-apifox-orders:
@@ -49,8 +92,34 @@ paths:
                     type: number
                   data:
                     type: object
-                    properties: {}
-                    x-apifox-orders: []
+                    properties:
+                      errCode: *ref_0
+                      errMsg: *ref_1
+                      result:
+                        type: object
+                        properties:
+                          wording: *ref_2
+                          digestUin: *ref_3
+                          digestTime: *ref_4
+                          msg:
+                            type: object
+                            properties: {}
+                            x-apifox-orders: *ref_5
+                            x-apifox-ignore-properties: []
+                          errorCode: *ref_6
+                        x-apifox-orders: *ref_7
+                        required:
+                          - wording
+                          - errorCode
+                          - msg
+                          - digestTime
+                          - digestUin
+                        x-apifox-ignore-properties: []
+                    x-apifox-orders: *ref_8
+                    required:
+                      - errCode
+                      - result
+                      - errMsg
                     x-apifox-ignore-properties: []
                   message:
                     type: string

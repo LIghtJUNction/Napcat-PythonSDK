@@ -82,27 +82,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "group_id": "1017767274",
-                "messages": [
-                  {
-                    "type": "node",
-                    "data": {
-                      "user_id": 97,
-                      "nickname": "达艳",
-                      "content": [
-                        {
-                          "type": "text",
-                          "data": {
-                            "text": "test"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ],
-                "prompt": "enim est dolore et"
-              }
+              "example": "{\r\n    \"group_id\": 1232456,\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"node\",\r\n            \"data\": {\r\n                \"user_id\": 925236771,\r\n                \"nickname\": \"达艳\",\r\n                \"content\": [\r\n                    {\r\n                        \"type\": \"text\",\r\n                        \"data\": {\r\n                            \"text\": \"适配 DeepSeek 官方 API 和 Vocu 的 tss\"\r\n                        }\r\n                    }\r\n                ],\r\n            }\r\n        }\r\n    ],\r\n    \"news\": [\r\n        {\r\n            \"text\": \"奇怪\"\r\n        }\r\n    ],\r\n    \"prompt\": \"123\",\r\n    \"summary\": \"123\",\r\n    \"source\": \"123\"\r\n}"
             }
           }
         },
@@ -667,7 +647,8 @@
               },
               "summary": {
                 "type": "string",
-                "default": "[图片]"
+                "default": "[图片]",
+                "description": "外显"
               }
             },
             "x-apifox-orders": [

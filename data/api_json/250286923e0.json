@@ -38,6 +38,10 @@
                   "user_id"
                 ],
                 "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "user_id": 1129317309,
+                "group_id": 790514019
               }
             }
           }

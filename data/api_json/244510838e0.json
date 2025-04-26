@@ -41,7 +41,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": "{\n    \"user_id\": \"123456\",\n    \"message\": [\n        {\n            \"type\": \"file\",\n            \"data\": {\n                // 本地路径\n                \"file\": \"file://D:/a.jpg\"\n                \n                // 网络路径\n                // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\n                \n                //base64编码\n                // \"file\": \"base64://xxxxxxxx\"\n            }\n        }\n    ]\n}"
+              "example": "{\n    \"user_id\": \"123456\",\n    \"message\": [\n        {\n            \"type\": \"file\",\n            \"data\": {\n                // 本地路径\n                \"file\": \"file://D:/a.jpg\",\n                \n                // 网络路径\n                // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\",\n                \n                // \"file\": \"base64或DataUrl编码\",\n\n                \"name\": \"a.jpg\"\n            }\n        }\n    ]\n}"
             }
           }
         },

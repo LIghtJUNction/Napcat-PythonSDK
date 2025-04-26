@@ -26,7 +26,7 @@ paths:
               required:
                 - file
               x-apifox-ignore-properties: []
-            example: "{\r\n    // 本地路径\r\n    \"file\": \"D:/a.jpg\"\r\n    // 网络路径\r\n    // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\r\n}"
+            example: "{\r\n    // 本地路径\r\n    \"file\": \"D:/a.jpg\"\r\n    // 网络路径\r\n    // \"file\": \"http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\r\n    // \"file\": \"base64 或 DataURL\"\r\n}"
       responses:
         '200':
           description: ''

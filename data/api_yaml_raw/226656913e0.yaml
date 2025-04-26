@@ -32,7 +32,6 @@ paths:
               required:
                 - group_id
                 - user_id
-                - card
               x-apifox-ignore-properties: []
             example: ''
       responses:

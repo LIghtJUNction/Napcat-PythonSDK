@@ -38,7 +38,10 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": ""
+              "example": {
+                "group_id": 790514019,
+                "folder_name": "ABC"
+              }
             }
           }
         },
@@ -87,7 +90,7 @@
                                   "type": "string"
                                 },
                                 "type": {
-                                  "type": "string"
+                                  "type": "number"
                                 },
                                 "folderInfo": {
                                   "type": "object",
@@ -114,7 +117,7 @@
                                       "type": "string"
                                     },
                                     "totalFileCount": {
-                                      "type": "string"
+                                      "type": "number"
                                     },
                                     "modifyUin": {
                                       "type": "string"
@@ -153,17 +156,23 @@
                                     "totalFileCount",
                                     "usedSpace"
                                   ]
+                                },
+                                "fileInfo": {
+                                  "type": "string",
+                                  "nullable": true
                                 }
                               },
                               "x-apifox-orders": [
                                 "peerId",
                                 "type",
-                                "folderInfo"
+                                "folderInfo",
+                                "fileInfo"
                               ],
                               "required": [
                                 "peerId",
                                 "type",
-                                "folderInfo"
+                                "folderInfo",
+                                "fileInfo"
                               ]
                             }
                           },
@@ -228,7 +237,7 @@
                               "type": "string"
                             },
                             "type": {
-                              "type": "string"
+                              "type": "number"
                             },
                             "folderInfo": {
                               "type": "object",
@@ -255,7 +264,7 @@
                                   "type": "string"
                                 },
                                 "totalFileCount": {
-                                  "type": "string"
+                                  "type": "number"
                                 },
                                 "modifyUin": {
                                   "type": "string"
@@ -295,17 +304,23 @@
                                 "usedSpace"
                               ],
                               "x-apifox-ignore-properties": []
+                            },
+                            "fileInfo": {
+                              "type": "string",
+                              "nullable": true
                             }
                           },
                           "x-apifox-orders": [
                             "peerId",
                             "type",
-                            "folderInfo"
+                            "folderInfo",
+                            "fileInfo"
                           ],
                           "required": [
                             "peerId",
                             "type",
-                            "folderInfo"
+                            "folderInfo",
+                            "fileInfo"
                           ],
                           "x-apifox-ignore-properties": []
                         }

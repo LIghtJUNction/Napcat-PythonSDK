@@ -26,18 +26,13 @@ paths:
                 emojiType:
                   type: string
                   description: 表情类型
-                group_id:
-                  $ref: '#/components/schemas/group_id'
-                user_id:
-                  $ref: '#/components/schemas/user_id'
                 count:
                   type: number
+                  default: 20
               x-apifox-orders:
                 - message_id
                 - emojiId
                 - emojiType
-                - group_id
-                - user_id
                 - count
               required:
                 - message_id
@@ -46,7 +41,7 @@ paths:
               x-apifox-ignore-properties: []
             example:
               message_id: 123456
-              emojiId: '97'
+              emojiId: '181'
               emojiType: '1'
       responses:
         '200':
@@ -175,16 +170,6 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659219-run
 components:
   schemas:
-    user_id:
-      oneOf:
-        - type: number
-        - type: string
-      x-apifox-folder: ''
-    group_id:
-      oneOf:
-        - type: number
-        - type: string
-      x-apifox-folder: ''
     message_id:
       oneOf:
         - type: number

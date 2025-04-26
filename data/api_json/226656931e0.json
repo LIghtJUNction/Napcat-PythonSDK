@@ -28,7 +28,8 @@
                     "$ref": "#/components/schemas/user_id"
                   },
                   "special_title": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "为空则取消头衔"
                   }
                 },
                 "x-apifox-orders": [
@@ -38,8 +39,7 @@
                 ],
                 "required": [
                   "group_id",
-                  "user_id",
-                  "special_title"
+                  "user_id"
                 ],
                 "x-apifox-ignore-properties": []
               }

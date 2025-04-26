@@ -33,7 +33,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": "{\r\n    \"image\": \"https://greasyfork.org/vite/assets/blacklogo96-CxYTSM_T.png\"\r\n    // 本地路径\r\n    //\"image\": \"file://D:/a.jpg\"\r\n}"
+              "example": "{\r\n    \"image\": \"https://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png\"\r\n    // 本地路径\r\n    //\"image\": \"file://D:/a.jpg\"\r\n}"
             }
           }
         },

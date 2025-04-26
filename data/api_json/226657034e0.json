@@ -34,8 +34,7 @@
                   "no_cache"
                 ],
                 "required": [
-                  "group_id",
-                  "no_cache"
+                  "group_id"
                 ],
                 "x-apifox-ignore-properties": []
               },
@@ -57,8 +56,7 @@
                         "data": {
                           "type": "array",
                           "items": {
-                            "type": "object",
-                            "properties": {}
+                            "$ref": "#/components/schemas/群成员信息"
                           }
                         }
                       },
@@ -81,10 +79,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {},
-                        "x-apifox-ignore-properties": [],
-                        "x-apifox-orders": []
+                        "$ref": "#/components/schemas/群成员信息"
                       }
                     },
                     "message": {
@@ -183,6 +178,118 @@
           "message",
           "wording",
           "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "群成员信息": {
+        "type": "object",
+        "properties": {
+          "group_id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "nickname": {
+            "type": "string"
+          },
+          "card": {
+            "type": "string",
+            "description": "群昵称"
+          },
+          "sex": {
+            "type": "string",
+            "description": "性别"
+          },
+          "age": {
+            "type": "number",
+            "description": "年龄"
+          },
+          "area": {
+            "type": "string"
+          },
+          "level": {
+            "type": "number",
+            "description": "群等级"
+          },
+          "qq_level": {
+            "type": "number",
+            "description": "账号等级"
+          },
+          "join_time": {
+            "type": "number",
+            "description": "加群时间"
+          },
+          "last_sent_time": {
+            "type": "number",
+            "description": "最后发言时间"
+          },
+          "title_expire_time": {
+            "type": "number"
+          },
+          "unfriendly": {
+            "type": "boolean"
+          },
+          "card_changeable": {
+            "type": "boolean"
+          },
+          "is_robot": {
+            "type": "boolean",
+            "description": "是否机器人"
+          },
+          "shut_up_timestamp": {
+            "type": "number",
+            "description": "禁言时长"
+          },
+          "role": {
+            "type": "string",
+            "description": "权限"
+          },
+          "title": {
+            "type": "string",
+            "description": "头衔"
+          }
+        },
+        "x-apifox-orders": [
+          "group_id",
+          "user_id",
+          "nickname",
+          "card",
+          "sex",
+          "age",
+          "area",
+          "level",
+          "qq_level",
+          "join_time",
+          "last_sent_time",
+          "title_expire_time",
+          "unfriendly",
+          "card_changeable",
+          "is_robot",
+          "shut_up_timestamp",
+          "role",
+          "title"
+        ],
+        "required": [
+          "group_id",
+          "user_id",
+          "level",
+          "area",
+          "age",
+          "sex",
+          "card",
+          "nickname",
+          "is_robot",
+          "card_changeable",
+          "unfriendly",
+          "title_expire_time",
+          "last_sent_time",
+          "qq_level",
+          "join_time",
+          "shut_up_timestamp",
+          "role",
+          "title"
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": ""

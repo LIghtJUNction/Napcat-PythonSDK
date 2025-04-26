@@ -41,10 +41,7 @@
                         "data": {
                           "type": "null"
                         }
-                      },
-                      "required": [
-                        "data"
-                      ]
+                      }
                     }
                   },
                   "x-apifox-orders": [
@@ -75,7 +72,6 @@
                   "required": [
                     "status",
                     "retcode",
-                    "data",
                     "message",
                     "wording",
                     "echo"

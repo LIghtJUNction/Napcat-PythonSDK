@@ -32,9 +32,7 @@
                   "group_id"
                 ]
               },
-              "example": {
-                "group_id": 123456
-              }
+              "example": ""
             }
           }
         },

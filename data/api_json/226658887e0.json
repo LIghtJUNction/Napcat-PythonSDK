@@ -21,17 +21,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "base64": {
-                    "type": "string",
-                    "description": "和url二选一"
-                  },
                   "url": {
                     "type": "string",
                     "description": "下载地址"
                   },
-                  "thread_count": {
-                    "type": "number",
-                    "description": "下载线程数"
+                  "base64": {
+                    "type": "string",
+                    "description": "和url二选一"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "自定义文件名称"
                   },
                   "headers": {
                     "oneOf": [
@@ -46,30 +46,17 @@
                       }
                     ],
                     "description": "请求头"
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "自定义文件名称"
                   }
                 },
                 "x-apifox-orders": [
-                  "base64",
                   "url",
-                  "thread_count",
-                  "headers",
-                  "name"
-                ],
-                "required": [
-                  "thread_count",
+                  "base64",
+                  "name",
                   "headers"
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "url": "http://i0.hdslb.com/bfs/archive/c8fd97a40bf79f03e7b76cbc87236f612caef7b2.png",
-                "thread_count": 5,
-                "name": "bilibili.png"
-              }
+              "example": ""
             }
           }
         },

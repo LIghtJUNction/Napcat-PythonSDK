@@ -38,10 +38,7 @@
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": {
-                "group_id": 123456,
-                "folder_id": "/10b1bef8-f36c-4dea-884d-eeeed225407d"
-              }
+              "example": ""
             }
           }
         },

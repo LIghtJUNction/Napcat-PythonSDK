@@ -39,8 +39,7 @@
                 ],
                 "required": [
                   "group_id",
-                  "user_id",
-                  "card"
+                  "user_id"
                 ],
                 "x-apifox-ignore-properties": []
               },

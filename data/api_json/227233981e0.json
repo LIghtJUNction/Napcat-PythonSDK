@@ -22,7 +22,8 @@
                 "type": "object",
                 "properties": {
                   "model": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "napcat"
                   }
                 },
                 "x-apifox-orders": [
@@ -32,6 +33,9 @@
                   "model"
                 ],
                 "x-apifox-ignore-properties": []
+              },
+              "example": {
+                "model": "napcat"
               }
             }
           }

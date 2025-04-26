@@ -32,7 +32,110 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/result'
+                type: object
+                x-apifox-refs:
+                  01JSS7DPFDR10D3XWXRDNV6HVR:
+                    $ref: '#/components/schemas/result'
+                    x-apifox-overrides:
+                      data:
+                        type: object
+                        properties:
+                          errCode: &ref_0
+                            type: string
+                          errMsg: &ref_1
+                            type: string
+                          result:
+                            type: object
+                            properties:
+                              wording: &ref_2
+                                type: string
+                                description: 正常为空，异常有文本提示
+                              digestUin: &ref_3
+                                type: string
+                              digestTime: &ref_4
+                                type: string
+                              msg:
+                                type: object
+                                properties: {}
+                                x-apifox-orders: &ref_5 []
+                            x-apifox-orders: &ref_6
+                              - wording
+                              - digestUin
+                              - digestTime
+                              - msg
+                            required:
+                              - wording
+                              - digestTime
+                              - digestUin
+                              - msg
+                        x-apifox-orders: &ref_7
+                          - errCode
+                          - errMsg
+                          - result
+                        required:
+                          - errCode
+                          - result
+                          - errMsg
+                    required:
+                      - data
+                x-apifox-orders:
+                  - 01JSS7DPFDR10D3XWXRDNV6HVR
+                properties:
+                  status:
+                    type: string
+                    const: ok
+                  retcode:
+                    type: number
+                  data:
+                    type: object
+                    properties:
+                      errCode: *ref_0
+                      errMsg: *ref_1
+                      result:
+                        type: object
+                        properties:
+                          wording: *ref_2
+                          digestUin: *ref_3
+                          digestTime: *ref_4
+                          msg:
+                            type: object
+                            properties: {}
+                            x-apifox-orders: *ref_5
+                            x-apifox-ignore-properties: []
+                        x-apifox-orders: *ref_6
+                        required:
+                          - wording
+                          - digestTime
+                          - digestUin
+                          - msg
+                        x-apifox-ignore-properties: []
+                    x-apifox-orders: *ref_7
+                    required:
+                      - errCode
+                      - result
+                      - errMsg
+                    x-apifox-ignore-properties: []
+                  message:
+                    type: string
+                  wording:
+                    type: string
+                  echo:
+                    type: string
+                    nullable: true
+                required:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
+                x-apifox-ignore-properties:
+                  - status
+                  - retcode
+                  - data
+                  - message
+                  - wording
+                  - echo
               example:
                 status: ok
                 retcode: 0

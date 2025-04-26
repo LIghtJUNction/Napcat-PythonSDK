@@ -21,19 +21,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "eventType": {
-                    "type": "number"
-                  },
                   "user_id": {
                     "$ref": "#/components/schemas/user_id"
+                  },
+                  "event_type": {
+                    "type": "number"
                   }
                 },
                 "x-apifox-orders": [
-                  "eventType",
-                  "user_id"
+                  "user_id",
+                  "event_type"
                 ],
                 "required": [
-                  "eventType",
+                  "event_type",
                   "user_id"
                 ],
                 "x-apifox-ignore-properties": []
