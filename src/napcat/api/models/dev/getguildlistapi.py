@@ -4,15 +4,15 @@
 @tags: 其他/接口
 @homepage: https://napcat.apifox.cn/226659311e0
 @llms.txt: https://napcat.apifox.cn/226659311e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
-summary: get_guild_list
+summary:get_guild_list
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_guild_list"
 __id__ = "226659311e0"
 __method__ = "POST"
@@ -22,17 +22,18 @@ __method__ = "POST"
 
 # region code
 import logging
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Literal # Import Literal for status
 
 logger = logging.getLogger(__name__)
 
 # region req
 class GetGuildListReq(BaseModel):
     """
-    Request model for get_guild_list endpoint.
-    (Based on OpenAPI spec, request body is empty)
+    get_guild_list请求模型
     """
-    pass
+
+    pass # No request parameters according to schema
 # endregion req
 
 
@@ -40,10 +41,14 @@ class GetGuildListReq(BaseModel):
 # region res
 class GetGuildListRes(BaseModel):
     """
-    Response model for get_guild_list endpoint.
-    (Based on OpenAPI spec, response body is an empty object)
+    get_guild_list响应模型
     """
-    pass
+    status: Literal["ok", "failed"] = Field(..., description="响应状态") # Use Literal for status
+    retcode: int = Field(..., description="返回码")
+    # Based on schema, data is an empty object {}
+    data: dict = Field(default_factory=dict, description="响应数据")
+    msg: str = Field(..., description="错误信息")
+    wording: str = Field(..., description="友好提示")
 # endregion res
 
 # region api

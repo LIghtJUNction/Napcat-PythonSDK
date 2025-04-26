@@ -1,7 +1,8 @@
-Refactored the Pydantic models based on the OpenAPI spec.
-Removed unused imports.
-Implemented FetchEmojiLikeReq with required and optional fields, using appropriate types (int | str, int | str | None, int | None) and adding descriptions.
-Defined nested models EmojiLikeItem and FetchEmojiLikeData for the response structure.
-Implemented FetchEmojiLikeRes with top-level fields and the nested data model, using appropriate types (Literal['ok'], int, str, str | None, bool) and adding descriptions.
-Added Field with descriptions to all model fields.
-Ensured all fields have type annotations.
+Analyzing OpenAPI spec for /fetch_emoji_like POST.
+Refactoring FetchEmojiLikeReq: Added fields message_id (int | str), emojiId (str), emojiType (str), count (int). Added descriptions and default for count. Marked required fields.
+Refactoring FetchEmojiLikeRes: Defined top-level fields status (Literal["ok"]), retcode (int), data (nested object), message (str), wording (str), echo (str | None). Added descriptions. Used Literal for status.
+Defined nested Data class within FetchEmojiLikeRes with fields result (int), errMsg (str), emojiLikesList (array of objects), cookie (str), isLastPage (bool), isFirstPage (bool). Added descriptions.
+Defined nested EmojiLikeItem class within Data with fields tinyId (str), nickName (str), headUrl (str). Added descriptions.
+Ensured correct type hints (list, str | None, int | str).
+Removed unused imports (Any).
+Kept FetchEmojiLikeAPI class as is, confirming endpoint metadata.

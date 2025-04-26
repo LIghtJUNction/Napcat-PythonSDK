@@ -1,9 +1,9 @@
-根据 OpenAPI 定义修复模型：
-1.  **SetGroupLeaveReq**: 添加 `group_id` 字段，类型为 `int | str`，并添加描述。
-2.  **SetGroupLeaveRes**: 根据响应 schema 添加 `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), `echo` (str | None) 字段。为每个字段添加描述。`echo` 字段是可空的，设置默认值为 `None`。
-3.  移除未使用的导入 `Any`。
-4.  移除 `# type: ignore`。
-5.  为请求和响应模型添加更具体的 docstrings。
-6.  导入 `Literal` 用于 `status` 字段的约束。
-7.  确保所有字段都有类型标注和描述。
-8.  确认 `SetGroupLeaveAPI` 结构正确。
+Starting repair of SetGroupLeave models based on OpenAPI spec.
+1. Analyzed OpenAPI spec for /set_group_leave: Request needs group_id (int|str) and optional is_dismiss (bool). Response has standard wrapper with status ('ok'), retcode (int), null data, message, wording, and optional echo (str|None). All response fields appear required based on schema, despite ignore list.
+2. Refactored SetGroupLeaveReq: Added group_id (int|str, required with Field description) and is_dismiss (bool|None, optional with default=None and Field description).
+3. Refactored SetGroupLeaveRes: Defined fields status (Literal['ok']), retcode (int), data (None - representing JSON null), message (str), wording (str), echo (str|None). Added Field descriptions. No nested Data class needed as data is null.
+4. Reviewed SetGroupLeaveAPI: Correctly links Req and Res.
+5. Reviewed imports: Removed unused Any. Added Literal.
+6. Applied coding guidelines: Used appropriate type hints (int|str, bool|None, str|None, Literal). Added Field descriptions.
+7. Generated final Python code.
+8. Prepared JSON output.

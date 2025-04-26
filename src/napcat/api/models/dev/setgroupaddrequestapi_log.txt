@@ -1,5 +1,1 @@
-根据OpenAPI规范修复了代码。
-- 修复了 SetGroupAddRequestReq 模型，添加了 flag, approve, reason 字段，并设置了类型、Field描述和默认值。
-- 修复了 SetGroupAddRequestRes 模型，添加了 status, retcode, data, message, wording, echo 字段，并设置了类型、Field描述和默认值。特别注意 data 字段根据规范应为 null，echo 字段可为 null。
-- 移除了未使用的导入。
-- 更新了模型的文档字符串。
+Analyzing OpenAPI spec for /set_group_add_request POST. Identified request parameters (flag, approve, reason) and response structure (status, retcode, data=null, message, wording, echo). Refactored SetGroupAddRequestReq with flag (str), approve (bool), reason (str | None) using Field with descriptions. Refactored SetGroupAddRequestRes with status (Literal['ok']), retcode (int), data (None), message (str), wording (str), echo (str | None) using Field with descriptions. Removed unused imports (Any). Added necessary import (Literal). Ensured all fields have type annotations and descriptions. Confirmed no nested classes are needed for response data as it's null.

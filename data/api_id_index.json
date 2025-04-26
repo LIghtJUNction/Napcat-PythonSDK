@@ -155,5 +155,7 @@
   "226659182e0": "/NapCat 接口文档/其他/bug/获取收藏列表",
   "226659234e0": "/NapCat 接口文档/其他/bug/获取被过滤的加群请求",
   "226659254e0": "/NapCat 接口文档/其他/bug/fetch_user_profile_like",
-  "228534368e0": "/NapCat 接口文档/其他/bug/获取中文分词"
+  "228534368e0": "/NapCat 接口文档/其他/bug/获取中文分词",
+  "289565516e0": "/NapCat 接口文档/其他/get_doubt_friends_add_request",
+  "289565525e0": "/NapCat 接口文档/其他/set_doubt_friends_add_request"
 }

@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659323e0
 @llms.txt: https://napcat.apifox.cn/226659323e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取群过滤系统消息
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_group_ignored_notifies"
 __id__ = "226659323e0"
 __method__ = "POST"

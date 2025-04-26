@@ -1,7 +1,15 @@
-Based on the OpenAPI specification:
-1. Removed unused import `typing.Any`.
-2. Updated `FriendPokeReq` to include the required `user_id` field with type `int | str` and a description.
-3. Updated `FriendPokeRes` to match the successful response schema, including `status` (as Literal['ok']), `retcode`, `message`, `wording`, and `echo` (as `str | None`). The `data` field was omitted as the API response explicitly sets it to `null`.
-4. Added descriptions using `Field` for all fields in `FriendPokeReq` and `FriendPokeRes`.
-5. Removed `type: ignore` comments as types are now correctly specified.
-6. Cleaned up metadata placeholders like `{{tags}}`.
+修复过程:
+1. 根据OpenAPI spec，FriendPokeReq需要user_id字段，类型为int或str。
+2. FriendPokeReq添加 user_id: int | str = Field(..., description="要戳的QQ号")。
+3. 根据OpenAPI spec，FriendPokeRes包含status, retcode, message, wording, echo字段。
+4. status字段是常量ok，使用Literal["ok"]。
+5. echo字段是nullable string，使用str | None。
+6. 为FriendPokeRes的每个字段添加类型标注和Field描述。
+7. 移除Response中OpenAPI spec未明确列出的data字段（尽管有引用result schema，但override和required列表表明data字段在响应体顶层不存在）。
+8. 移除未使用的导入 `Any`。
+9. 移除类型忽略注释 `type: ignore`。
+10. 确保所有类型标注符合pydanticv2和python3.13的规范（使用|替代Union/Optional）。
+11. 导入Literal用于status字段。
+12. 保持FriendPokeAPI不变。
+13. 调整代码格式和注释。
+14. 将修改后的代码和日志封装到JSON对象中返回。

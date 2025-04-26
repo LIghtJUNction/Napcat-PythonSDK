@@ -1,8 +1,9 @@
-Refactoring code based on OpenAPI spec for /send_like.
-- Added `user_id` and `times` fields to `SendLikeReq` with appropriate types (`str | int` and `int`) and descriptions based on requestBody schema.
-- Added `status`, `retcode`, `data`, `message`, `wording`, `echo` fields to `SendLikeRes` with appropriate types (`Literal["ok"]`, `int`, `None`, `str`, `str`, `str | None`) and descriptions based on response schema (specifically overriding the $ref for `data`).
-- Removed unused import `logging` and `Any`.
-- Ensured all fields have type annotations and descriptions.
-- Used `|` for union types and `None` for null types.
-- Set default values where specified or implied (e.g., `status`). Used `...` for required fields without defaults.
-- Kept the API definition structure consistent.
+根据OpenAPI规范修复模型。
+- 移除未使用的导入。
+- 为SendLikeReq添加user_id (int | str) 和 times (int) 字段，设置默认值和描述。
+- 为SendLikeRes添加status (Literal["ok"]), retcode (int), data (None), message (str), wording (str), echo (str | None) 字段，并设置描述。
+- data字段根据响应override，设置为None。
+- 移除# type: ignore。
+- 确保字段名和类型符合规范。
+- 添加模型和字段的描述。
+- 遵守编码规范，使用内置类型和联合类型（|）。

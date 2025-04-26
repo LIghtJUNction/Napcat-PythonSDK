@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/266151905e0
 @llms.txt: https://napcat.apifox.cn/266151905e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:设置自定义在线状态
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_diy_online_status"
 __id__ = "266151905e0"
 __method__ = "POST"

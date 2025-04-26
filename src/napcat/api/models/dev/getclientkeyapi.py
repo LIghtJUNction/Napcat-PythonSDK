@@ -4,15 +4,15 @@
 @tags: 密钥相关
 @homepage: https://napcat.apifox.cn/250286915e0
 @llms.txt: https://napcat.apifox.cn/250286915e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
-@description:
+@description: 
 
 summary:获取clientkey
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_clientkey"
 __id__ = "250286915e0"
 __method__ = "POST"
@@ -21,19 +21,19 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from pydantic import BaseModel, Field
 from typing import Literal
+from pydantic import BaseModel, Field
 
-logger = logging.getLogger(__name__)
 
 # region req
 class GetClientkeyReq(BaseModel):
     """
-    获取clientkey的请求模型
-    """
-    # No fields required in the request body according to the spec.
+    获取clientkey 请求模型
+    "
+
+    # Request has no parameters according to OpenAPI spec
     pass
+
 # endregion req
 
 
@@ -41,21 +41,22 @@ class GetClientkeyReq(BaseModel):
 # region res
 class GetClientkeyRes(BaseModel):
     """
-    获取clientkey的响应模型
+    获取clientkey 响应模型
     """
 
     class Data(BaseModel):
         """
-        响应数据模型
+        响应数据 Data 字段模型
         """
-        clientkey: str = Field(..., description="Client key")
+        clientkey: str = Field(..., description="客户端密钥")
 
-    status: Literal["ok"] = Field(..., description="Status of the operation")
-    retcode: int = Field(..., description="Return code")
-    data: Data = Field(..., description="Response data")
-    message: str = Field(..., description="Message")
-    wording: str = Field(..., description="Wording")
-    echo: str | None = Field(..., description="Echo string")
+    status: Literal["ok"] = Field(..., description="响应状态")
+    retcode: int = Field(..., description="响应码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="响应消息")
+    wording: str = Field(..., description="响应用语")
+    echo: str | None = Field(..., description="回显数据")
+
 # endregion res
 
 # region api

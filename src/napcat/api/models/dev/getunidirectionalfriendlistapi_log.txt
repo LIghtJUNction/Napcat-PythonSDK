@@ -1,8 +1,10 @@
-Based on the OpenAPI specification, the code has been fixed.
-1. Removed unused imports (logging, Any).
-2. Defined the `UnidirectionalFriend` model for the items in the response data array.
-3. Updated the `GetUnidirectionalFriendListRes` model to include the specified fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with correct types, required constraints (using `...` for required fields without defaults, and `None` for nullable), and descriptions using `Field`.
-4. Used Python 3.13 style type hints (e.g., `list[UnidirectionalFriend]`, `str | None`).
-5. Ensured the `GetUnidirectionalFriendListReq` remains empty as per the spec.
-6. Kept the `GetUnidirectionalFriendListAPI` referencing the corrected models.
-7. Added docstrings and field descriptions.
+根据openapi定义，修复了以下问题：
+1.  引入 `Literal` 用于 `status` 字段，并指定其值为 "ok"。
+2.  根据openapi `data` 字段结构，定义了嵌套模型 `FriendInfo`。
+3.  在 `GetUnidirectionalFriendListRes` 中，将 `data` 字段类型定义为 `list[FriendInfo]`。
+4.  为 `echo` 字段添加 `| None` 类型标注，并设置 `default=None`。
+5.  为所有响应字段添加 `Field` 并提供描述。
+6.  为请求和响应模型添加 docstring。
+7.  移除了未使用的导入 `Any`。
+8.  根据openapi，req模型为空，保持pass并添加描述。
+9.  修复了响应模型字段的类型标注，uin和age根据常见情况设为int。

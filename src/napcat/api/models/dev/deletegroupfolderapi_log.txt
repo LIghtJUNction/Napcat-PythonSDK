@@ -1,16 +1,17 @@
-Based on the provided OpenAPI specification for the `/delete_group_folder` endpoint:
+Refactoring the provided Python code based on the OpenAPI specification for the `/delete_group_folder` endpoint.
 
-1.  **Identified Request Schema:** The request requires `group_id` (type `number` or `string`) and `folder_id` (type `string`). Both are required.
-    -   Created `DeleteGroupFolderReq` with fields `group_id: int | str` and `folder_id: str`. Added `Field` with descriptions.
+1.  **Analyze OpenAPI Spec:** Identified request requires `group_id` (number or string) and `folder_id` (string). Response follows a standard result structure with nested `data` containing `retCode`, `retMsg`, `clientWording`.
+2.  **Refactor `DeleteGroupFolderReq`:** Added `group_id` (int | str) and `folder_id` (str) fields with descriptions based on the request body schema. Both are required.
+3.  **Refactor `DeleteGroupFolderRes`:**
+    *   Created an inner class `DeleteGroupFolderResData` for the nested `data` object with fields `retCode` (int), `retMsg` (str), and `clientWording` (str), all required.
+    *   Defined the main `DeleteGroupFolderRes` class with fields: `status` (Literal["ok"]), `retcode` (int), `data` (DeleteGroupFolderResData), `message` (str), `wording` (str), `echo` (str | None).
+    *   Added descriptions using `Field` for all fields.
+    *   Ensured required fields are implicitly handled by Pydantic (no default value).
+    *   Used `str | None` for `echo`.
+4.  **Update `DeleteGroupFolderAPI`:** Ensured `Req` and `Res` point to the correctly refactored classes and use `type[BaseModel]`.
+5.  **Clean Imports:** Removed unused imports and ensured necessary ones (`Literal`, `Field`, `BaseModel`) are present.
+6.  **Type Hinting:** Applied consistent type hints following the specified guidelines (e.g., `int | str`, `str | None`).
+7.  **Removed `# type: ignore`:** Cleaned up ignored type hints.
+8.  **Added Descriptions:** Added descriptions to models and fields for clarity.
 
-2.  **Identified Response Schema (200):** The response includes `status` (`string`, const `ok`), `retcode` (`number`), `data` (`object`), `message` (`string`), `wording` (`string`), and `echo` (`string`, nullable). All are required.
-    -   The `data` field is a nested object with `retCode` (`number`), `retMsg` (`string`), and `clientWording` (`string`), all required.
-    -   Defined a nested `Data` class within `DeleteGroupFolderRes` to model the `data` field.
-    -   Created `DeleteGroupFolderRes` with fields matching the schema, using `int | str | None` or specific types. Used `str | None` for `echo` as it's nullable.
-    -   Added `Field` with descriptions for all response fields.
-
-3.  **Cleaned Imports:** Removed `typing.Any` as it was not used.
-
-4.  **Refined API Model:** Kept the `DeleteGroupFolderAPI` model, ensuring `Req` and `Res` point to the newly defined models.
-
-5.  **Followed Coding Guidelines:** Ensured type annotations are present, used built-in types where possible, and used `| None` for nullable fields.
+Result: Generated the corrected Python code for the `DeleteGroupFolderReq` and `DeleteGroupFolderRes` models and the `DeleteGroupFolderAPI` class, adhering to the pydantic v2 guidelines and the OpenAPI spec.

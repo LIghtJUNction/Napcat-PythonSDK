@@ -1,9 +1,18 @@
-Refactoring `SendPokeReq` and `SendPokeRes` based on the OpenAPI spec.
-- Added `user_id` (required, int | str) and `group_id` (optional, int | str | None) fields to `SendPokeReq` with descriptions.
-- Added `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), and `echo` (str | None) fields to `SendPokeRes` with descriptions, matching the response schema including the data null override.
-- Removed `pass` from models.
-- Added `Literal` import for the status field.
-- Ensured type annotations comply with Python 3.13 standards (using `| None`, `int | str`).
-- Added descriptions to fields using `Field`.
-- Removed unused imports (`Any`).
-- Kept `SendPokeAPI` as is, referencing the updated models.
+Based on the OpenAPI specification:
+
+-   **Request (`SendPokeReq`):**
+    -   Requires `user_id` which can be `number` or `string`. Using `int | str`.
+    -   Optionally takes `group_id` which can be `number` or `string`. Using `int | str | None` with a default of `None`.
+    -   Added descriptions for both fields using `Field`.
+-   **Response (`SendPokeRes`):**
+    -   Defines fields: `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+    -   `status` has a constant value `ok`. Using `Literal["ok"]`.
+    -   `retcode` is a `number`. Using `int`.
+    -   `data` is explicitly overridden to `null` in the response schema. Using `None`.
+    -   `message` and `wording` are `string`. Using `str`.
+    -   `echo` is `string` and nullable. Using `str | None` with a default of `None`.
+    -   Added descriptions for all fields using `Field`.
+    -   All specified fields are marked as required in the response schema.
+-   Removed unused import `typing.Any`.
+-   Ensured all type hints follow the guidelines (`|` for Union/Optional, built-in types).
+-   Kept the `SendPokeAPI` structure as it seems correct for the framework.

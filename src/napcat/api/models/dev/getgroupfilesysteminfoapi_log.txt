@@ -1,10 +1,1 @@
-Refactoring code based on OpenAPI spec:
-1. Updated `GetGroupFileSystemInfoReq` to include `group_id` with type `int | str` and `Field` with description and required status.
-2. Created a nested `Data` model inside `GetGroupFileSystemInfoRes` to represent the structure of the `data` field.
-3. Updated `GetGroupFileSystemInfoRes` to include all top-level fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with correct types, descriptions, and required status.
-4. Used the nested `Data` model for the `data` field in the response.
-5. Used `str | None` for the nullable `echo` field.
-6. Added `Field` with descriptions for all fields in both request and response models.
-7. Removed unused `Any` import.
-8. Ensured all fields have explicit type annotations.
-9. Confirmed adherence to Pydantic V2 style guide and requested constraints (no deprecated typing imports, `| None`, etc.).
+Based on the OpenAPI schema, refactored the GetGroupFileSystemInfoReq to include the required group_id field with union type int | str. Refactored GetGroupFileSystemInfoRes by defining an inner Data class for the data payload fields (file_count, limit_count, used_space, total_space) with float types and descriptions. Updated the main GetGroupFileSystemInfoRes fields including status as Literal["ok"], retcode as int, message, wording as str, and echo as str | None with a default value of None. Added Field with descriptions and requirement status (...) to all fields. Removed unused imports and type ignores. Ensured standard Python types and |/| None for unions/optional types are used.

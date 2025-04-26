@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658977e0
 @llms.txt: https://napcat.apifox.cn/226658977e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: ## 状态列表
 
@@ -262,7 +262,7 @@ summary:设置在线状态
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_online_status"
 __id__ = "226658977e0"
 __method__ = "POST"

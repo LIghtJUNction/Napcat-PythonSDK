@@ -1,1 +1,11 @@
-Analyzing the OpenAPI specification for `.ocr_image` endpoint. Identified the request body with a required 'image' field (string). Identified the response structure including status, retcode, data (array of lines), message, wording, and optional echo. Each line contains text, coordinates (pt1-pt4), character boxes (charBox array), and score. Nested structures for coordinates and character boxes found. Defined Pydantic models: `Point` for coordinates, `CharBoxData` for character box details, `LineData` for a single line, `OcrImageReq` for the request, and `OcrImageRes` for the main response. Added type hints, Field descriptions, and marked required fields. Used `str | None` for nullable `echo`. Removed unused imports.
+根据OpenAPI规范修复代码：
+1. 移除未使用的导入 (logging, Any).
+2. 在OcrImageReq中添加 image 字段，类型为 str，并添加描述。
+3. 根据响应结构的嵌套复杂性，定义了 Point, CharBoxInner, CharBoxItem, OcrResultItem 四个嵌套模型。
+4. OcrImageRes模型包含 status (Literal['ok']), retcode (int), data (list[OcrResultItem]), message (str), wording (str), echo (str | None) 字段。
+5. 为所有模型和字段添加了描述信息。
+6. 确保使用了符合Python 3.9+和Pydantic v2的类型标注。
+7. CharBoxItem.charBox 类型从列表改为CharBoxInner，对应openapi结构。
+8. Point 模型的 x, y 字段类型根据openapi example改为 string。
+9. OcrResultItem.score 类型根据openapi spec改为 string。
+10. OcrResultItem的pt字段从列表改为Point模型。

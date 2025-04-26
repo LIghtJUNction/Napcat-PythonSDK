@@ -1,21 +1,14 @@
-Starting code repair based on OpenAPI spec.
-1. Removed unused imports: `logging`, `Any`.
-2. Added `Literal` import for the `status` field.
-3. Updated `TransGroupFileReq`:
-   - Added `group_id: int | str = Field(..., description="群号")` based on `oneOf: [number, string]` and required status.
-   - Added `file_id: str = Field(..., description="文件 ID")` based on `string` type and required status.
-   - Removed `pass`.
-4. Updated `TransGroupFileRes`:
-   - Created nested class `TransGroupFileData` for the `data` object.
-   - Added `ok: bool = Field(..., description="是否成功")` to `TransGroupFileData`.
-   - Added `status: Literal['ok'] = Field(..., description="状态码")` to `TransGroupFileRes`.
-   - Added `retcode: int = Field(..., description="返回码")`.
-   - Added `data: TransGroupFileData = Field(..., description="响应数据")`.
-   - Added `message: str = Field(..., description="消息")`.
-   - Added `wording: str = Field(..., description="wording")`.
-   - Added `echo: str | None = Field(default=None, description="echo")` based on `nullable: true`.
-   - Removed `pass`.
-5. Removed `type: ignore`.
-6. Ensured all fields have type annotations, descriptions, and appropriate defaults or are marked as required (`...`).
-7. The `TransGroupFileAPI` model already correctly references the request and response models.
-Code repair complete.
+根据提供的 OpenAPI 规范，修复 TransGroupFileReq 和 TransGroupFileRes 模型。
+- TransGroupFileReq:
+  - 添加 group_id 字段，类型为 int | str，必填。
+  - 添加 file_id 字段，类型为 str，必填。
+  - 添加字段描述。
+- TransGroupFileRes:
+  - 添加嵌套类 Data，包含必填的 boolean 类型字段 ok。
+  - 顶级字段 status 使用 Literal["ok"]。
+  - 添加 retcode (int), message (str), wording (str), echo (str | None) 字段。
+  - 将 data 字段类型设置为 Data 嵌套类。
+  - 为所有字段添加描述和适当的默认值（对于 echo 字段）。
+- 移除未使用的导入 typing.Any。
+- 确保 TransGroupFileAPI 中的类型标注正确。
+- 遵守编码指南，使用内置类型和 `|` 进行联合类型标注。

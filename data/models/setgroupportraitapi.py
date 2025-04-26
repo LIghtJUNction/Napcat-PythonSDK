@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658669e0
 @llms.txt: https://napcat.apifox.cn/226658669e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:设置群头像
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_group_portrait"
 __id__ = "226658669e0"
 __method__ = "POST"

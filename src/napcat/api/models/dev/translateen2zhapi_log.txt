@@ -1,7 +1,9 @@
-根据OpenAPI规范，修复了TranslateEn2zhReq和TranslateEn2zhRes模型。
-- TranslateEn2zhReq: 添加了`words`字段，类型为`list[str]`，必需，带描述。
-- TranslateEn2zhRes: 根据响应体Schema添加了`status`(`Literal["ok"]`)、`retcode`(`int`)、`data`(`list[str]`)、`message`(`str`)、`wording`(`str`)、`echo`(`str | None`)字段，均为必需且带描述。
-- 移除了未使用的导入（logging, Any）。
-- 移除了`pass`语句和`# type: ignore`。
-- 导入了`Literal`用于status字段的精确类型。
-- 保持了API定义类。
+Refactoring the Pydantic models based on the OpenAPI schema.
+1. Added the 'words' field to TranslateEn2zhReq as required by the request body schema (array of strings).
+2. Defined all required response fields ('status', 'retcode', 'data', 'message', 'wording', 'echo') in TranslateEn2zhRes.
+3. Used Literal["ok"] for the 'status' field.
+4. Used list[str] for the 'data' field, as specified by the overridden schema for the response.
+5. Used str | None for the 'echo' field to handle nullability.
+6. Added Field with descriptions for all fields.
+7. Removed unused import 'Any'.
+8. Removed `type: ignore` comments.

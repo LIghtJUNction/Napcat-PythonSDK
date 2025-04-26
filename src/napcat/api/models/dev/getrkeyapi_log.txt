@@ -1,13 +1,19 @@
-Based on the OpenAPI specification provided:
-1.  **Identify Request and Response Structures:** The spec shows an empty request body and a complex response structure including status, retcode, message, wording, echo, and a list of data items.
-2.  **GetRkeyReq:** The request body is an empty object. The existing `GetRkeyReq(BaseModel): pass` is correct. Added a more specific docstring.
-3.  **GetRkeyRes:** The response has several top-level fields and a nested array `data`. Each item in the `data` array is an object with `type`, `rkey`, `created_at`, and `ttl`. All fields in the data item are required according to the spec.
-4.  **Define Nested Model:** Created an inner class `GetRkeyData` within `GetRkeyRes` to represent the structure of items in the `data` array. Defined its fields (`type`, `rkey`, `created_at`, `ttl`) with appropriate type hints (`str`, `int` for timestamp, `str`) and `Field` descriptions.
-5.  **Define GetRkeyRes Fields:** Defined the top-level fields of `GetRkeyRes` (`status`, `retcode`, `data`, `message`, `wording`, `echo`). Used appropriate type hints (`str`, `int`, `list[GetRkeyRes.GetRkeyData]`, `str`, `str`, `str | None`). `echo` is nullable in the spec, so `str | None` is used. Added `Field` descriptions for all fields.
-6.  **Imports:** Removed the unused `Any` import. Kept `logging`, `BaseModel`, and `Field`.
-7.  **Type Hinting:** Ensured all fields have explicit type hints.
-8.  **Field Usage:** Used `Field(..., description=...)` for all required fields and `Field(..., description=...)` with `| None` for the nullable field.
-9.  **Metadata:** Updated `@tags` in the metadata section based on the OpenAPI spec ('密钥相关').
-10. **General Structure:** Maintained the existing structure with `req`, `res`, and `api` regions.
-11. **Code Style:** Adhered to the coding guidelines (Python 3.13, no deprecated typing, type hints, CamelCase class names).
-12. **Final Output:** Formatted the final code and log message into the required JSON structure.
+Based on the OpenAPI specification, the following changes were made:
+1.  **Request Model (GetRkeyReq):** The request body is an empty object. The `pass` implementation is correct and requires no changes other than adding a docstring.
+2.  **Response Model (GetRkeyRes):**
+    *   Removed unused `typing.Any` import.
+    *   Added `typing.Literal` import for the `status` field.
+    *   Defined a nested `DataItem` class within `GetRkeyRes` to model the objects found in the `data` array.
+    *   Added fields `type`, `rkey`, `created_at`, and `ttl` to `DataItem` with appropriate type hints (`str`, `str`, `int`, `str`) and descriptions using `Field`. `created_at` was inferred as `int` (timestamp), and `ttl` was kept as `str` as per the spec despite being unusual.
+    *   Added fields `status`, `retcode`, `data`, `message`, `wording`, and `echo` to `GetRkeyRes`.
+    *   Used `Literal["ok"]` for the `status` field.
+    *   Used `int` for `retcode`.
+    *   Used `list[DataItem]` for the `data` field.
+    *   Used `str` for `message` and `wording`.
+    *   Used `str | None` for `echo` as it is nullable.
+    *   Added descriptions to all fields using `Field`.
+    *   All required fields from the OpenAPI spec are implicitly required in Pydantic as they don't have default values (except `echo`, which defaults to `None` to handle nullability).
+3.  **API Model (GetRkeyAPI):** This class correctly references the request and response models and was left unchanged.
+4.  **Imports:** Removed the unused `Any` import. Added `Literal`.
+5.  **Docstrings:** Added docstrings to models.
+6.  **Type Hints:** Ensured all fields have explicit type hints conforming to the guidelines (no deprecated `typing` types).

@@ -1,1 +1,13 @@
-Refactored GetAiCharactersReq and GetAiCharactersRes based on the OpenAPI specification. Added required fields `group_id` and `chat_type` to the request model with appropriate type hints (int | str). Defined nested Pydantic models `Character` and `CharacterType` for the response data structure. Updated GetAiCharactersRes to include all specified fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with correct types, including the list of nested `CharacterType` models for the `data` field and nullable `echo`. Added `Field` with descriptions for all fields. Removed unused imports.
+Analyzing OpenAPI spec for /get_ai_characters (POST).
+Identified request body with fields group_id (int | str, required) and chat_type (int | str | None, optional).
+Updating GetAiCharactersReq model with these fields.
+Identified response body with fields status (Literal['ok'], required), retcode (int, required), data (array of objects, required), message (str, required), wording (str, required), echo (str | None, required/nullable).
+Defined nested model CharacterItem for items in the 'characters' array (character_id, character_name, preview_url - all str, required).
+Defined nested model DataItem for items in the 'data' array (type - str, required; characters - list[CharacterItem], required).
+Updated GetAiCharactersRes model with top-level fields and the nested DataItem model for the 'data' field.
+Added descriptions and default values (where applicable) using Field.
+Removed type: ignore comments.
+Ensured type annotations are correct for Pydantic v2 and Python 3.13 (using | for Union/Optional, list for List).
+Added Literal import for the 'status' field type.
+Verified GetAiCharactersAPI structure is correct.
+Formatted the final code and log into the required JSON structure.

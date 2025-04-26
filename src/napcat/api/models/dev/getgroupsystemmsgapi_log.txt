@@ -1,1 +1,10 @@
-Analyzing OpenAPI definition for /get_group_system_msg. Identified request body with required group_id (str|int). Identified response structure with status, retcode, data, message, wording, echo. Data contains lists InvitedRequest and join_requests. Defined inner models for request items (InvitedRequestItem, JoinRequestItem) and a data container model (GetGroupSystemMsgResData). Updated Req and Res models with correct fields, types (using str|int, list[...]), descriptions, and required constraints based on the OpenAPI spec. Removed unused imports.
+Based on the OpenAPI specification and the provided guidelines:
+1. Removed unused import `Any`.
+2. Added `Literal` for the `status` field and `list` for array types.
+3. Defined `SystemMessageItem` model based on the `系统信息` schema.
+4. Defined `GetGroupSystemMsgResData` model to represent the `data` object in the response, containing lists of `SystemMessageItem`.
+5. Updated `GetGroupSystemMsgRes` to use `Literal["ok"]` for `status`, `GetGroupSystemMsgResData` for the `data` field, and `str | None` for `echo`.
+6. Added descriptions to fields in all models using `Field(..., description="...")`.
+7. Ensured all fields have explicit type hints.
+8. `GetGroupSystemMsgReq` remains empty as per the spec.
+9. The `GetGroupSystemMsgAPI` model structure remains the same, referencing the corrected `Req` and `Res` models.

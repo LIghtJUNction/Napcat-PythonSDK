@@ -1,13 +1,19 @@
-Based on the OpenAPI specification provided:
-1. The request body is empty, so the `GetFriendsWithCategoryReq` model remains `pass`.
-2. The response body contains a standard wrapper (`status`, `retcode`, etc.) and a `data` field which is a list of friend categories.
-3. Each friend category contains fields like `categoryId`, `categoryName`, `buddyList`, etc.
-4. The `buddyList` is a list of friend information objects, defined in the `好友信息` schema.
-5. Defined `FriendInfo` model based on the `好友信息` schema.
-6. Defined `FriendCategory` model based on the structure of items in the `data` array, including the `buddyList` which is a list of `FriendInfo`.
-7. Defined the main `GetFriendsWithCategoryRes` model including the standard response fields and the `data` field as a list of `FriendCategory`.
-8. Used `list[...]` for arrays and `... | None` for nullable fields (`echo`).
-9. Added `Field(..., description=...)` for all required fields and included descriptions from the spec.
-10. Removed the unused `Any` import.
-11. Ensured type hints conform to the guidelines (Python 3.9+ built-ins where applicable).
-12. Kept the API metadata and the main API model (`GetFriendsWithCategoryAPI`).
+Refactoring initiated based on OpenAPI spec.
+- Removed unused `typing.Any` import.
+- Kept `logging` and `pydantic` imports.
+- Added `typing.Literal` for status field.
+- `GetFriendsWithCategoryReq` remains empty as per spec.
+- Created `GetFriendsWithCategoryRes` model.
+- Defined nested `FriendInfo` and `FriendCategory` models based on the spec's schemas.
+- `GetFriendsWithCategoryRes` includes fields: `status`, `retcode`, `data`, `message`, `wording`, `echo`.
+- `status` is typed as `Literal["ok"]`.
+- `retcode`, `message`, `wording` are typed as specified.
+- `echo` is typed as `str | None` with a default of `None`.
+- `data` is typed as `list[FriendCategory]`.
+- `FriendCategory` includes fields: `categoryId`, `categorySortId`, `categoryName`, `categoryMbCount`, `onlineCount`, `buddyList` with appropriate types and descriptions.
+- `buddyList` in `FriendCategory` is typed as `list[FriendInfo]`.
+- `FriendInfo` includes fields: `birthday_year`, `birthday_month`, `birthday_day`, `user_id`, `age`, `phone_num`, `email`, `category_id`, `nickname`, `remark`, `sex`, `level` with appropriate types and descriptions.
+- All fields in `FriendInfo` and `FriendCategory` are marked as required (`...`) based on the spec's `required` arrays.
+- All models include docstrings and fields have `Field` with descriptions.
+- The `GetFriendsWithCategoryAPI` model is updated to reference the refined `GetFriendsWithCategoryRes`.
+- Ensured compliance with pydanticV2 and Python 3.13 type hinting guidelines (using built-in types, `| None`).

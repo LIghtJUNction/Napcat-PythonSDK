@@ -4,15 +4,22 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657036e0
 @llms.txt: https://napcat.apifox.cn/226657036e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description: 
+@description: |  type                   |         类型                    |
+|  ----------------- | ------------------------ |
+| all                       |  所有（默认）             |
+| talkative              | 群聊之火                     |
+| performer           | 群聊炽焰                     |
+| legend                | 龙王                             |
+| strong_newbie   | 冒尖小春笋（R.I.P）     |
+| emotion              | 快乐源泉                      |
 
 summary:获取群荣誉
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_group_honor_info"
 __id__ = "226657036e0"
 __method__ = "POST"

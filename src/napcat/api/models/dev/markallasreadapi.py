@@ -4,7 +4,7 @@
 @tags: 账号相关
 @homepage: https://napcat.apifox.cn/226659194e0
 @llms.txt: https://napcat.apifox.cn/226659194e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:_设置所有消息已读
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "_mark_all_as_read"
 __id__ = "226659194e0"
 __method__ = "POST"
@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal # Import Literal for fixed string value
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -29,9 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class MarkAllAsReadReq(BaseModel):
     """
-    _设置所有消息已读 请求体
-    对应 OpenAPI schema: type: object, properties: {}
+    设置所有消息已读请求模型
     """
+    # API spec indicates an empty request body, so no fields needed.
     pass
 # endregion req
 
@@ -40,25 +41,16 @@ class MarkAllAsReadReq(BaseModel):
 # region res
 class MarkAllAsReadRes(BaseModel):
     """
-    _设置所有消息已读 响应体
-    对应 OpenAPI schema for 200 response content.
+    设置所有消息已读响应模型
     """
-    status: str = Field(
-        default="ok",
-        const=True,
-        description="响应状态"
-        )
-    retcode: int = Field(..., description="状态码")
-    data: None = Field(
-        default=None,
-        description="响应数据，此处为null"
-        )
-    message: str = Field(..., description="错误信息")
-    wording: str = Field(..., description="错误提示，适用于人类阅读")
-    echo: str | None = Field(
-        default=None,
-        description="回传 echo，字符串或 null"
-        )
+    status: Literal["ok"] = Field(..., description="状态")
+    retcode: int = Field(..., description="返回码")
+    # According to the spec, 'data' must be null.
+    data: None = Field(..., description="数据")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="描述")
+    echo: str | None = Field(None, description="回显")
+
 # endregion res
 
 # region api

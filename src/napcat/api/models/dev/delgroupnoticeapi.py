@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['群聊相关']
+@tags: 群聊相关
 @homepage: https://napcat.apifox.cn/226659240e0
 @llms.txt: https://napcat.apifox.cn/226659240e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:_删除群公告
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "_del_group_notice"
 __id__ = "226659240e0"
 __method__ = "POST"
@@ -21,44 +21,43 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
 from typing import Literal
 
-logger = logging.getLogger(__name__)
 
 # region req
 class DelGroupNoticeReq(BaseModel):
     """
-    删除群公告请求模型
+    _del_group_notice请求参数
     """
 
     group_id: int | str = Field(..., description="群号")
-    notice_id: str = Field(..., description="公告 ID")
+    notice_id: str = Field(..., description="群公告ID")
 
 # endregion req
 
 
 
 # region res
+class DelGroupNoticeResData(BaseModel):
+    """
+    _del_group_notice响应数据data字段模型
+    """
+    result: int | float = Field(..., description="结果")
+    errMsg: str = Field(..., description="错误信息")
+
+
 class DelGroupNoticeRes(BaseModel):
     """
-    删除群公告响应模型
+    _del_group_notice响应参数
     """
-
-    class Data(BaseModel):
-        """
-        响应数据详情
-        """
-        result: int | float = Field(..., description="删除结果，可能是数字")
-        errMsg: str = Field(..., description="错误信息")
 
     status: Literal["ok"] = Field(..., description="状态")
     retcode: int | float = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
+    data: DelGroupNoticeResData = Field(..., description="响应数据")
     message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示")
-    echo: str | None = Field(None, description="回显，可能为空")
+    wording: str = Field(..., description="文本")
+    echo: str | None = Field(..., description="回显")
 
 # endregion res
 

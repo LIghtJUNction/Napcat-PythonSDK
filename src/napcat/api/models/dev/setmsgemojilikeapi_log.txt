@@ -1,1 +1,22 @@
-Based on the OpenAPI specification, I have updated the `SetMsgEmojiLikeReq` model to include `message_id` (int | str), `emoji_id` (int), and `set` (bool) fields with descriptions and set them as required. For the response, I have created a nested `Data` model within `SetMsgEmojiLikeRes` to represent the `data` object with `result` (int) and `errMsg` (str). The main `SetMsgEmojiLikeRes` model now includes `status` (Literal['ok']), `retcode` (int), the nested `data` model, `message` (str), `wording` (str), and `echo` (str | None), all with appropriate types, descriptions, and default values where applicable (like `echo` being nullable). Removed unused imports (`Any`) and ensured type hints follow the specified guidelines (e.g., using `int | str` instead of `Union[int, str]`). Added descriptions using `Field` for clarity.
+根据OpenAPI规范修复模型：
+1.  移除了未使用的导入 `logging`, `typing.Any`。
+2.  `SetMsgEmojiLikeReq` 模型：
+    *   添加字段 `message_id`, `emoji_id`, `set`。
+    *   `message_id` 类型为 `int | str` (oneOf number/string)。
+    *   `emoji_id` 类型为 `int` (number)。
+    *   `set` 类型为 `bool` (boolean)。
+    *   所有字段标记为必填 `Field(...)` 并添加描述。
+3.  `SetMsgEmojiLikeRes` 模型：
+    *   定义内部类 `Data` 表示响应中的 `data` 字段。
+    *   `Data` 类包含 `result: int` 和 `errMsg: str` 字段，并添加描述。
+    *   `SetMsgEmojiLikeRes` 类包含 `status`, `retcode`, `data`, `message`, `wording`, `echo` 字段。
+    *   `status` 类型使用 `Literal["ok"]` 表示常量值 "ok"。
+    *   `retcode` 类型为 `int`。
+    *   `data` 类型为内部类 `Data`。
+    *   `message` 和 `wording` 类型为 `str`。
+    *   `echo` 类型为 `str | None` 表示可为空。
+    *   所有字段标记为必填 `Field(...)` (除了echo有默认值None) 并添加描述。
+4.  移除了 `type: ignore`。
+5.  确保遵循编码指南，使用内置类型或联合类型（`|`）进行类型标注，并使用驼峰命名法（对于类名）。
+6.  更新了模型描述。
+7.  API模型 `SetMsgEmojiLikeAPI` 保持不变，因为它结构正确。

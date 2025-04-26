@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659190e0
 @llms.txt: https://napcat.apifox.cn/226659190e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 获取的最新消息是每个会话最新的消息
 
@@ -12,7 +12,7 @@ summary:最近消息列表
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_recent_contact"
 __id__ = "226659190e0"
 __method__ = "POST"

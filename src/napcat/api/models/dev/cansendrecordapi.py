@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: [
-  "个人操作"
-]
+@tags: 个人操作
 @homepage: https://napcat.apifox.cn/226657080e0
 @llms.txt: https://napcat.apifox.cn/226657080e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description:
+@description: 
 
 summary:检查是否可以发送语音
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "can_send_record"
 __id__ = "226657080e0"
 __method__ = "POST"
@@ -23,16 +21,16 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from pydantic import BaseModel, Field
 
-logger = logging.getLogger(__name__)
+from pydantic import BaseModel, Field
+from typing import Literal
 
 # region req
 class CanSendRecordReq(BaseModel):
     """
-    检查是否可以发送语音
+    检查是否可以发送语音 请求模型
     """
+    # 请求体为空，无需定义字段
     pass
 # endregion req
 
@@ -41,21 +39,19 @@ class CanSendRecordReq(BaseModel):
 # region res
 class CanSendRecordRes(BaseModel):
     """
-    检查是否可以发送语音 响应
+    检查是否可以发送语音 响应模型
     """
-
-    class CanSendRecordData(BaseModel):
-        """
-        响应数据
-        """
+    # 定义嵌套的data模型
+    class Data(BaseModel):
         yes: bool = Field(..., description="是否可以发送语音")
 
-    status: str = Field("ok", description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: CanSendRecordData = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示")
-    echo: str | None = Field(None, description="Echo")
+    status: Literal["ok"] = Field("ok", description="响应状态") # 确定的值使用Literal
+    retcode: int = Field(..., description="响应码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="响应消息")
+    wording: str = Field(..., description="响应词")
+    echo: str | None = Field(None, description="Echo字段")
+
 # endregion res
 
 # region api

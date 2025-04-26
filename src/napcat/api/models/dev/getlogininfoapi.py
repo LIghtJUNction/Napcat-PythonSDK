@@ -4,7 +4,7 @@
 @tags: 账号相关
 @homepage: https://napcat.apifox.cn/226656952e0
 @llms.txt: https://napcat.apifox.cn/226656952e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取登录号信息
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_login_info"
 __id__ = "226656952e0"
 __method__ = "POST"
@@ -21,14 +21,14 @@ __method__ = "POST"
 
 
 # region code
+from typing import Literal
 from pydantic import BaseModel, Field
 
 # region req
 class GetLoginInfoReq(BaseModel):
     """
-    请求模型：获取登录号信息
-    "
-
+    获取登录号信息请求模型
+    """
     pass
 # endregion req
 
@@ -37,23 +37,22 @@ class GetLoginInfoReq(BaseModel):
 # region res
 class GetLoginInfoRes(BaseModel):
     """
-    响应模型：获取登录号信息
-    "
+    获取登录号信息响应模型
+    """
 
-    class GetLoginInfoData(BaseModel):
+    class Data(BaseModel):
         """
-        登录号信息数据
-        "
-        user_id: int = Field(..., description="登录号的QQ号")
-        nickname: str = Field(..., description="登录号的QQ昵称")
+        响应数据
+        """
+        user_id: int = Field(..., description="机器人账号")
+        nickname: str = Field(..., description="机器人昵称")
 
-    status: str = Field("ok", description="状态，应为 'ok'", const=True)
-    retcode: int = Field(..., description="返回码")
-    data: GetLoginInfoData = Field(..., description="登录号信息")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="描述信息")
-    echo: str | None = Field(..., description="echo")
-
+    status: Literal["ok"] = Field(..., description="响应状态")
+    retcode: int = Field(..., description="响应码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="响应消息")
+    wording: str = Field(..., description="响应提示")
+    echo: str | None = Field(None, description="Echo数据")
 # endregion res
 
 # region api

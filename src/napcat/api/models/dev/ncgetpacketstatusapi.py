@@ -4,15 +4,15 @@
 @tags: 系统操作
 @homepage: https://napcat.apifox.cn/226659280e0
 @llms.txt: https://napcat.apifox.cn/226659280e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
-@description: 
+@description:
 
 summary:获取packet状态
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "nc_get_packet_status"
 __id__ = "226659280e0"
 __method__ = "POST"
@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -29,10 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class NcGetPacketStatusReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    获取packet状态请求模型
     """
 
-    # No fields required based on OpenAPI spec
     pass
 # endregion req
 
@@ -41,15 +41,17 @@ class NcGetPacketStatusReq(BaseModel):
 # region res
 class NcGetPacketStatusRes(BaseModel):
     """
-    获取packet状态的响应模型
+    获取packet状态响应模型
     """
 
-    status: str = Field(..., description="响应状态，固定为 'ok'")
-    retcode: int = Field(..., description="响应码")
-    data: None = Field(..., description="响应数据，此处为 null")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应词")
-    echo: str | None = Field(None, description="Echo 字段，客户端发送的字段，可能为 null")
+    # 定义响应参数
+    status: Literal["ok"] = Field(..., description="API处理状态，'ok'表示成功")
+    retcode: int = Field(..., description="API返回码")
+    data: None = Field(..., description="数据载荷 (此处为null)")
+    message: str = Field(..., description="API处理消息")
+    wording: str = Field(..., description="API处理文案")
+    echo: str | None = Field(None, description="API回显字段")
+
 # endregion res
 
 # region api

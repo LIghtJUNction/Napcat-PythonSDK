@@ -1,10 +1,12 @@
-Based on the OpenAPI specification, the request body and response body for the `/get_guild_list` endpoint are defined as empty objects. The existing Python code correctly reflects this by defining `GetGuildListReq` and `GetGuildListRes` as empty `BaseModel` classes using `pass`. 
-
-Fixes applied:
-1. Removed the unused import `typing.Any`.
-2. Removed the unnecessary `type: ignore` comments from the class definitions.
-3. Ensured the models remain empty as per the OpenAPI spec.
-4. Kept the `GetGuildListAPI` model as it correctly structures the endpoint information.
-5. Added basic docstrings to the Req/Res models even though they are empty, for potential future expansion and clarity.
-
-No nested models or enums were required based on the provided spec.
+Based on the OpenAPI schema:
+1. The endpoint is `/get_guild_list` using the POST method.
+2. The request parameters are empty (`[]`). The `GetGuildListReq` model correctly reflects this with `pass`.
+3. The 200 response schema shows an object with no properties (`{}`). This indicates the `data` field within the standard Napcat wrapper should be an empty object, represented by `dict` in Python.
+4. The standard Napcat response wrapper (`status`, `retcode`, `data`, `msg`, `wording`) is assumed.
+5. The `status` field is typed using `Literal["ok", "failed"]` as per instructions and common practice.
+6. `retcode`, `msg`, and `wording` are typed as `int` and `str` respectively.
+7. `data` is typed as `dict` with `default_factory=dict` to represent the empty object.
+8. Removed `type: ignore` comments.
+9. Added `Literal` import.
+10. Added descriptions to response fields using `Field`.
+11. Verified type hints use native types where applicable.

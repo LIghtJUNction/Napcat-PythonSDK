@@ -1,10 +1,13 @@
-Refactoring steps:
-1. Removed unused imports (typing.Any).
-2. Defined `GetGroupIgnoreAddRequestReq` as pass as per spec.
-3. Created a nested model `GroupIgnoreAddRequestData` for items within the `data` array based on the OpenAPI schema properties.
-4. Used native types (int, str, bool, list) and `| None` for nullable fields.
-5. Added `Field` with descriptions and default values/ellipses for all fields in `GroupIgnoreAddRequestData` and `GetGroupIgnoreAddRequestRes`.
-6. Defined `GetGroupIgnoreAddRequestRes` based on the OpenAPI response structure, including `status`, `retcode`, `data` (using the nested model), `message`, `wording`, and `echo`.
-7. Kept `GetGroupIgnoreAddRequestAPI` as is, using `type[BaseModel]` for type hints.
-8. Ensured all fields have descriptions and appropriate typing for required/nullable status based on the spec.
-9. Added docstrings to models.
+修复日志：
+1. 移除未使用的导入 typing.Any。
+2. 为 GetGroupIgnoreAddRequestReq 添加了描述。
+3. 根据 OpenAPI 文档定义了 GroupIgnoreAddRequestItem 模型，包含所有字段及其类型、描述和可空性。
+4. 根据 OpenAPI 文档定义了 GetGroupIgnoreAddRequestRes 模型。
+5. 将 status 字段类型更改为 Literal["ok"]。
+6. 为 GetGroupIgnoreAddRequestRes 中的所有字段添加了类型标注、描述和默认/必需标记 (Field(...))。
+7. 将 echo 字段类型设置为 str | None，并添加了默认值 None。
+8. 将 data 字段类型设置为 list[GroupIgnoreAddRequestItem]，引用新定义的嵌套模型。
+9. 移除 `# type: ignore` 注释。
+10. 确认 API 模型引用了正确的 Req 和 Res 类型。
+11. 确保所有字段符合驼峰命名法 (已根据 OpenAPI 文档字段名保留)。
+12. 导入 Literal from typing.

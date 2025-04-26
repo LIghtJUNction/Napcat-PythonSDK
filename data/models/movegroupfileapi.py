@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/283136359e0
 @llms.txt: https://napcat.apifox.cn/283136359e0.md
-@last_update: 2025-04-26 01:17:46
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:移动群文件
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "move_group_file"
 __id__ = "283136359e0"
 __method__ = "POST"

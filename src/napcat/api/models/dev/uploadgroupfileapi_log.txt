@@ -1,1 +1,7 @@
-Removed unused imports (logging, Any). Updated UploadGroupFileReq model with fields group_id (int | str), file (str), name (str), folder_id (str) based on OpenAPI spec, added descriptions and marked as required using Field(...). Updated UploadGroupFileRes model with fields status (str), retcode (int | float), data (None), message (str), wording (str), echo (str | None), added descriptions and marked as required/nullable based on OpenAPI spec. Ensured correct type mappings and usage of built-in types or union with None. Added descriptions to model classes. Kept UploadGroupFileAPI as is.
+Based on the OpenAPI specification:
+1. Updated `UploadGroupFileReq` to include `group_id` (int | str), `file` (str), `name` (str) as required fields, and `folder` (str | None), `folder_id` (str | None) as optional fields, with descriptions.
+2. Updated `UploadGroupFileRes` to include `status` (Literal['ok']), `retcode` (int), `data` (None), `message` (str), `wording` (str), and `echo` (str | None), based on the response schema. `data` is explicitly `None` based on the OpenAPI override.
+3. Removed unused import `Any` and `logging`.
+4. Added `Literal` import from `typing`.
+5. Ensured type annotations are correct and follow the `| None` style.
+6. Added descriptions to fields using `Field`.

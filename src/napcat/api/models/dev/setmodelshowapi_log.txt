@@ -1,6 +1,13 @@
-Refining code based on OpenAPI spec for /_set_model_show.
-Removed unused imports (logging, Any).
-Defined SetModelShowReq with 'model' and 'model_show' fields based on requestBody schema. Both are required strings.
-Defined SetModelShowRes based on the response schema (which references 'result' but overrides 'data' to null). Included status (str), retcode (int), data (None), message (str), wording (str), and echo (str | None). Added descriptions to all fields using Field(...).
-Ensured correct type hints using built-in types and | None for nullable fields.
-Maintained the SetModelShowAPI class referencing the updated models.
+根据OpenAPI文档修复模型：
+1.  Request Body为空，保留SetModelShowReq为空BaseModel，添加描述。
+2.  Response Body遵循Napcat标准结果格式，并根据OpenAPI spec定义字段。
+3.  `status`字段使用Literal["ok"]。
+4.  `retcode`字段使用int。
+5.  `data`字段根据OpenAPI spec override定义为type: 'null'，故使用None类型。
+6.  `message`和`wording`字段使用str。
+7.  `echo`字段根据OpenAPI spec定义为string nullable，使用str | None。
+8.  所有字段都标记为Required(...)，因为OpenAPI spec required字段列表包含了所有字段。
+9.  移除未使用的logging导入。
+10. 移除typing.Any导入，使用Literal。
+11. 移除BaseModel后的type: ignore。
+12. 检查并确保所有字段都有描述和类型标注。

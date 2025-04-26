@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 
+@tags: ['密钥相关']
 @homepage: https://napcat.apifox.cn/226657054e0
 @llms.txt: https://napcat.apifox.cn/226657054e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取 QQ 相关接口凭证
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_credentials"
 __id__ = "226657054e0"
 __method__ = "POST"
@@ -23,17 +23,16 @@ __method__ = "POST"
 # region code
 import logging
 from pydantic import BaseModel, Field
+from typing import Literal # Import Literal for fixed values
 
 logger = logging.getLogger(__name__)
 
 # region req
 class GetCredentialsReq(BaseModel):
     """
-    获取 QQ 相关接口凭证请求模型
+    获取 QQ 相关接口凭证 请求模型
     """
-
-    domain: str = Field(..., description="需要获取凭证的域名")
-
+    domain: str = Field(..., description="域名")
 # endregion req
 
 
@@ -41,22 +40,22 @@ class GetCredentialsReq(BaseModel):
 # region res
 class GetCredentialsRes(BaseModel):
     """
-    获取 QQ 相关接口凭证响应模型
+    获取 QQ 相关接口凭证 响应模型
     """
 
     class Data(BaseModel):
         """
         响应数据详情
         """
-        cookies: str = Field(..., description="QQ 接口 cookies")
-        token: float = Field(..., description="QQ 接口 token") # Using float for number as per OpenAPI spec
+        cookies: str = Field(..., description="Cookies")
+        token: float = Field(..., description="Token")
 
-    status: str = Field("ok", description="响应状态", pattern="^ok$")
-    retcode: int = Field(..., description="响应码")
+    status: Literal["ok"] = Field(..., description="状态")
+    retcode: float = Field(..., description="返回码")
     data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应提示")
-    echo: str | None = Field(None, description="回显字段")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="提示")
+    echo: str | None = Field(..., description="回显") # nullable: true
 
 # endregion res
 

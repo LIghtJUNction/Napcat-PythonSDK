@@ -1,8 +1,16 @@
-Refactoring code based on OpenAPI spec for get_image endpoint.
-- Removed unused import `typing.Any`.
-- Defined `GetImageReq` with the required `file_id` field.
-- Defined a nested `GetImageResData` model for the `data` property in the response.
-- Defined `GetImageRes` with top-level fields (`status`, `retcode`, `message`, `wording`, `echo`) and the nested `data` field.
-- Added type annotations, descriptions using `Field`, and specified required fields or nullable types (`str | None`).
-- `status` field in `GetImageRes` is set to default 'ok' based on the spec's `const: ok`.
-- Ensured adherence to Python 3.13 and pydanticV2 guidelines.
+Analyzing OpenAPI spec for /get_image POST.
+Identified Request Body schema: object with required 'file_id' (string).
+Identified Response (200) schema: object with 'status' (Literal 'ok'), 'retcode' (number), 'data' (object), 'message' (string), 'wording' (string), 'echo' (string or null). 'data' object has 'file', 'url', 'file_size', 'file_name', 'base64' (all required strings).
+Reviewing existing code:
+- GetImageReq is empty, needs 'file_id'.
+- GetImageRes is empty, needs all fields including nested 'data' class.
+- GetImageAPI seems correct.
+- Imports: logging and Any are unused and should be removed. Literal needs to be added for status.
+- Type annotations, descriptions, default values, Literal, | None usage need implementation.
+Constructing fixed code:
+- Updated GetImageReq with 'file_id: str = Field(...)'.
+- Created nested 'Data' class inside GetImageRes with specified string fields and descriptions.
+- Updated GetImageRes with 'status: Literal["ok"] = Field(...)', 'retcode: int = Field(...)', 'data: Data = Field(...)', 'message: str = Field(...)', 'wording: str = Field(...)', 'echo: str | None = Field(...)'. Assumed retcode is int based on common API practices.
+- Removed unused imports (logging, Any). Added Literal import.
+- Ensured all fields have descriptions and correct type hints according to the spec and guidelines.
+- Maintained GetImageAPI structure.

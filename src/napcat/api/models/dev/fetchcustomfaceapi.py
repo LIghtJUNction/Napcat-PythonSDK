@@ -4,7 +4,7 @@
 @tags: 账号相关
 @homepage: https://napcat.apifox.cn/226659210e0
 @llms.txt: https://napcat.apifox.cn/226659210e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取收藏表情
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "fetch_custom_face"
 __id__ = "226659210e0"
 __method__ = "POST"
@@ -21,37 +21,33 @@ __method__ = "POST"
 
 
 # region code
-
+import logging
 from pydantic import BaseModel, Field
 from typing import Literal
+
+logger = logging.getLogger(__name__)
 
 # region req
 class FetchCustomFaceReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    获取收藏表情 请求参数
     """
-
-    count: int = Field(..., description="数量，默认为40")
+    count: int = Field(default=48, description="获取数量")
 # endregion req
 
 
 
 # region res
 class FetchCustomFaceRes(BaseModel):
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    status: Literal["ok"] = Field(
-        ..., description="状态，永远为'ok'"
-    )  # type: ignore
-    retcode: int = Field(..., description="返回码")
-    data: list[str] = Field(..., description="表情ID列表")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="额外消息")
-    echo: str | None = Field(None, description="echo")
-
+    """
+    获取收藏表情 响应参数
+    """
+    status: Literal["ok"] = Field(description="响应状态")
+    retcode: int = Field(description="响应码")
+    data: list[str] = Field(description="收藏表情列表，每个元素是一个表情的唯一标识符")
+    message: str = Field(description="错误信息")
+    wording: str = Field(description="错误信息（中文）")
+    echo: str | None = Field(default=None, description="echo")
 # endregion res
 
 # region api

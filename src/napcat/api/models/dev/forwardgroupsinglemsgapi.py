@@ -4,7 +4,7 @@
 @tags: 消息相关/发送群聊消息
 @homepage: https://napcat.apifox.cn/226659074e0
 @llms.txt: https://napcat.apifox.cn/226659074e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:消息转发到群
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "forward_group_single_msg"
 __id__ = "226659074e0"
 __method__ = "POST"
@@ -21,17 +21,24 @@ __method__ = "POST"
 
 
 # region code
+import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
+logger = logging.getLogger(__name__)
 
 # region req
 class ForwardGroupSingleMsgReq(BaseModel):
     """
-    消息转发到群 请求模型
+    请求模型：消息转发到群
     """
 
-    group_id: int | str = Field(..., description="群号")
-    message_id: int | str = Field(..., description="消息ID")
+    group_id: int | str = Field(
+        ..., description="群号"
+    )
+    message_id: int | str = Field(
+        ..., description="消息ID"
+    )
 # endregion req
 
 
@@ -39,15 +46,27 @@ class ForwardGroupSingleMsgReq(BaseModel):
 # region res
 class ForwardGroupSingleMsgRes(BaseModel):
     """
-    消息转发到群 响应模型
+    响应模型：消息转发到群
     """
-
-    status: str = Field("ok", description="响应状态，固定为 'ok'")
-    retcode: int = Field(..., description="返回码")
-    data: None = Field(None, description="响应数据，固定为 null")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应词语")
-    echo: str | None = Field(None, description="回显字段")
+    status: Literal["ok"] = Field(
+        ..., description="响应状态"
+    )
+    retcode: int = Field(
+        ..., description="返回码"
+    )
+    data: None = Field(
+        ..., description="响应数据"
+    )
+    message: str = Field(
+        ..., description="错误信息"
+    )
+    wording: str = Field(
+        ..., description="错误信息的自然语言描述"
+    )
+    echo: str | None = Field(
+        None,
+        description="echo",
+    )
 # endregion res
 
 # region api

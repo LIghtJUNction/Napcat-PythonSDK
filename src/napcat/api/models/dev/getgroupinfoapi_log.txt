@@ -1,10 +1,13 @@
-Building Pydantic model for get_group_info based on OpenAPI spec.
-- Removed unused import `Any`.
-- Updated `GetGroupInfoReq` to include `group_id: int | str` with `Field` description.
-- Updated `GetGroupInfoRes` to include `status: str`, `retcode: int`, `data: dict`, `message: str`, `wording: str`, `echo: str | None` with `Field` descriptions.
-- Set `echo` default to `None` as it is nullable.
-- Added basic docstrings to models.
-- Kept `GetGroupInfoAPI` structure.
-- Ensured Python 3.13 type hints (int | str, str | None, dict).
-- Added descriptions using `Field` for all model fields.
-- Confirmed no nested classes were needed based on the provided spec.
+Refactoring `get_group_info` models based on OpenAPI spec.
+1. Added `group_id: int | str = Field(..., description="群号")` to `GetGroupInfoReq` based on requestBody schema.
+2. Defined `GetGroupInfoResData` model based on the `#/components/schemas/群信息` schema, including all properties with appropriate types (`int` or `str`) and descriptions.
+3. Defined `GetGroupInfoRes` model based on the response schema.
+4. Used `Literal["ok"]` for the `status` field.
+5. Used `int` for `retcode`, `group_all_shut`, `member_count`, `max_member_count` based on `type: number` in the spec.
+6. Used `GetGroupInfoResData` as the type for the `data` field in `GetGroupInfoRes`.
+7. Used `str | None` for the `echo` field based on `nullable: true`.
+8. Added `Field` with descriptions to all fields in `GetGroupInfoReq`, `GetGroupInfoRes`, and `GetGroupInfoResData`.
+9. Removed unused import `Any`.
+10. Added import `Literal`.
+11. Updated docstrings and metadata.
+12. Ensured type annotations adhere to guidelines (no typing.List, Union, etc.).

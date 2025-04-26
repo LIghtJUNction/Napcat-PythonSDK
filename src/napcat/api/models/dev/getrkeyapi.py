@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: [
-    "密钥相关"
-]
+@tags: 密钥相关
 @homepage: https://napcat.apifox.cn/283136230e0
 @llms.txt: https://napcat.apifox.cn/283136230e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -14,7 +12,7 @@ summary:获取rkey
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_rkey"
 __id__ = "283136230e0"
 __method__ = "POST"
@@ -24,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -31,10 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class GetRkeyReq(BaseModel):
     """
-    请求: 获取rkey
-    对应 endpoint: get_rkey
+    获取rkey请求模型
     "
-    # 请求体为空，无需定义字段
+
     pass
 # endregion req
 
@@ -43,25 +41,25 @@ class GetRkeyReq(BaseModel):
 # region res
 class GetRkeyRes(BaseModel):
     """
-    响应: 获取rkey
-    对应 endpoint: get_rkey
-    "
+    获取rkey响应模型
+    """
 
-    class GetRkeyData(BaseModel):
+    class DataItem(BaseModel):
         """
-        响应数据项模型
-        "
-        type: str = Field(..., description="Type of the key")
-        rkey: str = Field(..., description="The rkey value")
-        created_at: int = Field(..., description="Timestamp of creation (seconds)")
-        ttl: str = Field(..., description="Time to live")
+        Rkey数据项模型
+        """
+        type: str = Field(..., description="Rkey类型")
+        rkey: str = Field(..., description="Rkey值")
+        created_at: int = Field(..., description="创建时间戳")
+        # Note: OpenAPI spec says string, which is unusual for TTL. Assuming it's a duration string.
+        ttl: str = Field(..., description="Rkey的生存时间")
 
-    status: str = Field(..., description="Response status, 'ok' for success")
-    retcode: int = Field(..., description="Response return code")
-    data: list[GetRkeyData] = Field(..., description="List of rkey data objects")
-    message: str = Field(..., description="Response message")
-    wording: str = Field(..., description="Response wording")
-    echo: str | None = Field(..., description="Echo value")
+    status: Literal["ok"] = Field(..., description="状态，固定为 'ok'")
+    retcode: int = Field(..., description="状态码")
+    data: list[DataItem] = Field(..., description="Rkey数据列表")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="附带文案")
+    echo: str | None = Field(None, description="回显数据", nullable=True)
 
 # endregion res
 

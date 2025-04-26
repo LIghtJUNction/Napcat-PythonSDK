@@ -1,1 +1,7 @@
-Refactoring `RenameGroupFileReq` based on OpenAPI spec. Added fields `group_id` (int | str), `file_id` (str), `current_parent_directory` (str), `new_name` (str). Marked all as required and added descriptions. Refactoring `RenameGroupFileRes`. Created inner `Data` model with `ok` (bool). Added root fields `status` (str, default 'ok'), `retcode` (int), `data` (Data model), `message` (str), `wording` (str), `echo` (str | None). Added descriptions for all fields. Removed unused imports (`logging`, `Any`). Reviewed `RenameGroupFileAPI` - kept as is. Applied Pydantic v2 guidelines for type hints and Field usage.
+Refactoring the provided code based on the OpenAPI spec:
+1. Removed unused `typing.Any` import.
+2. Defined `RenameGroupFileReq` with required fields: `group_id` (int | str), `file_id` (str), `current_parent_directory` (str), `new_name` (str), adding descriptions.
+3. Defined `RenameGroupFileRes.Data` as a nested class for the `data` field with a required `ok` (bool) field.
+4. Defined `RenameGroupFileRes` with fields: `status` (Literal["ok"]), `retcode` (int), `data` (RenameGroupFileRes.Data), `message` (str), `wording` (str), `echo` (str | None), adding descriptions and using `Literal` for status.
+5. Updated type hints to follow the guidelines (no `typing.Optional` or `typing.Union`).
+6. Added docstrings to classes.

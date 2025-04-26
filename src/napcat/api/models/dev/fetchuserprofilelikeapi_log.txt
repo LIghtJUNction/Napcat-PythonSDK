@@ -1,1 +1,5 @@
-Refactoring the `fetch_user_profile_like` model. Defined `FetchUserProfileLikeReq` with `user_id` as `str | int`. Defined `FetchUserProfileLikeRes` based on the `result` schema, including `status`, `retcode`, `data` (as a nested empty model), `message`, `wording`, and nullable `echo`. Added descriptions using `Field`. Removed unnecessary imports and type ignores.
+Analyzing OpenAPI spec for /fetch_user_profile_like. Request body requires 'user_id' (number or string). Response body follows 'result' schema: status ('ok'), retcode (number), data (empty object), message (string), wording (string), echo (string or null). Fixing provided code:
+1. Remove unused import `typing.Any`.
+2. Define `FetchUserProfileLikeReq` with `user_id` as `int | str` using Field with description.
+3. Define `FetchUserProfileLikeRes` with fields based on 'result' schema: `status` as `Literal["ok"]`, `retcode` as `int`, `data` as `dict` (since it's an empty object), `message` as `str`, `wording` as `str`, `echo` as `str | None`. Add descriptions using Field for all fields.
+4. Keep `FetchUserProfileLikeAPI` as is.

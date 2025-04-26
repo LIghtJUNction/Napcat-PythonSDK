@@ -1,1 +1,14 @@
-Analyzing OpenAPI schema for /get_friend_msg_history. Identified request parameters (user_id, message_seq, count, reverseOrder) and response structure including nested 'messages' array. Defined GetFriendMsgHistoryReq based on request parameters, including required fields, optional fields with default values, and type annotations (handling mixed types like user_id/message_seq). Defined nested models for 'sender' (Sender) and various message components (TextMsg, AtMsg, FaceMsg, ImageMsg, FileMsg, ReplyMsg, JsonMsg, VoiceMsg, VideoMsg, MarkdownMsg, ForwardMsg), including their internal data structures and literal 'type' fields. Noted the conflict in OpenAPI where both '语音消息' and 'markdown消息' schemas have type 'record', handling this by defining separate models and noting the issue. Defined the main 'Message' model based on '消息详情', including all required fields and the 'message' field as a union of all possible message component types. Defined the response data container 'GetFriendMsgHistoryResData'. Defined the main response model 'GetFriendMsgHistoryRes', including status, retcode, data, message, wording, and echo, mapping the 'data' field to GetFriendMsgHistoryResData. Added descriptions using Field. Removed unused imports (Any). Ensured all fields have type annotations. Kept nested models outside the main request/response classes for clarity.
+Parsed OpenAPI spec for /get_friend_msg_history.
+Created GetFriendMsgHistoryReq model with user_id (int|str, required), message_seq (int|str, default 0), count (int, default 20), reverseOrder (bool, default False).
+Created Sender model with Literal types for sex and role.
+Created nested models for each message segment type (TextMessage, AtMessage, FaceMessage, ImageMessage, FileMessage, ReplyMessage, JsonMessage, VoiceMessage, VideoMessage, MarkdownMessage, ForwardMessage) including their respective Data models.
+Defined MessageSegment as a union of all message segment types.
+Created MessageDetail model, including the 'message' field as a list of MessageSegment.
+Created GetFriendMsgHistoryResData model for the response data field, containing a list of MessageDetail.
+Created GetFriendMsgHistoryRes model, incorporating fields from the 'result' schema and the specific 'data' structure with Literal['ok'] for status.
+Updated GetFriendMsgHistoryAPI model to reference the new Req and Res models.
+Removed unused imports (logging, Any).
+Ensured all fields have descriptions and default values where applicable.
+Used Pydantic v2 syntax (Field, Literal, | for union).
+Addressed potential circular dependency in ForwardMessage by simplifying the 'content' type.
+Added docstrings to models.

@@ -1,10 +1,1 @@
-Building model for endpoint: get_group_file_url.
-Analyzing OpenAPI spec for request and response.
-Request model (GetGroupFileUrlReq) requires 'group_id' (string or number) and 'file_id' (string). Added these fields with appropriate types (str | int and str) and descriptions.
-Response model (GetGroupFileUrlRes) has top-level fields 'status', 'retcode', 'data', 'message', 'wording', 'echo'.
-The 'data' field is a nested object with a required 'url' (string). Created a nested 'Data' model for this.
-Updated types for top-level fields based on OpenAPI spec, including 'echo' as str | None.
-Added descriptions and default values (or required indication ...) using Field.
-Removed unused import 'Any'.
-Ensured nested 'Data' model is defined within 'GetGroupFileUrlRes'.
-Kept the API definition class as is, as it was correct.
+Analyzing OpenAPI schema for /get_group_file_url. Identified request body with group_id (int|str) and file_id (str), both required. Identified response body with status (Literal['ok']), retcode (int), data (object with url: str), message (str), wording (str), echo (str|None), all required. Fixing GetGroupFileUrlReq to include group_id and file_id with correct types and descriptions. Fixing GetGroupFileUrlRes to include nested Data model for the 'data' field, and all top-level fields with correct types (including Literal for status) and descriptions. Added missing import for Literal. Removed unused import Any. Ensured all fields have descriptions and default values or are marked as required. Kept GetGroupFileUrlAPI definition as it correctly links the request and response models.

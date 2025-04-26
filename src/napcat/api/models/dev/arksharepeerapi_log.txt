@@ -1,1 +1,12 @@
-Analyzing the OpenAPI spec for /ArkSharePeer POST endpoint. Identified the request body parameters (group_id, user_id, phoneNumber) and the response body structure, including the nested data object (errCode, errMsg, arkJson). Refactored the `ArksharepeerReq` model to include the request parameters with appropriate types (considering the oneOf and optional nature) and descriptions. Created a nested model `ArksharepeerData` for the `data` field in the response. Refactored `ArksharepeerRes` to include all top-level response fields with correct types, required status, descriptions, and handling for `Literal['ok']` and nullable `echo`. Added descriptions using `pydantic.Field`. Removed unused imports. Ensured compliance with Python 3.13 type hinting and pydantic v2 practices.
+Based on the OpenAPI spec:
+- Removed unused `logging` and `Any` imports.
+- Added `Literal` import for the response status.
+- Defined `ArksharepeerReq` with `group_id`, `user_id` (both `int | str | None`) and `phoneNumber` (`str | None`). Added Field descriptions.
+- Defined `ArksharepeerRes`. Created a nested `Data` model within it as specified by the `data` field structure.
+- The nested `Data` model includes `errCode` (`int`), `errMsg` (`str`), and `arkJson` (`str`), marked as required within the `data` object in the spec.
+- `ArksharepeerRes` includes `status` (`Literal["ok"]`), `retcode` (`int`), `data` (`Data`), `message` (`str`), `wording` (`str`), and `echo` (`str | None`). Added Field descriptions for all.
+- Ensured `status` and `echo` types match the spec (`const: ok` -> Literal, `nullable: true` -> | None).
+- Updated `ArksharepeerAPI` to use `Literal` for `endpoint` and `method` and reference the new `Req` and `Res` models.
+- Added basic descriptions to models.
+- Adhered to Python 3.13 type hinting and pydantic v2 standards (no typing.Union/Optional, use |, type[]).
+- Added a note in the request model about the likely mutual exclusivity/requirement of one of the fields, as the spec lacks a `required` array for the request body schema.

@@ -1,12 +1,10 @@
-Refactoring steps:
-1. Analyzed the OpenAPI schema for the `/get_file` endpoint.
-2. Updated `GetFileReq` to include the required `file_id: str` field with description, based on the requestBody schema.
-3. Updated `GetFileRes` to match the response schema:
-   - Defined an inner `Data` class for the nested `data` object, including required fields `file`, `url`, `file_size`, `file_name`, and `base64`, all as `str` with descriptions.
-   - Defined the top-level fields in `GetFileRes`: `status` (str, const='ok'), `retcode` (int), `data` (instance of `Data`), `message` (str), `wording` (str), and `echo` (str | None).
-   - Added descriptions and required status based on the schema.
-   - Used `| None` for the nullable `echo` field.
-4. Removed unused import `typing.Any`.
-5. Ensured all fields have type annotations and descriptions using `Field`.
-6. Kept the `GetFileAPI` class as it seems specific to the NapcatAPI framework structure.
-7. Followed Python 3.13 guidelines regarding type hints and deprecated types.
+根据OpenAPI文档修复模型。
+- 移除了未使用的导入 logging 和 Any。
+- 更新了 GetFileReq，添加 file_id 和 file 字段，类型为 str | None，并添加 Field 描述。
+- 重写了 GetFileRes，添加 status, retcode, data, message, wording, echo 字段及其类型。
+- status 使用 Literal["ok"] 类型。
+- data 字段定义为嵌套模型 GetFileRes.Data，该嵌套模型包含 file, url, file_size, file_name, base64 字段，类型为 str，并添加 Field 描述。注意 file_size 在 OpenAPI spec 中定义为 string，因此保留为 str。
+- echo 类型为 str | None。
+- 确保所有字段都有 Field 定义和描述。
+- 更新 GetFileAPI 中的 Req 和 Res 类型引用。
+- 遵循 PydanticV2 和 Python 3.13+ 编码指南。

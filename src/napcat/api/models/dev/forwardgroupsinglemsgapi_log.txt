@@ -1,1 +1,9 @@
-Fixed the Python code based on the OpenAPI schema. Added Pydantic models for request and response bodies. Used `int | str` for `group_id` and `message_id` (oneOf number or string). Used `None` for the `data` field in the response as it's specified as `null`. Used `Literal['ok']` for the `status` field. Used `str | None` for the `echo` field (nullable). Added type annotations, descriptions using `Field`, and removed unused imports. Updated the API class references.
+Refactoring code based on OpenAPI spec.
+- Added group_id and message_id fields to ForwardGroupSingleMsgReq with correct types (int | str) and descriptions.
+- Added status, retcode, data, message, wording, and echo fields to ForwardGroupSingleMsgRes.
+- Used Literal["ok"] for the status field.
+- Used None type for the data field as per spec.
+- Used str | None for the echo field.
+- Added descriptions to all fields.
+- Removed unused import Any.
+- Updated metadata descriptions.

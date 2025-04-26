@@ -4,7 +4,7 @@
 @tags: 其他/bug
 @homepage: https://napcat.apifox.cn/226659254e0
 @llms.txt: https://napcat.apifox.cn/226659254e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:fetch_user_profile_like
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "fetch_user_profile_like"
 __id__ = "226659254e0"
 __method__ = "POST"
@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal # Import Literal for status
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -29,12 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class FetchUserProfileLikeReq(BaseModel):
     """
-    请求体模型
+    请求 fetch_user_profile_like 参数
     """
-
-    user_id: str | int = Field(
-        ..., description="用户标识"
-    )
+    user_id: int | str = Field(..., description="用户ID，可以是QQ号(number)或OpenID(string)")
 # endregion req
 
 
@@ -42,33 +40,15 @@ class FetchUserProfileLikeReq(BaseModel):
 # region res
 class FetchUserProfileLikeRes(BaseModel):
     """
-    响应体模型
+    响应 fetch_user_profile_like 参数
     """
-    class FetchUserProfileLikeResData(BaseModel):
-        """
-        响应数据字段
-        """
-        # The OpenAPI schema shows 'data' as an object with empty properties.
-        pass
+    status: Literal["ok"] = Field(..., description="状态")
+    retcode: int = Field(..., description="返回码")
+    data: dict = Field(..., description="数据载荷")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="文字说明")
+    echo: str | None = Field(..., description="回显数据")
 
-    status: str = Field(
-        ..., description="状态, 总是 'ok'"
-    )
-    retcode: int = Field(
-        ..., description="返回码"
-    )
-    data: FetchUserProfileLikeResData = Field(
-        ..., description="响应数据"
-    )
-    message: str = Field(
-        ..., description="消息"
-    )
-    wording: str = Field(
-        ..., description="描述"
-    )
-    echo: str | None = Field(
-        ..., description="Echo字段"
-    )
 # endregion res
 
 # region api

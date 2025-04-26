@@ -1,13 +1,10 @@
-Analyzing OpenAPI spec for /send_group_forward_msg endpoint.
-Identified request body schema and response body schema.
-Defined nested Pydantic models for various message types (TextMessage, FaceMessage, ImageMessage, ReplyMessage, JsonMessage, VideoMessage, FileMessage, MarkdownMessage).
-Defined models for forward-specific structures (SendForwardMessage, ForwardNewsItem, Level2ForwardMessage, Level1ForwardMessage).
-Created a union type `AnyInnerMessageType` for message types allowed within node content, handling recursive definition with a string forward reference initially, then updating it.
-Defined SendGroupForwardMsgReq model based on the request schema, including required fields and their types.
-Defined SendGroupForwardMsgRes model based on the response schema, including the nested data structure and nullable echo field.
-Ensured correct type hints using built-in types, |, and Literal.
-Added Field descriptions to all model fields.
-Set default values for fields with defaults in the spec (e.g., ImageMessageData.summary, SendGroupForwardMsgRes.echo).
-Removed unused imports.
-Kept the API class structure.
-Code structure is clean with nested models defined separately for potential reusability.
+根据openapi规范修复了SendGroupForwardMsgReq和SendGroupForwardMsgRes模型。
+- 为请求模型添加了所有必填字段：group_id, messages, news, prompt, summary, source，并标注了类型和描述。
+- 定义了嵌套模型ForwardMessageNode及其ForwardMessageNodeData用于表示messages列表项。
+- 定义了嵌套模型NewsItem用于表示news列表项。
+- 为响应模型添加了status, retcode, data, message, wording, echo字段，并标注了类型和描述。
+- 将响应中的data字段定义为嵌套模型SendGroupForwardMsgResData。
+- 使用Literal["ok"]表示status字段的固定值。
+- 使用| None 表示echo字段的可空类型。
+- 移除了未使用的typing.Any导入。
+- 遵循编码指南，使用内置类型和| None。

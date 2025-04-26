@@ -1,11 +1,1 @@
-Analyzed OpenAPI spec for /get_profile_like POST.
-Request body is empty object {}. GetProfileLikeReq remains empty.
-Response body follows a result schema with an overridden data field.
-Created nested BaseModel `UserInfo` for items in `userInfos` list.
-Created nested BaseModel `GetProfileLikeData` for the `data` field.
-Created main response BaseModel `GetProfileLikeRes` including `status`, `retcode`, `data`, `message`, `wording`, and `echo`.
-Used Pydantic v2 syntax with type hints (list[UserInfo], str | None).
-Added Field descriptions and '...' for required fields.
-Removed unused import `Any`.
-Removed `type: ignore` comments.
-Kept API definition model.
+Refactoring `GetProfileLikeReq`: Added fields `user_id`, `start`, `count` with types, defaults, and descriptions based on OpenAPI spec. Refactoring `GetProfileLikeRes`: Defined nested models `UserInfoItem`, `FavoriteInfo`, `VoteInfo`, `Data`. Updated `GetProfileLikeRes` to include fields `status`, `retcode`, `data`, `message`, `wording`, `echo` with correct types (Literal for status, nested models for data, | None for nullable echo) and descriptions. Used `float` for OpenAPI 'number' types. Removed unused `typing.Any` import. Ensured all required fields are marked appropriately (either by default being non-None or using ...). Maintained `GetProfileLikeAPI` structure.

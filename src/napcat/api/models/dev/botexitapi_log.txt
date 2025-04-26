@@ -1,7 +1,7 @@
-Based on the OpenAPI specification, the /bot_exit endpoint expects an empty request body and returns an empty response body. The existing code correctly reflects this with `pass` in the `BotExitReq` and `BotExitRes` models. Fixes applied:
-1. Removed unused imports (`logging`, `Any`).
-2. Removed `# type: ignore` comments.
-3. Added docstrings to `BotExitReq` and `BotExitRes` for clarity, reflecting the API summary.
-4. Confirmed `BotExitReq` and `BotExitRes` remain empty as per spec.
-5. Kept the `BotExitAPI` helper class as it was in the original code structure.
-6. Added the metadata block.
+Refactoring the Python code based on the OpenAPI specification and coding guidelines:
+1. Removed unused import `typing.Any`.
+2. Updated class descriptions.
+3. Ensured `BotExitReq` and `BotExitRes` models correctly represent empty objects (`{}`) as per the OpenAPI spec using `pass`.
+4. Removed `type: ignore` comments.
+5. Kept the `BotExitAPI` class structure as it seems to be part of the internal framework, ensuring type hints are correct for Pydantic v2 (`type[BaseModel]` is appropriate).
+6. No nested models or enums were required based on the provided OpenAPI schema.

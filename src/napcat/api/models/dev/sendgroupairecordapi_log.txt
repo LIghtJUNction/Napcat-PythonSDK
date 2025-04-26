@@ -1,1 +1,11 @@
-Refactoring `SendGroupAiRecordReq` based on OpenAPI spec: Added `group_id` (str | int), `character` (str), and `text` (str) with descriptions. All are required. Refactored `SendGroupAiRecordRes` to match the response schema: Defined nested `Data` model with `message_id` (str). `SendGroupAiRecordRes` now includes `status` (str), `retcode` (int), `data` (Data), `message` (str), `wording` (str), and `echo` (str | None), with descriptions. Removed unused imports (`typing.Any`). Ensured all fields have type annotations and descriptions using `Field`. Followed encoding guidelines (using `| None`).
+Based on the OpenAPI spec:
+1.  Removed unused imports (`logging`).
+2.  Added necessary imports (`Literal`).
+3.  Defined `SendGroupAiRecordReq` with `group_id` (`int | str`), `character` (`str`), and `text` (`str`) fields, all marked as required with descriptions.
+4.  Defined `SendGroupAiRecordRes` with `status` (`Literal["ok"]`), `retcode` (`int`), `data` (nested model), `message` (`str`), `wording` (`str`), and `echo` (`str | None`) fields. All are marked as required and have descriptions.
+5.  Created a nested `Data` class inside `SendGroupAiRecordRes` to model the `data` field, containing `message_id` (`str`).
+6.  Ensured all fields have explicit type annotations.
+7.  Used `|` for union types (`int | str`, `str | None`).
+8.  Used `Literal["ok"]` for the `status` field.
+9.  Added descriptions using `Field`.
+10. Kept the `SendGroupAiRecordAPI` model as is, updating the Req and Res types.

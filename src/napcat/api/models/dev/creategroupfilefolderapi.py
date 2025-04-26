@@ -4,7 +4,7 @@
 @tags: 文件相关
 @homepage: https://napcat.apifox.cn/226658773e0
 @llms.txt: https://napcat.apifox.cn/226658773e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:创建群文件文件夹
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "create_group_file_folder"
 __id__ = "226658773e0"
 __method__ = "POST"
@@ -21,13 +21,16 @@ __method__ = "POST"
 
 
 # region code
-
+import logging
 from pydantic import BaseModel, Field
+from typing import Literal
+
+logger = logging.getLogger(__name__)
 
 # region req
 class CreateGroupFileFolderReq(BaseModel):
     """
-    创建群文件文件夹请求模型
+    请求模型：创建群文件文件夹
     """
 
     group_id: int | str = Field(..., description="群号")
@@ -40,54 +43,55 @@ class CreateGroupFileFolderReq(BaseModel):
 # region res
 class CreateGroupFileFolderRes(BaseModel):
     """
-    创建群文件文件夹响应模型
+    响应模型：创建群文件文件夹
     """
-
-    class FolderInfo(BaseModel):
-        """
-        文件夹信息
-        """
-        folderId: str = Field(..., description="文件夹ID")
-        parentFolderId: str = Field(..., description="父文件夹ID")
-        folderName: str = Field(..., description="文件夹名称")
-        createTime: int = Field(..., description="创建时间戳")
-        modifyTime: int = Field(..., description="修改时间戳")
-        createUin: str = Field(..., description="创建者Uin")
-        creatorName: str = Field(..., description="创建者昵称")
-        totalFileCount: str = Field(..., description="文件总数")
-        modifyUin: str = Field(..., description="修改者Uin")
-        modifyName: str = Field(..., description="修改者昵称")
-        usedSpace: str = Field(..., description="已用空间")
-
-    class GroupItem(BaseModel):
-        """
-        群组信息
-        """
-        peerId: str = Field(..., description="群组ID")
-        type: str = Field(..., description="类型") # Possible values? e.g., "group"
-        folderInfo: FolderInfo = Field(..., description="文件夹信息")
-
-    class Result(BaseModel):
-        """
-        内部操作结果
-        """
-        retCode: int = Field(..., description="返回码")
-        retMsg: str = Field(..., description="返回信息")
-        clientWording: str = Field(..., description="客户端提示文字")
 
     class Data(BaseModel):
         """
-        响应数据体
+        响应数据
         """
-        result: Result = Field(..., description="内部操作结果")
-        groupItem: GroupItem = Field(..., description="群组和文件夹信息")
+        class Result(BaseModel):
+            """
+            操作结果
+            """
+            retCode: int = Field(..., description="返回码")
+            retMsg: str = Field(..., description="返回消息")
+            clientWording: str = Field(..., description="客户端提示")
 
-    status: str = Field(..., description="状态码", const="ok")
+        class GroupItem(BaseModel):
+            """
+            群文件信息项
+            """
+            class FolderInfo(BaseModel):
+                """
+                文件夹信息
+                """
+                folderId: str = Field(..., description="文件夹ID")
+                parentFolderId: str = Field(..., description="父文件夹ID")
+                folderName: str = Field(..., description="文件夹名称")
+                createTime: int = Field(..., description="创建时间")
+                modifyTime: int = Field(..., description="修改时间")
+                createUin: str = Field(..., description="创建者UIN")
+                creatorName: str = Field(..., description="创建者名称")
+                totalFileCount: int = Field(..., description="文件总数")
+                modifyUin: str = Field(..., description="修改者UIN")
+                modifyName: str = Field(..., description="修改者名称")
+                usedSpace: str = Field(..., description="已用空间")
+
+            peerId: str = Field(..., description="对端ID")
+            type: int = Field(..., description="类型")
+            folderInfo: FolderInfo = Field(..., description="文件夹信息")
+            fileInfo: str | None = Field(..., description="文件信息 (可能为null)")
+
+        result: Result = Field(..., description="操作结果")
+        groupItem: GroupItem = Field(..., description="群文件信息项")
+
+    status: Literal["ok"] = Field(..., description="状态，总是'ok'")
     retcode: int = Field(..., description="返回码")
     data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="信息")
-    wording: str = Field(..., description="提示信息")
-    echo: str | None = Field(None, description="Echo数据")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="提示")
+    echo: str | None = Field(None, description="回显")
 
 # endregion res
 

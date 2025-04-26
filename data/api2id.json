@@ -120,5 +120,7 @@
     "movegroupfileapi": "283136359e0",
     "transgroupfileapi": "283136366e0",
     "renamegroupfileapi": "283136375e0",
-    "botexitapi": "283136399e0"
+    "botexitapi": "283136399e0",
+    "getdoubtfriendsaddrequestapi": "289565516e0",
+    "setdoubtfriendsaddrequestapi": "289565525e0"
 }

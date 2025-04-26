@@ -1,18 +1,13 @@
-Based on the OpenAPI specification for the /get_stranger_info endpoint:
-
-1.  **Request Model (GetStrangerInfoReq):** The spec requires a `user_id` field which can be a number or a string. Updated the model to include `user_id: int | str = Field(..., description="用户ID")`.
-2.  **Response Model (GetStrangerInfoRes):**
-    *   The response has a standard wrapper structure (`status`, `retcode`, `message`, `wording`, `echo`).
-    *   It contains a nested `data` object with detailed user information. Defined an inner `StrangerInfoData` BaseModel for this.
-    *   Populated the `StrangerInfoData` model with fields like `user_id`, `uid`, `nickname`, `age`, `qqLevel`, etc., using appropriate types (`int`, `str`, `bool`). Added descriptions for each field.
-    *   Identified `qqLevel` in the spec which is camelCase and should be `qq_level` in the Python model. Added `alias="qqLevel"` to the `qq_level` field. Included `model_config = {"populate_by_name": True}` for Pydantic v2 to handle aliases correctly.
-    *   Populated the main `GetStrangerInfoRes` model with the wrapper fields and the nested `data: StrangerInfoData` field.
-    *   Set `status` to `str = Field("ok", description="响应状态", const="ok")` as per the spec's constant value.
-    *   Set `echo` to `str | None = Field(None, description="Echo字段")` as it's nullable in the spec.
-    *   Added descriptions for all fields in `GetStrangerInfoRes`.
-    *   Followed the guideline to define the nested `StrangerInfoData` class inside `GetStrangerInfoRes`.
-3.  **Imports:** Removed unused `typing.Any` import.
-4.  **Guidelines:** Ensured use of built-in types, `| None` for nullable fields, `Field` with descriptions, and handled the alias for `qqLevel`. Removed type ignore comments.
-5.  **API Class:** The `GetStrangerInfoAPI` class was already structured correctly, referencing the request and response models. No changes were needed here.
-
-Code has been refactored to align with the OpenAPI spec and the provided coding guidelines.
+Based on the OpenAPI spec:
+1. Removed unused imports (`logging`, `Any`).
+2. Updated `GetStrangerInfoReq` to include the required `user_id` field with `int | str` type and description.
+3. Created an inner `Data` class within `GetStrangerInfoRes` to model the structure of the `data` field.
+4. Populated the `Data` class with fields (`user_id`, `uid`, `uin`, `nickname`, `age`, `qid`, `qqLevel`, `sex`, `long_nick`, `reg_time`, `is_vip`, `is_years_vip`, `vip_level`, `remark`, `status`, `login_days`) based on the spec, using appropriate types (`int`, `str`, `bool`) and `Field` for descriptions.
+5. Updated `GetStrangerInfoRes` to include the top-level fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) with their correct types (`Literal["ok"]`, `int`, `Data`, `str`, `str`, `str | None`).
+6. Used `Literal["ok"]` for the `status` field as specified by the `const: ok` in the OpenAPI.
+7. Used `str | None` for the `echo` field due to `nullable: true`.
+8. Added descriptions to all fields using `Field`.
+9. Ensured required fields are handled by Pydantic's default behavior (fields without default values or `| None` are required).
+10. Kept the `GetStrangerInfoAPI` class as is.
+11. Updated type hints to use built-in types and `|` for unions, importing `Literal` from `typing`.
+12. Removed `type: ignore` comments.

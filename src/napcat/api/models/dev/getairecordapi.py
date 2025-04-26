@@ -4,7 +4,7 @@
 @tags: 个人操作
 @homepage: https://napcat.apifox.cn/229486818e0
 @llms.txt: https://napcat.apifox.cn/229486818e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取AI语音
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_ai_record"
 __id__ = "229486818e0"
 __method__ = "POST"
@@ -21,18 +21,15 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
 
 # region req
 class GetAiRecordReq(BaseModel):
     """
-    获取AI语音请求模型
+    获取AI语音 请求模型
     """
-    group_id: int | str = Field(..., description="群组ID")
+    group_id: int | str = Field(..., description="群号")
     character: str = Field(..., description="character_id")
     text: str = Field(..., description="文本")
 # endregion req
@@ -42,14 +39,14 @@ class GetAiRecordReq(BaseModel):
 # region res
 class GetAiRecordRes(BaseModel):
     """
-    获取AI语音响应模型
+    获取AI语音 响应模型
     """
-    status: Literal['ok'] = Field('ok', description="响应状态")
-    retcode: int = Field(..., description="响应码")
+    status: Literal["ok"] = Field(..., description="状态")
+    retcode: int = Field(..., description="返回码")
     data: str = Field(..., description="链接")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应词")
-    echo: str | None = Field(None, description="Echo")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="文案")
+    echo: str | None = Field(..., description="回显")
 # endregion res
 
 # region api

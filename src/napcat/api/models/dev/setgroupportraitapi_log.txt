@@ -1,1 +1,16 @@
-Refactored SetGroupPortraitReq to include group_id (str | int) and file (str) fields based on OpenAPI spec. Added descriptions and made fields required. Created SetGroupPortraitResData nested model for the 'data' field in the response. Refactored SetGroupPortraitRes to include status, retcode, data (using nested model), message, wording, and echo (str | None) fields with correct types, descriptions, and required status. Removed unused import `Any`. Ensured all fields use `Field` for descriptions and default values/required status.
+Analyzing OpenAPI spec for /set_group_portrait POST.
+Found request body with fields 'group_id' (int | str) and 'file' (str), both required.
+Creating SetGroupPortraitReq model with these fields, adding descriptions.
+Found response body with fields 'status', 'retcode', 'data', 'message', 'wording', 'echo'.
+'status' is Literal["ok"].
+'retcode' is int (based on example and typical API practice, though schema says number).
+'data' is an object with 'result' (str) and 'errMsg' (str), both required. Defining a nested model SetGroupPortraitResData for this.
+'message' is str.
+'wording' is str.
+'echo' is str | None.
+All top-level fields required.
+Creating SetGroupPortraitRes model with nested SetGroupPortraitResData, adding descriptions and types.
+Ensuring correct imports (removed Any, added Literal).
+Ensuring correct type hints (using | for union, | None for nullable).
+Keeping SetGroupPortraitAPI model as is.
+Formatting code and generating JSON output.

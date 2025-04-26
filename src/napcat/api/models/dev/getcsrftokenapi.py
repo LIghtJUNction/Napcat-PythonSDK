@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 密钥相关
+@tags: 
 @homepage: https://napcat.apifox.cn/226657044e0
 @llms.txt: https://napcat.apifox.cn/226657044e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:获取 CSRF Token
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_csrf_token"
 __id__ = "226657044e0"
 __method__ = "POST"
@@ -21,16 +21,14 @@ __method__ = "POST"
 
 
 # region code
-
 from pydantic import BaseModel, Field
+from typing import Literal
 
 # region req
 class GetCsrfTokenReq(BaseModel):
     """
-    获取 CSRF Token 请求模型
+    {{DESC_EndPointReq}}
     """
-
-    # 根据 OpenAPI 规范，请求体为空
     pass
 # endregion req
 
@@ -39,21 +37,21 @@ class GetCsrfTokenReq(BaseModel):
 # region res
 class GetCsrfTokenRes(BaseModel):
     """
-    获取 CSRF Token 响应模型
+    {{DESC_EndPointRes}}
     """
-    status: str = Field("ok", description="状态码，固定为 'ok'")
-    retcode: int = Field(..., description="返回码")
-    data: "GetCsrfTokenRes.Data" = Field(..., description="响应数据")
-    message: str = Field(..., description="信息")
-    wording: str = Field(..., description="补充信息")
-    echo: str | None = Field(None, description="回显信息")
 
     class Data(BaseModel):
         """
-        CSRF Token 数据
+        响应数据
         """
-        token: int = Field(..., description="CSRF token") # Assuming int based on common usage despite 'number' in spec
+        token: int = Field(..., description="CSRF Token") # Assuming number is integer based on common usage
 
+    status: Literal["ok"] = Field(..., description="响应状态")
+    retcode: int = Field(..., description="返回码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="信息")
+    wording: str = Field(..., description="提示")
+    echo: str | None = Field(None, description="echo")
 # endregion res
 
 # region api

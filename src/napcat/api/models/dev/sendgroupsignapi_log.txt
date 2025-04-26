@@ -1,1 +1,9 @@
-Based on the OpenAPI spec, I have refactored the SendGroupSignReq model to include the required 'group_id' field of type string with a description. The SendGroupSignRes model remains empty as per the spec. Unused imports have been removed, and Field is used for descriptions. The API definition class is updated accordingly.
+根据OpenAPI规范修复模型：
+- 移除了未使用的导入 `typing.Any`。
+- `SendGroupSignReq` 添加了 `group_id: str` 字段，并标记为必需，添加了描述。
+- `SendGroupSignRes` 根据典型的Napcat API响应结构（包含 retcode, status, data, msg）进行了重构。虽然OpenAPI spec的成功响应data是空的，但实际API通常会包裹在标准结构中。
+- `status` 字段使用了 `Literal["ok", "failed"] | str` 以符合常见的状态值。
+- `data` 字段根据OpenAPI spec中成功的响应内容定义为 `dict` (表示一个空对象)。
+- 为所有字段添加了描述和必需标记。
+- 移除了模型定义后的 `# type: ignore` 注释。
+- 确保导入了 `Literal` 用于 `status` 字段类型标注。

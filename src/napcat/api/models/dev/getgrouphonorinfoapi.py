@@ -4,15 +4,23 @@
 @tags: 群聊相关
 @homepage: https://napcat.apifox.cn/226657036e0
 @llms.txt: https://napcat.apifox.cn/226657036e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description: 
+@description: |
+|  type                   |         类型                    |
+|  ----------------- | ------------------------ |
+| all                       |  所有（默认）             |
+| talkative              | 群聊之火                     |
+| performer           | 群聊炽焰                     |
+| legend                | 龙王                             |
+| strong_newbie   | 冒尖小春笋（R.I.P）     |
+| emotion              | 快乐源泉                      |
 
 summary:获取群荣誉
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "get_group_honor_info"
 __id__ = "226657036e0"
 __method__ = "POST"
@@ -22,65 +30,52 @@ __method__ = "POST"
 
 # region code
 from pydantic import BaseModel, Field
-
-# Define a base Result model mirroring the common response structure
-# Assuming this base model is not imported from elsewhere
-class Result(BaseModel):
-    """通用响应结构"""
-    status: str = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: any = Field(..., description="数据详情 (具体类型在继承类中定义)")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示信息")
-    echo: str | None = Field(None, description="Echo")
-
-
-# Define nested models for specific data structures
-class TalkativeInfo(BaseModel):
-    """龙王信息"""
-    user_id: int = Field(..., description="用户ID")
-    avatar: str = Field(..., description="头像")
-    nickname: str = Field(..., description="昵称")
-    day_count: int = Field(..., description="连续天数")
-    description: str = Field(..., description="说明")
-
-
-class PerformerInfo(BaseModel):
-    """群聊之火成员信息"""
-    user_id: int = Field(..., description="用户ID")
-    avatar: str = Field(..., description="头像")
-    nickname: str = Field(..., description="昵称")
-    description: str = Field(..., description="说明")
-
+from typing import Literal
 
 # region req
 class GetGroupHonorInfoReq(BaseModel):
     """
-    获取群荣誉请求
+    获取群荣誉请求模型
     """
+
     group_id: int | str = Field(..., description="群号")
+    type: str = Field("all", description="荣誉类型，可选值见description")
 # endregion req
 
 
 
 # region res
-class GetGroupHonorInfoData(BaseModel):
-    """获取群荣誉响应数据详情"""
-    group_id: int | str = Field(..., description="群号") # Using int | str based on req and common practice
-    current_talkative: TalkativeInfo = Field(..., description="当前龙王")
-    talkative_list: list[TalkativeInfo] = Field(..., description="历史龙王列表")
-    performer_list: list[PerformerInfo] = Field(..., description="群聊之火列表")
-    legend_list: list[str] = Field(..., description="群聊炽焰列表 (通常是用户ID字符串)")
-    emotion_list: list[str] = Field(..., description="快乐之源列表 (通常是用户ID字符串)")
-    strong_newbie_list: list[str] = Field(..., description="冒尖小春笋列表 (通常是用户ID字符串)")
+class GroupHonorInfo(BaseModel):
+    """群荣誉信息"""
+
+    user_id: int = Field(..., description="用户ID")
+    nickname: str = Field(..., description="昵称")
+    avatar: int = Field(..., description="头像ID")
+    description: str = Field(..., description="说明")
 
 
-class GetGroupHonorInfoRes(Result):
+class GetGroupHonorInfoRes(BaseModel):
     """
-    获取群荣誉响应
+    获取群荣誉响应模型
     """
-    # Override the data field with the specific data model
-    data: GetGroupHonorInfoData = Field(..., description="响应数据详情")
+
+    class Data(BaseModel):
+        """响应数据"""
+
+        group_id: str = Field(..., description="群号")
+        current_talkative: GroupHonorInfo = Field(..., description="当前龙王")
+        talkative_list: list[GroupHonorInfo] = Field(..., description="群聊之火")
+        performer_list: list[GroupHonorInfo] = Field(..., description="群聊炽焰")
+        legend_list: list[GroupHonorInfo] = Field(..., description="龙王")
+        emotion_list: list[GroupHonorInfo] = Field(..., description="快乐源泉")
+        strong_newbie_list: list[GroupHonorInfo] = Field(..., description="冒尖小春笋")
+
+    status: Literal["ok"] = Field(..., description="响应状态")
+    retcode: int = Field(..., description="响应码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="响应消息")
+    wording: str = Field(..., description="响应提示")
+    echo: str | None = Field(default=None, description="echo")
 # endregion res
 
 # region api

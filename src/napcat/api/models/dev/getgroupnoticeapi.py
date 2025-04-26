@@ -4,15 +4,15 @@
 @tags: 群聊相关
 @homepage: https://napcat.apifox.cn/226658742e0
 @llms.txt: https://napcat.apifox.cn/226658742e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
-summary: _获取群公告
+summary:_获取群公告
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "_get_group_notice"
 __id__ = "226658742e0"
 __method__ = "POST"
@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -29,42 +30,44 @@ logger = logging.getLogger(__name__)
 # region req
 class GetGroupNoticeReq(BaseModel):
     """
-    _获取群公告 请求
+    _获取群公告 请求参数
     """
-
     group_id: int | str = Field(..., description="群号")
 
 # endregion req
 
-# region res
 
-class GetGroupNoticeMessageItem(BaseModel):
+# region res
+class MessageItem(BaseModel):
     """
-    群公告消息列表项
+    群公告消息内容项
     """
-    id: str = Field(..., description="消息ID")
+    id: str = Field(..., description="消息内容项ID")
     height: str = Field(..., description="高度")
     width: str = Field(..., description="宽度")
 
-class GetGroupNoticeDataItem(BaseModel):
+class NoticeItem(BaseModel):
     """
-    群公告数据列表项
+    群公告信息项
     """
+The OpenAPI spec example shows message as an object with text/image keys.
+The schema however defines message as an array of objects with id, height, width.
+Following the schema definition for model generation.
     notice_id: str = Field(..., description="公告ID")
     sender_id: int = Field(..., description="发送人账号")
     publish_time: int = Field(..., description="发送时间")
-    message: list[GetGroupNoticeMessageItem] = Field(..., description="消息列表")
+    message: list[MessageItem] = Field(..., description="公告消息内容列表")
 
 class GetGroupNoticeRes(BaseModel):
     """
-    _获取群公告 响应
+    _获取群公告 响应参数
     """
-    status: str = Field(..., description="状态")
+    status: Literal["ok"] = Field(..., description="状态")
     retcode: int = Field(..., description="返回码")
-    data: list[GetGroupNoticeDataItem] = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="补充说明")
-    echo: str | None = Field(default=None, description="Echo")
+    data: list[NoticeItem] = Field(..., description="公告列表")
+    message: str = Field(..., description="响应消息")
+    wording: str = Field(..., description="响应描述")
+    echo: str | None = Field(None, description="echo")
 
 # endregion res
 
@@ -76,5 +79,8 @@ class GetGroupNoticeAPI(BaseModel):
     Req: type[BaseModel] = GetGroupNoticeReq
     Res: type[BaseModel] = GetGroupNoticeRes
 # endregion api
+
+
+
 
 # endregion code

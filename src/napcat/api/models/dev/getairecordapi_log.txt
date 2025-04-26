@@ -1,10 +1,11 @@
-Analyzing the OpenAPI specification for the /get_ai_record endpoint.
-Identified request parameters: group_id (int | str), character (str), text (str), all required.
-Identified response parameters: status (Literal['ok']), retcode (int), data (str - link), message (str), wording (str), echo (str | None), all required.
-Refactoring GetAiRecordReq to include group_id, character, and text with correct types and descriptions.
-Refactoring GetAiRecordRes to include status, retcode, data, message, wording, and echo with correct types and descriptions, using Literal for status and handling nullable echo.
-Ensuring pydantic v2 type hints (int | str, str | None).
-Adding Field with descriptions for all parameters.
-Removing unused import `Any`.
-Keeping the GetAiRecordAPI class as is, as it correctly uses the Req and Res models.
-Formatting output as JSON.
+分析API文档，提取请求和响应模型定义。
+- 请求模型 GetAiRecordReq: 包含 group_id (int|str), character (str), text (str)，所有字段均为必填。
+- 响应模型 GetAiRecordRes: 包含 status (Literal["ok"]), retcode (int), data (str), message (str), wording (str), echo (str|None)，所有字段均为必填（echo为必填可空）。
+- 根据OpenAPI schema，data字段被覆盖为string类型。
+- 移除多余的导入 `logging`, `Any`。
+- 按照Python 3.13和pydantic v2规范，使用内置类型和`|`进行类型标注。
+- 使用`Field`为所有字段添加描述，并标记必填字段为`...`。
+- 使用`Literal["ok"]`表示status字段的固定值。
+- 没有发现需要嵌套的复杂对象，响应模型为扁平结构。
+- 保持 GetAiRecordAPI 模型不变，更新 Req 和 Res 引用。
+- 修复代码中的拼写错误和类型标注问题。

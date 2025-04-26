@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 账号相关
+@tags: [
+    "账号相关"
+]
 @homepage: https://napcat.apifox.cn/226659167e0
 @llms.txt: https://napcat.apifox.cn/226659167e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description: 设置群聊已读
+@description: 
 
 summary:设置群聊已读
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "mark_group_msg_as_read"
 __id__ = "226659167e0"
 __method__ = "POST"
@@ -21,15 +23,13 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class MarkGroupMsgAsReadReq(BaseModel):
     """
-    设置群聊已读 请求参数
+    请求体模型: 设置群聊已读
     """
 
     group_id: int | str = Field(..., description="群号")
@@ -40,14 +40,15 @@ class MarkGroupMsgAsReadReq(BaseModel):
 # region res
 class MarkGroupMsgAsReadRes(BaseModel):
     """
-    设置群聊已读 响应参数
+    响应体模型: 设置群聊已读
     """
-    status: str = Field(..., description="状态，'ok' 表示成功")
+
+    status: Literal["ok"] = Field(..., description="响应状态")
     retcode: int = Field(..., description="返回码")
-    data: None = Field(..., description="响应数据，固定为 null")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="补充消息")
-    echo: str | None = Field(None, description="回显")
+    data: None = Field(..., description="响应数据") # Data is null for this endpoint
+    message: str = Field(..., description="错误信息")
+    wording: str = Field(..., description="错误提示")
+    echo: str | None = Field(None, description="发送消息的echo回显")
 # endregion res
 
 # region api
