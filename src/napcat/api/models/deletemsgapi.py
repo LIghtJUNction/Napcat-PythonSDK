@@ -62,7 +62,7 @@ class DeleteMsgRes(BaseModel):
 # endregion res
 
 # region api
-class DeleteMsgApi(BaseModel):
+class DeleteMsgAPI(BaseModel):
     """delete_msg接口数据模型"""
     endpoint: str = "delete_msg"
     method: str = "POST"
