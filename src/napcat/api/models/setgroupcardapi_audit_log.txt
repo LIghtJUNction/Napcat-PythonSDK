@@ -1,0 +1,1 @@
+已将SetGroupCardRes模型中status字段的description修改为 "状态码，固定为 'ok'"

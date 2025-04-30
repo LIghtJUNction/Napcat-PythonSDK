@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
-from typing import Literal
 
 # region METADATA
 """
 @tags: 个人操作
 @homepage: https://napcat.apifox.cn/226658234e0
 @llms.txt: https://napcat.apifox.cn/226658234e0.md
-@last_update: 2025-04-27 01:21:00
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 功能：OCR图片识别
@@ -16,7 +15,7 @@ from typing import Literal
 3. 每个识别结果包含文本内容、四个顶点坐标和识别分数
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = ".ocr_image"
 __id__ = "226658234e0"
 __method__ = "POST"
@@ -25,6 +24,7 @@ __method__ = "POST"
 # region code
 import logging
 from pydantic import BaseModel, Field
+from typing import Literal
 
 logger = logging.getLogger(__name__)
 logger.debug("加载 OcrImageAPI 模型")
@@ -81,5 +81,4 @@ class OcrImageAPI(BaseModel):
     Req: type[BaseModel] = OcrImageReq
     Res: type[BaseModel] = OcrImageRes
 # endregion api
-
 # endregion code

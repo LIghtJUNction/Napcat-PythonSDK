@@ -1,0 +1,1 @@
+1. 更新了TransGroupFileRes中status字段的描述为"状态码，固定为 'ok'"

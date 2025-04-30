@@ -1,0 +1,1 @@
+根据规则，修改了SetGroupRemarkRes模型中的status字段定义，统一为 status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。其他部分符合规范。

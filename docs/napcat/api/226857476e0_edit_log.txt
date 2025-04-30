@@ -1,0 +1,1 @@
+创建 /send_group_msg API 文档

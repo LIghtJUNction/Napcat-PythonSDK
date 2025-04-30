@@ -1,0 +1,1 @@
+审核完成。根据规范要求，已将GetGroupNoticeRes中的status字段修改为 'status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")'。

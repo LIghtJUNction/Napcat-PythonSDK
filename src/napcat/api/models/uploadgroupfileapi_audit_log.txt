@@ -1,0 +1,2 @@
+已检查并修正以下问题：
+1. 将 UploadGroupFileRes 模型中的 status 字段修正为 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`，统一格式并添加默认值。

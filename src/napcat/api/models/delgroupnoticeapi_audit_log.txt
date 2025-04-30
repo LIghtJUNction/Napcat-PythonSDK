@@ -1,0 +1,1 @@
+已根据规范将 DelGroupNoticeRes 类中的 status 字段默认值修改为 "ok" 并更新描述。

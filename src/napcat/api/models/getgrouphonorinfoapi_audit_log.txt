@@ -1,0 +1,1 @@
+审核完成。发现 `status` 字段的默认值设置不符合规范，已按照 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")` 进行了修正。

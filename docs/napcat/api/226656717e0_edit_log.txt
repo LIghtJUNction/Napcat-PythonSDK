@@ -1,0 +1,1 @@
+根据OpenAPI规范，为/send_like接口编写详细的Markdown文档。

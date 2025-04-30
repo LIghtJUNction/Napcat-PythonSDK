@@ -1,0 +1,1 @@
+Updated GetUnidirectionalFriendListRes.status field definition to include the default value 'ok' and standardized description according to rules.

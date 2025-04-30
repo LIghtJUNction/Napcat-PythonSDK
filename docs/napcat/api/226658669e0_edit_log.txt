@@ -1,0 +1,1 @@
+为 /set_group_portrait API 生成了Markdown文档。

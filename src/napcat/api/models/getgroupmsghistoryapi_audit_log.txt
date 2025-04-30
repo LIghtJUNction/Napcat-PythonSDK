@@ -1,0 +1,7 @@
+- Removed unnecessary imports from `typing`: `list`, `str`, `int`, `bool`, `Any`. Kept `Union`.
+- Corrected the `status` field definition in `GetGroupMsgHistoryRes` to `Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`.
+- Corrected the `echo` field definition in `GetGroupMsgHistoryRes` to include `default=None` as it is Optional.
+- Restructured the response models into a nested hierarchy under `GetGroupMsgHistoryRes` (`Data` nested in `Res`, `MessageDetail` nested in `Data`, `Sender` and all message content related models (`MessageTypeXData`, `MessageTypeForwardData`, `MessageTypeX`, `MessageTypeForward`) nested in `MessageDetail`) to follow the specified standard writing for nested classes.
+- Updated all type hints referencing nested models to use string forward references with the full dotted path (e.g., `"GetGroupMsgHistoryRes.Data.MessageDetail.Sender"`).
+- Moved the `MessageContent` union definition inside the nested `MessageDetail` class and updated its type references to refer to the other models nested within `MessageDetail`.
+- Added a single `model_rebuild()` call on the top-level `GetGroupMsgHistoryRes` class to resolve all nested forward references and handle recursion.

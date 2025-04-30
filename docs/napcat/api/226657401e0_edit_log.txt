@@ -1,0 +1,1 @@
+根据 OpenAPI Specification 为 /get_group_msg_history 接口创建初始文档

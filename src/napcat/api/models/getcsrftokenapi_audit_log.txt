@@ -1,0 +1,1 @@
+Updated the 'status' field in GetCsrfTokenRes to include the default value 'ok' and conform to the specified description.

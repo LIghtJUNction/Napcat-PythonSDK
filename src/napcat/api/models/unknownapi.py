@@ -1,44 +1,42 @@
-# -*- coding: utf-8 -*-# region METADATA
+# -*- coding: utf-8 -*-
+# region METADATA
 """
-@tags: 其他/接口
+@tags: ["其他/接口"]
 @homepage: https://napcat.apifox.cn/226658925e0
 @llms.txt: https://napcat.apifox.cn/226658925e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description: Represents the data models for the 'unknown' API endpoint.
+@description: 
 
-summary: unknown
+summary:unknown
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "unknown"
 __id__ = "226658925e0"
 __method__ = "POST"
 
 # endregion METADATA
 
-# region code
-import logging
-from pydantic import BaseModel
 
-logger = logging.getLogger(__name__)
+# region code
+from pydantic import BaseModel
 
 # region req
 class UnknownReq(BaseModel):
     """
-    Request model for the unknown endpoint.
-The OpenAPI spec defines no request body parameters.
+    请求模型，无请求体参数。
     """
     pass
 # endregion req
 
 
+
 # region res
 class UnknownRes(BaseModel):
     """
-    Response model for the unknown endpoint.
-The OpenAPI spec defines an empty response object.
+    响应模型，无响应参数。
     """
     pass
 # endregion res
@@ -51,5 +49,8 @@ class UnknownAPI(BaseModel):
     Req: type[BaseModel] = UnknownReq
     Res: type[BaseModel] = UnknownRes
 # endregion api
+
+
+
 
 # endregion code

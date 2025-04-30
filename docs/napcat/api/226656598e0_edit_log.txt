@@ -1,0 +1,1 @@
+根据OpenAPI规范文档，生成`/send_group_msg`接口的Markdown文档，详细说明请求参数、消息段类型和响应结构。

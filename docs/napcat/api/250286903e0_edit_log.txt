@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /send_packet API 生成了Markdown格式的文档，并说明了规范中未详尽之处。

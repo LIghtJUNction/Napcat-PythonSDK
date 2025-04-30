@@ -1,0 +1,1 @@
+根据规则，将 SetQqAvatarRes 类中的 status 字段的定义从 `Field(..., description="...")` 修改为 `Field("ok", description="状态码，固定为 'ok'")`，以符合规范。

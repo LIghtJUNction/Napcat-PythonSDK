@@ -1,0 +1,1 @@
+根据OpenAPI JSON生成删除群文件API文档

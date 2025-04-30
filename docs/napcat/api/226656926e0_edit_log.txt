@@ -1,0 +1,1 @@
+根据OpenAPI规范为/set_group_leave API生成markdown文档

@@ -1,0 +1,1 @@
+根据规则修改了响应模型 `MarkAllAsReadRes` 中的 `status` 字段定义，使其符合 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")` 的标准。其他部分符合规范，无需修改。

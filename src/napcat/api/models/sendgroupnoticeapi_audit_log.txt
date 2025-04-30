@@ -1,0 +1,1 @@
+根据规则2，已将SendGroupNoticeRes模型中status字段的description修改为"状态码，固定为 'ok'"。其他方面符合规范。

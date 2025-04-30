@@ -1,0 +1,1 @@
+根据规则，修改了FriendPokeRes模型中status字段的定义，将其默认值设置为'ok'并更新了描述。

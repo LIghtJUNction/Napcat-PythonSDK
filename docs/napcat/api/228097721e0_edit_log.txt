@@ -1,0 +1,1 @@
+根据openapi json为 `/send_group_msg` (发送群聊超级表情 骰子) 接口生成文档

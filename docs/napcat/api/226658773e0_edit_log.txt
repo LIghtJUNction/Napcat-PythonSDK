@@ -1,0 +1,1 @@
+根据OpenAPI规范生成create_group_file_folder接口的Markdown文档，包括请求参数、响应详情及示例。

@@ -1,0 +1,1 @@
+修复了 Response 模型中 status 字段的默认值和描述，使其符合规范：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")

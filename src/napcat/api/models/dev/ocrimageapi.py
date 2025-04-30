@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
 # region METADATA
 """
 @tags: 个人操作
@@ -7,93 +9,76 @@
 @last_update: 2025-04-27 00:53:40
 
 @description: 
-
-summary:.OCR 图片识别
-
+功能：OCR图片识别
+1. 支持本地文件路径和网络URL
+2. 返回识别结果，包含每行文本、位置坐标和单个字符识别信息
+3. 每个识别结果包含文本内容、四个顶点坐标和识别分数
 """
 __author__ = "LIghtJUNction"
 __version__ = "4.7.43"
 __endpoint__ = ".ocr_image"
 __id__ = "226658234e0"
 __method__ = "POST"
-
 # endregion METADATA
 
-
 # region code
+import logging
 from pydantic import BaseModel, Field
-from typing import Literal # Keep Literal for fixed string values
+from typing import Literal 
+
+logger = logging.getLogger(__name__)
+logger.debug("加载 OcrImageAPI 模型")
 
 # region req
 class OcrImageReq(BaseModel):
-    """
-    .OCR 图片识别接口请求模型
-    """
-
-    image: str = Field(..., description="图片URL或本地路径 (e.g., 'https://...' or 'file://...')")
+    """OCR图片识别请求模型"""
+    image: str = Field(..., description="图片路径或URL (支持file://本地路径和http://网络图片)")
 # endregion req
 
-
-
 # region res
-class Point(BaseModel):
-    """
-    顶点坐标模型
-    """
-    x: str = Field(..., description="X坐标")
-    y: str = Field(..., description="Y坐标")
-
-class CharBoxInner(BaseModel):
-    """
-    字符边界框坐标模型
-    """
-    pt1: Point = Field(..., description="左上角顶点坐标")
-    pt2: Point = Field(..., description="右上角顶点坐标")
-    pt3: Point = Field(..., description="右下角顶点坐标")
-    pt4: Point = Field(..., description="左下角顶点坐标")
-
-class CharBoxItem(BaseModel):
-    """
-    字符拆分信息模型
-    """
-    charText: str = Field(..., description="字符文本")
-    charBox: CharBoxInner = Field(..., description="字符边界框")
-
-class OcrResultItem(BaseModel):
-    """
-    单个OCR识别结果项模型 (代表一行文本)
-    """
-    text: str = Field(..., description="该行文本总和")
-    pt1: Point = Field(..., description="左上角顶点坐标")
-    pt2: Point = Field(..., description="右上角顶点坐标")
-    pt3: Point = Field(..., description="右下角顶点坐标")
-    pt4: Point = Field(..., description="左下角顶点坐标")
-    charBox: list[CharBoxItem] = Field(..., description="字符拆分")
-    score: str = Field(..., description="置信度") # OpenAPI spec lists as string, example is empty string, keep as str
-
 class OcrImageRes(BaseModel):
-    """
-    .OCR 图片识别接口响应模型
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[OcrResultItem] = Field(..., description="OCR结果列表，一个项代表一行")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="词语")
-    echo: str | None = Field(..., description="回显信息")
+    """OCR图片识别响应模型"""
+    class Point(BaseModel):
+        """坐标点模型"""
+        x: str = Field(..., description="X坐标")
+        y: str = Field(..., description="Y坐标")
 
+    class LineData(BaseModel):
+        """一行文本的识别结果模型"""
+        class CharBoxDetail(BaseModel):
+            """单个字符的识别结果模型"""
+            class CharBoxPoints(BaseModel):
+                """字符包围框的四个顶点坐标模型"""
+                pt1: OcrImageRes.Point = Field(..., description="左上角顶点坐标")
+                pt2: OcrImageRes.Point = Field(..., description="右上角顶点坐标")
+                pt3: OcrImageRes.Point = Field(..., description="右下角顶点坐标")
+                pt4: OcrImageRes.Point = Field(..., description="左下角顶点坐标")
+            
+            charText: str = Field(..., description="字符文本")
+            charBox: CharBoxPoints = Field(..., description="字符包围框的四个顶点坐标")
+        
+        text: str = Field(..., description="该行文本总和")
+        pt1: OcrImageRes.Point = Field(..., description="左上角顶点坐标")
+        pt2: OcrImageRes.Point = Field(..., description="右上角顶点坐标")
+        pt3: OcrImageRes.Point = Field(..., description="右下角顶点坐标")
+        pt4: OcrImageRes.Point = Field(..., description="左下角顶点坐标")
+        charBox: list[CharBoxDetail] = Field(..., description="拆分后的字符识别结果列表")
+        score: str = Field(..., description="识别分数")
+    
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(0, description="返回码")
+    data: list[LineData] = Field(..., description="OCR识别结果列表，每个元素代表一行文本")
+    message: str = Field("", description="消息")
+    wording: str = Field("", description="提示")
+    echo: str | None = Field(None, description="回显信息")
 # endregion res
 
 # region api
 class OcrImageAPI(BaseModel):
-    ".ocr_image接口数据模型"
+    """.ocr_image接口数据模型"""
     endpoint: str = ".ocr_image"
     method: str = "POST"
     Req: type[BaseModel] = OcrImageReq
     Res: type[BaseModel] = OcrImageRes
 # endregion api
-
-
-
-
 # endregion code

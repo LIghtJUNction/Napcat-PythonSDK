@@ -1,0 +1,1 @@
+根据OpenAPI schema为/ocr_image接口生成Markdown文档，包含接口描述、请求参数、响应结构和示例。

@@ -1,0 +1,4 @@
+审核完成。
+1. 修复了 MarkdownMessage 的 type 字段，将其从 "record" 修改为 "markdown"，并更新了 description。
+2. 修复了 SendMsgRes 的 status 字段，增加了默认值 "ok" 并更新了 description 以符合规范。
+3. 其他部分符合规范，包括导入、嵌套类写法、语法、字段默认值和类命名。

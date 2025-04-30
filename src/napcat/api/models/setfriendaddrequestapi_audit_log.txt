@@ -1,0 +1,1 @@
+根据规范审核并修改代码：1. 统一了status字段的定义，将其默认值设置为'ok'并更新了描述。2. 修正了echo字段的定义，使其符合'required and nullable'的语义，移除了冗余的alias。

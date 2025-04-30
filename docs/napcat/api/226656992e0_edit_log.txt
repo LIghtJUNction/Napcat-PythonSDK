@@ -1,0 +1,1 @@
+为 /get_group_list API 生成了 markdown 格式的文档。

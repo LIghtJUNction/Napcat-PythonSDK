@@ -1,0 +1,4 @@
+已根据规则审核并重构代码。
+1. 修正了 status 字段的默认值和描述。
+2. 将 DeleteEssenceMsgResMsg, DeleteEssenceMsgResResult, DeleteEssenceMsgResData 重构为 DeleteEssenceMsgRes 的嵌套类。
+3. 确保了内部类字段使用前向引用。

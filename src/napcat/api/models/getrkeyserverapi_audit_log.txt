@@ -1,0 +1,1 @@
+Updated status field definition in GetRkeyServerRes to include default value 'ok' and standardized description.

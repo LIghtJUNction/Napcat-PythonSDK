@@ -4,7 +4,7 @@
 @tags: 群聊相关
 @homepage: https://napcat.apifox.cn/230897177e0
 @llms.txt: https://napcat.apifox.cn/230897177e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:群打卡
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "send_group_sign"
 __id__ = "230897177e0"
 __method__ = "POST"
@@ -22,6 +22,7 @@ __method__ = "POST"
 
 # region code
 import logging
+from typing import Any, Literal
 from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
@@ -29,10 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class SendGroupSignReq(BaseModel):
     """
-    请求参数
+    请求模型
     """
     group_id: str = Field(..., description="群号")
-
 # endregion req
 
 
@@ -40,11 +40,12 @@ class SendGroupSignReq(BaseModel):
 # region res
 class SendGroupSignRes(BaseModel):
     """
-    响应参数
+    响应模型
     """
-    # 响应体为空对象，无需定义字段
-    pass
-
+    retcode: int = Field(..., description="状态码")
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    data: dict[Any,Any] = Field(..., description="响应数据")
+    msg: str = Field(..., description="信息")
 # endregion res
 
 # region api

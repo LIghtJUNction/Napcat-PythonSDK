@@ -1,0 +1,1 @@
+为 /get_guild_list 接口编写了详细的Markdown格式文档。

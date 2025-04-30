@@ -1,0 +1,1 @@
+Updated the definition of the 'status' field in GetRobotUinRangeRes to include the default value "ok" as per guidelines.

@@ -1,0 +1,100 @@
+  
+```json
+{
+  "status": "ok",
+  "retcode": 0,
+  "data": {
+    "result": -1, 
+    "errMsg": "公告不存在或无权限删除"
+  },
+  "message": "",
+  "wording": "",
+  "echo": null
+}
+```
+
+## 标签
+
+群聊相关
+
+---
+*注意：* `data` 字段中的 `result` 和 `errMsg` 提供了关于删除操作是否成功的更具体信息，即使顶层的 `status` 是 `ok` 且 `retcode` 是 `0`，也应检查 `data.result` 来判断删除是否实际成功。
+
+ok"`                   |
+| `retcode` | `number` | 返回码                                     |
+| `data`    | `object` | 响应数据                                   |
+| `message` | `string` | 错误消息，成功时通常为空字符串             |
+| `wording` | `string` | 友好提示消息，成功时通常为空字符串         |
+| `echo`    | `string` | 可能为空，用于标识请求，如果请求时有携带 |
+
+`data` 字段结构：
+
+| 字段名   | 类型    | 说明                                                                                                |
+| :------- | :------ | :-------------------------------------------------------------------------------------------------- |
+| `result` | `number` | 删除结果码，可能表示成功或失败的具体原因（需要参考 Napcat 内部错误码定义，OpenAPI 中仅定义为 number） |
+| `errMsg` | `string` | 删除结果的文字描述（成功或失败的原因）                                                              |
+
+**注意:** `data` 字段中的 `result` 和 `errMsg` 提供了关于删除操作是否成功的更具体信息，通常需要检查 `result` 字段的值。
+
+## 示例
+
+**请求:**
+
+```json
+POST /_del_group_notice
+Content-Type: application/json
+
+{
+  "group_id": 123456789,
+  "notice_id": "your_notice_id_here"
+}
+```
+
+**响应 (成功):**
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "retcode": 0,
+  "data": {
+    "result": 0,
+    "errMsg": "删除成功"
+  },
+  "message": "",
+  "wording": "",
+  "echo": null
+}
+```
+
+**响应 (失败示例):**
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "retcode": 0, 
+  "data": {
+    "result": -1, 
+    "errMsg": "公告不存在或无权限删除"
+  },
+  "message": "",
+  "wording": "",
+  "echo": null
+}
+```
+
+## 标签
+
+群聊相关
+
+---
+*注意：* `data` 字段中的 `result` 和 `errMsg` 提供了关于删除操作是否成功的更具体信息，即使顶层的 `status` 是 `ok` 且 `retcode` 是 `0`，也应检查 `data.result` 来判断删除是否实际成功。
+
+---
+
+Generated from OpenAPI spec for `_del_group_notice` endpoint.

@@ -1,0 +1,1 @@
+根据规范要求，修复了 `GetLoginInfoRes` 模型中 `status` 字段的默认值和描述。将 `Field(..., description="响应状态")` 修改为 `Field("ok", description="状态码，固定为 'ok'")`。

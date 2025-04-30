@@ -1,0 +1,1 @@
+根据openapi data为/_send_group_notice生成API文档

@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /forward_friend_single_msg 接口生成Markdown格式文档。

@@ -1,0 +1,2 @@
+- Modified `SetGroupNameRes.status`: Changed type hint to `Literal["ok"]`, added default value `"ok"`, and updated description to "状态码，固定为 'ok'" as per standard.
+- Modified `SetGroupNameRes.data`: Changed type hint from `NoneType` to `None` and default value from `...` (required) to `None` to represent the field that is always null.

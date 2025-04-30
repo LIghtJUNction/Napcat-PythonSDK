@@ -1,0 +1,1 @@
+Reviewed code: Changed the 'status' field definition in 'NcGetPacketStatusRes' to comply with the standard: 'status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")'. No other issues found regarding imports, syntax, naming, or default values.

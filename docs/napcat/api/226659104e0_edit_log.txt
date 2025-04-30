@@ -1,0 +1,1 @@
+根据OpenAPI spec为/set_msg_emoji_like接口生成Markdown格式文档。

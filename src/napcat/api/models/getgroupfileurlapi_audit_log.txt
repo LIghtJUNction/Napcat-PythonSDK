@@ -1,0 +1,1 @@
+已将 GetGroupFileUrlRes 模型中的 status 字段修正为标准格式 status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")

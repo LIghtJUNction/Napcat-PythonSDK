@@ -1,0 +1,1 @@
+根据OpenAPI规范为 `/send_private_msg` 接口生成MarkDown文档。

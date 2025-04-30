@@ -1,0 +1,1 @@
+审核完成。根据规范，修改了 GetGroupFilesByFolderRes 类中 status 字段的定义：从 `status: Literal["ok"] = Field(..., description="状态")` 修改为 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`。其他部分符合规范，没有多余导入，没有语法错误，字段默认值和类命名符合要求，没有嵌套类需要调整。

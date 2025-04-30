@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /set_input_status API 生成了详细的Markdown文档。

@@ -28,5 +28,6 @@
     "python.analysis.userFileIndexingLimit": 4000,
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.enableColorPicker": true,
-    "python.analysis.enablePerfTelemetry": true
+    "python.analysis.enablePerfTelemetry": true,
+    "deepscan.enable": true
 }

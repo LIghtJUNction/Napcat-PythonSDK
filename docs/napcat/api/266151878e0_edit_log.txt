@@ -1,0 +1,1 @@
+根据OpenAPI规范为`/get_unidirectional_friend_list`接口生成Markdown格式文档，包括接口说明、请求方法、请求参数和响应数据格式及字段说明。

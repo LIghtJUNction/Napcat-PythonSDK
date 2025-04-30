@@ -1,0 +1,1 @@
+根据OpenAPI spec生成set_group_card API文档

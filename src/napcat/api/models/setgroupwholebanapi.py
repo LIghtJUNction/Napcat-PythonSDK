@@ -4,7 +4,7 @@
 @tags: 群聊相关
 @homepage: https://napcat.apifox.cn/226656802e0
 @llms.txt: https://napcat.apifox.cn/226656802e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:全体禁言
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_group_whole_ban"
 __id__ = "226656802e0"
 __method__ = "POST"
@@ -21,20 +21,17 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class SetGroupWholeBanReq(BaseModel):
     """
-    SetGroupWholeBan Endpoint Request Model
+    全体禁言 请求数据模型
     """
-
     group_id: int | str = Field(..., description="群号")
-    enable: bool = Field(..., description="是否设置，true 为设置，false 为取消")
+    enable: bool = Field(..., description="是否禁言，当为 true 时 解除禁言，当为 false 时 全体禁言")
+
 # endregion req
 
 
@@ -42,15 +39,15 @@ class SetGroupWholeBanReq(BaseModel):
 # region res
 class SetGroupWholeBanRes(BaseModel):
     """
-    SetGroupWholeBan Endpoint Response Model
+    全体禁言 响应数据模型
     """
-
-    status: Literal["ok"] = Field("ok", description="状态")
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
     retcode: int = Field(..., description="返回码")
-    data: None = Field(..., description="数据 (总是 null)")
+    data: None = Field(None, description="响应数据，固定为 null") # Explicitly null as per spec override
     message: str = Field(..., description="消息")
-    wording: str = Field(..., description="文案")
-    echo: str | None = Field(None, description="Echo值")
+    wording: str = Field(..., description="提示")
+    echo: str | None = Field(None, description="回显")
+
 # endregion res
 
 # region api

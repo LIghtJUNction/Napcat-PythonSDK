@@ -57,7 +57,7 @@ class GroupShutMember(BaseModel):
     isSpecialConcerned: bool = Field(..., description="是否特别关注")
     isSpecialShield: bool = Field(..., description="是否被屏蔽")
     isRobot: bool = Field(..., description="是否机器人")
-    groupHonor: dict = Field(..., description="群荣誉信息")
+    groupHonor: dict[str, int] = Field(..., description="群荣誉信息")
     memberRealLevel: int = Field(..., description="群聊等级")
     memberLevel: int = Field(..., description="成员等级")
     globalGroupLevel: int = Field(..., description="全局群等级")

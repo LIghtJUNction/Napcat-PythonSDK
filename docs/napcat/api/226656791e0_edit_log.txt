@@ -1,0 +1,1 @@
+创建API文档：群禁言 (set_group_ban)

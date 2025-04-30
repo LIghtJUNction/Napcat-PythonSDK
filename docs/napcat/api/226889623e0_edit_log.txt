@@ -1,0 +1,1 @@
+根据OpenAPI JSON为/send_private_msg编写发送私聊视频的文档

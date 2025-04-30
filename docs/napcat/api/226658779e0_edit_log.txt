@@ -1,0 +1,1 @@
+根据OpenAPI specification为/delete_group_folder接口生成Markdown格式文档。

@@ -1,0 +1,1 @@
+修复 GetGroupFileSystemInfoRes 类中的 status 字段：将 Field(..., description="状态") 修改为 Field("ok", description="状态码，固定为 'ok'")，以遵循规范。

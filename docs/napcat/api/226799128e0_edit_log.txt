@@ -1,0 +1,1 @@
+Generated documentation for /send_group_msg API.

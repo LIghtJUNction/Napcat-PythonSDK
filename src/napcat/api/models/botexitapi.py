@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 系统操作
+@tags: ['系统操作']
 @homepage: https://napcat.apifox.cn/283136399e0
 @llms.txt: https://napcat.apifox.cn/283136399e0.md
-@last_update: 2025-04-26 01:17:46
+@last_update: 2025-04-27 00:53:41
 
-@description: 账号退出
+@description: 
 
-summary: 账号退出
+summary:账号退出
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "bot_exit"
 __id__ = "283136399e0"
 __method__ = "POST"
@@ -21,12 +21,15 @@ __method__ = "POST"
 
 
 # region code
+import logging
 from pydantic import BaseModel
+
+logger = logging.getLogger(__name__)
 
 # region req
 class BotExitReq(BaseModel):
     """
-    账号退出请求体
+    请求体为空对象
     """
     pass
 # endregion req
@@ -36,7 +39,7 @@ class BotExitReq(BaseModel):
 # region res
 class BotExitRes(BaseModel):
     """
-    账号退出响应体
+    响应体为空对象
     """
     pass
 # endregion res

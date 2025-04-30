@@ -1,0 +1,1 @@
+根据OpenAPI规范为 /move_group_file 接口生成了Markdown格式的API文档。

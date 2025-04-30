@@ -1,0 +1,1 @@
+为 /get_group_member_info API 生成了Markdown格式的文档。

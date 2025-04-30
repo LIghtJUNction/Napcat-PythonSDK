@@ -1,0 +1,1 @@
+审核完成，已将FetchEmojiLikeRes中的status字段修改为规范写法：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。

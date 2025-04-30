@@ -1,0 +1,1 @@
+根据OpenAPI定义生成API文档：/set_group_whole_ban - 全体禁言

@@ -1,0 +1,1 @@
+Reviewed `SetGroupAddRequestRes` model: Fixed the `status` field definition to use the correct default value ('ok') and updated the description as per the standard. No other issues found.

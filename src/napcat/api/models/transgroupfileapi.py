@@ -4,15 +4,15 @@
 @tags: 文件相关
 @homepage: https://napcat.apifox.cn/283136366e0
 @llms.txt: https://napcat.apifox.cn/283136366e0.md
-@last_update: 2025-04-26 01:17:46
+@last_update: 2025-04-27 00:53:41
 
-@description: 
+@description: 转存为永久文件
 
 summary:转存为永久文件
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "trans_group_file"
 __id__ = "283136366e0"
 __method__ = "POST"
@@ -21,23 +21,20 @@ __method__ = "POST"
 
 
 # region code
+import logging
 from pydantic import BaseModel, Field
-from typing import Literal # Import Literal for constant values
+from typing import Literal
+
+logger = logging.getLogger(__name__)
 
 # region req
 class TransGroupFileReq(BaseModel):
     """
-    转存为永久文件请求体
+    转存为永久文件 请求模型
     """
 
-    group_id: int | str = Field(
-        ..., # Ellipsis indicates this field is required
-        description="群号"
-    )
-    file_id: str = Field(
-        ..., # Ellipsis indicates this field is required
-        description="文件 ID"
-    )
+    group_id: int | str = Field(..., description="群号")
+    file_id: str = Field(..., description="文件ID")
 # endregion req
 
 
@@ -45,42 +42,20 @@ class TransGroupFileReq(BaseModel):
 # region res
 class TransGroupFileRes(BaseModel):
     """
-    转存为永久文件响应体
+    转存为永久文件 响应模型
     """
-
-    class TransGroupFileData(BaseModel):
+    class Data(BaseModel):
         """
-        响应数据字段
+        响应数据
         """
-        ok: bool = Field(
-            ..., # Ellipsis indicates this field is required
-            description="是否成功"
-        )
+        ok: bool = Field(..., description="是否成功")
 
-    status: Literal['ok'] = Field(
-        ..., # Ellipsis indicates this field is required
-        description="状态码"
-    )
-    retcode: int = Field(
-        ..., # Ellipsis indicates this field is required
-        description="返回码"
-    )
-    data: TransGroupFileData = Field(
-        ..., # Ellipsis indicates this field is required
-        description="响应数据"
-    )
-    message: str = Field(
-        ..., # Ellipsis indicates this field is required
-        description="消息"
-    )
-    wording: str = Field(
-        ..., # Ellipsis indicates this field is required
-        description="wording"
-    )
-    echo: str | None = Field(
-        default=None, # Default value makes this field optional
-        description="echo"
-    )
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(..., description="返回码")
+    data: Data = Field(..., description="响应数据")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="详细消息")
+    echo: str | None = Field(None, description="Echo")
 # endregion res
 
 # region api

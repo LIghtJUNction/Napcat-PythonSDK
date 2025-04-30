@@ -1,0 +1,1 @@
+审核完成。已将数据响应模型 GetVersionInfoResData 嵌套到 GetVersionInfoRes 中，并将其重命名为 Data。同时修正了 status 字段的默认值和描述。

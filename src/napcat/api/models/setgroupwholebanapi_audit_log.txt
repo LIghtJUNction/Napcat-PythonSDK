@@ -1,0 +1,1 @@
+- 修复SetGroupWholeBanRes模型中status字段的定义，使其符合标准格式：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")

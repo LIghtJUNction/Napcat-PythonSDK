@@ -1,0 +1,1 @@
+根据规则2，将TranslateEn2zhRes模型中的status字段修改为：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。

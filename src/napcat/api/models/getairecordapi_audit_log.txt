@@ -1,0 +1,1 @@
+根据审核规则，已修正 GetAiRecordRes 模型中的 status 字段定义，使其符合固定值和描述规范；已修正 GetAiRecordRes 模型中的 echo 字段，使其成为可选字段。

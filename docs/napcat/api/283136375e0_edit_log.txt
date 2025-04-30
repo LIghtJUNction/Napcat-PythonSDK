@@ -1,0 +1,1 @@
+根据OpenAPI规范生成 /rename_group_file 的API文档。

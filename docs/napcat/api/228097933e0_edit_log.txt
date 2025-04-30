@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /send_group_msg 端点生成发送群聊超级表情（猜拳）的API文档。

@@ -1,0 +1,1 @@
+审核完成。根据规范要求，已将 SetInputStatusRes 模型中的 status 字段的 Field 定义从 Field(..., ...) 修改为 Field("ok", description="状态码，固定为 'ok'")。其他部分符合规范。

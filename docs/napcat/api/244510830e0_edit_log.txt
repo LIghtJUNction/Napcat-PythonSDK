@@ -1,0 +1,1 @@
+根据OpenAPI规范为/send_group_msg endpoint编写md格式API文档，包括请求体、响应、参数说明和示例。

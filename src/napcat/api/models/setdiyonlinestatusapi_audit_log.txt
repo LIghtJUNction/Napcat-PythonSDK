@@ -1,0 +1,1 @@
+Review complete. Corrected `SetDiyOnlineStatusRes.status` field definition to use `Field("ok", ...)` and updated the description. Corrected `SetDiyOnlineStatusRes.echo` field default from `...` to `None` as per the type hint `str | None`. No other issues found based on the provided rules.

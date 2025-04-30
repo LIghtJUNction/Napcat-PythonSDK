@@ -1,0 +1,1 @@
+Removed logger definition. Updated the status field in the response model to include the default value 'ok' and use the standard description '状态码，固定为 'ok''.

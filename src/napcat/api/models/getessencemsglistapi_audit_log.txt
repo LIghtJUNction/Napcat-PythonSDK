@@ -1,0 +1,1 @@
+审核通过，已根据规范修正GetEssenceMsgListRes模型中的status字段定义，添加默认值'ok'并更新描述。

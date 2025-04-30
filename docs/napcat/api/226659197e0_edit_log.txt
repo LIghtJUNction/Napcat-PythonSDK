@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /get_profile_like 接口生成了Markdown格式的API文档，包括接口描述、请求参数和响应数据结构详情。

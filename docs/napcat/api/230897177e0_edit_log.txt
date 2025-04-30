@@ -1,0 +1,1 @@
+为 /send_group_sign API 编写初始文档

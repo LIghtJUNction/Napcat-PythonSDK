@@ -4,7 +4,7 @@
 @tags: 系统操作
 @homepage: https://napcat.apifox.cn/250286903e0
 @llms.txt: https://napcat.apifox.cn/250286903e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:发送自定义组包
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "send_packet"
 __id__ = "250286903e0"
 __method__ = "POST"
@@ -29,14 +29,10 @@ logger = logging.getLogger(__name__)
 # region req
 class SendPacketReq(BaseModel):
     """
-    发送自定义组包 请求模型
-    
-    根据API文档，请求体为空对象。
+    请求参数：发送自定义组包
+    （OpenAPI spec indicates an empty object request body）
     """
-    # API文档定义请求体为 `{}`，因此模型为空。
-    model_config = {
-        "extra": "allow",  # 允许额外字段
-    }
+    pass
 # endregion req
 
 
@@ -44,14 +40,10 @@ class SendPacketReq(BaseModel):
 # region res
 class SendPacketRes(BaseModel):
     """
-    发送自定义组包 响应模型
-    
-    根据API文档，响应体为空对象。
+    响应参数：发送自定义组包
+    （OpenAPI spec indicates an empty object response body）
     """
-    # API文档定义响应体为 `{}`，因此模型为空。
-    model_config = {
-        "extra": "allow",  # 允许额外字段
-    }
+    pass
 # endregion res
 
 # region api

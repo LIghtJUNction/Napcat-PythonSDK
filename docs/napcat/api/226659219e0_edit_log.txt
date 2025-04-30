@@ -1,0 +1,1 @@
+根据OpenAPI спецификации为 /fetch_emoji_like 接口生成了详细的Markdown文档，包括请求参数、响应结构、示例及注意事项。

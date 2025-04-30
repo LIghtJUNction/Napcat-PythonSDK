@@ -1,0 +1,1 @@
+根据规则 2，将 NcGetUserStatusRes 中的 status 字段定义从 `status: Literal["ok"] = Field(..., description="响应状态")` 修改为 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`。

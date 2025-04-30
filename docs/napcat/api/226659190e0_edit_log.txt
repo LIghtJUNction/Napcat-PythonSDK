@@ -1,0 +1,1 @@
+为 /get_recent_contact 编写了 API 文档

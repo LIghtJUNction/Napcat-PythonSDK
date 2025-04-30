@@ -1,0 +1,1 @@
+根据OpenAPI规范为 /mark_group_msg_as_read 接口生成了Markdown文档，包含接口说明、参数、响应结构和示例。

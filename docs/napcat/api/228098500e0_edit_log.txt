@@ -1,0 +1,1 @@
+根据提供的OpenAPI schema，生成 `/send_private_msg` API的Markdown格式文档。文档描述了接口功能、请求参数（包含对schema中group_id和message类型与示例不符的说明）、请求示例、成功响应结构及示例。

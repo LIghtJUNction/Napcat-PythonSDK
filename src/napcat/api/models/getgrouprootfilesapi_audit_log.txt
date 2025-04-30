@@ -1,0 +1,2 @@
+根据规范，已将 GetGroupRootFilesRes 模型中的 status 字段定义修改为 status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。
+其他方面（如导入、语法、类名命名、字段默认值等）均符合规范。

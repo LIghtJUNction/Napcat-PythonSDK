@@ -1,0 +1,1 @@
+根据 /send_private_msg API schema 生成文档，说明了发送私聊文件消息的请求和响应结构，包括user_id、message字段及文件消息段的详细说明，并提供了示例。

@@ -1,0 +1,1 @@
+为 /get_collection_list API 生成 Markdown 文档。

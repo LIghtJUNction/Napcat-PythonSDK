@@ -1,0 +1,1 @@
+根据OpenAPI规范为 `/get_file` API 生成详细的markdown文档。

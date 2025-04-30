@@ -1,0 +1,1 @@
+Adjusted the definition of the 'status' field in SendPrivateMsgRes to match the specified format: status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'"). No other issues were found regarding redundant imports, nested class format, syntax errors, default values, or class naming conventions.

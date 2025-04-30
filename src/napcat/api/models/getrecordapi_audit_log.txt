@@ -1,0 +1,1 @@
+根据规则，将 GetRecordRes 中的 status 字段的 Field(...) 改为 Field("ok", description="状态码，固定为 'ok'")。没有发现其他问题。

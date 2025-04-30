@@ -1,0 +1,1 @@
+根据OpenAPI规范为 /send_group_msg 接口生成markdown文档，详细说明了接口用途、参数、请求示例和响应结构。

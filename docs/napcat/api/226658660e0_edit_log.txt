@@ -1,0 +1,1 @@
+根据 OpenAPI Specification 生成了获取群系统消息 /get_group_system_msg 的 Markdown 文档，包括路径、方法、说明、请求参数、响应结构和字段说明。

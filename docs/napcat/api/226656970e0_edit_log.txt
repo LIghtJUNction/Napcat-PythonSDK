@@ -1,0 +1,1 @@
+根据OpenAPI定义为 /get_stranger_info 接口生成文档。

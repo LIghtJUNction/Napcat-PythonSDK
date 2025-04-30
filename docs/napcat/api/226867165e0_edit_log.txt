@@ -1,0 +1,1 @@
+根据OpenAPI规范为 /send_group_msg 接口生成Markdown文档，重点描述如何发送带有json消息段的群消息。

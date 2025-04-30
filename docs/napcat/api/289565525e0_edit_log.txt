@@ -1,0 +1,1 @@
+根据API规范生成 /set_doubt_friends_add_request 的Markdown文档，描述其用途、无参数特性及响应。

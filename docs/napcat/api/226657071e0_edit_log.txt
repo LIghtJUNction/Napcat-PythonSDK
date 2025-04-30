@@ -1,0 +1,1 @@
+生成API文档: POST /can_send_image - 检查是否可以发送图片

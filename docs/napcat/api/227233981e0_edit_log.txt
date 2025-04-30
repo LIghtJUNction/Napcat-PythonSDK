@@ -1,0 +1,1 @@
+根据openapi spec为/_get_model_show接口生成md文档

@@ -1,0 +1,1 @@
+为 /send_private_msg API 编写了文档，描述了发送私聊骰子消息的功能、参数、响应和注意事项。纠正了schema中与endpoint不符的group_id字段描述，改为user_id并根据示例和功能进行说明。

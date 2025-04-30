@@ -1,0 +1,1 @@
+为 /nc_get_user_status endpoint 生成详细的Markdown API文档。

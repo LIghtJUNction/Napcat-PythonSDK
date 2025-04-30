@@ -1,0 +1,10 @@
+- Removed redundant 'list' import from 'typing'.
+- Refactored message segment models (TextMessage, AtMessage, etc.) to include their data models (*Data) as nested 'Data' classes, adhering to the specified standard writing format.
+- Corrected the type hint for the 'data' field in message segments to refer to the nested 'Data' class.
+- Updated the 'status' field in GetFriendMsgHistoryRes to use the default value "ok" and revised the description as per the rule.
+- Made the 'echo' field in GetFriendMsgHistoryRes optional by setting the default to None, aligning with the description "可能为null".
+- Made 'card' and 'group_id' fields in Sender and MessageDetail respectively optional (defaulting to None) as they are specific to group messages.
+- Adjusted the 'content' field in ForwardMessage.Data to `list[dict]` to better represent the simplified or non-recursive nature of content in forward messages based on common API implementations.
+- Added 'app' to Literal for JsonMessage type and 'voice' to Literal for VoiceMessage type based on common Napcat/OneBot usage.
+- Ensured all class names follow the UpperCamelCase convention.
+- Verified correct default values and syntax.

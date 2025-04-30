@@ -1,0 +1,1 @@
+审核完成。已根据规范调整FetchUserProfileLikeRes模型中的status字段，设置默认值为'ok'并更新描述。同时修正了echo字段，使其默认为None并移除required标记(...).

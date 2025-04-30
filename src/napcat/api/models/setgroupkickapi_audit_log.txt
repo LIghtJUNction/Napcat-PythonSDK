@@ -1,0 +1,1 @@
+Modified `status` field in `SetGroupKickRes` to have default value 'ok' and updated description according to rule.

@@ -1,0 +1,1 @@
+Applied standard fix for `status` field: changed `status: Literal["ok"] = Field(..., description="响应状态")` to `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`. No other issues found.

@@ -1,0 +1,1 @@
+已审核，主要修改了ForwardGroupSingleMsgRes模型中status字段的默认值和描述，使其符合规范 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`。

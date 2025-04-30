@@ -1,0 +1,1 @@
+根据OpenAPI数据为 /forward_group_single_msg 接口生成了API文档。

@@ -1,0 +1,6 @@
+审核完成：
+1. 无多余导入。
+2. 修复了 SendGroupMsgRes 模型中 status 字段的定义，使其符合规范 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")`。
+3. 嵌套类结构符合现有标准，无需修改。
+4. 代码无语法错误。
+5. 字段默认值和类名符合规范。

@@ -1,0 +1,1 @@
+根据OpenAPI规范为 `/send_group_msg` 编写Markdown格式的API文档，涵盖接口说明、请求参数、请求示例、响应结构和响应示例。

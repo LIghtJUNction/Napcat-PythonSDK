@@ -1,0 +1,1 @@
+Created documentation for /friend_poke API.

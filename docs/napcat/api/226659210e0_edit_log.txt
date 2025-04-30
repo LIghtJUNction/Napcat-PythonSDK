@@ -1,0 +1,1 @@
+根据OpenAPI spec为/fetch_custom_face接口生成md格式文档

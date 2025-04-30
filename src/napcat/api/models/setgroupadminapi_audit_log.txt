@@ -1,0 +1,1 @@
+根据规范，调整了响应模型 `SetGroupAdminRes` 中 `status` 字段的默认值和描述。

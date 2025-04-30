@@ -1,0 +1,3 @@
+审核通过，已按规范修改以下内容：
+1. status 字段已修改为标准写法：Literal["ok"] = Field("ok", description="状态码，固定为 'ok'").
+2. SendGroupAiRecordRes.Data.message_id 字段补充了描述.

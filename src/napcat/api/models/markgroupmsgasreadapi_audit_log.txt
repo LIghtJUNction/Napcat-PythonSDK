@@ -1,0 +1,1 @@
+Revised status field definition and data field default value in MarkGroupMsgAsReadRes according to rules.

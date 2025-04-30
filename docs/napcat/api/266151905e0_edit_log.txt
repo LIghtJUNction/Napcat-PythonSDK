@@ -1,0 +1,1 @@
+根据 OpenAPI JSON 为 /set_diy_online_status API 生成 Markdown 文档。

@@ -1,0 +1,1 @@
+Modified the 'status' field definition in GetGroupInfoRes to use Field("ok", description="状态码，固定为 'ok'") as per the standard.

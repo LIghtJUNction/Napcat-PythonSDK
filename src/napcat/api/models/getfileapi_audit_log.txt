@@ -1,0 +1,1 @@
+Review successful. The `status` field in `GetFileRes` was updated to `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")` according to the specified standard. No redundant imports, syntax errors, or issues with nested classes, default values, or class names were found.

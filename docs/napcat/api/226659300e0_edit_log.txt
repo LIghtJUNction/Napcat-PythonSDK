@@ -1,0 +1,1 @@
+生成API文档：获取群禁言列表 (/get_group_shut_list)

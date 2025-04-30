@@ -1,0 +1,1 @@
+Revised the 'status' field definition in GetGroupMemberInfoRes to include the default value 'ok' and updated the description as per the guidelines.

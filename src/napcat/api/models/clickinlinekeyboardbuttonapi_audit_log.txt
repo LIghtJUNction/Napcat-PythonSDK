@@ -1,0 +1,1 @@
+Modified the definition of the 'status' field in ClickInlineKeyboardButtonRes to include a default value of 'ok' and updated the description based on standard rules.

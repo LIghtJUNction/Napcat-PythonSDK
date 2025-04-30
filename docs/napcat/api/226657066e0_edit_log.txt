@@ -1,0 +1,1 @@
+编写 /get_image API 的文档。

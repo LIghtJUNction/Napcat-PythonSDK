@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /get_group_info_ex 接口生成Markdown文档。

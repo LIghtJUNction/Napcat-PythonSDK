@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 群聊相关
+@tags: ['
+  
+        
+          群聊相关
+        
+      ']
 @homepage: https://napcat.apifox.cn/226656919e0
 @llms.txt: https://napcat.apifox.cn/226656919e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +17,7 @@ summary:设置群名
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_group_name"
 __id__ = "226656919e0"
 __method__ = "POST"
@@ -22,24 +27,23 @@ __method__ = "POST"
 
 # region code
 import logging
-from pydantic import BaseModel, Field
 from typing import Literal
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
 # region req
 class SetGroupNameReq(BaseModel):
     """
-    请求模型
+    设置群名请求模型
     """
 
     group_id: int | str = Field(
         ..., description="群号"
     )
     group_name: str = Field(
-        ..., description="新群名"
+        ..., description="群名"
     )
-
 # endregion req
 
 
@@ -47,17 +51,17 @@ class SetGroupNameReq(BaseModel):
 # region res
 class SetGroupNameRes(BaseModel):
     """
-    响应模型
+    设置群名响应模型
     """
 
     status: Literal["ok"] = Field(
-        ..., description="状态"
+        "ok", description="状态码，固定为 'ok'"
     )
     retcode: int = Field(
         ..., description="返回码"
     )
     data: None = Field(
-        ..., description="数据"
+        None, description="响应数据 (总是为null)"
     )
     message: str = Field(
         ..., description="信息"
@@ -66,10 +70,8 @@ class SetGroupNameRes(BaseModel):
         ..., description="提示"
     )
     echo: str | None = Field(
-        None,
-        description="Echo，可空"
+        None, description="echo"
     )
-
 # endregion res
 
 # region api

@@ -1,0 +1,1 @@
+根据OpenAPI规范为 `/can_send_record` API生成Markdown文档。

@@ -1,0 +1,1 @@
+审核通过，已将status字段的标准写法更改为 status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")

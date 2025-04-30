@@ -1,0 +1,1 @@
+修改了SendPrivateForwardMsgRes模型中的status字段，使其符合规范：增加默认值"ok"并修改描述为"状态码，固定为 'ok'"。

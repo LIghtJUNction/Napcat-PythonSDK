@@ -1,0 +1,1 @@
+根据提供的OpenAPI schema为 /check_url_safely endpoint 生成API文档。

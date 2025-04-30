@@ -1,0 +1,1 @@
+根据OpenAPI spec为 /get_mini_app_ark 编写详细的API文档

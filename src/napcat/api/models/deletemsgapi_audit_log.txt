@@ -1,0 +1,3 @@
+- 移除了未使用的 `type` 导入。
+- 将 `DeleteMsgRes` 模型中的 `status` 字段的定义修改为 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")` 以符合规范。
+- 将 `DeleteMsgAPI` 类名修改为 `DeleteMsgApi` 以符合驼峰命名法规范。

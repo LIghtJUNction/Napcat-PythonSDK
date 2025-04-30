@@ -1,0 +1,1 @@
+审核完成，已根据要求修改GetFriendsWithCategoryRes模型中的status字段定义。

@@ -1,0 +1,1 @@
+Corrected `status` field in `SendPokeRes` to include default value 'ok' and updated description.

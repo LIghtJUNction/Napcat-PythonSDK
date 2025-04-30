@@ -1,0 +1,1 @@
+根据OpenAPI schema为`/send_forward_msg`端点生成详细的Markdown格式API文档，包括请求参数、消息结构、示例和响应说明。

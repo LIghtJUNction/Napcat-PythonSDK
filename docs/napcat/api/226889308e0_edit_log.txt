@@ -1,0 +1,1 @@
+基于 OpenAPI 定义为 /send_private_msg 接口生成文档

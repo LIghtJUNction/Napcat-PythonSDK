@@ -1,0 +1,1 @@
+根据 OpenAPI schema 为 /send_group_forward_msg 接口生成 Markdown 文档，详细说明请求参数、响应以及合并转发消息的结构。

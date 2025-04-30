@@ -1,0 +1,1 @@
+为 `/fetch_user_profile_like` API 生成了文档，描述了请求方法、路径、参数、响应结构及示例。

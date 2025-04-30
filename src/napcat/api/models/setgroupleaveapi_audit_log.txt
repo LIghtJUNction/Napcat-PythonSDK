@@ -1,0 +1,1 @@
+根据审核规则，修改了SetGroupLeaveRes模型中status字段的定义，以符合"status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")"的统一写法。

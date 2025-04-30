@@ -1,0 +1,1 @@
+修复 GetGroupAtAllRemainRes 模型中的 status 字段，使其符合规范：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。其他部分符合规范，无多余导入，嵌套类格式正确，无语法错误，字段默认值和类名符合要求。

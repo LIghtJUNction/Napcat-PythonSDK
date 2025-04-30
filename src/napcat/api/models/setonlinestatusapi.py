@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: {{tags}}
+@tags: 
 @homepage: https://napcat.apifox.cn/226658977e0
 @llms.txt: https://napcat.apifox.cn/226658977e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: ## 状态列表
 
@@ -256,12 +256,13 @@
     "ext_status": 1000,
     "battery_status": 0
 }
+```
 
 summary:设置在线状态
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_online_status"
 __id__ = "226658977e0"
 __method__ = "POST"
@@ -270,28 +271,18 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
-from pydantic import BaseModel, Field
-from napcat.base.enums import OnlineStatus , ExtStatus
 
-logger = logging.getLogger(__name__)
+from pydantic import BaseModel, Field
+from typing import Literal
 
 # region req
 class SetOnlineStatusReq(BaseModel):
     """
-    设置在线状态请求模型
-
-    
-    可以使用 OnlineStatus 或 在线状态 枚举来设置状态值，例如：
-    - status: OnlineStatus.ONLINE.value 或 在线状态.在线.value
-    - ext_status: OnlineStatus.LISTENING_MUSIC.value 或 在线状态.听歌中.value
+    请求参数模型：设置在线状态
     """
-
-    status: OnlineStatus = Field(..., description="基本状态值")
-    ext_status: ExtStatus = Field(..., description="扩展状态值")
-    battery_status: int = Field(0, ge=0, le=100, description="电量状态，通常为0")
-
+    status: int = Field(..., description="在线状态详情看顶部")
+    extStatus: int = Field(..., description="扩展状态详情看顶部")
+    batteryStatus: int = Field(..., description="电量")
 # endregion req
 
 
@@ -299,15 +290,14 @@ class SetOnlineStatusReq(BaseModel):
 # region res
 class SetOnlineStatusRes(BaseModel):
     """
-    设置在线状态响应模型
+    响应参数模型：设置在线状态
     """
-    status: Literal["ok"] = Field(default="ok", description="响应状态，通常为 'ok'")
-    retcode: int = Field(default=0, description="返回码")
-    data: None = Field(default=None, description="响应数据体，根据文档此处为null")
-    message: str = Field(default="", description="响应消息")
-    wording: str = Field(default="", description="响应词语")
-    echo: str | None = Field(default=None, description="请求的echo，可能为null")
-
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(..., description="返回码")
+    data: None = Field(None, description="数据 payload (固定为 null)")
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="说明")
+    echo: str | None = Field(None, description="Echo 数据")
 # endregion res
 
 # region api

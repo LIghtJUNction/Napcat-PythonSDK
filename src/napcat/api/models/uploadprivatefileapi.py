@@ -4,15 +4,15 @@
 @tags: 文件相关
 @homepage: https://napcat.apifox.cn/226658883e0
 @llms.txt: https://napcat.apifox.cn/226658883e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
-@description: 上传私聊文件
+@description: 
 
 summary:上传私聊文件
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "upload_private_file"
 __id__ = "226658883e0"
 __method__ = "POST"
@@ -30,13 +30,12 @@ logger = logging.getLogger(__name__)
 # region req
 class UploadPrivateFileReq(BaseModel):
     """
-    上传私聊文件的请求模型
+    {{DESC_EndPointReq}}
     """
 
-    user_id: int | str = Field(..., description="用户ID")
-    file: str = Field(..., description="文件内容（可能是文件路径或base64编码）")
+    user_id: int | str = Field(..., description="私聊对象 QQ 号")
+    file: str = Field(..., description="文件路径或 URL")
     name: str = Field(..., description="文件名")
-
 # endregion req
 
 
@@ -44,14 +43,14 @@ class UploadPrivateFileReq(BaseModel):
 # region res
 class UploadPrivateFileRes(BaseModel):
     """
-    上传私聊文件的响应模型
+    {{DESC_EndPointRes}}
     """
-    status: Literal["ok"] = Field("ok", description="响应状态")
-    retcode: int = Field(..., description="响应码")
-    data: None = Field(..., description="响应数据体 (为null)")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应文案")
-    echo: str | None = Field(..., description="echo回显字段")
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(..., description="返回码")
+    data: None = Field(..., description="响应数据 (此处为 null)") # Data is null as per OpenAPI spec override
+    message: str = Field(..., description="消息")
+    wording: str = Field(..., description="额外信息")
+    echo: str | None = Field(None, description="回显")
 
 # endregion res
 

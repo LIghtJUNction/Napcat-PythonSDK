@@ -1,0 +1,1 @@
+根据提供的 OpenAPI schema 为 /ArkShareGroup 接口生成 Markdown 格式文档。

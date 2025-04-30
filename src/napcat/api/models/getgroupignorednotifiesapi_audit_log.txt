@@ -1,0 +1,1 @@
+根据规范，修正了响应模型 GetGroupIgnoredNotifiesRes 中 status 字段的定义，为其设置了默认值 'ok' 并更新了描述。

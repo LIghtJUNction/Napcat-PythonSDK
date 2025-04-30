@@ -1,0 +1,1 @@
+根据规则，修改了GetMiniAppArkRes类中的status字段定义，将其固定为Literal["ok"]并设置默认值为"ok"，同时更新了description。

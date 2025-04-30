@@ -1,0 +1,1 @@
+根据规则标准化了GetGuildListRes模型中的status字段定义，改为status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")。

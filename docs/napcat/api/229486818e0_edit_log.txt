@@ -1,0 +1,1 @@
+根据OpenAPI schema为 /get_ai_record API生成详细的Markdown文档。

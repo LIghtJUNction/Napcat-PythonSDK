@@ -1,0 +1,1 @@
+为 /delete_friend API 生成 Markdown 文档

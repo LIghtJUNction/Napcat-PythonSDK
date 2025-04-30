@@ -1,0 +1,1 @@
+修复 CreateCollectionRes 模型中的 status 字段定义，使其符合规范：status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")

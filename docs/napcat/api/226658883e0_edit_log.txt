@@ -1,0 +1,1 @@
+根据OpenAPI规范，为 /upload_private_file 编写了详细的Markdown格式API文档，包括简介、Endpoint、请求参数（含file参数说明）、请求示例、响应说明（成功响应结构及示例，错误响应说明）。

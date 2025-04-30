@@ -1,0 +1,2 @@
+审核完成，已按规范调整。
+1. 修正了 `status` 字段的定义，使其符合 `status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")` 格式。

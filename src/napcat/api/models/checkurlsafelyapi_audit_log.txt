@@ -1,0 +1,1 @@
+根据规范，将响应模型 CheckUrlSafelyRes 中的 status 字段定义修改为 status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")，统一写法和描述。

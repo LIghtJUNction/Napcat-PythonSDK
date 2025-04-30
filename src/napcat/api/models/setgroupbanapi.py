@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['群聊相关']
+@tags: 群聊相关
 @homepage: https://napcat.apifox.cn/226656791e0
 @llms.txt: https://napcat.apifox.cn/226656791e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:群禁言
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_group_ban"
 __id__ = "226656791e0"
 __method__ = "POST"
@@ -27,12 +27,11 @@ from pydantic import BaseModel, Field
 # region req
 class SetGroupBanReq(BaseModel):
     """
-    {{DESC_EndPointReq}}
+    请求模型
     """
-
     group_id: int | str = Field(..., description="群号")
-    user_id: int | str = Field(..., description="禁言用户QQ号")
-    duration: float = Field(..., description="禁言时长，单位秒，0表示解除禁言")
+    user_id: int | str = Field(..., description="要禁言的 QQ 号")
+    duration: int = Field(..., description="禁言时长，单位秒，0 表示解除禁言")
 
 # endregion req
 
@@ -41,15 +40,14 @@ class SetGroupBanReq(BaseModel):
 # region res
 class SetGroupBanRes(BaseModel):
     """
-    {{DESC_EndPointRes}}
+    响应模型
     """
-
-    status: Literal["ok"] = Field("ok", description="响应状态")
-    retcode: float = Field(..., description="返回码")
-    data: None = Field(None, description="响应数据，此接口无数据返回")
-    message: str = Field(..., description="错误信息")
-    wording: str = Field(..., description="错误描述")
-    echo: str | None = Field(None, description="echo")
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(..., description="返回码")
+    data: None = Field(..., description="响应数据")
+    message: str = Field(..., description="信息")
+    wording: str = Field(..., description="提示")
+    echo: str | None = Field(None, description="回显") # Echo字段在openapi中为nullable，Field的default=None表示当字段缺失或为null时，该字段值为None
 
 # endregion res
 

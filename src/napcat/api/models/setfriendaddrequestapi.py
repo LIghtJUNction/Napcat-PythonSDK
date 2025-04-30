@@ -4,7 +4,7 @@
 @tags: 账号相关
 @homepage: https://napcat.apifox.cn/226656932e0
 @llms.txt: https://napcat.apifox.cn/226656932e0.md
-@last_update: 2025-04-26 01:17:44
+@last_update: 2025-04-27 00:53:40
 
 @description: 
 
@@ -12,7 +12,7 @@ summary:处理好友请求
 
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "set_friend_add_request"
 __id__ = "226656932e0"
 __method__ = "POST"
@@ -30,8 +30,9 @@ logger = logging.getLogger(__name__)
 # region req
 class SetFriendAddRequestReq(BaseModel):
     """
-    处理好友请求请求
+    处理好友请求 - 请求参数
     """
+
     flag: str = Field(..., description="请求id")
     approve: bool = Field(..., description="是否同意")
     remark: str = Field(..., description="好友备注")
@@ -42,14 +43,16 @@ class SetFriendAddRequestReq(BaseModel):
 # region res
 class SetFriendAddRequestRes(BaseModel):
     """
-    处理好友请求响应
+    处理好友请求 - 响应参数
     """
-    status: Literal["ok"] = Field("ok", description="状态, 总是ok")
+    # 定义响应参数
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
     retcode: int = Field(..., description="返回码")
-    data: None = Field(..., description="响应数据 (总是null)")
+    data: None = Field(..., description="响应数据") # Based on schema defining data as type null and required
     message: str = Field(..., description="消息")
-    wording: str = Field(..., description="详细描述")
-    echo: str | None = Field(None, description="回显数据")
+    wording: str = Field(..., description="补充信息")
+    echo: str | None = Field(..., description="echo信息") # According to schema, echo is nullable and required
+
 # endregion res
 
 # region api

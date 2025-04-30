@@ -1,72 +1,56 @@
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
 # region METADATA
 """
 @tags: 账号相关
 @homepage: https://napcat.apifox.cn/227233981e0
 @llms.txt: https://napcat.apifox.cn/227233981e0.md
-@last_update: 2025-04-26 01:17:45
+@last_update: 2025-04-27 00:53:41
 
-@description: _获取在线机型
-
-summary:_获取在线机型
-
+@description: 
+功能：获取在线机型
+获取QQ当前可用的在线机型及其显示名称列表
 """
 __author__ = "LIghtJUNction"
-__version__ = "4.7.17"
+__version__ = "4.7.43"
 __endpoint__ = "_get_model_show"
 __id__ = "227233981e0"
 __method__ = "POST"
-
 # endregion METADATA
-
 
 # region code
 import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
 
 logger = logging.getLogger(__name__)
+logger.debug("加载 GetModelShowAPI 模型")
 
 # region req
 class GetModelShowReq(BaseModel):
-    """
-    _获取在线机型 请求数据模型
-    """
-
-    model: str = Field(..., description="模型名称")
-
+    """获取在线机型请求模型"""
+    model: str = Field("napcat", description="机型名称，默认为 napcat")
 # endregion req
-
-
 
 # region res
 class GetModelShowRes(BaseModel):
-    """
-    _获取在线机型 响应数据模型
-    """
-
-
-
+    """获取在线机型响应模型"""
     class DataItem(BaseModel):
-        """
-        数据项
-        """
+        """机型数据项"""
         class Variants(BaseModel):
-            """
-            变体信息
-            """
-            model_show: str = Field(..., description="模型展示名称")
+            """机型变体信息"""
+            model_show: str = Field(..., description="在线机型显示名称")
             need_pay: bool = Field(..., description="是否需要付费")
+            
+        variants: Variants = Field(..., description="机型变体信息")
 
-        variants: Variants = Field(..., description="变体信息")
-
-    status: Literal["ok"] = Field("ok", description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[DataItem] = Field(..., description="数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="文案")
-    echo: str | None = Field(None, description="回显信息")
-
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: int = Field(0, description="返回码")
+    data: list[DataItem] = Field(..., description="在线机型列表")
+    message: str = Field("", description="状态消息")
+    wording: str = Field("", description="状态提示")
+    echo: str | None = Field(None, description="echo字段，可能为null")
 # endregion res
 
 # region api
@@ -77,8 +61,4 @@ class GetModelShowAPI(BaseModel):
     Req: type[BaseModel] = GetModelShowReq
     Res: type[BaseModel] = GetModelShowRes
 # endregion api
-
-
-
-
 # endregion code

@@ -1,0 +1,1 @@
+根据OpenAPI规范为 `/send_private_msg` 编写Markdown格式的API文档，重点描述如何发送包含图片的私聊消息。
