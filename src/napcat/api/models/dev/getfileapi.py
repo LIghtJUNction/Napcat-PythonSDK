@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['文件相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658985e0
 @llms.txt: https://napcat.apifox.cn/226658985e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -22,43 +22,63 @@ __method__ = "POST"
 
 # region code
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Any, Literal
+import logging
+
+logger = logging.getLogger(__name__)
+
+# region component_models
+class result(BaseModel):
+    status: Literal["ok"] = Field("ok", description="status字段")
+    retcode: float = Field(description="retcode字段")
+    data: dict[str, Any] = Field(description="data字段")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class GetFileReq(BaseModel):
-    """
-    获取文件信息请求模型
-    """
-    file_id: str | None = Field(None, description="二选一，文件ID")
-    file: str | None = Field(None, description="二选一，文件路径")
+    """获取文件信息"""
+    file_id: str | None = Field(None, description="二选一")
+    file: str | None = Field(None, description="二选一")
 
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetFileRes(BaseModel):
-    """
-    获取文件信息响应模型
-    """
+    """获取文件信息"""
     class Data(BaseModel):
-        """
-        响应数据详情
-        """
-        file: str = Field(..., description="路径或链接")
-        url: str = Field(..., description="路径或链接")
-        file_size: str = Field(..., description="文件大小") # OpenAPI spec says string, keeping as string
-        file_name: str = Field(..., description="文件名")
-        base64: str = Field(..., description="Base64编码")
+        """响应数据类型"""
+        file: str = Field(description="路径或链接")
+        url: str = Field(description="路径或链接")
+        file_size: str = Field(description="文件大小")
+        file_name: str = Field(description="文件名")
+        base64: str = Field(description="base64字段")
 
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="描述")
-    echo: str | None = Field(None, description="Echo")
+        model_config = {
+            "extra": "allow",
+        }
 
-# endregion res
+    status: Literal["ok"] = Field("ok", description="status字段")
+    retcode: float = Field(0.0, description="retcode字段")
+    data: Data = Field(default_factory=Data, description="data字段")
+    message: str = Field("", description="message字段")
+    wording: str = Field("", description="wording字段")
+    echo: str | None = Field(None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetFileAPI(BaseModel):
@@ -67,9 +87,6 @@ class GetFileAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetFileReq
     Res: type[BaseModel] = GetFileRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

@@ -1,11 +1,14 @@
-分析API文档，提取请求和响应模型定义。
-- 请求模型 GetAiRecordReq: 包含 group_id (int|str), character (str), text (str)，所有字段均为必填。
-- 响应模型 GetAiRecordRes: 包含 status (Literal["ok"]), retcode (int), data (str), message (str), wording (str), echo (str|None)，所有字段均为必填（echo为必填可空）。
-- 根据OpenAPI schema，data字段被覆盖为string类型。
-- 移除多余的导入 `logging`, `Any`。
-- 按照Python 3.13和pydantic v2规范，使用内置类型和`|`进行类型标注。
-- 使用`Field`为所有字段添加描述，并标记必填字段为`...`。
-- 使用`Literal["ok"]`表示status字段的固定值。
-- 没有发现需要嵌套的复杂对象，响应模型为扁平结构。
-- 保持 GetAiRecordAPI 模型不变，更新 Req 和 Res 引用。
-- 修复代码中的拼写错误和类型标注问题。
+Based on the OpenAPI specification, several fixes were applied:
+1.  **Redundant Imports:** Removed `logging` as it was not directly used within the Pydantic models.
+2.  **`group_id` Model:** The OpenAPI spec defines `group_id` as a primitive `oneOf: [number, string]`, not an object with `id` and `name`. Therefore, the `group_id` BaseModel was removed, and `group_id` in `GetAiRecordReq` was typed as `int | str`.
+3.  **`result` Model (component):** This model was largely kept for its general structure, but it's important to note that the specific API response for `get_ai_record` overrides its `data` field.
+    *   `status` field in `result` was changed to `Literal['ok']` as per `const: ok`.
+    *   `data` in `result` (generic component) was kept as `dict[str, any]` since the spec defines it as an empty object in `components/schemas/result`.
+4.  **`GetAiRecordReq`:**
+    *   `group_id` was updated to `int | str`.
+    *   Fields were ensured to have descriptions.
+5.  **`GetAiRecordRes`:** This was the most critical fix.
+    *   The OpenAPI spec for `/get_ai_record`'s response explicitly overrides the `data` field to be `type: string, description: '链接'`. Therefore, the nested `Data` class (`yes: bool`, `reason: str | None`) was removed, and `data` was correctly typed as `str` with its description and default value.
+    *   `status` was changed to `Literal['ok']`.
+    *   All fields were given explicit defaults and descriptions consistent with the OpenAPI spec and Pydantic best practices.
+6.  **General Clean-up:** Ensured all fields have type annotations, descriptions, and appropriate default values. Removed unused imports and followed the `str | None` pattern instead of `Optional`.

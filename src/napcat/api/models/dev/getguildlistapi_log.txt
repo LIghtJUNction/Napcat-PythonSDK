@@ -1,12 +1,7 @@
-Based on the OpenAPI schema:
-1. The endpoint is `/get_guild_list` using the POST method.
-2. The request parameters are empty (`[]`). The `GetGuildListReq` model correctly reflects this with `pass`.
-3. The 200 response schema shows an object with no properties (`{}`). This indicates the `data` field within the standard Napcat wrapper should be an empty object, represented by `dict` in Python.
-4. The standard Napcat response wrapper (`status`, `retcode`, `data`, `msg`, `wording`) is assumed.
-5. The `status` field is typed using `Literal["ok", "failed"]` as per instructions and common practice.
-6. `retcode`, `msg`, and `wording` are typed as `int` and `str` respectively.
-7. `data` is typed as `dict` with `default_factory=dict` to represent the empty object.
-8. Removed `type: ignore` comments.
-9. Added `Literal` import.
-10. Added descriptions to response fields using `Field`.
-11. Verified type hints use native types where applicable.
+构建日志内容:
+- 移除了未使用的导入 `typing.Any` 和 `logging`。
+- 修复了 `GetGuildListRes` 中的 `status` 字段，将其类型从 `str` 改为 `typing.Literal["ok"]` 以符合精确的枚举值要求。
+- 修复了 `GetGuildListRes` 中的 `retcode` 字段的默认值，将其从 `0` 改为 `0.0` 以明确表示浮点类型。
+- 简化了 `GetGuildListRes` 中 `data` 字段的 `default_factory` 调用。
+- 确保所有字段都具有强制类型标注、默认值和描述。
+- 嵌套模型 `Data` 已正确定义在 `GetGuildListRes` 内部。

@@ -1,16 +1,13 @@
-Refactoring the provided Python code based on OpenAPI specification and coding guidelines:
-1. Removed unused imports (`logging`, `Any`).
-2. Defined a nested `Data` model within `GetLoginInfoRes` to represent the `data` object from the API spec.
-3. Updated `GetLoginInfoRes` fields according to the OpenAPI schema:
-    - Used `Literal["ok"]` for the `status` field.
-    - Used `int` for `retcode`.
-    - Used the new `Data` model for the `data` field.
-    - Used `str` for `message` and `wording`.
-    - Used `str | None` for the nullable `echo` field.
-    - Added `Field` with descriptions for all response fields.
-    - Set `echo` default to `None` as it's nullable.
-4. `GetLoginInfoReq` remains an empty `BaseModel` as the request body is empty.
-5. `GetLoginInfoAPI` remains unchanged.
-6. Ensured all fields have type annotations and descriptions where applicable.
-7. Removed `type: ignore` comments.
-8. Used built-in types (`str`, `int`, `float`, etc.) and `| None` as per guidelines.
+修复过程：
+1. 检查并移除多余的导入：移除了未使用的 `logging` 模块和 `logger` 变量定义。
+2. 确保所有字段都有类型标注：所有字段都已强制类型标注。
+3. 确保所有字段都有描述和初始值：
+    - `result` 类：`status`字段根据OpenAPI规范的`const: ok`，修改为 `Literal["ok"]` 类型并设置默认值为 `"ok"`。其他字段已根据OpenAPI规范，确保没有不必要的默认值（使其为必需字段）。
+    - `GetLoginInfoRes.Data` 类：`user_id` 和 `nickname` 字段根据OpenAPI规范是必需的，移除了 `default=None` 以确保它们是必需字段。
+    - `GetLoginInfoRes` 类：
+        - `status` 字段根据OpenAPI规范的`const: ok`，修改为 `Literal["ok"]` 类型并设置默认值为 `"ok"`。
+        - `retcode` 字段将默认值 `0` 明确为浮点数 `0.0`。
+        - `data` 字段已使用 `default_factory=Data` 正确初始化嵌套模型。
+        - `message`、`wording`、`echo` 字段的默认值保持不变，符合规范。
+4. 将外部嵌套类移动到类里面：`GetLoginInfoRes` 中的 `Data` 类已经正确嵌套在 `GetLoginInfoRes` 内部。
+5. 响应类字段，status ok 使用Literal类型["ok"]：已将 `status` 字段类型从 `str` 修改为 `Literal["ok"]`。

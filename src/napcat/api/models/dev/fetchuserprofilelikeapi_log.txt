@@ -1,5 +1,11 @@
-Analyzing OpenAPI spec for /fetch_user_profile_like. Request body requires 'user_id' (number or string). Response body follows 'result' schema: status ('ok'), retcode (number), data (empty object), message (string), wording (string), echo (string or null). Fixing provided code:
-1. Remove unused import `typing.Any`.
-2. Define `FetchUserProfileLikeReq` with `user_id` as `int | str` using Field with description.
-3. Define `FetchUserProfileLikeRes` with fields based on 'result' schema: `status` as `Literal["ok"]`, `retcode` as `int`, `data` as `dict` (since it's an empty object), `message` as `str`, `wording` as `str`, `echo` as `str | None`. Add descriptions using Field for all fields.
-4. Keep `FetchUserProfileLikeAPI` as is.
+构建日志:
+- 移除了未使用的 `logging` 模块导入和 `logger` 实例，以精简代码。
+- 根据 OpenAPI 规范中 `user_id` 为 `oneOf: number, string` 的定义，移除了自定义的 `user_id` Pydantic 模型。
+- 将 `FetchUserProfileLikeReq` 请求模型中的 `user_id` 字段类型更正为 `int | str`，并添加了描述。
+- 移除了名为 `result` 的组件模型，因为 `FetchUserProfileLikeRes` 响应模型将直接实现 OpenAPI 中 `result` 模式的定义。
+- 在 `FetchUserProfileLikeRes` 响应模型中，根据 OpenAPI 中 `result.status` 的 `const: ok` 定义，将 `status` 字段的类型从 `str` 修改为 `Literal["ok"]`，并设置了默认值。
+- 移除了 `FetchUserProfileLikeRes` 中嵌套的 `Data` 类，因为 OpenAPI 中 `result.data` 指定为一个空对象 (`properties: {}`)，不包含 `yes` 和 `reason` 字段。
+- 将 `FetchUserProfileLikeRes` 中的 `data` 字段类型更正为 `dict[str, Any]`，并设置了 `default_factory=dict` 以匹配 OpenAPI 的空对象定义。
+- 确保 `FetchUserProfileLikeRes` 中的所有字段（`retcode`, `message`, `wording`, `echo`）都带有明确的描述和默认值。
+- 引入了 `typing.Literal` 模块用于 `status` 字段的精确类型定义。
+- 确保所有类型标注符合 PydanticV2 和 Python 3.13 规范，避免使用 `typing` 模块中已弃用的类型。

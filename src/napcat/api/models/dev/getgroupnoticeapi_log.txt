@@ -1,11 +1,13 @@
-Refactoring _get_group_notice API models based on OpenAPI spec.
-- Created GetGroupNoticeReq with group_id (int | str).
-- Created nested MessageItem model for message parts (id, height, width).
-- Created nested NoticeItem model for data items (notice_id, sender_id, publish_time, message).
-- Created GetGroupNoticeRes with standard fields (status, retcode, data, message, wording, echo) and nested types.
-- Used Literal["ok"] for status.
-- Used int | str for group_id.
-- Used str | None for echo.
-- Added descriptions using Field.
-- Removed unused imports.
-- Kept the API definition class GetGroupNoticeAPI.
+构建过程日志：
+1.  **移除了不必要的导入**: 删除了 `logging` 和 `typing.Any`，因为在修复后的模型中不再需要它们。
+2.  **修复 `GetGroupNoticeReq` 的 `group_id` 字段**: 根据 OpenAPI `components/schemas/group_id` 定义 (`oneOf: number, string`)，`group_id` 应该是一个标量类型（`int` 或 `str`），而不是一个包含 `id` 和 `name` 字段的对象。因此，将 `group_id` 的类型修正为 `int | str`，并添加了 `Field` 描述。
+3.  **重构 `GetGroupNoticeRes` 的 `data` 字段**: 原始的 `GetGroupNoticeRes.Data` 模型过于简化，且与 OpenAPI 响应 schema 中对 `data` 字段的复杂定义（一个包含 `notice_id`, `sender_id`, `publish_time`, `message` 的对象列表）不符。进行了以下修改：
+    *   移除了原有的 `result` 组件类定义，因为它在实际响应中被具体化覆盖，不是通用的数据类型。
+    *   定义了内部嵌套类 `MessageContentItem` 来表示公告消息内容的子项，包含 `id`, `height`, `width` 字段，并根据 OpenAPI schema 补齐了类型和描述。
+    *   定义了内部嵌套类 `NoticeItem` 来表示单个群公告信息，包含 `notice_id`, `sender_id`, `publish_time`, `message` 字段。其中 `message` 字段的类型被修正为 `list[MessageContentItem]`，严格遵循 OpenAPI schema 的定义，而非示例中可能存在的歧义。
+    *   `sender_id` 和 `publish_time` 在 OpenAPI 中定义为 `number`，但根据示例和常见用法，它们更适合 `int` 类型，已进行修正。
+    *   将 `GetGroupNoticeRes.data` 的类型从 `Data` 修正为 `list[NoticeItem]`，并使用了 `default_factory=list` 提供默认值。
+4.  **修正 `GetGroupNoticeRes` 的 `status` 字段**: 根据 OpenAPI `status: const: ok` 的定义，将 `status` 字段的类型修正为 `Literal["ok"]`，确保其值只能是 "ok"。
+5.  **为所有字段添加或完善了 `Field` 描述和默认值**: 确保每个字段都有清晰的描述，并提供了合适的默认值，以符合 Pydantic V2 的最佳实践和编码指南。
+6.  **遵循编码指南**: 确保所有类型标注都符合 Python 3.13 风格，例如使用 `list` 而非 `typing.List`，`str | None` 而非 `typing.Optional[str]`。
+7.  **`model_config` 保留 `extra="allow"`**: 按照原代码的设置保留，允许模型接收额外字段。

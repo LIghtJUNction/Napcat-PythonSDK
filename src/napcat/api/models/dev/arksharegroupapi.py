@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 账号相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658971e0
 @llms.txt: https://napcat.apifox.cn/226658971e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
-@description: 
+@description:
 
 summary:获取推荐群聊卡片
 
@@ -21,50 +21,53 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
+import logging
 
 logger = logging.getLogger(__name__)
 
+# region component_models
+class result(BaseModel):
+    status: Literal["ok"] = Field(description="status字段", default="ok")
+    retcode: float = Field(description="retcode字段", default=0.0)
+    data: dict = Field(description="data字段", default_factory=dict)
+    message: str = Field(description="message字段", default="")
+    wording: str = Field(description="wording字段", default="")
+    echo: str | None = Field(description="echo字段", default=None)
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
+
 # region req
 class ArksharegroupReq(BaseModel):
-    """
-    获取推荐群聊卡片 - 请求模型
-    """
+    """获取推荐群聊卡片"""
+    group_id: str = Field(description="群聊ID")
 
-    group_id: str = Field(
-        ..., description="群聊ID"
-    )
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class ArksharegroupRes(BaseModel):
-    """
-    获取推荐群聊卡片 - 响应模型
-    """
+    """获取推荐群聊卡片"""
+    # 移除了与OpenAPI响应规范不符的嵌套Data类
 
-    status: Literal["ok"] = Field(
-        ..., description="状态"
-    )
-    retcode: int = Field(
-        ..., description="返回码"
-    )
-    data: str = Field(
-        ..., description="卡片json"
-    )
-    message: str = Field(
-        ..., description="消息"
-    )
-    wording: str = Field(
-        ..., description="文案"
-    )
-    echo: str | None = Field(
-        ..., description="Echo字段"
-    )
-# endregion res
+    status: Literal["ok"] = Field(default="ok", description="status字段")
+    retcode: float = Field(default=0, description="retcode字段")
+    data: str = Field(description="卡片json") # 根据OpenAPI规范，此字段为字符串类型
+    message: str = Field(default="", description="message字段")
+    wording: str = Field(default="", description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class ArksharegroupAPI(BaseModel):
@@ -73,9 +76,6 @@ class ArksharegroupAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = ArksharegroupReq
     Res: type[BaseModel] = ArksharegroupRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: [
-    "消息相关"
-]
+@tags: 消息相关
 @homepage: https://napcat.apifox.cn/226919954e0
 @llms.txt: https://napcat.apifox.cn/226919954e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:10
 
-@description: 
+@description:
 
-summary:
-    撤回消息
+summary:撤回消息
 
 """
 __author__ = "LIghtJUNction"
@@ -24,42 +21,40 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal, type
 from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+# The original message_id and result classes are removed based on OpenAPI spec interpretation.
+# message_id is a union type in req, result structure is directly in res.
+# endregion component_models/
 
 # region req
 class DeleteMsgReq(BaseModel):
-    """
-    撤回消息请求参数
-    """
+    """撤回消息请求模型"""
+    # OpenAPI spec: message_id can be number or string
+    message_id: str | int = Field(description="标识ID")
 
-    message_id: int | str = Field(
-        ...,
-        description="要撤回的消息ID",
-        examples=[1768656698]
-    )
-
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
 class DeleteMsgRes(BaseModel):
-    """
-    撤回消息响应参数
-    """
-    # 定义响应参数
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: None = Field(..., description="数据")
-    message: str = Field(..., description="错误信息")
-    wording: str = Field(..., description="错误信息的友好表述")
-    echo: str | None = Field(None, description="echo", examples=["some_echo_string"])
+    """撤回消息响应模型"""
+    status: Literal["ok"] = Field("ok", description="状态字段")
+    retcode: float = Field(description="返回码")
+    data: None = Field(None, description="数据字段，此接口返回null")
+    message: str = Field(description="消息")
+    wording: str = Field(description="提示词")
+    echo: str | None = Field(None, description="回显")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class DeleteMsgAPI(BaseModel):
@@ -68,9 +63,6 @@ class DeleteMsgAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = DeleteMsgReq
     Res: type[BaseModel] = DeleteMsgRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

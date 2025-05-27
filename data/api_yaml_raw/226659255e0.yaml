@@ -20,12 +20,19 @@ paths:
               properties:
                 user_id:
                   $ref: '#/components/schemas/user_id'
+                  description: 私聊对象
+                target_id:
+                  $ref: '#/components/schemas/number%20%7C%20string'
+                  description: 戳一戳对象，可不填
               x-apifox-orders:
                 - user_id
+                - target_id
               required:
                 - user_id
               x-apifox-ignore-properties: []
-            example: ''
+            example:
+              user_id: '1129317309'
+              target_id: '123'
       responses:
         '200':
           description: ''
@@ -75,6 +82,11 @@ paths:
       x-run-in-apifox: https://app.apifox.com/web/project/5348325/apis/api-226659255-run
 components:
   schemas:
+    number | string:
+      anyOf:
+        - type: number
+        - type: string
+      x-apifox-folder: ''
     user_id:
       oneOf:
         - type: number

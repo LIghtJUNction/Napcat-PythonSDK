@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['消息相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659219e0
 @llms.txt: https://napcat.apifox.cn/226659219e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
-@description: 获取贴表情详情
+@description: 
 
 summary:获取贴表情详情
 
@@ -21,60 +21,70 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
 from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class MessageId(BaseModel):
+    id: str | int = Field(description="标识ID")
+    name: str | None = Field(None, description="名称")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class FetchEmojiLikeReq(BaseModel):
-    """
-    获取贴表情详情请求模型
-    """
-    message_id: int | str = Field(..., description="消息ID")
-    emojiId: str = Field(..., description="表情ID")
-    emojiType: str = Field(..., description="表情类型")
-    count: int = Field(20, description="数量")
+    """获取贴表情详情"""
+    message_id: MessageId = Field(description="消息ID")
+    emojiId: str = Field(description="表情ID")
+    emojiType: str = Field(description="表情类型")
+    count: float | None = Field(20.0, description="数量")
 
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class FetchEmojiLikeRes(BaseModel):
-    """
-    获取贴表情详情响应模型
-    """
+    """获取贴表情详情"""
+    class EmojiLikesListItem(BaseModel):
+        """表情点赞列表项"""
+        tinyId: str = Field(description="用户ID")
+        nickName: str = Field(description="用户昵称")
+        headUrl: str = Field(description="用户头像URL")
+
+        model_config = {
+            "extra": "allow",
+        }
 
     class Data(BaseModel):
-        """
-        响应数据详情
-        """
+        """响应数据类型"""
+        result: float = Field(description="结果码")
+        errMsg: str = Field(description="错误信息")
+        emojiLikesList: list[FetchEmojiLikeRes.EmojiLikesListItem] = Field(description="表情点赞列表")
+        cookie: str = Field(description="用于下一页请求的cookie")
+        isLastPage: bool = Field(description="是否是最后一页")
+        isFirstPage: bool = Field(description="是否是第一页")
 
-        class EmojiLikeItem(BaseModel):
-            """
-            表情点赞者信息
-            """
-            tinyId: str = Field(..., description="用户TinyID")
-            nickName: str = Field(..., description="用户昵称")
-            headUrl: str = Field(..., description="用户头像URL")
+        model_config = {
+            "extra": "allow",
+        }
 
-        result: int = Field(..., description="结果")
-        errMsg: str = Field(..., description="错误信息")
-        emojiLikesList: list[EmojiLikeItem] = Field(..., description="表情点赞列表")
-        cookie: str = Field(..., description="Cookie")
-        isLastPage: bool = Field(..., description="是否最后一页")
-        isFirstPage: bool = Field(..., description="是否第一页")
+    status: Literal["ok"] = Field(description="状态码")
+    retcode: float = Field(description="返回码")
+    data: Data = Field(description="响应数据")
+    message: str = Field(description="消息")
+    wording: str = Field(description="提示信息")
+    echo: str | None = Field(description="回声字段")
 
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="措辞")
-    echo: str | None = Field(None, description="回显")
-
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class FetchEmojiLikeAPI(BaseModel):
@@ -83,9 +93,6 @@ class FetchEmojiLikeAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = FetchEmojiLikeReq
     Res: type[BaseModel] = FetchEmojiLikeRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

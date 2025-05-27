@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 其他/接口
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/266151864e0
 @llms.txt: https://napcat.apifox.cn/266151864e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:11
 
 @description: 
 
@@ -21,60 +21,66 @@ __method__ = "POST"
 
 
 # region code
-
 from pydantic import BaseModel, Field
-from typing import Literal # Import Literal for status="ok"
+from typing import Literal
 
+# region component_models
+class ResultData(BaseModel):
+    """
+    响应数据，根据OpenAPI定义，此为一个空对象。
+    """
+    model_config = {
+        "extra": "allow",
+    }
 
+class Result(BaseModel):
+    """
+    API标准响应结果模型，对应OpenAPI `components/schemas/result`。
+    """
+    status: Literal["ok"] = Field(description="状态，固定为 'ok'")
+    retcode: float = Field(description="返回码，0表示成功")
+    data: ResultData = Field(description="响应数据对象")
+    message: str = Field(description="消息")
+    wording: str = Field(description="文字描述")
+    echo: str | None = Field(description="回显内容，可能为空")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class ClickInlineKeyboardButtonReq(BaseModel):
-    """
-    请求模型
-    """
+    """点击按钮请求体"""
+    # 根据OpenAPI components/schemas/group_id 定义，group_id 可以是数字或字符串。
+    group_id: str | int = Field(description="群组或频道ID，可以是数字或字符串")
+    bot_appid: str = Field(description="机器人App ID")
+    button_id: str = Field(description="按钮ID")
+    callback_data: str = Field(description="回调数据")
+    msg_seq: str = Field(description="消息序列号")
 
-    group_id: str | int = Field(..., description="群号")
-    bot_appid: str = Field(..., description="机器人appid")
-    button_id: str = Field(..., description="按钮id")
-    callback_data: str = Field(..., description="按钮回调数据")
-    msg_seq: str = Field(..., description="消息序列号")
-
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-class ClickInlineKeyboardButtonRes(BaseModel):
+class ClickInlineKeyboardButtonRes(Result):
     """
-    响应模型
+    点击按钮响应体。
+    继承自Result模型，符合OpenAPI `responses.200` 定义。
     """
-
-    class Data(BaseModel):
-        """
-        响应数据
-        """
-        # API spec shows an empty object for data
-        pass
-
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示")
-    echo: str | None = Field(..., description="Echo数据")
-
-# endregion res
+    pass
+# region res/
 
 # region api
 class ClickInlineKeyboardButtonAPI(BaseModel):
     """click_inline_keyboard_button接口数据模型"""
-    endpoint: str = "click_inline_keyboard_button"
-    method: str = "POST"
-    Req: type[BaseModel] = ClickInlineKeyboardButtonReq
-    Res: type[BaseModel] = ClickInlineKeyboardButtonRes
-# endregion api
+    endpoint: Literal["click_inline_keyboard_button"] = Field(default="click_inline_keyboard_button", description="接口端点")
+    method: Literal["POST"] = Field(default="POST", description="HTTP 方法")
+    Req: type[BaseModel] = Field(default=ClickInlineKeyboardButtonReq, description="请求数据模型")
+    Res: type[BaseModel] = Field(default=ClickInlineKeyboardButtonRes, description="响应数据模型")
 
-
-
-
+# region api/
 # endregion code

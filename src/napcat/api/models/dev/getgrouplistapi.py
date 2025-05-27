@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 群聊相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226656992e0
 @llms.txt: https://napcat.apifox.cn/226656992e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
-@description: 获取群列表
+@description: 
 
 summary:获取群列表
 
@@ -21,44 +21,49 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class GroupInfo(BaseModel):
+    """群信息模型"""
+    group_all_shut: float = Field(description="群是否全员禁言")
+    group_remark: str = Field(description="群备注")
+    group_id: str = Field(description="群号")
+    group_name: str = Field(description="群名")
+    member_count: float = Field(description="成员数量")
+    max_member_count: float = Field(description="最大成员数量")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class GetGroupListReq(BaseModel):
-    """
-    获取群列表请求模型
-    """
-    no_cache: bool = Field(default=False, description="不缓存")
-# endregion req
+    """获取群列表请求模型"""
+    no_cache: bool = Field(default=False, description="是否不使用缓存")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-class GroupInfo(BaseModel):
-    """
-    群信息模型
-    """
-    group_all_shut: int = Field(..., description="是否全员禁言")
-    group_remark: str = Field(..., description="群备注")
-    group_id: str = Field(..., description="群号")
-    group_name: str = Field(..., description="群名")
-    member_count: int = Field(..., description="成员数量")
-    max_member_count: int = Field(..., description="最大成员数量")
-
 class GetGroupListRes(BaseModel):
-    """
-    获取群列表响应模型
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[GroupInfo] = Field(..., description="群信息列表")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示")
-    echo: str | None = Field(default=None, description="回显数据")
-# endregion res
+    """获取群列表响应模型"""
+    status: Literal["ok"] = Field(default="ok", description="状态码")
+    retcode: float = Field(default=0.0, description="返回码")
+    data: list[GroupInfo] = Field(default_factory=list, description="群信息列表")
+    message: str = Field(default="", description="信息")
+    wording: str = Field(default="", description="提示语")
+    echo: str | None = Field(default=None, description="回显")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetGroupListAPI(BaseModel):
@@ -67,9 +72,6 @@ class GetGroupListAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupListReq
     Res: type[BaseModel] = GetGroupListRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

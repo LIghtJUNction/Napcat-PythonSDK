@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/227738594e0
 @llms.txt: https://napcat.apifox.cn/227738594e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:11
 
 @description: 
 
@@ -21,32 +21,61 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Any
 from pydantic import BaseModel, Field
+from typing import Any
+import logging
 
 logger = logging.getLogger(__name__)
 
 # region req
-class GetMiniAppArkReq(BaseModel): # type: ignore
-    """
-    {{DESC_EndPointReq}}
-    """
+class GetMiniAppArkReq(BaseModel):
+    """获取小程序卡片"""
+    type: str | None = Field(None, description="只填入必须参数的话该值必须填")
+    title: str = Field(description="标题")
+    desc: str = Field(description="内容")
+    picUrl: str = Field(description="图片链接")
+    jumpUrl: str = Field(description="跳转链接")
+    iconUrl: str | None = Field(None)
+    sdkId: str | None = Field(None)
+    appId: str | None = Field(None)
+    scene: float | str | None = Field(None)
+    templateType: float | str | None = Field(None)
+    businessType: float | str | None = Field(None)
+    verType: float | str | None = Field(None)
+    shareType: float | str | None = Field(None)
+    versionId: str | None = Field(None)
+    withShareTicket: float | str | None = Field(None)
+    rawArkData: bool | str | None = Field(None)
 
-    pass
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-class GetMiniAppArkRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
-# endregion res
+class GetMiniAppArkRes(BaseModel):
+    """获取小程序卡片"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(default=True, description="是否可用")
+        reason: str | None = Field(default=None, description="原因")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: str = Field(default="ok", description="状态，如 'ok'")
+    retcode: float = Field(default=0, description="返回码，0表示成功")
+    data: Data = Field(default_factory=lambda: Data(), description="响应数据")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="文字描述")
+    echo: str | None = Field(default=None, description="回显内容")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetMiniAppArkAPI(BaseModel):
@@ -55,10 +84,7 @@ class GetMiniAppArkAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetMiniAppArkReq
     Res: type[BaseModel] = GetMiniAppArkRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code
 

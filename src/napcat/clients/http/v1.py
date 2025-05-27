@@ -1,18 +1,14 @@
 """
-@作者：LIghtJUNction
-@日期：2025/04/20
-HTTP Client V1
+AsyncHttpClient功能：提供异步HTTP请求客户端，支持Pydantic模型序列化
 """
+from __future__ import annotations
+
 import httpx
-from typing import Any, TypeVar
-from types import TracebackType
-from pydantic import BaseModel
 import logging
 import sys
-
-from napcat.base.models import BaseHttpResponse
-
-from napcat.base.models import BaseHttpAPI
+from types import TracebackType
+from typing import Any, TypeVar
+from pydantic import BaseModel
 
 # 配置日志记录器
 logging.basicConfig(
@@ -23,8 +19,9 @@ logging.basicConfig(
 
 logger = logging.getLogger("napcat.http")
 
-T = TypeVar('T', bound=BaseModel)
-Treq = TypeVar('Treq', bound=BaseModel)
+# 泛型类型变量
+TReq = TypeVar('TReq', bound=BaseModel)
+TRes = TypeVar('TRes', bound=BaseModel)
 
 class AsyncHttpClient:
     """
@@ -84,8 +81,7 @@ class AsyncHttpClient:
             logger.info("关闭HTTP客户端连接")
             await self._client.aclose()
             self._client = None
-    
-    async def __aenter__(self) -> "AsyncHttpClient":
+      async def __aenter__(self) -> "AsyncHttpClient":
         return self
     
     async def __aexit__(
@@ -96,58 +92,54 @@ class AsyncHttpClient:
     ) -> None:
         await self.close()
     
-    async def send(
-            self,
-            API : BaseHttpAPI,
-        ) -> BaseHttpResponse[Any]:
+    async def send(self, api_class: type, request_data: BaseModel) -> BaseModel:
         """ 
-        发送POST请求
+        发送HTTP请求
         
         Args:
-            api: API对象，包含请求和响应模型 
+            api_class: API类，包含endpoint, method, Req, Res等属性
+            request_data: 请求数据模型实例
             
         Returns:
-            响应数据
+            响应数据模型实例
         """
-        url = f"{self.base_url}{API.api}"
-        logger.info(f"发送{API.method}请求: {url}")
+        # 从API类中提取元数据
+        endpoint = api_class.endpoint
+        method = api_class.method
+        response_class = api_class.Res
+        
+        url = f"{self.base_url}{endpoint}"
+        logger.info(f"发送{method}请求: {url}")
+        
+        # 序列化请求数据
+        request_payload = request_data.model_dump(by_alias=True)
+        logger.debug(f"请求数据: {request_payload}")
         
         async with self.client as client:
-            if API.method == "POST":
-                response = await client.post(
-                    url,
-                    json=API.request.model_dump(by_alias=True),
-                )
-
-                logger.debug(f"响应数据: {response.text}")
-                # 将响应文本解析为 JSON 字典，然后传递给 model_validate
-                response_data = response.json()
-                logger.info("验证响应"+"="*20)
-                # 设置 by_alias=True 和 from_attributes=False 以更好地处理字段名称映射
-                # 同时添加 from_attributes=False 以防止尝试从非对象属性中获取数据
-                API.response = API.response.model_validate(
-                    response_data,
-                    from_attributes=False,
-                    by_alias=True
-                )
-                return API.response
-            elif API.method == "GET":
-                response = await client.get(
-                    url,
-                    params=API.request.model_dump(by_alias=True),
-                )
-
-                logger.debug(f"响应数据: {response.text}")
-                # 将响应文本解析为 JSON 字典，然后传递给 model_validate
-                response_data = response.json()
-                logger.info("验证响应"+"="*20)
-                # 设置 by_alias=True 和 from_attributes=False 以更好地处理字段名称映射
-                # 同时添加 from_attributes=False 以防止尝试从非对象属性中获取数据
-                API.response = API.response.model_validate(
-                    response_data,
-                    from_attributes=False,
-                    by_alias=True
-                )
-                return API.response
+            # 根据HTTP方法发送请求
+            if method == "POST":
+                response = await client.post(url, json=request_payload)
+            elif method == "GET":
+                response = await client.get(url, params=request_payload)
             else:
-                raise ValueError(f"不支持的请求方法: {API.method}")
+                raise ValueError(f"不支持的请求方法: {method}")
+
+            # 检查HTTP状态码
+            response.raise_for_status()
+            
+            logger.debug(f"响应状态码: {response.status_code}")
+            logger.debug(f"响应数据: {response.text}")
+            
+            # 解析响应并验证
+            response_data = response.json()
+            logger.info("验证响应模型" + "=" * 20)
+            
+            # 使用响应类验证数据
+            validated_response = response_class.model_validate(
+                response_data,
+                from_attributes=False,
+                by_alias=True
+            )
+            
+            logger.info("响应验证成功")
+            return validated_response

@@ -41,6 +41,7 @@ paths:
                 - button_id
                 - bot_appid
               x-apifox-ignore-properties: []
+            examples: {}
       responses:
         '200':
           description: ''

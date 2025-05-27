@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 文件相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658773e0
 @llms.txt: https://napcat.apifox.cn/226658773e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,79 +21,87 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Any, Literal
+import logging
 
 logger = logging.getLogger(__name__)
 
 # region req
 class CreateGroupFileFolderReq(BaseModel):
-    """
-    请求模型：创建群文件文件夹
-    """
+    """创建群文件文件夹请求模型"""
+    group_id: int | str = Field(description="群组标识ID，可以是数字或字符串")
+    folder_name: str = Field(description="要创建的文件夹名称")
 
-    group_id: int | str = Field(..., description="群号")
-    folder_name: str = Field(..., description="文件夹名称")
-
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class CreateGroupFileFolderRes(BaseModel):
-    """
-    响应模型：创建群文件文件夹
-    """
-
+    """创建群文件文件夹响应模型"""
     class Data(BaseModel):
-        """
-        响应数据
-        """
+        """响应数据类型"""
         class Result(BaseModel):
-            """
-            操作结果
-            """
-            retCode: int = Field(..., description="返回码")
-            retMsg: str = Field(..., description="返回消息")
-            clientWording: str = Field(..., description="客户端提示")
+            """操作结果信息"""
+            retCode: int = Field(description="返回码")
+            retMsg: str = Field(description="返回消息")
+            clientWording: str = Field(description="客户端提示语")
+
+            model_config = {
+                "extra": "allow",
+            }
 
         class GroupItem(BaseModel):
-            """
-            群文件信息项
-            """
+            """群组文件项信息"""
+            peerId: str = Field(description="对端ID")
+            type: int = Field(description="类型")
+
             class FolderInfo(BaseModel):
-                """
-                文件夹信息
-                """
-                folderId: str = Field(..., description="文件夹ID")
-                parentFolderId: str = Field(..., description="父文件夹ID")
-                folderName: str = Field(..., description="文件夹名称")
-                createTime: int = Field(..., description="创建时间")
-                modifyTime: int = Field(..., description="修改时间")
-                createUin: str = Field(..., description="创建者UIN")
-                creatorName: str = Field(..., description="创建者名称")
-                totalFileCount: int = Field(..., description="文件总数")
-                modifyUin: str = Field(..., description="修改者UIN")
-                modifyName: str = Field(..., description="修改者名称")
-                usedSpace: str = Field(..., description="已用空间")
+                """文件夹详细信息"""
+                folderId: str = Field(description="文件夹ID")
+                parentFolderId: str = Field(description="父文件夹ID")
+                folderName: str = Field(description="文件夹名称")
+                createTime: int = Field(description="创建时间戳")
+                modifyTime: int = Field(description="修改时间戳")
+                createUin: str = Field(description="创建者UIN")
+                creatorName: str = Field(description="创建者名称")
+                totalFileCount: int = Field(description="文件夹内文件总数")
+                modifyUin: str = Field(description="修改者UIN")
+                modifyName: str = Field(description="修改者名称")
+                usedSpace: str = Field(description="已使用空间大小")
 
-            peerId: str = Field(..., description="对端ID")
-            type: int = Field(..., description="类型")
-            folderInfo: FolderInfo = Field(..., description="文件夹信息")
-            fileInfo: str | None = Field(..., description="文件信息 (可能为null)")
+                model_config = {
+                    "extra": "allow",
+                }
 
-        result: Result = Field(..., description="操作结果")
-        groupItem: GroupItem = Field(..., description="群文件信息项")
+            folderInfo: FolderInfo = Field(description="文件夹信息")
+            fileInfo: str | None = Field(None, description="文件信息，如果适用")
 
-    status: Literal["ok"] = Field(..., description="状态，总是'ok'")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示")
-    echo: str | None = Field(None, description="回显")
+            model_config = {
+                "extra": "allow",
+            }
 
-# endregion res
+        result: Result = Field(description="操作结果详情")
+        groupItem: GroupItem = Field(description="群组文件项详情")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="响应状态，固定为 'ok'")
+    retcode: float = Field(description="响应返回码")
+    data: Data = Field(default_factory=Data, description="响应数据内容")
+    message: str = Field(description="响应消息")
+    wording: str = Field(description="响应提示语")
+    echo: str | None = Field(None, description="回显信息，可能为空")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class CreateGroupFileFolderAPI(BaseModel):
@@ -102,9 +110,6 @@ class CreateGroupFileFolderAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = CreateGroupFileFolderReq
     Res: type[BaseModel] = CreateGroupFileFolderRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

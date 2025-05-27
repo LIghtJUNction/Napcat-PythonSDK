@@ -1,54 +1,39 @@
-# -*- coding: utf-8 -*-
-# region METADATA
-"""
-@tags: 其他/接口
-@homepage: https://napcat.apifox.cn/226659311e0
-@llms.txt: https://napcat.apifox.cn/226659311e0.md
-@last_update: 2025-04-27 00:53:40
-
-@description: 
-
-summary:get_guild_list
-
-"""
-__author__ = "LIghtJUNction"
-__version__ = "4.7.43"
-__endpoint__ = "get_guild_list"
-__id__ = "226659311e0"
-__method__ = "POST"
-
-# endregion METADATA
-
-
-# region code
-import logging
 from pydantic import BaseModel, Field
-from typing import Literal # Import Literal for status
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class GetGuildListReq(BaseModel):
-    """
-    get_guild_list请求模型
-    """
+    """get_guild_list"""
+    # 没有请求参数
 
-    pass # No request parameters according to schema
+    model_config = {
+        "extra": "allow",
+    }
 # endregion req
-
 
 
 # region res
 class GetGuildListRes(BaseModel):
-    """
-    get_guild_list响应模型
-    """
-    status: Literal["ok", "failed"] = Field(..., description="响应状态") # Use Literal for status
-    retcode: int = Field(..., description="返回码")
-    # Based on schema, data is an empty object {}
-    data: dict = Field(default_factory=dict, description="响应数据")
-    msg: str = Field(..., description="错误信息")
-    wording: str = Field(..., description="友好提示")
+    """get_guild_list"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(default=True, description="是否可用")
+        reason: str | None = Field(default=None, description="原因")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field(default="ok", description="状态，如 'ok'")
+    retcode: float = Field(default=0.0, description="返回码，0表示成功")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="文字描述")
+    echo: str | None = Field(default=None, description="回显内容")
+
+    model_config = {
+        "extra": "allow",
+    }
 # endregion res
 
 # region api
@@ -59,8 +44,3 @@ class GetGuildListAPI(BaseModel):
     Req: type[BaseModel] = GetGuildListReq
     Res: type[BaseModel] = GetGuildListRes
 # endregion api
-
-
-
-
-# endregion code

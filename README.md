@@ -5,9 +5,7 @@
 > 本项目原为AIVK项目前置 功能抽离出来供其他项目使用
 > 目前正在开发中
 > 设计为MCP服务
-平均开发速度 = 净开发动力（ 开发动力 - 开发阻力 ）* 开发时间 / 代码量  
-
-
+> 平均开发速度 = 净开发动力（ 开发动力 - 开发阻力 ）* 开发时间 / 代码量
 
 **客户端实现**
 
@@ -64,10 +62,101 @@
 * 使用pydantic进行数据验证和序列化
 * 每个API文件末尾应包含测试代码
 
-## AI使用规范
+## AI使用说明
 
-请准备好合适的提示词
-例如：llms.txt
+
+![](assets/20250528_012600_image.png)
+
+本项目基于openai agents库
+
+基于AI工作流for循环构建API pydantic数据模型
+
+包含以下3大角色
+
+构建者：初步构建
+
+审查者：根据我要求的编码规则审查
+
+文档生成者：生成相应的文档
+
+采用的便宜量大的gemini2.5-flash构建
+
+你也可以使用你的API模型来构建
+
+步骤：
+
+进入终端在项目根目录执行：
+
+uv sync -U 顺便把依赖也更新下
+
+uv pip install -e .[dev] 准备好开发环境
+
+第一步：执行script/check_for_update.py
+
+如果需要更新，请接下来执行
+
+fetch_yaml.py
+
+接下来执行update_meta.py
+
+这个将会生成一份api节点元数据
+
+执行fetch_yaml 在线下载API的描述文件
+
+接着执行yaml_to_json.py
+
+进一步处理方便构建
+
+
+然后进入机械构建环节，最后才是AI处理
+
+我准备了一套模板代码，先在终端运行
+
+uv run -m build.build build
+
+这一步是简单的变量替换
+
+
+接下来可以使用ai来构建了
+
+填写.env文件，填好base url api key model name 三大参数
+
+然后运行
+
+build_agent即可
+
+提示词构成：刚刚基于简单变量替换后的模板代码+适合AI阅读的具体的API文档+编码规范
+
+
+
+由于有100+ API节点，你完全可以仅构建你想用AI构建的API节点
+
+方法很简单，找到builder.lock 删掉文件名（这个文件记录的是已经构建好的API）
+
+然后重新运行即可，构建时会跳过lock文件内已有的
+
+接下来按相同步骤运行auditor_agent.py
+
+docs_agent.py
+
+
+然后你就可以提交PR了
+
+当然，提示词部分欢迎修改，就在刚刚我说的这3个AI构建脚本里
+
+
+对了，不要使用带思维链的模型和用openai兼容API
+
+
+build/.env 文件示例：
+
+```
+API_KEY = "***"
+
+BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai"
+
+MODEL = "gemini-2.5-flash-preview-05-20"
+```
 
 ## 不接受的PR
 

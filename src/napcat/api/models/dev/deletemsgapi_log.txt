@@ -1,14 +1,1 @@
-Based on the OpenAPI spec:
-1.  Refactored `DeleteMsgReq` to include `message_id` of type `int | str` as required.
-2.  Refactored `DeleteMsgRes` to match the response structure:
-    *   `status`: `Literal["ok"]`.
-    *   `retcode`: `int`.
-    *   `data`: `None`.
-    *   `message`: `str`.
-    *   `wording`: `str`.
-    *   `echo`: `str | None` (nullable string).
-3.  Added `Field` with descriptions and examples where applicable for all fields.
-4.  Removed unused `Any` import.
-5.  Ensured standard library types (`int`, `str`, etc.) are used directly without `typing` wrappers.
-6.  Kept `Literal` and `type` imports from `typing`.
-7.  Updated metadata tags based on the spec.
+修复过程：1. 移除了不必要的 `logging` 和 `typing.Any` 导入，并添加了 `typing.Literal` 导入。2. 根据 OpenAPI 规范，`message_id` 定义为 `oneOf: [number, string]`，因此将 `DeleteMsgReq` 中的 `message_id` 类型更改为 `str | int`，并移除了原 `message_id` 组件模型。3. 根据 OpenAPI 响应规范，此 `delete_msg` 接口的 `data` 字段明确被覆盖为 `type: 'null'`，因此移除了 `DeleteMsgRes` 中的内部 `Data` 类，并将 `data` 字段类型修改为 `None`。4. 将 `DeleteMsgRes` 中的 `status` 字段类型从 `str` 更改为 `Literal["ok"]`，以精确表示其固定值。5. 确保所有字段都具有强制类型标注、描述以及合适的默认值或不设置默认值以表示它们是必需的。6. 保持 `model_config = {"extra": "allow"}` 以允许额外的字段，符合原始代码意图。

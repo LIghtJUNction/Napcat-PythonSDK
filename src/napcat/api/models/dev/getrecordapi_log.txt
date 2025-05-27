@@ -1,7 +1,13 @@
-Based on the OpenAPI spec:
-- Analyzed the request body to define GetRecordReq with 'file', 'file_id', and 'out_format'. 'out_format' is required and uses Literal for enum values.
-- Analyzed the response body to define GetRecordRes. It includes 'status' (Literal["ok"]), 'retcode' (int), 'message', 'wording', and 'echo' (optional str).
-- A nested Data model was created for the 'data' field in the response, containing required fields 'file', 'url', 'file_size', 'file_name', and 'base64'.
-- Added descriptions and default values (where applicable, like for nullable 'echo') using pydantic's Field.
-- Removed unused imports (Any) and type: ignore.
-- Ensured type hints comply with the guidelines (no deprecated typing imports, using | None for optional/nullable).
+根据Pydantic V2和Python 3.13编码指南对代码进行修复。主要修复点如下：
+1.  **移除冗余导入**：移除了未使用的 `logging` 模块导入和 `typing.Any`。
+2.  **强制类型标注和描述**：确保所有字段都具有强制类型标注和描述信息。
+3.  **Literal类型应用**：
+    *   `GetRecordReq` 中的 `out_format` 字段由 `str` 更改为 `Literal["mp3", "amr", "wma", "m4a", "spx", "ogg", "wav", "flac"]`，以精确表示其枚举值。
+    *   `GetRecordRes` 中的 `status` 字段由 `str` 更改为 `Literal["ok"]`，以符合 OpenAPI 规范中 `const: ok` 的定义。
+4.  **字段默认值和必填性**：
+    *   `GetRecordReq` 的 `file` 和 `file_id` 字段添加了 `default=None` 和描述。
+    *   `GetRecordRes.Data` 内部类的所有字段（`file`, `url`, `file_size`, `file_name`, `base64`）根据 OpenAPI 规范设置为必填，因此移除了 `default=None`，并添加了描述。
+    *   `GetRecordRes` 的 `data` 字段的 `default_factory` 保持不变，并添加了描述。
+5.  **嵌套类结构**：确认 `GetRecordRes` 内部的 `Data` 类已正确定义为嵌套模型。
+6.  **组件模型处理**：原始代码中的 `result` 组件类被移除，因为 `GetRecordRes` 直接定义了其响应结构，且 OpenAPI 规范中 `GetRecordRes` 对 `data` 字段进行了具体覆盖，使得通用 `result` 类变得不必要且可能导致结构混淆。
+7.  **元数据更新**：`@tags` 字段根据 OpenAPI 规范从 `{{tags}}` 更新为 `消息相关`。

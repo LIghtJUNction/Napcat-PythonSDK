@@ -1,15 +1,17 @@
-Based on the provided OpenAPI specification:
-1. Removed unused `logging` and `typing.Any` imports.
-2. Added `typing.Literal` for the `status` field with a constant value of 'ok'.
-3. Defined `DeleteFriendReq` with fields `user_id`, `friend_id`, `temp_block`, and `temp_both_del`.
-4. Used `int | str | None` for `user_id` and `friend_id` as they are not explicitly marked as required in the request body schema's `required` list, and follow the `oneOf` integer/string type.
-5. Used `bool` for `temp_block` and `temp_both_del` and marked them as required using `Field(...)`.
-6. Added descriptions to all request fields using `Field`.
-7. Defined `DeleteFriendRes` with top-level fields `status`, `retcode`, `data`, `message`, `wording`, and `echo`.
-8. Created an inner class `DeleteFriendRes.Data` to model the structure of the `data` field, containing `result` (int) and `errMsg` (str), both marked as required.
-9. Used `Literal["ok"]` for the `status` field.
-10. Used `int` for `retcode`, `str` for `message` and `wording`, and `str | None` for `echo`.
-11. Used `DeleteFriendRes.Data` as the type for the `data` field.
-12. Added descriptions to all response fields using `Field`.
-13. Marked all top-level response fields and inner data fields as required using `Field(...)`, except for `user_id`, `friend_id` in request and `echo` in response which are nullable based on the schema.
-14. Updated `DeleteFriendAPI` to use `__endpoint__` and `__method__` variables for consistency.
+构建过程日志：
+1. 移除了冗余的导入：移除了 `logging` 和 `Any`，因为它们在最终模型中不再需要。
+2. 修正了 `user_id` 组件：根据 OpenAPI 规范，`user_id` 和 `friend_id` 应该是 `int | str` 类型，而不是一个复杂的对象。因此，移除了旧的 `user_id` 类，并在请求模型中直接使用 `int | str | None` 类型。
+3. 移除了冗余的 `result` 组件：OpenAPI 响应直接定义了其结构，旧的 `result` 类不再适用。
+4. 修复了 `DeleteFriendReq`：
+    - `user_id` 和 `friend_id` 字段现在是 `int | str | None` 类型，并提供了描述和默认值 `None`，与 OpenAPI 规范中它们非必填的定义一致。
+    - `temp_block` 和 `temp_both_del` 字段根据 OpenAPI 规范被标记为必填项 (未提供默认值使其成为必填)，并添加了描述。
+5. 修复了 `DeleteFriendRes`：
+    - `status` 字段的类型从 `str` 修改为 `Literal["ok"]`，并设置了默认值和描述。
+    - `retcode` 字段类型保持 `float`，并设置了默认值 `0.0` 和描述。
+    - `data` 字段被正确地定义为一个嵌套的 `Data` 类实例，使用 `default_factory=Data` 作为默认值，并添加了描述。
+    - `message` 和 `wording` 字段设置了默认值 `""` 和描述。
+    - `echo` 字段类型保持 `str | None`，并设置了默认值 `None` 和描述。
+    - 嵌套的 `Data` 类中的 `result` 和 `errMsg` 字段根据 OpenAPI 规范设置为必填项，并添加了描述。
+6. 确保了所有字段都有强制类型标注、描述和合适的初始值。
+7. `model_config = {"extra": "allow"}` 保留以允许额外字段，符合原始代码意图。
+8. 接口模型 `DeleteFriendAPI` 保持不变，因为它正确地引用了请求和响应模型。

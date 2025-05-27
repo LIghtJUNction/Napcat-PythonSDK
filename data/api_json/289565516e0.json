@@ -7,14 +7,36 @@
   },
   "paths": {
     "/get_doubt_friends_add_request": {
-      "get": {
-        "summary": "get_doubt_friends_add_request",
+      "post": {
+        "summary": "获取被过滤好友请求",
         "deprecated": false,
         "description": "",
         "tags": [
-          "其他"
+          "账号相关"
         ],
         "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "number",
+                    "default": 50
+                  }
+                },
+                "x-apifox-orders": [
+                  "count"
+                ],
+                "required": [
+                  "count"
+                ],
+                "x-apifox-ignore-properties": []
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "",
@@ -22,7 +44,163 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "x-apifox-refs": {
+                    "01JSTHHR3CDEPRYDJ37J6PPPBA": {
+                      "$ref": "#/components/schemas/result",
+                      "x-apifox-overrides": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "flag": {
+                              "type": "string"
+                            },
+                            "uin": {
+                              "type": "string"
+                            },
+                            "nick": {
+                              "type": "string"
+                            },
+                            "source": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "msg": {
+                              "type": "string"
+                            },
+                            "group_code": {
+                              "type": "string"
+                            },
+                            "time": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "x-apifox-orders": [
+                            "flag",
+                            "uin",
+                            "nick",
+                            "source",
+                            "reason",
+                            "msg",
+                            "group_code",
+                            "time",
+                            "type"
+                          ],
+                          "required": [
+                            "flag",
+                            "type",
+                            "time",
+                            "group_code",
+                            "uin",
+                            "msg",
+                            "reason",
+                            "source",
+                            "nick"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01JSTHHR3CDEPRYDJ37J6PPPBA"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "const": "ok"
+                    },
+                    "retcode": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "flag": {
+                          "type": "string"
+                        },
+                        "uin": {
+                          "type": "string"
+                        },
+                        "nick": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        },
+                        "msg": {
+                          "type": "string"
+                        },
+                        "group_code": {
+                          "type": "string"
+                        },
+                        "time": {
+                          "type": "string"
+                        },
+                        "type": {
+                          "type": "string"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "flag",
+                        "uin",
+                        "nick",
+                        "source",
+                        "reason",
+                        "msg",
+                        "group_code",
+                        "time",
+                        "type"
+                      ],
+                      "required": [
+                        "flag",
+                        "type",
+                        "time",
+                        "group_code",
+                        "uin",
+                        "msg",
+                        "reason",
+                        "source",
+                        "nick"
+                      ],
+                      "x-apifox-ignore-properties": []
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "wording": {
+                      "type": "string"
+                    },
+                    "echo": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "status",
+                    "retcode",
+                    "data",
+                    "message",
+                    "wording",
+                    "echo"
+                  ]
                 }
               }
             },
@@ -31,14 +209,61 @@
           }
         },
         "security": [],
-        "x-apifox-folder": "其他",
-        "x-apifox-status": "developing",
+        "x-apifox-folder": "账号相关",
+        "x-apifox-status": "released",
         "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-289565516-run"
       }
     }
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "result": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok"
+          },
+          "retcode": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {},
+            "x-apifox-orders": [],
+            "x-apifox-ignore-properties": []
+          },
+          "message": {
+            "type": "string"
+          },
+          "wording": {
+            "type": "string"
+          },
+          "echo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-orders": [
+          "status",
+          "retcode",
+          "data",
+          "message",
+          "wording",
+          "echo"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      }
+    },
     "securitySchemes": {}
   },
   "servers": [],

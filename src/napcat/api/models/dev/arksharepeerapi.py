@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 账号相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658965e0
 @llms.txt: https://napcat.apifox.cn/226658965e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,56 +21,65 @@ __method__ = "POST"
 
 
 # region code
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
+import logging
+
+logger = logging.getLogger(__name__)
+
+# region component_models
+# Original user_id, group_id, and result component models were removed
+# as they did not align with the OpenAPI specification's definition.
+# region component_models/
 
 # region req
 class ArksharepeerReq(BaseModel):
-    """
-    获取推荐好友/群聊卡片请求模型
-    "
+    """获取推荐好友/群聊卡片"""
+    # Based on OpenAPI spec, group_id and user_id are oneOf string, number.
+    group_id: str | int | None = Field(None, description="和user_id二选一")
+    user_id: str | int | None = Field(None, description="和group_id二选一")
+    phoneNumber: str | None = Field(None, description="对方手机号")
 
-    group_id: int | str | None = Field(None, description="和user_id二选一") # Note: One of group_id, user_id, or phoneNumber is likely required by the API logic, though not explicitly marked as required in the schema.
-    user_id: int | str | None = Field(None, description="和group_id二选一") # Note: One of group_id, user_id, or phoneNumber is likely required by the API logic, though not explicitly marked as required in the schema.
-    phoneNumber: str | None = Field(None, description="对方手机号") # Note: One of group_id, user_id, or phoneNumber is likely required by the API logic, though not explicitly marked as required in the schema.
-
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class ArksharepeerRes(BaseModel):
-    """
-    获取推荐好友/群聊卡片响应模型
-    "
-
+    """获取推荐好友/群聊卡片"""
     class Data(BaseModel):
-        """
-        响应数据详情
-        "
-        errCode: int = Field(..., description="")
-        errMsg: str = Field(..., description="")
-        arkJson: str = Field(..., description="卡片json")
+        """响应数据类型"""
+        # Based on OpenAPI spec, these fields are required and not nullable.
+        errCode: float = Field(description="errCode字段")
+        errMsg: str = Field(description="errMsg字段")
+        arkJson: str = Field(description="卡片json")
 
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据详情")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示信息")
-    echo: str | None = Field(None, description="echo")
+        model_config = {
+            "extra": "allow",
+        }
 
-# endregion res
+    # Based on OpenAPI spec, status is a constant 'ok'.
+    status: Literal["ok"] = Field(default="ok", description="status字段")
+    retcode: float = Field(default=0.0, description="retcode字段")
+    data: Data = Field(default_factory=Data, description="data字段")
+    message: str = Field(default="", description="message字段")
+    wording: str = Field(default="", description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class ArksharepeerAPI(BaseModel):
     """ArkSharePeer接口数据模型"""
-    endpoint: Literal["ArkSharePeer"] = "ArkSharePeer"
-    method: Literal["POST"] = "POST"
+    endpoint: str = "ArkSharePeer"
+    method: str = "POST"
     Req: type[BaseModel] = ArksharepeerReq
     Res: type[BaseModel] = ArksharepeerRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

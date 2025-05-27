@@ -1,9 +1,14 @@
-Analyzing the OpenAPI spec for '/get_group_member_info'.
-- Request body requires group_id (int|str), user_id (int|str), and no_cache (bool). All are required.
-- Response body requires status (Literal['ok']), retcode (int), data (object), message (str), wording (str), echo (str|None). All are required.
-- The 'data' object is defined by the '群成员信息' schema.
-- '群成员信息' schema fields and types: group_id (int), user_id (int), nickname (str), card (str), sex (str), age (int), area (str), level (int), qq_level (int), join_time (int), last_sent_time (int), title_expire_time (int), unfriendly (bool), card_changeable (bool), is_robot (bool), shut_up_timestamp (int), role (str), title (str). All are required.
-- Creating Pydantic models: GetGroupMemberInfoReq, GetGroupMemberInfoRes, and a nested GroupMemberInfoData for the response data.
-- Added type hints, descriptions using Field, and required fields based on the spec.
-- Removed unused imports and `pass` statements.
-- Used Literal for the 'ok' status.
+构建日志：
+1.  **更新METADATA:** 将 `@tags: {{tags}}` 替换为 OpenAPI 规范中定义的 `群聊相关`。
+2.  **移除废弃/不必要的导入:** 删除了未使用的 `logging` 模块导入。根据Pydantic v2的编码指南，将 `typing` 模块中被弃用的类型如 `Optional` 替换为内置类型（例如 `| None`）。新增 `Literal` 导入，用于表示固定字符串值。
+3.  **修复 `user_id` 和 `group_id` 类型:** 根据 OpenAPI 规范中 `oneOf: [number, string]` 的定义，将 `user_id` 和 `group_id` 从自定义的 `BaseModel` 类更正为联合类型 `float | str`，并在 `GetGroupMemberInfoReq` 中直接使用。
+4.  **重命名 `群成员信息` 模型:** 将中文模型名 `群成员信息` 重命名为更符合 Python 编码规范的 `GroupMemberInfo`。
+5.  **修复 `GetGroupMemberInfoRes` 响应数据结构:**
+    *   移除了 `GetGroupMemberInfoRes` 中错误的内部 `Data` 类。
+    *   根据 OpenAPI 规范，将 `data` 字段的类型更正为 `GroupMemberInfo`。
+    *   将 `status` 字段的类型从 `str` 修改为 `Literal["ok"]`，以精确表示其固定值。
+    *   为 `retcode`, `message`, `wording` 字段添加了默认值（`0.0`, `""`, `""`），以与原始代码的默认行为保持一致，尽管 OpenAPI 规范仅将其标记为必需字段。
+    *   `echo` 字段保持 `str | None` 类型并设置 `default=None`，符合 OpenAPI 中 `nullable: true` 的定义。
+6.  **强制类型标注和描述:** 确保所有模型字段都进行了强制类型标注，并通过 `pydantic.Field` 提供了清晰的描述。
+7.  **模型配置:** 确认所有 `BaseModel` 都包含 `model_config = {"extra": "allow"}` 配置，以允许额外字段，增强兼容性。
+8.  **API 模型规范:** 在 `GetGroupMemberInfoAPI` 类中，将 `endpoint` 和 `method` 字段的类型设定为 `Literal`，以严格指定其固定值。

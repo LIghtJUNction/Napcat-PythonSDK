@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 个人操作
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/229486818e0
 @llms.txt: https://napcat.apifox.cn/229486818e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:11
 
-@description: 
+@description:
 
 summary:获取AI语音
 
@@ -21,33 +21,59 @@ __method__ = "POST"
 
 
 # region code
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
+
+# region component_models
+# The original 'group_id' BaseModel was incorrect as per OpenAPI spec. 
+# OpenAPI defines 'group_id' as 'oneOf: [number, string]', a primitive type.
+# So, it's handled directly in GetAiRecordReq as 'int | str'.
+
+class result(BaseModel):
+    status: Literal["ok"] = Field(description="status字段")
+    retcode: float = Field(description="retcode字段")
+    # According to components/schemas/result in OpenAPI, data is an empty object
+    data: dict[str, any] = Field(description="data字段")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class GetAiRecordReq(BaseModel):
-    """
-    获取AI语音 请求模型
-    """
-    group_id: int | str = Field(..., description="群号")
-    character: str = Field(..., description="character_id")
-    text: str = Field(..., description="文本")
-# endregion req
+    """获取AI语音"""
+    # 'group_id' is defined as 'oneOf: [number, string]' in OpenAPI components/schemas/group_id
+    group_id: int | str = Field(description="标识ID (可以是数字或字符串)")
+    character: str = Field(description="character_id")
+    text: str = Field(description="文本")
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetAiRecordRes(BaseModel):
-    """
-    获取AI语音 响应模型
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: str = Field(..., description="链接")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="文案")
-    echo: str | None = Field(..., description="回显")
-# endregion res
+    """获取AI语音"""
+    # The 'data' field in this specific response is overridden to be a string,
+    # despite the generic 'result' component defining it as an object.
+    status: Literal["ok"] = Field(default="ok", description="status字段")
+    retcode: float = Field(default=0.0, description="retcode字段")
+    # As per OpenAPI spec for /get_ai_record response, 'data' is a string '链接'
+    data: str = Field(default="", description="链接")
+    message: str = Field(default="", description="message字段")
+    wording: str = Field(default="", description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetAiRecordAPI(BaseModel):
@@ -56,9 +82,6 @@ class GetAiRecordAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetAiRecordReq
     Res: type[BaseModel] = GetAiRecordRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

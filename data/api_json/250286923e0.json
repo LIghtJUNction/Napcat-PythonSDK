@@ -12,7 +12,7 @@
         "deprecated": false,
         "description": "",
         "tags": [
-          "账号相关"
+          "消息相关"
         ],
         "parameters": [],
         "requestBody": {
@@ -21,18 +21,23 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "group_id": {
+                    "$ref": "#/components/schemas/group_id",
+                    "description": "不填则为私聊戳"
+                  },
                   "user_id": {
                     "$ref": "#/components/schemas/user_id",
                     "description": "必填"
                   },
-                  "group_id": {
-                    "$ref": "#/components/schemas/group_id",
-                    "description": "不填则为私聊戳"
+                  "target_id": {
+                    "type": "string",
+                    "description": "戳一戳对象"
                   }
                 },
                 "x-apifox-orders": [
+                  "group_id",
                   "user_id",
-                  "group_id"
+                  "target_id"
                 ],
                 "required": [
                   "user_id"
@@ -41,7 +46,8 @@
               },
               "example": {
                 "user_id": 1129317309,
-                "group_id": 790514019
+                "group_id": 790514019,
+                "target_id": 1284508970
               }
             }
           }
@@ -111,7 +117,7 @@
           }
         },
         "security": [],
-        "x-apifox-folder": "账号相关",
+        "x-apifox-folder": "消息相关",
         "x-apifox-status": "released",
         "x-run-in-apifox": "https://app.apifox.com/web/project/5348325/apis/api-250286923-run"
       }
@@ -119,7 +125,7 @@
   },
   "components": {
     "schemas": {
-      "group_id": {
+      "user_id": {
         "oneOf": [
           {
             "type": "number"
@@ -130,7 +136,7 @@
         ],
         "x-apifox-folder": ""
       },
-      "user_id": {
+      "group_id": {
         "oneOf": [
           {
             "type": "number"

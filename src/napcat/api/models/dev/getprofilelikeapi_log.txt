@@ -1,1 +1,8 @@
-Refactoring `GetProfileLikeReq`: Added fields `user_id`, `start`, `count` with types, defaults, and descriptions based on OpenAPI spec. Refactoring `GetProfileLikeRes`: Defined nested models `UserInfoItem`, `FavoriteInfo`, `VoteInfo`, `Data`. Updated `GetProfileLikeRes` to include fields `status`, `retcode`, `data`, `message`, `wording`, `echo` with correct types (Literal for status, nested models for data, | None for nullable echo) and descriptions. Used `float` for OpenAPI 'number' types. Removed unused `typing.Any` import. Ensured all required fields are marked appropriately (either by default being non-None or using ...). Maintained `GetProfileLikeAPI` structure.
+根据OpenAPI规范修复了代码：
+1. 移除了不符合OpenAPI定义的 `user_id` 组件模型，并将其类型直接应用于 `GetProfileLikeReq` 的 `user_id` 字段，类型为 `str | int | None`。
+2. 重命名 `点赞信息` 为 `VoteUserInfo`，并确保所有字段类型、描述和必填属性与OpenAPI一致。
+3. 将通用响应模型 `result` 重命名为 `Result`，并使其 `status` 字段使用 `Literal["ok"]` 类型，为所有字段添加了默认值和描述。
+4. 调整 `GetProfileLikeReq` 的 `start` 和 `count` 字段，为其设置了OpenAPI中定义的默认值 `0` 和 `10`。
+5. `GetProfileLikeRes` 现在继承自 `Result` 类，并重写了 `data` 字段以使用内部定义的 `Data` 类型。
+6. `GetProfileLikeRes.Data` 中嵌套定义了 `FavoriteInfo` 和 `VoteInfo` 类，并确保所有字段类型、描述和必填属性与OpenAPI一致。
+7. 清理了不必要的导入，并确保所有Pydantic模型都配置了 `extra: "allow"`。

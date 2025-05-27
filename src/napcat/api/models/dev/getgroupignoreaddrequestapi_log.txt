@@ -1,13 +1,12 @@
-修复日志：
-1. 移除未使用的导入 typing.Any。
-2. 为 GetGroupIgnoreAddRequestReq 添加了描述。
-3. 根据 OpenAPI 文档定义了 GroupIgnoreAddRequestItem 模型，包含所有字段及其类型、描述和可空性。
-4. 根据 OpenAPI 文档定义了 GetGroupIgnoreAddRequestRes 模型。
-5. 将 status 字段类型更改为 Literal["ok"]。
-6. 为 GetGroupIgnoreAddRequestRes 中的所有字段添加了类型标注、描述和默认/必需标记 (Field(...))。
-7. 将 echo 字段类型设置为 str | None，并添加了默认值 None。
-8. 将 data 字段类型设置为 list[GroupIgnoreAddRequestItem]，引用新定义的嵌套模型。
-9. 移除 `# type: ignore` 注释。
-10. 确认 API 模型引用了正确的 Req 和 Res 类型。
-11. 确保所有字段符合驼峰命名法 (已根据 OpenAPI 文档字段名保留)。
-12. 导入 Literal from typing.
+根据 OpenAPI 规范和编码指南对代码进行了以下修复和优化：
+1.  **移除了多余的导入**: 删除了 `typing.Any` 和 `logging` 模块的导入，因为它们在该模型中未被使用。
+2.  **添加了 `typing.Literal` 导入**: 用于 `status` 字段的 `Literal["ok"]` 类型注解。
+3.  **修复了响应数据模型 (`GetGroupIgnoreAddRequestRes`)**:
+    *   将 `data` 字段的类型从 `Data` (一个布尔和字符串的组合) 更正为 `list[DataEntry]`，其中 `DataEntry` 是一个新定义的内部类，严格匹配 OpenAPI 规范中 `data` 数组项的结构。
+    *   `DataEntry` 类包含了 `request_id`、`invitor_uin`、`invitor_nick`、`group_id`、`message`、`group_name`、`checked`、`actor`、`requester_nick` 等字段，并为可空字段 (`nullable: true`) 正确使用了 `str | None` 和 `default=None`。
+    *   为所有字段添加了清晰的 `Field` 描述。
+4.  **强制使用 `Literal` 类型**: `GetGroupIgnoreAddRequestRes` 的 `status` 字段类型由 `str` 修改为 `Literal["ok"]`，并设置了默认值。
+5.  **为所有字段提供默认值和描述**: 确保 `GetGroupIgnoreAddRequestRes` 及其嵌套 `DataEntry` 中的所有字段都具有明确的类型、默认值（或 `default_factory` 对于列表）和 `Field` 描述。
+6.  **移除 `result` 通用类**: `result` 类被移除，因为 `GetGroupIgnoreAddRequestRes` 已经根据特定 API 的响应结构进行了详细定义，不再需要通用的 `result` 基类。
+7.  **确保类型标注符合规范**: `Optional` 和 `Union` 已替换为 `| None` 和 `|`。
+8.  **优化 `retcode` 默认值**: 将 `retcode` 的默认值从 `0` 修改为 `0.0`，以明确其 `float` 类型。

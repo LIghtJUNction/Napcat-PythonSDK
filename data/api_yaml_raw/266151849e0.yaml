@@ -25,6 +25,7 @@ paths:
               required:
                 - file_id
               x-apifox-ignore-properties: []
+            example: ''
       responses:
         '200':
           description: ''

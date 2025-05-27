@@ -1,12 +1,19 @@
-from collections.abc import Awaitable, Callable
+"""
+NapcatWebsocketClient功能：提供WebSocket客户端，支持双向实时通信
+"""
+from __future__ import annotations
+
 import logging
 import functools
-from typing import Any, TypeVar
 import asyncio
+from collections.abc import Awaitable, Callable
+from types import TracebackType
+from typing import Any, TypeVar
+
 import httpx
 from httpx_ws import aconnect_ws, WebSocketDisconnect, AsyncWebSocketSession
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("napcat.websocket")
 
 # 定义类型变量用于装饰器
 T = TypeVar('T')

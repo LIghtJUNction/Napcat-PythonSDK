@@ -1,8 +1,10 @@
-根据OpenAPI规范，修复了DeleteGroupFileReq模型，添加了group_id (int|str) 和 file_id (str) 字段，并标记为必填。
-修复了DeleteGroupFileRes模型，根据响应体结构定义了嵌套模型 TransGroupFileResultInnerResult, TransGroupFileResult, DeleteGroupFileResData。
-将响应的data字段类型设置为DeleteGroupFileResData。
-将status字段类型设置为 Literal["ok"]。
-添加了所有字段的描述和类型标注。
-移除了未使用的导入typing.Any。
-确保所有类型标注符合Python 3.13和Pydantic v2规范（使用内置类型，| 表示联合/可选）。
-DeleteGroupFileAPI模型保持不变，连接请求和响应模型。
+修复过程：
+1. 移除了未使用的 `logging` 模块导入。
+2. 移除了原有的 `group_id` 和 `result` 组件模型，因为它们与 OpenAPI 规范不符或未被 `DeleteGroupFileRes` 直接使用。
+3. 根据 OpenAPI 规范，将 `DeleteGroupFileReq` 中的 `group_id` 类型从自定义的 `group_id` 对象修改为 `int | str`。
+4. 导入 `Literal` 类型，并将其应用于 `DeleteGroupFileRes` 的 `status` 字段（设置为 `Literal["ok"]`），以及 `DeleteGroupFileAPI` 的 `endpoint` 和 `method` 字段，以确保类型安全和精确性。
+5. 在 `DeleteGroupFileRes` 中，将原有的 `Data` 类及其所有缺失的嵌套类（`TransGroupFileResult` 和 `TransGroupFileResult.Result`）根据 OpenAPI 规范重新定义并正确嵌套。
+6. 为所有字段添加了明确的类型标注、描述和初始值（`Field(..., description=...)` 用于必填字段，`Field(default=..., description=...)` 用于可选字段或有默认值的字段）。
+7. 使用 `default_factory=Data` 为 `DeleteGroupFileRes` 中的 `data` 字段设置默认值，以避免可变默认值问题。
+8. 确保所有嵌套类都遵循驼峰命名法（如 `TransGroupFileResult`）。
+9. 统一了所有模型的 `model_config` 为 `{"extra": "allow"}`。

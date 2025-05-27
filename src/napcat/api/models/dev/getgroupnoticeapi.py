@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 群聊相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658742e0
 @llms.txt: https://napcat.apifox.cn/226658742e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,55 +21,62 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class GetGroupNoticeReq(BaseModel):
-    """
-    _获取群公告 请求参数
-    """
-    group_id: int | str = Field(..., description="群号")
+    """_获取群公告 - 请求模型"""
+    # 修复：根据OpenAPI components/schemas/group_id 定义 (oneOf: number, string)，group_id 应为 int 或 str 类型，而非对象
+    group_id: int | str = Field(description="群号")
 
-# endregion req
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
-class MessageItem(BaseModel):
-    """
-    群公告消息内容项
-    """
-    id: str = Field(..., description="消息内容项ID")
-    height: str = Field(..., description="高度")
-    width: str = Field(..., description="宽度")
-
-class NoticeItem(BaseModel):
-    """
-    群公告信息项
-    """
-The OpenAPI spec example shows message as an object with text/image keys.
-The schema however defines message as an array of objects with id, height, width.
-Following the schema definition for model generation.
-    notice_id: str = Field(..., description="公告ID")
-    sender_id: int = Field(..., description="发送人账号")
-    publish_time: int = Field(..., description="发送时间")
-    message: list[MessageItem] = Field(..., description="公告消息内容列表")
-
 class GetGroupNoticeRes(BaseModel):
-    """
-    _获取群公告 响应参数
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[NoticeItem] = Field(..., description="公告列表")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应描述")
-    echo: str | None = Field(None, description="echo")
+    """_获取群公告 - 响应模型"""
 
-# endregion res
+    class MessageContentItem(BaseModel):
+        """公告消息内容项"""
+        id: str = Field(description="消息内容ID")
+        height: str = Field(description="内容高度")
+        width: str = Field(description="内容宽度")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    class NoticeItem(BaseModel):
+        """单个群公告信息"""
+        notice_id: str = Field(description="公告ID")
+        # 修复：OpenAPI 定义为 number，但通常这类 ID 或时间戳为整数，故改为 int
+        sender_id: int = Field(description="发送人账号")
+        # 修复：OpenAPI 定义为 number，但通常这类 ID 或时间戳为整数，故改为 int
+        publish_time: int = Field(description="发送时间戳")
+        # 修复：根据 OpenAPI 响应 schema 的 data.items.properties.message 定义，为 MessageContentItem 列表，而非示例中的 text/image 结构
+        message: list[MessageContentItem] = Field(description="公告消息内容列表")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    # 修复：status 字段应使用 Literal["ok"] 类型，表示固定值
+    status: Literal["ok"] = Field(default="ok", description="响应状态")
+    retcode: float = Field(default=0.0, description="响应码")
+    # 修复：data 字段应为 NoticeItem 列表，并提供 default_factory 处理可变类型
+    data: list[NoticeItem] = Field(default_factory=list, description="公告数据列表")
+    message: str = Field(default="", description="响应消息")
+    wording: str = Field(default="", description="响应提示")
+    echo: str | None = Field(default=None, description="回显数据")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class GetGroupNoticeAPI(BaseModel):
@@ -78,9 +85,6 @@ class GetGroupNoticeAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupNoticeReq
     Res: type[BaseModel] = GetGroupNoticeRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

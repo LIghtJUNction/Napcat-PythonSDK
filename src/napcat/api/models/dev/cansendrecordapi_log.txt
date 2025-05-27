@@ -1,1 +1,13 @@
-Analyzing OpenAPI spec for /can_send_record POST. Request body is empty. Response requires status (Literal['ok']), retcode (int), data (nested object with 'yes': bool), message (str), wording (str), echo (str|None). Refactoring CanSendRecordReq to be empty. Refactoring CanSendRecordRes to include required fields with types, descriptions using Field, and a nested Data model for the 'data' field. Using Literal['ok'] for status. Using str | None for echo. Removing unused imports. Ensuring all fields have type hints and descriptions.
+构建过程日志:
+- 移除了未使用的 `logging` 导入。
+- 导入了 `typing.Literal` 以支持 `const` 类型字段。
+- `result` 类修复:
+  - `status` 字段类型从 `str` 修改为 `Literal["ok"]` 并设置了默认值 `"ok"`。
+  - 为 `retcode`、`data`、`message`、`wording` 和 `echo` 字段添加了默认值，以确保所有字段都有初始值。
+- `CanSendRecordRes.Data` 类修复:
+  - `yes` 字段从 `yes: bool = Field(default=None, ...)` 修改为 `yes: bool = Field(False, ...)`。此更改确保了字段在 OpenAPI 规范中是 `required` 且有默认值，同时支持外部 `default_factory` 的正确实例化。
+- `CanSendRecordRes` 类修复:
+  - `status` 字段类型从 `str` 修改为 `Literal["ok"]` 并设置了默认值 `"ok"`。
+  - 为 `retcode`、`message`、`wording` 和 `echo` 字段添加了默认值。
+  - `data` 字段的 `default_factory` 从 `lambda: Data()` 优化为直接引用 `Data`，提升可读性和遵循 Pydantic 风格。
+- `CanSendRecordReq` 和 `CanSendRecordAPI` 类保持不变，因为它们已符合规范。

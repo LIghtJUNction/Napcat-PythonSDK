@@ -1,12 +1,8 @@
-Building model for /get_mini_app_ark POST.
-Parsed request body schema.
-Created GetMiniAppArkReq model with fields: type (Literal['bili', 'weibo'] | None), title (str), desc (str), picUrl (str), jumpUrl (str), iconUrl (str | None), sdkId (str | None), appId (str | None), scene (int | str | None), templateType (int | str | None), businessType (int | str | None), verType (int | str | None), shareType (int | str | None), versionId (str | None), withShareTicket (int | str | None), rawArkData (bool | str | None).
-Marked required fields (title, desc, picUrl, jumpUrl).
-Parsed response body schema. The schema is an empty object.
-Created GetMiniAppArkRes model, assuming a standard Napcat response wrapper (retcode, status, data).
-Set status to Literal['ok', 'failed'] and data to dict | None based on empty properties.
-Removed unused import `Any`.
-Added `Literal` import.
-Added descriptions to fields in GetMiniAppArkReq.
-Added docstrings to models.
-Ensured all fields have type hints and default values or are marked as required.
+修复日志：
+1. 移除了未使用的 `logging` 和 `Any` 导入。
+2. `GetMiniAppArkReq` 类中的 `type` 字段已从 `str | None` 修改为 `Literal["bili", "weibo"] | None`，以准确反映 OpenAPI 规范中的枚举值。
+3. 为 `GetMiniAppArkReq` 中的可选字段（如 `iconUrl`, `sdkId` 等）添加了 `description` 参数。
+4. `GetMiniAppArkRes` 类中的 `status` 字段已从 `str` 修改为 `Literal["ok"]`，并设置了默认值。
+5. 确保 `GetMiniAppArkRes` 中的 `retcode` 字段的默认值为浮点数 `0.0`。
+6. `GetMiniAppArkRes` 中的 `data` 字段的 `default_factory` 简化为 `Data`。
+7. 统一了 `Field` 的默认值设置方式，确保描述和默认值清晰。

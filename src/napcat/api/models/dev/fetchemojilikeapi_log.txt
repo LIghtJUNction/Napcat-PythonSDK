@@ -1,8 +1,13 @@
-Analyzing OpenAPI spec for /fetch_emoji_like POST.
-Refactoring FetchEmojiLikeReq: Added fields message_id (int | str), emojiId (str), emojiType (str), count (int). Added descriptions and default for count. Marked required fields.
-Refactoring FetchEmojiLikeRes: Defined top-level fields status (Literal["ok"]), retcode (int), data (nested object), message (str), wording (str), echo (str | None). Added descriptions. Used Literal for status.
-Defined nested Data class within FetchEmojiLikeRes with fields result (int), errMsg (str), emojiLikesList (array of objects), cookie (str), isLastPage (bool), isFirstPage (bool). Added descriptions.
-Defined nested EmojiLikeItem class within Data with fields tinyId (str), nickName (str), headUrl (str). Added descriptions.
-Ensured correct type hints (list, str | None, int | str).
-Removed unused imports (Any).
-Kept FetchEmojiLikeAPI class as is, confirming endpoint metadata.
+构建过程日志：
+1. 移除了不必要的 `logging` 和 `Any` 导入，并添加了 `Literal`。
+2. 修复了 `message_id` 类，根据 OpenAPI `oneOf` 规范将 `id` 字段类型改为 `str | int`，并将其重命名为 `MessageId` (PascalCase)。
+3. 修正 `FetchEmojiLikeReq` 中的 `count` 字段，根据 OpenAPI 规范添加了 `default=20.0`。
+4. 移除了冗余的 `result` 组件模型，因为 OpenAPI 响应直接定义了其结构。
+5. 重构 `FetchEmojiLikeRes` 类：
+   - 将 `status` 字段类型更改为 `Literal["ok"]`，根据 OpenAPI `const: ok` 定义。
+   - 确保 `retcode`, `message`, `wording`, `echo` 字段的类型和描述与 OpenAPI 规范一致。
+   - 嵌套定义 `Data` 类来表示响应的 `data` 字段。
+   - 在 `Data` 类中，根据 OpenAPI 规范定义了 `result`, `errMsg`, `emojiLikesList`, `cookie`, `isLastPage`, `isFirstPage` 字段，并确保它们是必需的（没有默认值）。
+   - 在 `Data` 类内部嵌套定义了 `EmojiLikesListItem` 类，用于 `emojiLikesList` 中的每个项目，并定义了 `tinyId`, `nickName`, `headUrl` 字段。
+6. 为所有字段添加了详细的 `Field` 描述，提高了可读性。
+7. 确保所有字段都强制类型标注，遵循编码指南。

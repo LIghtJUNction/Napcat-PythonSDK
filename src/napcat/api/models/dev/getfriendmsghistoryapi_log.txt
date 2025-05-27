@@ -1,14 +1,17 @@
-Parsed OpenAPI spec for /get_friend_msg_history.
-Created GetFriendMsgHistoryReq model with user_id (int|str, required), message_seq (int|str, default 0), count (int, default 20), reverseOrder (bool, default False).
-Created Sender model with Literal types for sex and role.
-Created nested models for each message segment type (TextMessage, AtMessage, FaceMessage, ImageMessage, FileMessage, ReplyMessage, JsonMessage, VoiceMessage, VideoMessage, MarkdownMessage, ForwardMessage) including their respective Data models.
-Defined MessageSegment as a union of all message segment types.
-Created MessageDetail model, including the 'message' field as a list of MessageSegment.
-Created GetFriendMsgHistoryResData model for the response data field, containing a list of MessageDetail.
-Created GetFriendMsgHistoryRes model, incorporating fields from the 'result' schema and the specific 'data' structure with Literal['ok'] for status.
-Updated GetFriendMsgHistoryAPI model to reference the new Req and Res models.
-Removed unused imports (logging, Any).
-Ensured all fields have descriptions and default values where applicable.
-Used Pydantic v2 syntax (Field, Literal, | for union).
-Addressed potential circular dependency in ForwardMessage by simplifying the 'content' type.
-Added docstrings to models.
+修复过程：
+1.  **移除多余导入：** 删除了 `logging` 和 `typing.Any` 模块的导入，因为它们在最终模型定义中未被使用。
+2.  **`message_id` 和 `user_id` 类型修复：** 根据 OpenAPI 定义，`user_id` 和 `message_seq` 应为 `number` 或 `string`，而不是带有 `id` 和 `name` 字段的对象。因此，将 `GetFriendMsgHistoryReq` 中的 `user_id` 类型修正为 `int | str`，`message_seq` 修正为 `int | str | None`，并删除了原有的 `message_id` 和 `user_id` 类。
+3.  **类名汉化修正：** 将所有中文命名的模型类（如 `消息详情`, `消息forward` 等）重命名为符合 Python 命名规范的英文驼峰式命名（如 `MessageDetail`, `MessageForward` 等），以提高可读性和维护性。
+4.  **嵌套数据模型定义：** 针对每种消息类型中 `data` 字段的结构，创建了独立的嵌套 Pydantic 模型（如 `TextMessageData`, `AtMessageData`），确保数据结构与 OpenAPI 定义一致。
+5.  **`Literal` 类型使用：**
+    *   `Sender` 模型中的 `sex` 和 `role` 字段使用了 `Literal` 类型，精确表示了可能的枚举值。
+    *   所有具体消息类型（如 `TextMessage`, `ImageMessage`）的 `type` 字段都使用 `Literal` 定义了其固定的类型值，并设置了默认值。
+    *   `GetFriendMsgHistoryRes` 中的 `status` 字段修正为 `Literal["ok"]`，并设置了默认值。
+6.  **字段默认值和描述：**
+    *   `GetFriendMsgHistoryReq` 中的 `count` 和 `reverseOrder` 字段根据 OpenAPI 定义添加了默认值（`20.0` 和 `False`）。
+    *   `GetFriendMsgHistoryRes` 中的 `retcode`, `message`, `wording` 字段添加了默认值。
+    *   所有字段都添加了描述信息。
+7.  **循环引用处理：** `MessageDetail` 引用 `MessageForward`，而 `MessageForwardData` 又引用 `MessageDetail`，存在循环引用。Pydantic 通过字符串引用 (`"MessageDetail"`) 可以处理，但为了确保解析，在相关类定义后添加了 `MessageForwardData.model_rebuild()`。
+8.  **`MessageDetail` 中的 `message` 字段类型修正：** 将 `message: list[str]` 修正为 `message: list[MessageType | MessageForward]`，其中 `MessageType` 是所有非转发消息类型的联合类型，`MessageForward` 是转发消息类型本身，这与 OpenAPI 中 `anyOf` 的定义一致。
+9.  **强制类型标注和内置类型：** 确保所有字段都强制进行了类型标注，并遵循指导方针，使用 `int | str | None` 等内置类型替代 `typing.Optional` 和 `typing.Union`。
+10. **代码结构优化：** 调整了组件模型的定义顺序，以便于 Pydantic 解析相互依赖的类型，将公共的 `Sender` 类提前，然后是所有 `*MessageData` 类，接着是所有基础 `*Message` 类，再是 `MessageType` 联合类型，最后是处理循环引用的 `MessageForward` 和 `MessageDetail` 类。

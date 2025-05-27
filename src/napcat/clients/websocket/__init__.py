@@ -1,3 +1,10 @@
-from .v1 import WebSocketClient
+"""
+WebSocket客户端模块
+提供WebSocket双向实时通信客户端实现
+"""
 
-__all__ = ["WebSocketClient"]
+from .v1 import NapcatWebsocketClient
+
+__all__ = [
+    "NapcatWebsocketClient",
+]

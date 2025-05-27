@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 账号相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659178e0
 @llms.txt: https://napcat.apifox.cn/226659178e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
 @description: 
 
@@ -21,42 +21,61 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Any, Literal
+import logging
 
 logger = logging.getLogger(__name__)
 
+# region component_models
+class result(BaseModel):
+    status: Literal["ok"] = Field(description="status字段")
+    retcode: float = Field(description="retcode字段")
+    data: dict[str, Any] = Field(description="data字段")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
+
 # region req
 class CreateCollectionReq(BaseModel):
-    """
-    创建收藏请求模型
-    """
-    rawData: str = Field(..., description="内容")
-    brief: str = Field(..., description="标题")
-# endregion req
+    """创建收藏"""
+    rawData: str = Field(description="内容")
+    brief: str = Field(description="标题")
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class CreateCollectionRes(BaseModel):
-    """
-    创建收藏响应模型
-    """
+    """创建收藏"""
     class Data(BaseModel):
-        """
-        响应数据字段
-        """
-        result: int = Field(..., description="结果码")
-        errMsg: str = Field(..., description="错误信息")
+        """响应数据类型"""
+        result: float = Field(description="result字段")
+        errMsg: str = Field(description="errMsg字段")
 
-    status: Literal["ok"] = Field(..., description="状态码")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="措辞")
-    echo: str | None = Field(..., description="echo")
-# endregion res
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field(description="status字段")
+    retcode: float = Field(description="retcode字段")
+    data: Data = Field(description="data字段")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class CreateCollectionAPI(BaseModel):
@@ -65,9 +84,6 @@ class CreateCollectionAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = CreateCollectionReq
     Res: type[BaseModel] = CreateCollectionRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 消息相关/发送私聊消息
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659051e0
 @llms.txt: https://napcat.apifox.cn/226659051e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
-@description: 
+@description:
 
 summary:消息转发到私聊
 
@@ -21,55 +21,41 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class ForwardFriendSingleMsgReq(BaseModel):
-    """
-    消息转发到私聊 请求体
-    """
+    """消息转发到私聊 请求模型"""
+    # 根据OpenAPI规范，user_id和message_id是联合类型 (number | string)，而非对象。
+    user_id: int | str = Field(..., description="目标用户ID，可以是数字或字符串")
+    message_id: int | str = Field(..., description="要转发的消息ID，可以是数字或字符串")
 
-    user_id: int | str = Field(
-        ..., description="目标用户 ID"
-    )
-    message_id: int | str = Field(
-        ..., description="需要转发的消息 ID"
-    )
-
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
 class ForwardFriendSingleMsgRes(BaseModel):
-    """
-    消息转发到私聊 响应体
-    """
+    """消息转发到私聊 响应模型"""
+    # 此特定端点的OpenAPI响应模式明确将'data'字段覆盖为类型 'null'。
+    # 因此，此响应模型中的'data'字段应为 None。
+    # 原始代码中的嵌套Data类在此上下文中不适用。
 
-    status: Literal["ok"] = Field(
-        ..., description="响应状态"
-    )
-    retcode: int = Field(
-        ..., description="响应码"
-    )
-    data: None = Field(
-        ..., description="响应数据"
-    )
-    message: str = Field(
-        ..., description="响应信息"
-    )
-    wording: str = Field(
-        ..., description="响应提示"
-    )
-    echo: str | None = Field(
-        None, description="回声数据，如果请求时指定了 echo 字段，则响应时会带上"
-    )
+    status: Literal["ok"] = Field(default="ok", description="status字段，固定为 'ok'")
+    retcode: float = Field(default=0.0, description="retcode字段，通常为0表示成功")
+    # 根据OpenAPI规范，此接口的'data'字段明确为'null'。
+    data: None = Field(default=None, description="data字段，此接口响应为null")
+    message: str = Field(default="", description="message字段，描述响应信息")
+    wording: str = Field(default="", description="wording字段，提供更详细的描述或提示")
+    echo: str | None = Field(default=None, description="echo字段，可选，用于请求-响应匹配")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class ForwardFriendSingleMsgAPI(BaseModel):
@@ -78,9 +64,6 @@ class ForwardFriendSingleMsgAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = ForwardFriendSingleMsgReq
     Res: type[BaseModel] = ForwardFriendSingleMsgRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

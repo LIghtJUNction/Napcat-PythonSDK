@@ -1,16 +1,9 @@
-Analyzing OpenAPI spec for /get_image POST.
-Identified Request Body schema: object with required 'file_id' (string).
-Identified Response (200) schema: object with 'status' (Literal 'ok'), 'retcode' (number), 'data' (object), 'message' (string), 'wording' (string), 'echo' (string or null). 'data' object has 'file', 'url', 'file_size', 'file_name', 'base64' (all required strings).
-Reviewing existing code:
-- GetImageReq is empty, needs 'file_id'.
-- GetImageRes is empty, needs all fields including nested 'data' class.
-- GetImageAPI seems correct.
-- Imports: logging and Any are unused and should be removed. Literal needs to be added for status.
-- Type annotations, descriptions, default values, Literal, | None usage need implementation.
-Constructing fixed code:
-- Updated GetImageReq with 'file_id: str = Field(...)'.
-- Created nested 'Data' class inside GetImageRes with specified string fields and descriptions.
-- Updated GetImageRes with 'status: Literal["ok"] = Field(...)', 'retcode: int = Field(...)', 'data: Data = Field(...)', 'message: str = Field(...)', 'wording: str = Field(...)', 'echo: str | None = Field(...)'. Assumed retcode is int based on common API practices.
-- Removed unused imports (logging, Any). Added Literal import.
-- Ensured all fields have descriptions and correct type hints according to the spec and guidelines.
-- Maintained GetImageAPI structure.
+根据OpenAPI规范，修复了PyDantic v2模型。
+1. 移除了冗余的 `typing.Any` 导入，并添加了 `typing.Literal` 导入。
+2. 确保所有字段都进行了强制类型标注。
+3. 为所有字段添加了详细描述。
+4. 对于响应模型 `GetImageRes`，将 `Data` 类作为内部嵌套类，并确保其所有字段都是必需的且类型正确（`str`），移除了不必要的默认值 `None`。
+5. `GetImageRes` 的 `status` 字段类型由 `str` 更改为 `Literal["ok"]`，以精确匹配 OpenAPI 规范中的 `const: ok`。
+6. `GetImageRes` 的其他字段 (`retcode`, `data`, `message`, `wording`) 根据 OpenAPI 规范被标记为必需，并移除了原代码中不必要的默认值。
+7. `echo` 字段保持 `str | None` 类型，符合 OpenAPI 规范中 `nullable: true` 的定义。
+8. 删除了未使用的 `result` 组件模型，因为 OpenAPI 规范中 `/get_image` 路径的响应直接定义了完整的结构并重写了 `data` 字段，使得通用 `result` 模型不适用。

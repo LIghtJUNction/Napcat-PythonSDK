@@ -1,12 +1,7 @@
-Based on the OpenAPI spec:
-- Removed unused `logging` and `Any` imports.
-- Added `Literal` import for the response status.
-- Defined `ArksharepeerReq` with `group_id`, `user_id` (both `int | str | None`) and `phoneNumber` (`str | None`). Added Field descriptions.
-- Defined `ArksharepeerRes`. Created a nested `Data` model within it as specified by the `data` field structure.
-- The nested `Data` model includes `errCode` (`int`), `errMsg` (`str`), and `arkJson` (`str`), marked as required within the `data` object in the spec.
-- `ArksharepeerRes` includes `status` (`Literal["ok"]`), `retcode` (`int`), `data` (`Data`), `message` (`str`), `wording` (`str`), and `echo` (`str | None`). Added Field descriptions for all.
-- Ensured `status` and `echo` types match the spec (`const: ok` -> Literal, `nullable: true` -> | None).
-- Updated `ArksharepeerAPI` to use `Literal` for `endpoint` and `method` and reference the new `Req` and `Res` models.
-- Added basic descriptions to models.
-- Adhered to Python 3.13 type hinting and pydantic v2 standards (no typing.Union/Optional, use |, type[]).
-- Added a note in the request model about the likely mutual exclusivity/requirement of one of the fields, as the spec lacks a `required` array for the request body schema.
+Removed unnecessary `user_id`, `group_id`, and `result` component models as they were not aligned with the OpenAPI specification.
+Corrected `ArksharepeerReq` fields `group_id` and `user_id` to `str | int | None` to accurately reflect the `oneOf string, number` type defined in the OpenAPI spec.
+Modified `ArksharepeerRes.Data` fields (`errCode`, `errMsg`, `arkJson`) to be non-optional (removed `default=None`) as they are marked `required` in the OpenAPI specification and are not nullable.
+Updated `ArksharepeerRes.status` to use `typing.Literal["ok"]` to reflect the `const: ok` definition from OpenAPI.
+Ensured all `Field` definitions have clear descriptions and appropriate default values.
+Set `retcode` default to `0.0` for explicit float type.
+Removed unused `typing.Any` import and added `typing.Literal` import.

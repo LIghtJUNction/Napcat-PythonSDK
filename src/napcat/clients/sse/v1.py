@@ -1,11 +1,19 @@
-from collections.abc import AsyncGenerator, Callable
-import httpx
+"""
+AsyncSSEClient功能：提供异步SSE客户端，支持Pydantic模型序列化
+"""
+from __future__ import annotations
+
 import json
+import logging
 import asyncio
+from collections.abc import AsyncGenerator, Callable
+from types import TracebackType
 from typing import Any, TypeVar
 
-from types import TracebackType
+import httpx
 from pydantic import BaseModel
+
+logger = logging.getLogger("napcat.sse")
 
 T = TypeVar('T', bound=BaseModel)
 

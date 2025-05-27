@@ -1,17 +1,19 @@
-Refactoring the provided Python code based on the OpenAPI specification for the `/delete_group_folder` endpoint.
-
-1.  **Analyze OpenAPI Spec:** Identified request requires `group_id` (number or string) and `folder_id` (string). Response follows a standard result structure with nested `data` containing `retCode`, `retMsg`, `clientWording`.
-2.  **Refactor `DeleteGroupFolderReq`:** Added `group_id` (int | str) and `folder_id` (str) fields with descriptions based on the request body schema. Both are required.
-3.  **Refactor `DeleteGroupFolderRes`:**
-    *   Created an inner class `DeleteGroupFolderResData` for the nested `data` object with fields `retCode` (int), `retMsg` (str), and `clientWording` (str), all required.
-    *   Defined the main `DeleteGroupFolderRes` class with fields: `status` (Literal["ok"]), `retcode` (int), `data` (DeleteGroupFolderResData), `message` (str), `wording` (str), `echo` (str | None).
-    *   Added descriptions using `Field` for all fields.
-    *   Ensured required fields are implicitly handled by Pydantic (no default value).
-    *   Used `str | None` for `echo`.
-4.  **Update `DeleteGroupFolderAPI`:** Ensured `Req` and `Res` point to the correctly refactored classes and use `type[BaseModel]`.
-5.  **Clean Imports:** Removed unused imports and ensured necessary ones (`Literal`, `Field`, `BaseModel`) are present.
-6.  **Type Hinting:** Applied consistent type hints following the specified guidelines (e.g., `int | str`, `str | None`).
-7.  **Removed `# type: ignore`:** Cleaned up ignored type hints.
-8.  **Added Descriptions:** Added descriptions to models and fields for clarity.
-
-Result: Generated the corrected Python code for the `DeleteGroupFolderReq` and `DeleteGroupFolderRes` models and the `DeleteGroupFolderAPI` class, adhering to the pydantic v2 guidelines and the OpenAPI spec.
+构建日志：
+1. 移除了不必要的导入：`logging`和`typing.Any`。
+2. 根据OpenAPI规范，`group_id`组件定义为`oneOf: [number, string]`，因此将`DeleteGroupFolderReq`中的`group_id`字段类型从自定义`group_id`模型修改为`int | str`，并删除了多余的`group_id`类定义。
+3. `result`类：
+    - 将`status`字段类型修改为`Literal["ok"]`以符合OpenAPI中`const: ok`的定义。
+    - 确保所有字段都有明确的类型标注和描述。
+4. `DeleteGroupFolderReq`类：
+    - `group_id`字段类型已按OpenAPI规范修正为`int | str`，并更新了描述。
+    - `folder_id`字段已添加描述。
+5. `DeleteGroupFolderRes`类：
+    - `status`字段类型已修改为`Literal["ok"]`。
+    - `retcode`, `message`, `wording`字段已移除默认值，因为OpenAPI定义它们为required。
+    - 嵌套的`Data`类：
+        - `retCode`, `retMsg`, `clientWording`字段已移除`default=None`，因为它们在OpenAPI中被定义为`required`。
+        - 确保`model_config`正确放置在`Data`类内部。
+    - `data`字段已移除`default_factory`，因为Pydantic会直接从响应数据中解析。
+6. 确保所有字段都具有强制类型标注和描述。
+7. `model_config`已正确配置为`extra: "allow"`。
+8. 遵循Python 3.13编码指南，使用内置类型和`|`进行联合类型标注。

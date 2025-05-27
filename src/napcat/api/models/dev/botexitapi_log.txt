@@ -1,7 +1,7 @@
-Refactoring the Python code based on the OpenAPI specification and coding guidelines:
-1. Removed unused import `typing.Any`.
-2. Updated class descriptions.
-3. Ensured `BotExitReq` and `BotExitRes` models correctly represent empty objects (`{}`) as per the OpenAPI spec using `pass`.
-4. Removed `type: ignore` comments.
-5. Kept the `BotExitAPI` class structure as it seems to be part of the internal framework, ensuring type hints are correct for Pydantic v2 (`type[BaseModel]` is appropriate).
-6. No nested models or enums were required based on the provided OpenAPI schema.
+Based on the provided OpenAPI specification and coding guidelines, I have performed the following fixes:
+1. Removed the unused import `typing.Any`.
+2. Replaced `status: str` with `status: Literal["ok"]` in `BotExitRes` to enforce the literal value as per the guideline.
+3. Ensured all fields have explicit type annotations and descriptions using `Field`.
+4. Confirmed that nested classes (`Data` within `BotExitRes`) are correctly defined.
+5. Verified that `BotExitReq` correctly represents an empty request body as specified in OpenAPI.
+6. Maintained `model_config = {"extra": "allow"}` for flexibility.

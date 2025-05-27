@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['个人操作']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657071e0
 @llms.txt: https://napcat.apifox.cn/226657071e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,44 +21,56 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
-from typing import Literal # Literal is allowed for specific values
+from typing import Any, Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class result(BaseModel):
+    status: Literal["ok"] = Field("ok", description="status字段")
+    retcode: float = Field(0.0, description="retcode字段")
+    data: dict[str, Any] = Field(default_factory=dict, description="data字段")
+    message: str = Field("", description="message字段")
+    wording: str = Field("", description="wording字段")
+    echo: str | None = Field(None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion component_models/
 
 # region req
 class CanSendImageReq(BaseModel):
-    """
-    检查是否可以发送图片 请求模型
-    "
-    # Request body is empty based on OpenAPI spec
+    """检查是否可以发送图片"""
     pass
-# endregion req
 
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
-class CanSendImageResData(BaseModel):
-    """
-    检查是否可以发送图片 响应数据模型
-    "
-    yes: bool = Field(..., description="是否可以发送图片")
-
-
 class CanSendImageRes(BaseModel):
-    """
-    检查是否可以发送图片 响应模型
-    "
-    status: Literal["ok"] = Field(
-        ..., description="响应状态", examples=["ok"]
-    )
-    retcode: int = Field(..., description="响应码")
-    data: CanSendImageResData = Field(..., description="响应数据")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应提示")
-    echo: str | None = Field(None, description="echo")
-# endregion res
+    """检查是否可以发送图片"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(description="yes字段")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="status字段")
+    retcode: float = Field(0.0, description="retcode字段")
+    data: Data = Field(default_factory=Data, description="data字段")
+    message: str = Field("", description="message字段")
+    wording: str = Field("", description="wording字段")
+    echo: str | None = Field(None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class CanSendImageAPI(BaseModel):
@@ -67,7 +79,6 @@ class CanSendImageAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = CanSendImageReq
     Res: type[BaseModel] = CanSendImageRes
-# endregion api
 
-
+# endregion api/
 # endregion code

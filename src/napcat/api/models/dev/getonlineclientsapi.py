@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657379e0
 @llms.txt: https://napcat.apifox.cn/226657379e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,35 +21,55 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from pydantic import BaseModel, Field, Literal
+from pydantic import BaseModel, Field
+from typing import Literal, Any
 
-logger = logging.getLogger(__name__)
+# region component_models
+class result(BaseModel):
+    """
+    Generic API response structure.
+    Note: This is based on '#/components/schemas/result' and might be overridden
+    for specific API responses.
+    """
+    status: Literal["ok"] = Field("ok", description="Status of the operation. Always 'ok' for success.")
+    retcode: float = Field(0.0, description="Return code of the operation.")
+    data: dict[str, Any] = Field({}, description="Generic data payload. As per component schema, this is an object.")
+    message: str = Field("", description="Message describing the operation result.")
+    wording: str = Field("", description="Wording associated with the operation result.")
+    echo: str | None = Field(None, description="Echo field for tracing or additional info.")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class GetOnlineClientsReq(BaseModel):
-    """
-    {{DESC_EndPointReq}}
-    "
-    # Request body is an empty object according to OpenAPI spec
+    """获取当前账号在线客户端列表 Request Model"""
+    # No request parameters as per OpenAPI spec
     pass
-# endregion req
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetOnlineClientsRes(BaseModel):
-    """
-    获取当前账号在线客户端列表 响应模型
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[str] = Field(..., description="在线客户端列表")
-    message: str = Field(..., description="信息")
-    wording: str = Field(..., description="额外信息")
-    echo: str | None = Field(None, description="回显")
+    """获取当前账号在线客户端列表 Response Model"""
+    # Based on paths./get_online_clients.post.responses.200
+    status: Literal["ok"] = Field("ok", description="Status of the operation. Always 'ok' for success.")
+    retcode: float = Field(0.0, description="Return code of the operation.")
+    data: list[str] = Field([], description="List of online client IDs. Overrides generic 'result' data type.")
+    message: str = Field("", description="Message describing the operation result.")
+    wording: str = Field("", description="Wording associated with the operation result.")
+    echo: str | None = Field(None, description="Echo field for tracing or additional info.")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetOnlineClientsAPI(BaseModel):
@@ -58,9 +78,6 @@ class GetOnlineClientsAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetOnlineClientsReq
     Res: type[BaseModel] = GetOnlineClientsRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

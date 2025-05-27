@@ -4,7 +4,7 @@
 @tags: 文件相关
 @homepage: https://napcat.apifox.cn/226658779e0
 @llms.txt: https://napcat.apifox.cn/226658779e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,44 +21,65 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class result(BaseModel):
+    """
+    通用响应结果模型，对应 OpenAPI components/schemas/result
+    """
+    status: Literal["ok"] = Field(description="status字段，固定为 'ok'")
+    retcode: float = Field(description="retcode字段")
+    data: dict = Field(description="data字段，一个任意结构的字典")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion component_models/
 
 # region req
 class DeleteGroupFolderReq(BaseModel):
-    """
-    删除群文件夹请求参数
-    """
-    group_id: int | str = Field(..., description="群号")
-    folder_id: str = Field(..., description="文件或文件夹ID")
-# endregion req
+    """删除群文件夹的请求模型"""
+    # group_id 字段根据 OpenAPI 定义应为 number 或 string
+    group_id: int | str = Field(description="群组ID，可以是群号(int)或群字符串ID(str)")
+    folder_id: str = Field(description="文件夹ID")
 
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
 class DeleteGroupFolderRes(BaseModel):
-    """
-    删除群文件夹响应参数
-    """
+    """删除群文件夹的响应模型"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        # 根据 OpenAPI specification，这些字段是 required 且没有默认值，因此不设置 default
+        retCode: float = Field(description="retCode字段")
+        retMsg: str = Field(description="retMsg字段")
+        clientWording: str = Field(description="clientWording字段")
 
-    class DeleteGroupFolderResData(BaseModel):
-        """
-        响应数据详情
-        """
-        retCode: int = Field(..., description="返回码")
-        retMsg: str = Field(..., description="返回信息")
-        clientWording: str = Field(..., description="给客户端的提示信息")
+        model_config = {
+            "extra": "allow",
+        }
 
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="返回码")
-    data: DeleteGroupFolderResData = Field(..., description="响应数据")
-    message: str = Field(..., description="信息")
-    wording: str = Field(..., description="提示词")
-    echo: str | None = Field(None, description="回显")
-# endregion res
+    status: Literal["ok"] = Field(description="status字段，固定为 'ok'")
+    retcode: float = Field(description="retcode字段")
+    # data 字段是 required，Pydantic 会从响应数据中解析，不需要 default_factory
+    data: Data = Field(description="data字段")
+    message: str = Field(description="message字段")
+    wording: str = Field(description="wording字段")
+    echo: str | None = Field(description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class DeleteGroupFolderAPI(BaseModel):
@@ -67,9 +88,6 @@ class DeleteGroupFolderAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = DeleteGroupFolderReq
     Res: type[BaseModel] = DeleteGroupFolderRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

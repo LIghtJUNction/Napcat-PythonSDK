@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 文件相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658867e0
 @llms.txt: https://napcat.apifox.cn/226658867e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,54 +21,31 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal # 导入 Literal 用于固定值类型
+import logging
 
 logger = logging.getLogger(__name__)
 
-# region req
-class GetGroupFileUrlReq(BaseModel): # type: ignore
-    """
-    获取群文件链接请求模型
-    """
+# region component_models
 
-    group_id: int | str = Field(..., description="群号")
-    file_id: str = Field(..., description="文件ID")
-# endregion req
+# 根据OpenAPI规范，group_id 在请求中应为 int 或 str 类型，
+# 而非一个 BaseModel 对象。因此，移除了原有的 group_id BaseModel 定义。
+# class group_id(BaseModel):
+#     id: str = Field(description="标识ID")
+#     name: str | None = Field(None, description="名称")
 
+#     model_config = {
+#         "extra": "allow",
+#     }
 
+class result(BaseModel):
+    status: Literal["ok"] = Field(default="ok", description="状态字段，通常为 'ok'")
+    retcode: float = Field(default=0.0, description="返回码")
+    data: dict[str, any] = Field(default_factory=dict, description="响应数据字段") # 使用 any 替代 Any
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="提示")
+    echo: str | None = Field(default=None, description="回显数据")
 
-# region res
-class GetGroupFileUrlRes(BaseModel): # type: ignore
-    """
-    获取群文件链接响应模型
-    """
-
-    class Data(BaseModel):
-        """
-        响应数据体
-        """
-        url: str = Field(..., description="群文件链接")
-
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="状态码")
-    data: Data = Field(..., description="响应数据体")
-    message: str = Field(..., description="错误信息")
-    wording: str = Field(..., description="错误描述")
-    echo: str | None = Field(None, description="用户自定义字段")
-# endregion res
-
-# region api
-class GetGroupFileUrlAPI(BaseModel):
-    """get_group_file_url接口数据模型"""
-    endpoint: str = "get_group_file_url"
-    method: str = "POST"
-    Req: type[BaseModel] = GetGroupFileUrlReq
-    Res: type[BaseModel] = GetGroupFileUrlRes
-# endregion api
-
-
-
-
-# endregion code
+    model_config = {
+        

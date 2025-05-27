@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['群聊相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659300e0
 @llms.txt: https://napcat.apifox.cn/226659300e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
-@description: 获取群禁言列表
+@description:
 
 summary:获取群禁言列表
 
@@ -21,80 +21,79 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal, Any # `Any` is needed for dict[str, Any]
 
 # region req
 class GetGroupShutListReq(BaseModel):
-    """
-    获取群禁言列表接口请求参数
-    """
+    """获取群禁言列表请求模型"""
+    group_id: str | int = Field(..., description="群ID，可以是数字或字符串")
 
-    group_id: int | str = Field(..., description="群号")
-
-# endregion req
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
-class GroupShutMember(BaseModel):
-    """
-    群禁言成员信息
-    """
-    uid: str = Field(..., description="用户ID")
-    qid: str = Field(..., description="QID")
-    uin: str = Field(..., description="UIN")
-    nick: str = Field(..., description="昵称")
-    remark: str = Field(..., description="备注")
-    cardType: int = Field(..., description="群名片类型")
-    cardName: str = Field(..., description="群名片")
-    role: int = Field(..., description="群角色")
-    avatarPath: str = Field(..., description="头像路径")
-    shutUpTime: int = Field(..., description="解禁时间")
-    isDelete: bool = Field(..., description="是否已删除")
-    isSpecialConcerned: bool = Field(..., description="是否特别关注")
-    isSpecialShield: bool = Field(..., description="是否被屏蔽")
-    isRobot: bool = Field(..., description="是否机器人")
-    groupHonor: dict[str, int] = Field(..., description="群荣誉信息")
-    memberRealLevel: int = Field(..., description="群聊等级")
-    memberLevel: int = Field(..., description="成员等级")
-    globalGroupLevel: int = Field(..., description="全局群等级")
-    globalGroupPoint: int = Field(..., description="全局群积分")
-    memberTitleId: int = Field(..., description="成员头衔ID")
-    memberSpecialTitle: str = Field(..., description="成员特殊头衔")
-    lastSpeakTime: int = Field(..., description="最后发言时间")
-    joinTime: int = Field(..., description="入群时间")
-    specialTitleExpireTime: str = Field(..., description="特殊头衔过期时间")
-    userShowFlag: int = Field(..., description="用户展示Flag")
-    userShowFlagNew: int = Field(..., description="新的用户展示Flag")
-    richFlag: int = Field(..., description="富豪Flag")
-    mssVipType: int = Field(..., description="MSS VIP类型")
-    bigClubLevel: int = Field(..., description="大会员等级")
-    bigClubFlag: int = Field(..., description="大会员Flag")
-    autoRemark: str = Field(..., description="自动备注")
-    creditLevel: int = Field(..., description="信用等级")
-    memberFlag: int = Field(..., description="成员Flag")
-    memberFlagExt: int = Field(..., description="成员扩展Flag")
-    memberMobileFlag: int = Field(..., description="成员手机Flag")
-    memberFlagExt2: int = Field(..., description="成员扩展Flag 2")
-    isSpecialShielded: bool = Field(..., description="是否被特别屏蔽")
-    cardNameId: int = Field(..., description="群名片ID")
-
-
 class GetGroupShutListRes(BaseModel):
-    """
-    获取群禁言列表接口响应参数
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: list[GroupShutMember] = Field(..., description="禁言成员列表")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示词")
-    echo: str | None = Field(default=None, description="Echo")
+    """获取群禁言列表响应模型"""
+    class MemberItem(BaseModel):
+        """禁言成员详细信息"""
+        uid: str = Field(..., description="用户ID")
+        qid: str = Field(..., description="QID")
+        uin: str = Field(..., description="UIN")
+        nick: str = Field(..., description="昵称")
+        remark: str = Field(..., description="备注")
+        card_type: int = Field(..., description="卡片类型")
+        card_name: str = Field(..., description="卡片名称")
+        role: int = Field(..., description="角色")
+        avatar_path: str = Field(..., description="头像路径")
+        shut_up_time: int = Field(..., description="解禁时间，UNIX时间戳")
+        is_delete: bool = Field(..., description="是否已删除")
+        is_special_concerned: bool = Field(..., description="是否特别关注")
+        is_special_shield: bool = Field(..., description="是否特别屏蔽")
+        is_robot: bool = Field(..., description="是否是机器人")
+        group_honor: dict[str, Any] = Field(default_factory=dict, description="群荣誉信息")
+        member_real_level: int = Field(..., description="群聊真实等级")
+        member_level: int = Field(..., description="群成员等级")
+        global_group_level: int = Field(..., description="全局群等级")
+        global_group_point: int = Field(..., description="全局群积分")
+        member_title_id: int = Field(..., description="成员头衔ID")
+        member_special_title: str = Field(..., description="成员特殊头衔")
+        last_speak_time: int = Field(..., description="最后发言时间，UNIX时间戳")
+        join_time: int = Field(..., description="入群时间，UNIX时间戳")
+        special_title_expire_time: str = Field(..., description="特殊头衔过期时间")
+        user_show_flag: int = Field(..., description="用户显示标志")
+        user_show_flag_new: int = Field(..., description="新用户显示标志")
+        rich_flag: int = Field(..., description="富文本标志")
+        mss_vip_type: int = Field(..., description="MSS VIP类型")
+        big_club_level: int = Field(..., description="大会员等级")
+        big_club_flag: int = Field(..., description="大会员标志")
+        auto_remark: str = Field(..., description="自动备注")
+        credit_level: int = Field(..., description="信用等级")
+        member_flag: int = Field(..., description="成员标志")
+        member_flag_ext: int = Field(..., description="成员扩展标志")
+        member_mobile_flag: int = Field(..., description="成员手机标志")
+        member_flag_ext2: int = Field(..., description="成员扩展标志2")
+        is_special_shielded: bool = Field(..., description="是否被特别屏蔽")
+        card_name_id: int = Field(..., description="卡片名称ID")
 
-# endregion res
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="状态码，固定为 'ok'")
+    retcode: float = Field(0.0, description="返回码")
+    data: list[MemberItem] = Field(default_factory=list, description="禁言成员列表")
+    message: str = Field("", description="消息")
+    wording: str = Field("", description="提示词")
+    echo: str | None = Field(None, description="回声")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class GetGroupShutListAPI(BaseModel):
@@ -103,7 +102,6 @@ class GetGroupShutListAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupShutListReq
     Res: type[BaseModel] = GetGroupShutListRes
-# endregion api
 
-
+# endregion api/
 # endregion code

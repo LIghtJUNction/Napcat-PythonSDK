@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['群聊相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659323e0
 @llms.txt: https://napcat.apifox.cn/226659323e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
-@description: 
+@description:
 
 summary:获取群过滤系统消息
 
@@ -21,59 +21,72 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
 from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class Result(BaseModel):
+    status: Literal["ok"] = Field("ok", description="Status of the operation, typically 'ok' for success.")
+    retcode: float = Field(0.0, description="Return code indicating the result of the operation.")
+    data: dict = Field(default_factory=dict, description="Generic data payload for the result.")
+    message: str = Field("", description="A descriptive message about the operation's result.")
+    wording: str = Field("", description="User-friendly wording for the operation's result.")
+    echo: str | None = Field(None, description="Optional echo field for request correlation.")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class SystemInfo(BaseModel):
+    request_id: float = Field(description="Request ID for the system message.")
+    invitor_uin: float = Field(description="UIN of the invitor.")
+    invitor_nick: str = Field(description="Nickname of the invitor.")
+    group_id: float = Field(description="ID of the group.")
+    message: str = Field(description="The content of the system message.")
+    group_name: str = Field(description="Name of the group.")
+    checked: bool = Field(description="Indicates if the message has been checked.")
+    actor: float = Field(description="Actor UIN involved in the message.")
+    requester_nick: str = Field(description="Nickname of the requester.")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class GetGroupIgnoredNotifiesReq(BaseModel):
-    """
-    请求参数
-    """
-    # 请求体为空，无需定义字段
-    pass
-# endregion req
+    """获取群过滤系统消息请求模型"""
+    pass  # 没有请求参数
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetGroupIgnoredNotifiesRes(BaseModel):
-    """
-    响应参数
-    """
-
-    class SystemInfo(BaseModel):
-        """
-        系统信息详情
-        """
-        request_id: int = Field(..., description="请求ID")
-        invitor_uin: int = Field(..., description="邀请者UIN")
-        invitor_nick: str = Field(..., description="邀请者昵称")
-        group_id: int = Field(..., description="群组ID")
-        message: str = Field(..., description="消息内容")
-        group_name: str = Field(..., description="群组名称")
-        checked: bool = Field(..., description="是否已处理")
-        actor: int = Field(..., description="处理者UIN，0表示未处理")
-        requester_nick: str = Field(..., description="请求者昵称")
-
+    """获取群过滤系统消息响应模型"""
     class Data(BaseModel):
-        """
-        响应数据详情
-        """
-        join_requests: list[SystemInfo] = Field(..., description="加群请求列表")
-        InvitedRequest: list[SystemInfo] = Field(..., description="邀请加入群组请求列表")
+        """响应数据类型"""
+        InvitedRequest: list[SystemInfo] = Field([], description="List of invited requests.")
+        join_requests: list[SystemInfo] = Field([], description="List of join requests.")
 
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示文本")
-    echo: str | None = Field(..., description="Echo")
+        model_config = {
+            "extra": "allow",
+        }
 
+    status: Literal["ok"] = Field("ok", description="Status of the operation, typically 'ok' for success.")
+    retcode: float = Field(0.0, description="Return code indicating the result of the operation.")
+    data: Data = Field(default_factory=Data, description="Detailed data payload for the response.")
+    message: str = Field("", description="A descriptive message about the operation's result.")
+    wording: str = Field("", description="User-friendly wording for the operation's result.")
+    echo: str | None = Field(None, description="Optional echo field for request correlation.")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetGroupIgnoredNotifiesAPI(BaseModel):
@@ -82,9 +95,6 @@ class GetGroupIgnoredNotifiesAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupIgnoredNotifiesReq
     Res: type[BaseModel] = GetGroupIgnoredNotifiesRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

@@ -1,6 +1,17 @@
-Based on the OpenAPI schema, I have refactored the Pydantic models:
-1.  **GetGroupMemberListReq**: Added `group_id` (int | str, required) and `no_cache` (bool, default=False) with descriptions.
-2.  **GroupMemberInfo**: Created a new model to represent the items in the `data` list of the response. Added all fields specified in the schema (`group_id`, `user_id`, `nickname`, `card`, `sex`, `age`, `area`, `level`, `qq_level`, `join_time`, `last_sent_time`, `title_expire_time`, `unfriendly`, `card_changeable`, `is_robot`, `shut_up_timestamp`, `role`, `title`) with appropriate types (int, str, bool), descriptions using `Field`, and marked them as required.
-3.  **GetGroupMemberListRes**: Updated the model to include `status` (Literal['ok'], required), `retcode` (int, required), `data` (list[GroupMemberInfo], required), `message` (str, required), `wording` (str, required), and `echo` (str | None, required). Added descriptions for all fields.
-4.  **Imports**: Added `Literal` from `typing`. Removed unused `Any`.
-5.  **Coding Guidelines**: Ensured type annotations are used, `| None` for nullable, `Literal` for fixed values, and `Field` for descriptions and default values.
+根据OpenAPI规范和Pydantic v2编码指南修复了模型。
+主要修复点：
+1.  **移除多余导入**: 删除了 `logging` 和 `typing.Any`。
+2.  **类型标注规范化**: 确保所有字段强制类型标注，并使用 `str | float` 和 `str | None` 替代 `Union` 和 `Optional`。
+3.  **修复请求模型 `GetGroupMemberListReq`**: 
+    *   `group_id` 字段根据 OpenAPI `oneOf` 定义，从自定义 `group_id` 类修复为 `str | float` 类型。
+    *   `no_cache` 字段添加了默认值 `False` 并提供了描述。
+4.  **修复响应模型 `GetGroupMemberListRes`**: 
+    *   `status` 字段根据 OpenAPI `const: ok` 定义，使用 `Literal["ok"]` 类型。
+    *   移除了不正确的嵌套 `Data` 类，`data` 字段直接定义为 `list[GroupMemberInfo]`。
+    *   所有响应字段均根据 OpenAPI 规范添加了描述，并确保没有不必要的默认值（因为它们在 OpenAPI 中都被标记为 `required`）。
+5.  **重构组件模型**: 
+    *   将 `群成员信息` 类重命名为符合Python命名规范的 `GroupMemberInfo`。
+    *   删除了原始代码中未使用的 `group_id` 类和 `result` 类。
+6.  **移除 `model_config = {"extra": "allow",}`**: 默认情况下，Pydantic v2 模型对未定义的字段是严格的（`extra='ignore'`），此举符合更严格的模型生成要求。
+7.  **添加或优化字段描述**: 为所有字段提供了更准确的描述。
+8.  **命名规范**: 确保类名使用驼峰命名法。

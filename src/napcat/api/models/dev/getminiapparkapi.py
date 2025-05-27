@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['账号相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/227738594e0
 @llms.txt: https://napcat.apifox.cn/227738594e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:11
 
 @description: 
 
@@ -21,55 +21,58 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
 from typing import Literal
 
-logger = logging.getLogger(__name__)
-
 # region req
 class GetMiniAppArkReq(BaseModel):
-    """
-    获取小程序卡片请求参数
-    """
-
+    """获取小程序卡片"""
     type: Literal["bili", "weibo"] | None = Field(None, description="只填入必须参数的话该值必须填")
-    title: str = Field(..., description="标题")
-    desc: str = Field(..., description="内容")
-    picUrl: str = Field(..., description="图片链接")
-    jumpUrl: str = Field(..., description="跳转链接")
-    iconUrl: str | None = Field(None, description="")
-    sdkId: str | None = Field(None, description="")
-    appId: str | None = Field(None, description="")
-    scene: int | str | None = Field(None, description="")
-    templateType: int | str | None = Field(None, description="")
-    businessType: int | str | None = Field(None, description="")
-    verType: int | str | None = Field(None, description="")
-    shareType: int | str | None = Field(None, description="")
-    versionId: str | None = Field(None, description="")
-    withShareTicket: int | str | None = Field(None, description="")
-    rawArkData: bool | str | None = Field(None, description="")
+    title: str = Field(description="标题")
+    desc: str = Field(description="内容")
+    picUrl: str = Field(description="图片链接")
+    jumpUrl: str = Field(description="跳转链接")
+    iconUrl: str | None = Field(None, description="图标链接")
+    sdkId: str | None = Field(None, description="SDK ID")
+    appId: str | None = Field(None, description="应用 ID")
+    scene: float | str | None = Field(None, description="场景")
+    templateType: float | str | None = Field(None, description="模板类型")
+    businessType: float | str | None = Field(None, description="业务类型")
+    verType: float | str | None = Field(None, description="版本类型")
+    shareType: float | str | None = Field(None, description="分享类型")
+    versionId: str | None = Field(None, description="版本 ID")
+    withShareTicket: float | str | None = Field(None, description="是否携带分享票据")
+    rawArkData: bool | str | None = Field(None, description="原始Ark数据")
 
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetMiniAppArkRes(BaseModel):
-    """
-    获取小程序卡片响应参数
-    Note: The API spec indicates an empty response body schema (properties: {}). 
-    Assuming a standard Napcat response wrapper structure.
-    """
-    retcode: int = Field(..., description="响应码")
-    status: Literal["ok", "failed"] = Field(..., description="响应状态")
-    data: dict | None = Field(None, description="响应数据")
-    # The OpenAPI spec shows an empty object for properties,
-    # so the data field contains no specific defined structure.
-    # If there were properties defined under the response schema,
-    # a nested Data class would be defined here.
+    """获取小程序卡片"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(True, description="是否可用")
+        reason: str | None = Field(None, description="原因")
 
-# endregion res
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="状态，如 'ok'")
+    retcode: float = Field(0.0, description="返回码，0表示成功")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field("", description="消息")
+    wording: str = Field("", description="文字描述")
+    echo: str | None = Field(None, description="回显内容")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetMiniAppArkAPI(BaseModel):
@@ -78,9 +81,6 @@ class GetMiniAppArkAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetMiniAppArkReq
     Res: type[BaseModel] = GetMiniAppArkRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

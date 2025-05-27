@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 文件相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658755e0
 @llms.txt: https://napcat.apifox.cn/226658755e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,71 +21,79 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
-
-logger = logging.getLogger(__name__)
+from typing import Literal
 
 # region req
 class DeleteGroupFileReq(BaseModel):
-    """
-    删除群文件请求模型
-    """
-    group_id: int | str = Field(..., description="群号")
+    """删除群文件请求"""
+    group_id: int | str = Field(..., description="群ID，可以是数字或字符串")
     file_id: str = Field(..., description="文件ID")
-# endregion req
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-class TransGroupFileResultInnerResult(BaseModel):
-    """
-    删除群文件操作结果详情
-    """
-    retCode: int = Field(..., description="返回码")
-    retMsg: str = Field(..., description="返回信息")
-    clientWording: str = Field(..., description="客户端文案")
-
-class TransGroupFileResult(BaseModel):
-    """
-    群文件操作结果
-    """
-    result: TransGroupFileResultInnerResult = Field(..., description="操作结果")
-    successFileIdList: list[str] = Field(..., description="删除成功的文件ID列表")
-    failFileIdList: list[str] = Field(..., description="删除失败的文件ID列表")
-
-class DeleteGroupFileResData(BaseModel):
-    """
-    删除群文件响应数据
-    """
-    result: int = Field(..., description="删除结果，1为成功")
-    errMsg: str = Field(..., description="错误信息")
-    transGroupFileResult: TransGroupFileResult = Field(..., description="群文件操作结果详情")
-
 class DeleteGroupFileRes(BaseModel):
-    """
-    删除群文件响应模型
-    """
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="响应码")
-    data: DeleteGroupFileResData = Field(..., description="响应数据")
-    message: str = Field(..., description="信息")
-    wording: str = Field(..., description="文案")
-    echo: str | None = Field(None, description="echo信息")
+    """删除群文件响应"""
 
-# endregion res
+    class Data(BaseModel):
+        """响应数据类型"""
+
+        class TransGroupFileResult(BaseModel):
+            """文件传输结果"""
+
+            class Result(BaseModel):
+                """文件传输结果详情"""
+                retCode: float = Field(..., description="返回码")
+                retMsg: str = Field(..., description="返回消息")
+                clientWording: str = Field(..., description="客户端提示信息")
+
+                model_config = {
+                    "extra": "allow",
+                }
+
+            result: Result = Field(..., description="文件传输结果详情")
+            successFileIdList: list[str] = Field([], description="成功删除的文件ID列表")
+            failFileIdList: list[str] = Field([], description="删除失败的文件ID列表")
+
+            model_config = {
+                "extra": "allow",
+            }
+
+        result: float = Field(..., description="操作结果")
+        errMsg: str = Field(..., description="错误信息")
+        transGroupFileResult: TransGroupFileResult = Field(..., description="群文件传输结果")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="状态码")
+    retcode: float = Field(0.0, description="返回码")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field("", description="消息")
+    wording: str = Field("", description="提示")
+    echo: str | None = Field(None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class DeleteGroupFileAPI(BaseModel):
     """delete_group_file接口数据模型"""
-    endpoint: str = "delete_group_file"
-    method: str = "POST"
+    endpoint: Literal["delete_group_file"] = "delete_group_file"
+    method: Literal["POST"] = "POST"
     Req: type[BaseModel] = DeleteGroupFileReq
     Res: type[BaseModel] = DeleteGroupFileRes
-# endregion api
 
-
-
-
+    model_config = {
+        "extra": "allow",
+    }
+# region api/
 # endregion code

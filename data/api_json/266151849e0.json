@@ -32,7 +32,8 @@
                   "file_id"
                 ],
                 "x-apifox-ignore-properties": []
-              }
+              },
+              "example": ""
             }
           }
         },

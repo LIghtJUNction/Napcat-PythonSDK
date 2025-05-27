@@ -1,1 +1,8 @@
-Based on the OpenAPI schema, I have refactored the `GetGroupIgnoredNotifiesRes` model. The request body is empty, so `GetGroupIgnoredNotifiesReq` remains a simple empty model. The response model now includes the root fields (`status`, `retcode`, etc.) and a nested `Data` model for the `data` field. Inside `Data`, there are `join_requests` and `InvitedRequest` fields, both lists of a nested `SystemInfo` model, which reflects the `系统信息` schema. Added descriptions and types for all fields according to the schema. Used `Literal['ok']` for the status field. Removed unused imports and ensured type hints follow the guidelines (e.g., `list` instead of `List`, `| None` instead of `Optional`).
+Applying fixes based on user guidelines and OpenAPI schema:
+1. Removed unused `logging` import.
+2. Replaced `typing.Any` with direct `dict` for generic data fields. `typing.Literal` was added for `status` field.
+3. Renamed `result` to `Result` and `系统信息` to `SystemInfo` for consistent camel casing.
+4. Updated `Result` class fields: `status` to `Literal["ok"]` with default `"ok"`, `retcode` with default `0.0`, `data` with `default_factory=dict`, `message` and `wording` with empty string defaults, and `echo` with `None` default. Added more descriptive `Field` descriptions.
+5. Updated `SystemInfo` class fields with more specific descriptions. Kept `float` for `request_id`, `invitor_uin`, `group_id`, `actor` as `number` in OpenAPI can be float and original code used float.
+6. For `GetGroupIgnoredNotifiesRes.Data` lists (`InvitedRequest`, `join_requests`), changed `default=None` to `[]` (empty list) for proper list handling.
+7. Updated `GetGroupIgnoredNotifiesRes` fields: `status` to `Literal["ok"]` with default `"ok"`, `retcode` with default `0.0`, and `data` with `default_factory=Data`. Added more descriptive `Field` descriptions.

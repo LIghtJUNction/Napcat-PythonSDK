@@ -1,7 +1,10 @@
-Based on the provided OpenAPI specification:
-1. The request body is empty. The `CheckUrlSafelyReq` remains with `pass`.
-2. The response body in the spec is an empty object `{}`. However, the user requested adding descriptions and default values, and specifically mentioned using `Literal["ok"]` for a status field. Assuming a common API response structure, I've added `status: Literal["ok"]` and `message: str` with default values and descriptions to the `CheckUrlSafelyRes` model, aligning with the user's instructions to add fields with descriptions and defaults.
-3. Removed the unused `typing.Any` import.
-4. Ensured type annotations are present.
-5. Added docstrings to the models.
-6. Used `Field` for descriptions and default values as requested.
+Applying fixes based on user requirements:
+1.  **Removed redundant imports**: Removed `from typing import Any` as it was not used.
+2.  **Added Literal type**: Changed `status: str` to `status: Literal["ok"]` for a fixed string value, and imported `Literal`.
+3.  **Ensured type annotations**: All fields already had type annotations. Confirmed compliance.
+4.  **Ensured descriptions and initial values**: All `Field` definitions now explicitly provide `default` or `default_factory` and `description`.
+5.  **Nested classes**: The `Data` class remains correctly nested within `CheckUrlSafelyRes`.
+6.  **Refined default_factory**: Changed `default_factory=lambda: Data()` to `default_factory=Data` for conciseness and efficiency when the callable takes no arguments.
+7.  **Float default**: Explicitly set `retcode` default to `0.0` to match the float type.
+
+Note: The provided OpenAPI schema for the response was empty. The Pydantic model structure was prioritized as the authoritative definition for the response body, with type and default value fixes applied accordingly.

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 文件相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226658823e0
 @llms.txt: https://napcat.apifox.cn/226658823e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,85 +21,90 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+# The original 'group_id' BaseModel was incorrect as per OpenAPI schema.
+# The OpenAPI schema indicates group_id is directly a number or string, not an object.
+# Thus, it has been removed.
 
-# region models
+# The 'result' BaseModel from OpenAPI is a generic response structure,
+# but 'GetGroupRootFilesRes' directly defines its fields based on the specific API response.
+# Thus, it has been removed to avoid redundancy and better reflect the actual response structure.
 
-class GroupId(BaseModel):
-    """
-    群号，可以是数字或字符串
-    """
-    __root__: int | str
-
-class GroupFileInfo(BaseModel):
-    """
-    群文件信息
-    """
-    group_id: int = Field(..., description="群号")
-    file_id: str = Field(..., description="文件ID")
-    file_name: str = Field(..., description="文件名称")
-    busid: int = Field(..., description="业务ID")
-    size: int = Field(..., description="文件大小 (bytes)")
-    file_size: int = Field(..., description="文件大小 (bytes), 同 size")
-    upload_time: int = Field(..., description="上传时间 (时间戳)")
-    dead_time: int = Field(..., description="过期时间 (时间戳)")
-    modify_time: int = Field(..., description="修改时间 (时间戳)")
-    download_times: int = Field(..., description="下载次数")
-    uploader: int = Field(..., description="上传者QQ号")
-    uploader_name: str = Field(..., description="上传者昵称")
-
-class GroupFolderInfo(BaseModel):
-    """
-    群文件夹信息
-    """
-    group_id: int = Field(..., description="群号")
-    folder_id: str = Field(..., description="文件夹ID")
-    folder: str = Field(..., description="文件夹名") # OpenAPI spec shows 'folder', but description says '文件夹名称', seems inconsistent but using 'folder' as per property name
+class 群文件夹信息(BaseModel):
+    group_id: float = Field(..., description="group_id字段")
+    folder_id: str = Field(..., description="folder_id字段")
+    folder: str = Field(..., description="folder字段")
     folder_name: str = Field(..., description="文件夹名称")
-    create_time: int = Field(..., description="创建时间 (时间戳)")
-    creator: int = Field(..., description="创建人账号 (QQ号)")
+    create_time: float = Field(..., description="创建时间")
+    creator: float = Field(..., description="创建人账号")
     creator_name: str = Field(..., description="创建人昵称")
-    total_file_count: int = Field(..., description="文件夹内的文件数量")
+    total_file_count: float = Field(..., description="文件数量")
 
-# endregion models
+    model_config = {
+        "extra": "allow",
+    }
 
+class 群文件信息(BaseModel):
+    group_id: float = Field(..., description="group_id字段")
+    file_id: str = Field(..., description="file_id字段")
+    file_name: str = Field(..., description="file_name字段")
+    busid: float = Field(..., description="busid字段")
+    size: float = Field(..., description="size字段")
+    file_size: float = Field(..., description="file_size字段")
+    upload_time: float = Field(..., description="upload_time字段")
+    dead_time: float = Field(..., description="dead_time字段")
+    modify_time: float = Field(..., description="modify_time字段")
+    download_times: float = Field(..., description="download_times字段")
+    uploader: float = Field(..., description="uploader字段")
+    uploader_name: str = Field(..., description="uploader_name字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion component_models/
 
 # region req
 class GetGroupRootFilesReq(BaseModel):
-    """
-    获取群根目录文件列表请求
-    """
-    group_id: GroupId = Field(..., description="群号")
-    file_count: int = Field(50, description="文件数量限制")
-# endregion req
+    """获取群根目录文件列表"""
+    # Based on OpenAPI 'group_id' schema: oneOf: [number, string]
+    group_id: float | str = Field(..., description="群ID")
 
+    # OpenAPI specifies default: 50
+    file_count: float = Field(50.0, description="获取文件数量，默认50")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-
-class GetGroupRootFilesResData(BaseModel):
-    """
-    获取群根目录文件列表响应数据
-    """
-    files: list[GroupFileInfo] = Field(..., description="文件列表")
-    folders: list[GroupFolderInfo] = Field(..., description="文件夹列表")
-
-
 class GetGroupRootFilesRes(BaseModel):
-    """
-    获取群根目录文件列表响应
-    """\n    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="响应码")
-    data: GetGroupRootFilesResData = Field(..., description="响应数据")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应提示")
-    echo: str | None = Field(None, description="回显")
+    """获取群根目录文件列表"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        # OpenAPI indicates files and folders are required and can be empty arrays
+        files: list[群文件信息] = Field([], description="文件列表")
+        folders: list[群文件夹信息] = Field([], description="文件夹列表")
 
-# endregion res
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field("ok", description="status字段，固定为'ok'")
+    retcode: float = Field(0.0, description="retcode字段，默认0")
+    data: Data = Field(default_factory=Data, description="data字段")
+    message: str = Field("", description="message字段，默认空字符串")
+    wording: str = Field("", description="wording字段，默认空字符串")
+    echo: str | None = Field(None, description="echo字段，可能为null")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetGroupRootFilesAPI(BaseModel):
@@ -108,9 +113,6 @@ class GetGroupRootFilesAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupRootFilesReq
     Res: type[BaseModel] = GetGroupRootFilesRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

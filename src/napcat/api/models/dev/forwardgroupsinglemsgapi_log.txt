@@ -1,9 +1,11 @@
-Refactoring code based on OpenAPI spec.
-- Added group_id and message_id fields to ForwardGroupSingleMsgReq with correct types (int | str) and descriptions.
-- Added status, retcode, data, message, wording, and echo fields to ForwardGroupSingleMsgRes.
-- Used Literal["ok"] for the status field.
-- Used None type for the data field as per spec.
-- Used str | None for the echo field.
-- Added descriptions to all fields.
-- Removed unused import Any.
-- Updated metadata descriptions.
+根据OpenAPI规范和编码指南修复了Pydantic模型：
+1.  **移除了多余的导入**: 删除了 `from typing import Any`，因为它不再被使用。
+2.  **修复了 `group_id` 和 `message_id` 类型**: 根据OpenAPI规范，`group_id` 和 `message_id` 是 `str | int` 类型的标量值，而不是带有 `id` 和 `name` 字段的嵌套对象。因此，删除了不正确的 `message_id` 和 `group_id` 组件类，并在 `ForwardGroupSingleMsgReq` 中将它们直接定义为 `str | int` 类型，并添加了描述。
+3.  **移除了 `result` 组件类**: `result` 类在OpenAPI中定义了一个 `data` 字段为 `{}` 的空对象，但实际响应中 `data` 字段被明确覆盖为 `type: 'null'`。为避免混淆和确保一致性，移除了此组件类。
+4.  **修复了 `ForwardGroupSingleMsgRes` 模型**: 
+    *   `status` 字段的类型从 `str` 修改为 `Literal["ok"]`，并提供了默认值和描述。
+    *   `data` 字段的类型从 `Data` (一个嵌套类) 修改为 `None`，并提供了默认值和描述，以符合OpenAPI规范中 `data` 字段为 `null` 的定义。
+    *   为 `retcode`, `message`, `wording`, `echo` 字段添加了默认值和描述，以满足编码指南中“Field写好默认值”的要求。
+5.  **强制类型标注**: 确保所有字段都有明确的类型标注。
+6.  **PydanticV2兼容性**: 确保使用了PydanticV2的最新实践，例如 `str | int` 和 `str | None`。
+7.  **整体结构优化**: 调整了代码结构，使其更符合Pydantic模型生成的最佳实践，并移除了不再需要的代码段。

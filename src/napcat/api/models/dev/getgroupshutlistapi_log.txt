@@ -1,10 +1,8 @@
-Based on the OpenAPI spec:
-1. Defined `GetGroupShutListReq` with the required `group_id` field (int or str).
-2. Defined a nested model `GroupShutMember` to represent items in the `data` array of the response.
-3. Mapped all fields from the OpenAPI spec for `GroupShutMember`, adding descriptions and required fields using `Field(...)`.
-4. Handled the `groupHonor` field as a `dict` based on the empty object definition.
-5. Defined `GetGroupShutListRes` including `status` (Literal['ok']), `retcode`, `data` (list of `GroupShutMember`), `message`, `wording`, and `echo` (str | None with default=None).
-6. Ensured all type hints use built-in types and `| None`.
-7. Added descriptions for all fields in both request and response models.
-8. Removed unused imports (`typing.Any`).
-9. Updated the `@description` in the metadata.
+修复内容：
+1. 移除了多余的 `logging` 导入。
+2. 根据OpenAPI规范，修正了请求参数 `group_id` 的类型，现为 `str | int`，并移除了原先不符合规范的 `group_id` 组件模型。
+3. 重构了响应模型 `GetGroupShutListRes`，将其内部的 `Data` 类修改为 `MemberItem`，更准确地描述了 `data` 数组中的每个元素。
+4. `MemberItem` 类根据OpenAPI规范详细定义了所有字段及其类型，包括将所有CamelCase字段名转换为snake_case，并添加了相应的描述。
+5. 响应模型中的 `status` 字段类型由 `str` 更改为 `Literal["ok"]`，以精确匹配API定义。
+6. 为所有字段添加了明确的类型标注、描述和默认值，确保符合Pydantic V2的最佳实践和强制类型标注要求。
+7. 移除了不符合当前API响应结构的 `result` 组件模型。

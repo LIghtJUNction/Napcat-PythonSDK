@@ -4,7 +4,7 @@
 @tags: {{tags}}
 @homepage: https://napcat.apifox.cn/228534361e0
 @llms.txt: https://napcat.apifox.cn/228534361e0.md
-@last_update: 2025-04-27 00:53:41
+@last_update: 2025-05-28 01:34:11
 
 @description: 
 
@@ -21,32 +21,46 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Any
 from pydantic import BaseModel, Field
+from typing import Any
+import logging
 
 logger = logging.getLogger(__name__)
 
 # region req
-class CheckUrlSafelyReq(BaseModel): # type: ignore
-    """
-    {{DESC_EndPointReq}}
-    """
+class CheckUrlSafelyReq(BaseModel):
+    """检查链接安全性"""
+    pass  # 没有请求参数
 
-    pass
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
-class CheckUrlSafelyRes(BaseModel): # type: ignore
-    # 定义响应参数
-    # 例如：
-    # param1: str = Field(..., description="参数1的描述")
-    # param2: int = Field(..., description="参数2的描述")
-    
-    pass
-# endregion res
+class CheckUrlSafelyRes(BaseModel):
+    """检查链接安全性"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(default=True, description="是否可用")
+        reason: str | None = Field(default=None, description="原因")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: str = Field(default="ok", description="状态，如 'ok'")
+    retcode: float = Field(default=0, description="返回码，0表示成功")
+    data: Data = Field(default_factory=lambda: Data(), description="响应数据")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="文字描述")
+    echo: str | None = Field(default=None, description="回显内容")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class CheckUrlSafelyAPI(BaseModel):
@@ -55,10 +69,7 @@ class CheckUrlSafelyAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = CheckUrlSafelyReq
     Res: type[BaseModel] = CheckUrlSafelyRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code
 

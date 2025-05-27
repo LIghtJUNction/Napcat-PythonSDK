@@ -1,16 +1,1 @@
-Based on the OpenAPI spec:
-- Refactored FetchCustomFaceReq to include the 'count' field (int, default 48) with description.
-- Refactored FetchCustomFaceRes to match the response schema:
-  - 'status' is Literal["ok"].
-  - 'retcode' is int.
-  - 'data' is list[str].
-  - 'message' is str.
-  - 'wording' is str.
-  - 'echo' is str | None.
-  - Added descriptions for all fields.
-- Removed unused 'Any' import.
-- Ensured all fields have type annotations and descriptions.
-- Removed `type: ignore`.
-- Used built-in types (`list`, `str`, `int`) and `| None`.
-- Added `Literal` import.
-- No nested class was needed for 'data'.
+根据PydanticV2和Python3.13编码指南修复了代码。主要修改点包括：移除不必要的`logging`导入；修正`FetchCustomFaceReq`中`count`字段的类型和默认值，使其符合OpenAPI规范；修正`FetchCustomFaceRes`中`data`字段的类型，由嵌套模型改为`list[str]`以匹配OpenAPI响应Schema；为所有字段添加了默认值和描述；将`status`字段的类型从`str`修正为`Literal["ok"]`以精确匹配`const: ok`约束。`result`组件模型的`data`字段保持`dict[str, Any]`，以反映其通用对象类型。

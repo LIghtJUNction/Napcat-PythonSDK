@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 其他/bug
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659254e0
 @llms.txt: https://napcat.apifox.cn/226659254e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
 @description: 
 
@@ -21,35 +21,38 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal # Import Literal for status
 from pydantic import BaseModel, Field
+from typing import Any, Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+# user_id 和 result 组件模型已根据 OpenAPI 规范合并到对应的请求/响应模型中
+# region component_models/
 
 # region req
 class FetchUserProfileLikeReq(BaseModel):
-    """
-    请求 fetch_user_profile_like 参数
-    """
-    user_id: int | str = Field(..., description="用户ID，可以是QQ号(number)或OpenID(string)")
-# endregion req
+    """fetch_user_profile_like 请求模型"""
+    user_id: int | str = Field(..., description="用户ID，可以是数字或字符串")
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class FetchUserProfileLikeRes(BaseModel):
-    """
-    响应 fetch_user_profile_like 参数
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: dict = Field(..., description="数据载荷")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="文字说明")
-    echo: str | None = Field(..., description="回显数据")
+    """fetch_user_profile_like 响应模型"""
+    status: Literal["ok"] = Field("ok", description="状态，固定为 'ok'")
+    retcode: float = Field(0.0, description="返回码，0表示成功")
+    data: dict[str, Any] = Field(default_factory=dict, description="响应数据，一个空对象")
+    message: str = Field("", description="消息")
+    wording: str = Field("", description="文字描述")
+    echo: str | None = Field(None, description="回显内容，可能为空")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class FetchUserProfileLikeAPI(BaseModel):
@@ -58,9 +61,6 @@ class FetchUserProfileLikeAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = FetchUserProfileLikeReq
     Res: type[BaseModel] = FetchUserProfileLikeRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

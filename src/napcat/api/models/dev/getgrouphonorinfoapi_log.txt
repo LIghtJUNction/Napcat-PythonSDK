@@ -1,7 +1,14 @@
-Based on the OpenAPI spec:
-1.  Added `group_id` (int | str) and `type` (str) with default 'all' to `GetGroupHonorInfoReq`. Added descriptions.
-2.  Created a nested `GroupHonorInfo` model for the repeated honor info structure.
-3.  Created a nested `Data` model within `GetGroupHonorInfoRes` to hold the honor lists and current talkative, referencing the `GroupHonorInfo` model. Added descriptions to fields.
-4.  Added standard response fields (`status`, `retcode`, `data`, `message`, `wording`, `echo`) to `GetGroupHonorInfoRes`. Used `Literal["ok"]` for status and `str | None` for nullable echo. Added descriptions.
-5.  Removed unused imports (`logging`, `Any`).
-6.  Ensured all fields have type hints and descriptions using `Field`.
+构建日志:
+1. 移除了冗余的 'logging' 和 'Any' 导入。
+2. 删除了与OpenAPI规范不符的 'group_id' (BaseModel) 和 'result' 模型，因为 'group_id' 在请求中应为 'int | str'，'result' 模型被响应中的 'GetGroupHonorInfoRes' 完全覆盖。
+3. 将 '群荣誉信息' 模型重命名为 'GroupHonorInfo'，遵循驼峰命名法。根据OpenAPI规范，'GroupHonorInfo' 的所有字段 (user_id, nickname, avatar, description) 均被定义为必填，因此移除了 'None' 类型并移除了默认值。
+4. 修复了 'GetGroupHonorInfoReq' 类：
+   - 'group_id' 类型更改为 'int | str'，以符合OpenAPI规范中 'oneOf' 的定义。
+   - 'type' 字段使用 'typing.Literal' 定义了可能的枚举值，并添加了描述。
+5. 修复了 'GetGroupHonorInfoRes' 类：
+   - 嵌套的 'Data' 类中，将 '群荣誉信息' 的引用更正为 'GroupHonorInfo'。
+   - 根据OpenAPI规范，'Data' 类中的所有字段 (group_id, current_talkative, *_list) 都是必填项，因此移除了 'default=None' 和 'None' 类型。
+   - 'GetGroupHonorInfoRes' 的 'status' 字段类型更正为 'Literal["ok"]'。
+   - 为所有字段添加了清晰的描述和符合OpenAPI规范的默认值。
+6. 确保所有模型字段都具有类型标注、描述和正确的默认值（或表明其为必填）。
+7. 保持了 'model_config = {"extra": "allow"}' 配置，因为用户未明确要求移除。

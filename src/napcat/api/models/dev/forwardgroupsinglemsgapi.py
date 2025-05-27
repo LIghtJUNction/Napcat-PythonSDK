@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 消息相关/发送群聊消息
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659074e0
 @llms.txt: https://napcat.apifox.cn/226659074e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,53 +21,43 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
+import logging
 
 logger = logging.getLogger(__name__)
 
+# region component_models
+# message_id and group_id component models were removed as per OpenAPI spec they are scalar types (str | int)
+# result component model was removed as its definition was inconsistent with the specific response schema's data field
+# endregion component_models/
+
 # region req
 class ForwardGroupSingleMsgReq(BaseModel):
-    """
-    请求模型：消息转发到群
-    """
+    """消息转发到群"""
+    group_id: str | int = Field(..., description="群组ID，可以是字符串或整数")
+    message_id: str | int = Field(..., description="消息ID，可以是字符串或整数")
 
-    group_id: int | str = Field(
-        ..., description="群号"
-    )
-    message_id: int | str = Field(
-        ..., description="消息ID"
-    )
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
 class ForwardGroupSingleMsgRes(BaseModel):
-    """
-    响应模型：消息转发到群
-    """
-    status: Literal["ok"] = Field(
-        ..., description="响应状态"
-    )
-    retcode: int = Field(
-        ..., description="返回码"
-    )
-    data: None = Field(
-        ..., description="响应数据"
-    )
-    message: str = Field(
-        ..., description="错误信息"
-    )
-    wording: str = Field(
-        ..., description="错误信息的自然语言描述"
-    )
-    echo: str | None = Field(
-        None,
-        description="echo",
-    )
-# endregion res
+    """消息转发到群"""
+    status: Literal["ok"] = Field("ok", description="status字段，固定为'ok'")
+    retcode: float = Field(0.0, description="retcode字段")
+    data: None = Field(None, description="data字段，此API响应中固定为null")
+    message: str = Field("", description="message字段")
+    wording: str = Field("", description="wording字段")
+    echo: str | None = Field(None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class ForwardGroupSingleMsgAPI(BaseModel):
@@ -76,9 +66,6 @@ class ForwardGroupSingleMsgAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = ForwardGroupSingleMsgReq
     Res: type[BaseModel] = ForwardGroupSingleMsgRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

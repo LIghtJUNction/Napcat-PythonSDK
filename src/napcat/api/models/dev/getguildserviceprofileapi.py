@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 其他/接口
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659317e0
 @llms.txt: https://napcat.apifox.cn/226659317e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
-@description:
+@description: 
+
 summary:get_guild_service_profile
 
 """
@@ -21,33 +22,50 @@ __method__ = "POST"
 
 # region code
 from pydantic import BaseModel, Field
+from typing import Literal
 
 # region req
 class GetGuildServiceProfileReq(BaseModel):
-    """
-    请求参数模型
-    """
-    # 根据openapi文档，该接口没有请求参数
-    pass
-# endregion req
+    """get_guild_service_profile"""
+    pass  # 没有请求参数
+
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetGuildServiceProfileRes(BaseModel):
-    """
-    响应参数模型
-    """
-    # 根据openapi文档，响应体是一个空对象
-    pass
-# endregion res
+    """get_guild_service_profile"""
+    class Data(BaseModel):
+        """响应数据类型"""
+        yes: bool = Field(default=True, description="是否可用")
+        reason: str | None = Field(default=None, description="原因")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field(default="ok", description="状态，如 'ok'")
+    retcode: float = Field(default=0, description="返回码，0表示成功")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="文字描述")
+    echo: str | None = Field(default=None, description="回显内容")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetGuildServiceProfileAPI(BaseModel):
     """get_guild_service_profile接口数据模型"""
-    endpoint: str = Field("get_guild_service_profile", description="API端点")
-    method: str = Field("POST", description="HTTP方法")
-    Req: type[BaseModel] = Field(GetGuildServiceProfileReq, description="请求模型")
-    Res: type[BaseModel] = Field(GetGuildServiceProfileRes, description="响应模型")
-# endregion api
+    endpoint: str = "get_guild_service_profile"
+    method: str = "POST"
+    Req: type[BaseModel] = GetGuildServiceProfileReq
+    Res: type[BaseModel] = GetGuildServiceProfileRes
 
+# region api/
 # endregion code

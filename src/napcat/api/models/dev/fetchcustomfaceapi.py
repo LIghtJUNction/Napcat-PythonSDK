@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: 账号相关
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659210e0
 @llms.txt: https://napcat.apifox.cn/226659210e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
 @description: 
 
@@ -21,34 +21,48 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Any, Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class result(BaseModel):
+    status: Literal["ok"] = Field(default="ok", description="状态码，固定为ok")
+    retcode: float = Field(description="返回码")
+    data: dict[str, Any] = Field(default_factory=dict, description="数据字段")
+    message: str = Field(description="消息")
+    wording: str = Field(description="说明")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
 
 # region req
 class FetchCustomFaceReq(BaseModel):
-    """
-    获取收藏表情 请求参数
-    """
-    count: int = Field(default=48, description="获取数量")
-# endregion req
+    """获取收藏表情请求"""
+    count: float = Field(default=48, description="获取表情的数量，默认48")
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class FetchCustomFaceRes(BaseModel):
-    """
-    获取收藏表情 响应参数
-    """
-    status: Literal["ok"] = Field(description="响应状态")
-    retcode: int = Field(description="响应码")
-    data: list[str] = Field(description="收藏表情列表，每个元素是一个表情的唯一标识符")
-    message: str = Field(description="错误信息")
-    wording: str = Field(description="错误信息（中文）")
-    echo: str | None = Field(default=None, description="echo")
-# endregion res
+    """获取收藏表情响应"""
+    status: Literal["ok"] = Field(default="ok", description="状态码，固定为ok")
+    retcode: float = Field(default=0, description="返回码")
+    data: list[str] = Field(default_factory=list, description="收藏表情列表")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="说明")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class FetchCustomFaceAPI(BaseModel):
@@ -57,9 +71,6 @@ class FetchCustomFaceAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = FetchCustomFaceReq
     Res: type[BaseModel] = FetchCustomFaceRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

@@ -1,10 +1,1 @@
-Based on the OpenAPI specification and the provided guidelines:
-1. Removed unused import `Any`.
-2. Added `Literal` for the `status` field and `list` for array types.
-3. Defined `SystemMessageItem` model based on the `系统信息` schema.
-4. Defined `GetGroupSystemMsgResData` model to represent the `data` object in the response, containing lists of `SystemMessageItem`.
-5. Updated `GetGroupSystemMsgRes` to use `Literal["ok"]` for `status`, `GetGroupSystemMsgResData` for the `data` field, and `str | None` for `echo`.
-6. Added descriptions to fields in all models using `Field(..., description="...")`.
-7. Ensured all fields have explicit type hints.
-8. `GetGroupSystemMsgReq` remains empty as per the spec.
-9. The `GetGroupSystemMsgAPI` model structure remains the same, referencing the corrected `Req` and `Res` models.
+修复了PydanticV2模型代码：1. 移除了不必要的'typing.Any'导入，并引入了'typing.Literal'用于精确类型定义。2. 删除了冗余的'result'模型类，因为'GetGroupSystemMsgRes'直接实现了预期的响应结构。3. 将'GetGroupSystemMsgRes'中的'status'字段类型从'str'更改为'Literal["ok"]'，以匹配OpenAPI规范中的'const: ok'定义，并设置了默认值。4. 修正了'GetGroupSystemMsgRes.Data'中'InvitedRequest'和'join_requests'字段的默认值，从'default=None'改为'default_factory=list'，以确保它们始终为列表（即使为空），符合OpenAPI中'required'数组的语义。5. 为所有模型字段添加了更清晰的中文描述，并确保了所有字段都带有类型标注和适当的默认值。

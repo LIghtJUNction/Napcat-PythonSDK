@@ -1,13 +1,12 @@
-Refactoring `get_group_info` models based on OpenAPI spec.
-1. Added `group_id: int | str = Field(..., description="群号")` to `GetGroupInfoReq` based on requestBody schema.
-2. Defined `GetGroupInfoResData` model based on the `#/components/schemas/群信息` schema, including all properties with appropriate types (`int` or `str`) and descriptions.
-3. Defined `GetGroupInfoRes` model based on the response schema.
-4. Used `Literal["ok"]` for the `status` field.
-5. Used `int` for `retcode`, `group_all_shut`, `member_count`, `max_member_count` based on `type: number` in the spec.
-6. Used `GetGroupInfoResData` as the type for the `data` field in `GetGroupInfoRes`.
-7. Used `str | None` for the `echo` field based on `nullable: true`.
-8. Added `Field` with descriptions to all fields in `GetGroupInfoReq`, `GetGroupInfoRes`, and `GetGroupInfoResData`.
-9. Removed unused import `Any`.
-10. Added import `Literal`.
-11. Updated docstrings and metadata.
-12. Ensured type annotations adhere to guidelines (no typing.List, Union, etc.).
+构建过程日志：
+1. 移除了冗余的 `logging` 模块导入。
+2. 移除了不符合OpenAPI规范的 `group_id` 组件模型，因为API定义中 `group_id` 为 `int | str` 类型，而非对象。
+3. 移除了未被直接使用的 `result` 组件模型，因为 `GetGroupInfoRes` 直接定义了其响应结构。
+4. 将 `群信息` 组件模型重命名为 `GroupInfo`，以遵循Python的命名约定。
+5. 修复了 `GetGroupInfoReq` 中 `group_id` 字段的类型，从自定义 `group_id` 类更改为 `int | str`，并标记为必填字段。
+6. 修复了 `GetGroupInfoRes` 类中的 `data` 字段类型，将其从错误的 `Data` 类更改为正确的 `GroupInfo` 类。
+7. 移除了 `GetGroupInfoRes` 中错误的 `Data` 内部类。
+8. 将 `GetGroupInfoRes` 中的 `status` 字段类型更改为 `Literal["ok"]`，以精确表示其固定值。
+9. 调整了 `GetGroupInfoRes` 中所有字段的默认值和描述，使其与OpenAPI规范的必填性匹配，并确保描述清晰。
+10. 检查并确保所有类型标注都符合PydanticV2和Python 3.13的最新实践，如使用 `str | None` 替代 `Optional[str]`。
+11. 确保所有字段都有明确的描述。

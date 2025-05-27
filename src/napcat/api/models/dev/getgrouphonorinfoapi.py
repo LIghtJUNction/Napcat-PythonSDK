@@ -1,82 +1,61 @@
-# -*- coding: utf-8 -*-
-# region METADATA
-"""
-@tags: 群聊相关
-@homepage: https://napcat.apifox.cn/226657036e0
-@llms.txt: https://napcat.apifox.cn/226657036e0.md
-@last_update: 2025-04-27 00:53:40
-
-@description: |
-|  type                   |         类型                    |
-|  ----------------- | ------------------------ |
-| all                       |  所有（默认）             |
-| talkative              | 群聊之火                     |
-| performer           | 群聊炽焰                     |
-| legend                | 龙王                             |
-| strong_newbie   | 冒尖小春笋（R.I.P）     |
-| emotion              | 快乐源泉                      |
-
-summary:获取群荣誉
-
-"""
-__author__ = "LIghtJUNction"
-__version__ = "4.7.43"
-__endpoint__ = "get_group_honor_info"
-__id__ = "226657036e0"
-__method__ = "POST"
-
-# endregion METADATA
-
-
-# region code
 from pydantic import BaseModel, Field
 from typing import Literal
 
+# region component_models
+class GroupHonorInfo(BaseModel):
+    user_id: float = Field(description="用户ID")
+    nickname: str = Field(description="用户昵称")
+    avatar: float = Field(description="用户头像")
+    description: str = Field(description="说明")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion component_models/
+
 # region req
 class GetGroupHonorInfoReq(BaseModel):
-    """
-    获取群荣誉请求模型
-    """
+    """获取群荣誉请求"""
+    group_id: int | str = Field(description="群ID，可以是数字或字符串")
+    type: Literal["all", "talkative", "performer", "legend", "strong_newbie", "emotion"] | None = Field(
+        default=None,
+        description="荣誉类型，默认为all（所有），可选值：all, talkative, performer, legend, strong_newbie, emotion"
+    )
 
-    group_id: int | str = Field(..., description="群号")
-    type: str = Field("all", description="荣誉类型，可选值见description")
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
-class GroupHonorInfo(BaseModel):
-    """群荣誉信息"""
-
-    user_id: int = Field(..., description="用户ID")
-    nickname: str = Field(..., description="昵称")
-    avatar: int = Field(..., description="头像ID")
-    description: str = Field(..., description="说明")
-
-
 class GetGroupHonorInfoRes(BaseModel):
-    """
-    获取群荣誉响应模型
-    """
-
+    """获取群荣誉响应"""
     class Data(BaseModel):
-        """响应数据"""
+        """响应数据类型"""
+        group_id: str = Field(description="群ID")
+        current_talkative: GroupHonorInfo = Field(description="当前龙王")
+        talkative_list: list[GroupHonorInfo] = Field(description="群聊之火列表")
+        performer_list: list[GroupHonorInfo] = Field(description="群聊炽焰列表")
+        legend_list: list[GroupHonorInfo] = Field(description="龙王列表")
+        emotion_list: list[GroupHonorInfo] = Field(description="快乐源泉列表")
+        strong_newbie_list: list[GroupHonorInfo] = Field(description="冒尖小春笋列表")
 
-        group_id: str = Field(..., description="群号")
-        current_talkative: GroupHonorInfo = Field(..., description="当前龙王")
-        talkative_list: list[GroupHonorInfo] = Field(..., description="群聊之火")
-        performer_list: list[GroupHonorInfo] = Field(..., description="群聊炽焰")
-        legend_list: list[GroupHonorInfo] = Field(..., description="龙王")
-        emotion_list: list[GroupHonorInfo] = Field(..., description="快乐源泉")
-        strong_newbie_list: list[GroupHonorInfo] = Field(..., description="冒尖小春笋")
+        model_config = {
+            "extra": "allow",
+        }
 
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="响应码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应提示")
-    echo: str | None = Field(default=None, description="echo")
-# endregion res
+    status: Literal["ok"] = Field(default="ok", description="状态码")
+    retcode: float = Field(default=0.0, description="返回码")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field(default="", description="消息")
+    wording: str = Field(default="", description="提示词")
+    echo: str | None = Field(default=None, description="回显信息")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class GetGroupHonorInfoAPI(BaseModel):
@@ -85,9 +64,5 @@ class GetGroupHonorInfoAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupHonorInfoReq
     Res: type[BaseModel] = GetGroupHonorInfoRes
-# endregion api
 
-
-
-
-# endregion code
+# endregion api/

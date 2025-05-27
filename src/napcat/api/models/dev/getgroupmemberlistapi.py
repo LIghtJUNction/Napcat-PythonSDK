@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: group
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657034e0
 @llms.txt: https://napcat.apifox.cn/226657034e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
 @description: 
 
@@ -21,78 +21,62 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal # Used for Literal["ok"]
 
-logger = logging.getLogger(__name__)
+# region component_models
+# OpenAPI component schema: #/components/schemas/%E7%BE%A4%E6%88%90%E5%91%98%E4%BF%A1%E6%81%AF
+class GroupMemberInfo(BaseModel):
+    """群成员信息"""
+    group_id: float = Field(description="群号")
+    user_id: float = Field(description="用户ID")
+    nickname: str = Field(description="昵称")
+    card: str = Field(description="群昵称")
+    sex: str = Field(description="性别")
+    age: float = Field(description="年龄")
+    area: str = Field(description="地区")
+    level: float = Field(description="群等级")
+    qq_level: float = Field(description="账号等级")
+    join_time: float = Field(description="加群时间 (Unix时间戳)")
+    last_sent_time: float = Field(description="最后发言时间 (Unix时间戳)")
+    title_expire_time: float = Field(description="头衔过期时间 (Unix时间戳)")
+    unfriendly: bool = Field(description="是否不友好（如被举报等）")
+    card_changeable: bool = Field(description="群昵称是否可修改")
+    is_robot: bool = Field(description="是否机器人")
+    shut_up_timestamp: float = Field(description="禁言时长 (Unix时间戳)，0 表示未被禁言")
+    role: str = Field(description="权限，可选值：owner (群主), admin (管理员), member (普通成员)")
+    title: str = Field(description="专属头衔")
+
+# region component_models/
 
 # region req
 class GetGroupMemberListReq(BaseModel):
-    """
-    获取群成员列表请求参数
-    """
+    """获取群成员列表请求"""
+    # OpenAPI: group_id: oneOf: [number, string] -> corresponds to `group_id` parameter directly
+    group_id: str | float = Field(description="群号，可以是群ID（数字）或群名称（字符串）")
+    # OpenAPI: no_cache: type: boolean, default: false -> optional parameter with default
+    no_cache: bool = Field(default=False, description="是否不使用缓存，若为 True 则不使用缓存，强制拉取新数据")
 
-    group_id: int | str = Field(
-        ..., description="群号"
-    )
-    no_cache: bool = Field(
-        False, description="是否不使用缓存"
-    )
-
-# endregion req
+# region req/
 
 
 # region res
-class GroupMemberInfo(BaseModel):
-    """
-    群成员信息
-    """
-    group_id: int = Field(..., description="群号")
-    user_id: int = Field(..., description="用户ID")
-    nickname: str = Field(..., description="昵称")
-    card: str = Field(..., description="群昵称")
-    sex: str = Field(..., description="性别")
-    age: int = Field(..., description="年龄")
-    area: str = Field(..., description="地区")
-    level: int = Field(..., description="群等级")
-    qq_level: int = Field(..., description="账号等级")
-    join_time: int = Field(..., description="加群时间")
-    last_sent_time: int = Field(..., description="最后发言时间")
-    title_expire_time: int = Field(..., description="头衔到期时间") # Note: Description missing in schema, added placeholder
-    unfriendly: bool = Field(..., description="是否不友好") # Note: Description missing in schema, added placeholder
-    card_changeable: bool = Field(..., description="群名片是否可修改") # Note: Description missing in schema, added placeholder
-    is_robot: bool = Field(..., description="是否机器人")
-    shut_up_timestamp: int = Field(..., description="禁言时长")
-    role: str = Field(..., description="权限") # Note: Could be Literal['owner', 'admin', 'member'] if schema specified
-    title: str = Field(..., description="头衔")
-
-
 class GetGroupMemberListRes(BaseModel):
-    """
-    获取群成员列表响应参数
-    """
+    """获取群成员列表响应"""
+    # OpenAPI: status: const: ok
+    status: Literal["ok"] = Field(description="状态码，固定为 'ok'")
+    # OpenAPI: retcode: type: number
+    retcode: float = Field(description="操作返回码")
+    # OpenAPI: data: type: array, items: #/components/schemas/群成员信息
+    data: list[GroupMemberInfo] = Field(description="群成员信息列表")
+    # OpenAPI: message: type: string
+    message: str = Field(description="提示信息")
+    # OpenAPI: wording: str = Field(description="更详细的提示信息（人类可读）")
+    wording: str = Field(description="更详细的提示信息（人类可读）")
+    # OpenAPI: echo: type: string, nullable: true
+    echo: str | None = Field(description="echo字段")
 
-    status: Literal["ok"] = Field(
-        ..., description="状态"
-    )
-    retcode: int = Field(
-        ..., description="返回码"
-    )
-    data: list[GroupMemberInfo] = Field(
-        ..., description="群成员信息列表"
-    )
-    message: str = Field(
-        ..., description="消息"
-    )
-    wording: str = Field(
-        ..., description="提示"
-    )
-    echo: str | None = Field(
-        ..., description="回显"
-    )
-
-# endregion res
+# region res/
 
 # region api
 class GetGroupMemberListAPI(BaseModel):
@@ -101,7 +85,6 @@ class GetGroupMemberListAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupMemberListReq
     Res: type[BaseModel] = GetGroupMemberListRes
-# endregion api
 
-
+# region api/
 # endregion code

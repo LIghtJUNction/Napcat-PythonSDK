@@ -1,1 +1,11 @@
-Analyzing OpenAPI spec for /delete_essence_msg endpoint. Request body requires 'message_id' (int or string). Response body requires nested structure: top-level (status, retcode, data, message, wording, echo), data (errCode, errMsg, result), result (wording, digestUin, digestTime, msg), msg (groupCode, msgSeq, etc. based on example). Refactoring code to use Pydantic v2, nested models, Literal type for 'status', '| None' for nullable fields, and adding Field descriptions. Removing unused imports.
+根据Pydantic v2和Python 3.13的编码指南对模型进行了修复和优化。主要改动包括：
+1.  **类型标注强化**：确保所有字段都强制类型标注。
+2.  **弃用类型替换**：避免使用`typing`模块中被弃用的类型别名（如`Dict`、`List`），改为使用内置类型（如`dict`、`list`），并使用`| None`替代`Optional`。
+3.  **模型结构调整**：
+    *   移除了不符合OpenAPI规范的`message_id`和`result`组件模型，因为`message_id`在OpenAPI中被定义为`oneOf: [number, string]`的标量类型，而非复杂对象。
+    *   将`DeleteEssenceMsgRes`中的`Data`和`ResultData`（原`Result`，为避免命名冲突更名）作为嵌套类定义在`DeleteEssenceMsgRes`内部，以更好地反映OpenAPI的层级结构。
+4.  **字段默认值与描述**：所有模型字段都通过`pydantic.Field`添加了详细的描述信息和合适的默认值（例如，`status`字段使用`Literal['ok']`并设置默认值`'ok'`，`retcode`为`0.0`，字符串字段为`''`，可空字段为`None`）。
+5.  **数据类型对齐OpenAPI**：
+    *   `DeleteEssenceMsgReq`中的`message_id`字段类型修正为`int | str`，符合OpenAPI的`oneOf: [number, string]`定义。
+    *   `DeleteEssenceMsgRes.Data.ResultData`中的`digestTime`字段根据OpenAPI的`type: string`定义，修正为`str`（即使示例为`0`）。`msg`字段修正为`dict[str, Any]`以应对OpenAPI中空对象但示例丰富的场景。
+6.  **冗余代码清理**：移除了未使用的`logging`导入。

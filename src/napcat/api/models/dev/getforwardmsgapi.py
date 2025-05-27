@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: [
-    "消息相关"
-]
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226656712e0
 @llms.txt: https://napcat.apifox.cn/226656712e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:08
 
 @description: 
 
@@ -23,161 +21,286 @@ __method__ = "POST"
 
 
 # region code
-
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal, Union
 
-# region req
-class GetForwardMsgReq(BaseModel):
-    """
-    获取合并转发消息请求模型
-    """
-    message_id: str = Field(..., description="合并转发消息ID")
-# endregion req
+# region component_models
 
+# Enum for sender sex
+class SenderSex(Literal["male", "female", "unknown"]):
+    pass
 
-# region res
+# Enum for sender role
+class SenderRole(Literal["owner", "admin", "member"]):
+    pass
 
-# Define nested models for message components
+class Sender(BaseModel):
+    user_id: float = Field(..., description="用户ID")
+    nickname: str = Field(..., description="昵称")
+    sex: SenderSex | None = Field(None, description="性别")
+    age: float | None = Field(None, description="年龄")
+    card: str = Field(..., description="群名片")
+    role: SenderRole | None = Field(None, description="群成员角色")
 
-class TextMessageData(BaseModel):
+    model_config = {
+        "extra": "allow",
+    }
+
+# Define specific message data models
+class TextData(BaseModel):
     text: str = Field(..., description="文本内容")
 
+    model_config = {
+        "extra": "allow",
+    }
+
+class AtData(BaseModel):
+    qq: str | float | Literal["all"] = Field(..., description="艾特的QQ号或'all'")
+    name: str | None = Field(None, description="艾特的名称")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class FaceData(BaseModel):
+    id: float = Field(..., description="表情ID")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class ImageData(BaseModel):
+    file: str = Field(..., description="图片文件ID")
+    summary: str = Field("[图片]", description="外显文本")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class ReplyData(BaseModel):
+    id: str | float = Field(..., description="回复消息ID")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class JsonData(BaseModel):
+    data: str = Field(..., description="JSON数据")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class VoiceData(BaseModel):
+    file: str = Field(..., description="语音文件ID")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class VideoData(BaseModel):
+    file: str = Field(..., description="视频文件ID")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class MarkdownData(BaseModel):
+    content: str = Field(..., description="Markdown内容")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class FileData(BaseModel):
+    file: str = Field(..., description="文件ID")
+    name: str | None = Field(None, description="文件名")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+# Define the message types themselves, using the data models
 class TextMessage(BaseModel):
     type: Literal["text"] = Field("text", description="消息类型")
-    data: TextMessageData = Field(..., description="消息数据")
+    data: TextData = Field(..., description="消息数据")
 
-class AtMessageData(BaseModel):
-    qq: int | str = Field(..., description="被艾特用户的QQ号，或者all")
-    name: str | None = Field(None, description="被艾特用户的群名片或昵称")
+    model_config = {
+        "extra": "allow",
+    }
 
 class AtMessage(BaseModel):
     type: Literal["at"] = Field("at", description="消息类型")
-    data: AtMessageData = Field(..., description="消息数据")
+    data: AtData = Field(..., description="消息数据")
 
-class FaceMessageData(BaseModel):
-    id: int = Field(..., description="表情ID")
+    model_config = {
+        "extra": "allow",
+    }
 
 class FaceMessage(BaseModel):
     type: Literal["face"] = Field("face", description="消息类型")
-    data: FaceMessageData = Field(..., description="消息数据")
+    data: FaceData = Field(..., description="消息数据")
 
-class ImageMessageData(BaseModel):
-    file: str = Field(..., description="图片文件名或链接")
-    summary: str = Field("[图片]", description="外显")
+    model_config = {
+        "extra": "allow",
+    }
 
 class ImageMessage(BaseModel):
     type: Literal["image"] = Field("image", description="消息类型")
-    data: ImageMessageData = Field(..., description="消息数据")
+    data: ImageData = Field(..., description="消息数据")
 
-class ReplyMessageData(BaseModel):
-    id: int | str = Field(..., description="回复消息的ID")
+    model_config = {
+        "extra": "allow",
+    }
 
 class ReplyMessage(BaseModel):
     type: Literal["reply"] = Field("reply", description="消息类型")
-    data: ReplyMessageData = Field(..., description="消息数据")
+    data: ReplyData = Field(..., description="消息数据")
 
-class JsonMessageData(BaseModel):
-    data: str = Field(..., description="JSON字符串")
+    model_config = {
+        "extra": "allow",
+    }
 
 class JsonMessage(BaseModel):
     type: Literal["json"] = Field("json", description="消息类型")
-    data: JsonMessageData = Field(..., description="消息数据")
+    data: JsonData = Field(..., description="消息数据")
 
-# Note: OpenAPI spec uses 'record' for both voice and markdown
-# Pydantic Union handles this by trying models in order.
-
-class VoiceMessageData(BaseModel):
-    file: str = Field(..., description="语音文件名或链接")
+    model_config = {
+        "extra": "allow",
+    }
 
 class VoiceMessage(BaseModel):
-    type: Literal["record"] = Field("record", description="消息类型 (语音)")
-    data: VoiceMessageData = Field(..., description="消息数据")
+    type: Literal["record"] = Field("record", description="消息类型")
+    data: VoiceData = Field(..., description="消息数据")
 
-class MarkdownMessageData(BaseModel):
-    content: str = Field(..., description="Markdown内容")
-
-class MarkdownMessage(BaseModel):
-    type: Literal["record"] = Field("record", description="消息类型 (Markdown)")
-    data: MarkdownMessageData = Field(..., description="消息数据")
-
-class FileMessageData(BaseModel):
-    file: str = Field(..., description="文件名或链接")
-    name: str | None = Field(None, description="文件名") # Not required in schema
-
-class FileMessage(BaseModel):
-    type: Literal["file"] = Field("file", description="消息类型")
-    data: FileMessageData = Field(..., description="消息数据")
-
-# Define the union of all possible message component types
-AnyOfMessageTypes = TextMessage | AtMessage | FaceMessage | ImageMessage | ReplyMessage | JsonMessage | VoiceMessage | VideoMessage | FileMessage | MarkdownMessage # ForwardMessage is handled separately within MessageDetail
-
-class Sender(BaseModel):
-    user_id: int = Field(..., description="发送者QQ号")
-    nickname: str = Field(..., description="发送者昵称")
-    sex: Literal["male", "female", "unknown"] = Field(..., description="性别")
-    age: int | None = Field(None, description="年龄")
-    card: str = Field(..., description="群名片")
-    role: Literal["owner", "admin", "member"] | None = Field(None, description="群角色") # Not required in schema
-
-class MessageDetail(BaseModel):
-    # Note: This model represents an item within the 'message' array in the response data, and also the content of a 'forward' message.
-    self_id: int = Field(..., description="机器人QQ号")
-    user_id: int = Field(..., description="消息发送者QQ号")
-    time: int = Field(..., description="消息发送时间 (Unix timestamp)")
-    message_id: int = Field(..., description="消息ID")
-    message_seq: int = Field(..., description="消息序列号")
-    real_id: int = Field(..., description="真实消息ID")
-    real_seq: str = Field(..., description="真实消息序列号")
-    message_type: str = Field(..., description="消息类型，如private, group")
-    sender: Sender = Field(..., description="发送者信息")
-    raw_message: str = Field(..., description="原始CQ码消息")
-    font: int = Field(..., description="字体")
-    sub_type: str = Field(..., description="消息子类型")
-    message: list[AnyOfMessageTypes | 'ForwardMessage'] = Field(..., description="消息内容，数组形式，每个元素是不同的消息段") # Needs forward declaration due to recursion
-    message_format: str = Field(..., description="消息格式，如array")
-    post_type: str = Field(..., description="上报类型")
-    group_id: int | None = Field(None, description="群号 (仅群消息) ") # Not required in schema
-
-class VideoMessageData(BaseModel):
-    file: str = Field(..., description="视频文件名或链接")
+    model_config = {
+        "extra": "allow",
+    }
 
 class VideoMessage(BaseModel):
     type: Literal["video"] = Field("video", description="消息类型")
-    data: VideoMessageData = Field(..., description="消息数据")
+    data: VideoData = Field(..., description="消息数据")
 
-# Define the recursive ForwardMessage here after MessageDetail
-class ForwardMessageData(BaseModel):
-    id: str = Field(..., description="合并转发消息ID")
-    content: list[MessageDetail] = Field(..., description="合并转发消息内容")
+    model_config = {
+        "extra": "allow",
+    }
+
+class MarkdownMessage(BaseModel):
+    type: Literal["record"] = Field("record", description="消息类型")
+    data: MarkdownData = Field(..., description="消息数据")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class FileMessage(BaseModel):
+    type: Literal["file"] = Field("file", description="消息类型")
+    data: FileData = Field(..., description="消息数据")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+# MessageDetail must be defined before ForwardMessage can fully use it in its content list
+class MessageDetail(BaseModel):
+    self_id: float = Field(..., description="自身ID")
+    user_id: float = Field(..., description="用户ID")
+    time: float = Field(..., description="时间戳")
+    message_id: float = Field(..., description="消息ID")
+    message_seq: float = Field(..., description="消息序列号")
+    real_id: float = Field(..., description="真实ID")
+    real_seq: str = Field(..., description="真实序列号")
+    message_type: str = Field(..., description="消息类型")
+    sender: Sender = Field(..., description="发送者信息")
+    raw_message: str = Field(..., description="原始消息内容")
+    font: float = Field(..., description="字体")
+    sub_type: str = Field(..., description="子类型")
+    message: list[Union[TextMessage, AtMessage, FaceMessage, ImageMessage, ReplyMessage, JsonMessage, VoiceMessage, VideoMessage, MarkdownMessage, FileMessage, 'ForwardMessage']] = Field(default_factory=list, description="消息内容列表")
+    message_format: str = Field(..., description="消息格式")
+    post_type: str = Field(..., description="事件类型")
+    group_id: float | None = Field(None, description="群ID (如果是群消息)")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+class ForwardData(BaseModel):
+    id: str = Field(..., description="转发消息ID")
+    content: list[MessageDetail] = Field(default_factory=list, description="转发消息内容列表")
+
+    model_config = {
+        "extra": "allow",
+    }
 
 class ForwardMessage(BaseModel):
     type: Literal["forward"] = Field("forward", description="消息类型")
-    data: ForwardMessageData = Field(..., description="消息数据")
+    data: ForwardData = Field(..., description="消息数据")
 
-# Update MessageDetail's 'message' field definition after ForwardMessage is defined
-MessageDetail.model_rebuild()
+    model_config = {
+        "extra": "allow",
+    }
 
+# Update MessageDetail's message field to include the now-defined ForwardMessage
+# This is done for handling circular references if Pydantic needs it at runtime, though for type hints it's often automatic.
+MessageDetail.model_fields['message'].annotation = list[Union[TextMessage, AtMessage, FaceMessage, ImageMessage, ReplyMessage, JsonMessage, VoiceMessage, VideoMessage, MarkdownMessage, FileMessage, ForwardMessage]]
+
+class GetCombinedForwardMessage(BaseModel):
+    self_id: float = Field(..., description="自身ID")
+    user_id: float = Field(..., description="用户ID")
+    time: float = Field(..., description="时间戳")
+    message_id: float = Field(..., description="消息ID")
+    message_seq: float = Field(..., description="消息序列号")
+    real_id: float = Field(..., description="真实ID")
+    real_seq: str = Field(..., description="真实序列号")
+    message_type: str = Field(..., description="消息类型")
+    sender: Sender = Field(..., description="发送者信息")
+    raw_message: str = Field(..., description="原始消息内容")
+    font: float = Field(..., description="字体")
+    sub_type: str = Field(..., description="子类型")
+    message: list[Union[TextMessage, AtMessage, FaceMessage, ImageMessage, ReplyMessage, JsonMessage, VoiceMessage, VideoMessage, MarkdownMessage, FileMessage, ForwardMessage]] = Field(default_factory=list, description="消息内容列表")
+    message_format: str = Field(..., description="消息格式")
+    post_type: str = Field(..., description="事件类型")
+    group_id: float | None = Field(None, description="群ID (如果是群消息)")
+
+    model_config = {
+        "extra": "allow",
+    }
+
+# region component_models/
+
+# region req
+class GetForwardMsgReq(BaseModel):
+    """获取合并转发消息请求"""
+    message_id: str = Field(..., description="合并转发消息ID")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
+
+
+# region res
 class GetForwardMsgRes(BaseModel):
-    """
-    获取合并转发消息响应模型
-    """
-
+    """获取合并转发消息响应"""
     class Data(BaseModel):
-        """
-        响应数据详情
-        """
-        # The 'message' field here is an array of MessageDetail
-        message: list[MessageDetail] = Field(..., description="合并转发消息的详细内容列表")
+        """响应数据类型"""
+        message: list[GetCombinedForwardMessage] = Field(default_factory=list, description="合并转发消息列表")
+
+        model_config = {
+            "extra": "allow",
+        }
 
     status: Literal["ok"] = Field("ok", description="响应状态")
-    retcode: int = Field(..., description="响应码") # Schema says number, int is common for retcode
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="中文描述")
-    echo: str | None = Field(None, description="Echo回显")
+    retcode: float = Field(0.0, description="响应码")
+    data: Data = Field(default_factory=Data, description="响应数据")
+    message: str = Field("", description="错误信息")
+    wording: str = Field("", description="错误提示")
+    echo: str | None = Field(None, description="回声")
 
-# endregion res
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetForwardMsgAPI(BaseModel):
@@ -186,7 +309,6 @@ class GetForwardMsgAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetForwardMsgReq
     Res: type[BaseModel] = GetForwardMsgRes
-# endregion api
 
-
+# region api/
 # endregion code

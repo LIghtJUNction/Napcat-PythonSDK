@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['群聊相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659229e0
 @llms.txt: https://napcat.apifox.cn/226659229e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
 @description: 
 
@@ -21,112 +21,130 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+# OpenAPI schema defines group_id as oneOf: [number, string], not an object.
+# No class for group_id is needed as it's a direct type in the request.
+# endregion component_models/
 
 # region req
 class GetGroupInfoExReq(BaseModel):
-    """
-    获取群信息ex 请求模型
-    """
-    group_id: str | int = Field(..., description="群号")
+    """获取群信息ex"""
+    group_id: int | str = Field(description="群ID，可以是数字或字符串")
 
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
-class GroupOwnerId(BaseModel):
-    """
-    群主信息
-    """
-    memberUin: str = Field(..., description="成员UIN")
-    memberUid: str = Field(..., description="成员UID")
-    memberQid: str = Field(..., description="成员QID")
-
-class GroupBindGuildIds(BaseModel):
-    """
-    群绑定频道ID列表
-    """
-    guildIds: list[str] = Field(..., description="频道ID列表")
-
-class GroupExtFlameData(BaseModel):
-    """
-    群拓展火焰数据
-    """
-    switchState: int = Field(..., description="开关状态")
-    state: int = Field(..., description="状态")
-    dayNums: list[str] = Field(..., description="天数列表")
-    version: int = Field(..., description="版本")
-    updateTime: str = Field(..., description="更新时间")
-    isDisplayDayNum: bool = Field(..., description="是否显示天数")
-
-class GroupExcludeGuildIds(BaseModel):
-    """
-    群排除频道ID列表
-    """
-    guildIds: list[str] = Field(..., description="频道ID列表")
-
-class ExtInfo(BaseModel):
-    """
-    扩展信息
-    """
-    groupInfoExtSeq: int = Field(..., description="群信息扩展序列号")
-    reserve: int = Field(..., description="保留字段")
-    luckyWordId: str = Field(..., description="幸运词ID")
-    lightCharNum: int = Field(..., description="亮字数量")
-    luckyWord: str = Field(..., description="幸运词")
-    starId: int = Field(..., description="星标ID")
-    essentialMsgSwitch: int = Field(..., description="重要消息开关")
-    todoSeq: int = Field(..., description="待办事项序列号")
-    blacklistExpireTime: int = Field(..., description="黑名单过期时间")
-    isLimitGroupRtc: int = Field(..., description="是否限制群实时通讯")
-    companyId: int = Field(..., description="公司ID")
-    hasGroupCustomPortrait: int = Field(..., description="是否有群自定义头像")
-    bindGuildId: str = Field(..., description="绑定频道ID")
-    groupOwnerId: GroupOwnerId = Field(..., description="群主信息")
-    essentialMsgPrivilege: int = Field(..., description="重要消息权限")
-    msgEventSeq: str = Field(..., description="消息事件序列号")
-    inviteRobotSwitch: int = Field(..., description="邀请机器人开关")
-    gangUpId: str = Field(..., description="组队ID")
-    qqMusicMedalSwitch: int = Field(..., description="QQ音乐勋章开关")
-    showPlayTogetherSwitch: int = Field(..., description="显示一起玩开关")
-    groupFlagPro1: str = Field(..., description="群标志属性1")
-    groupBindGuildIds: GroupBindGuildIds = Field(..., description="群绑定频道ID列表")
-    viewedMsgDisappearTime: str = Field(..., description="已阅消息消失时间")
-    groupExtFlameData: GroupExtFlameData = Field(..., description="群拓展火焰数据")
-    groupBindGuildSwitch: int = Field(..., description="群绑定频道开关")
-    groupAioBindGuildId: str = Field(..., description="群AIO绑定频道ID")
-    groupExcludeGuildIds: GroupExcludeGuildIds = Field(..., description="群排除频道ID列表")
-    fullGroupExpansionSwitch: int = Field(..., description="满员群扩展开关")
-    fullGroupExpansionSeq: str = Field(..., description="满员群扩展序列号")
-    inviteRobotMemberSwitch: int = Field(..., description="邀请机器人成员开关")
-    inviteRobotMemberExamine: int = Field(..., description="邀请机器人成员审核")
-    groupSquareSwitch: int = Field(..., description="群广场开关")
-
-class Data(BaseModel):
-    """
-    响应数据
-    """
-    groupCode: str = Field(..., description="群号")
-    resultCode: int = Field(..., description="结果码")
-    extInfo: ExtInfo = Field(..., description="扩展信息")
-
 class GetGroupInfoExRes(BaseModel):
-    """
-    获取群信息ex 响应模型
-    """
-    status: Literal["ok"] = Field(..., description="状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="提示信息")
-    echo: None = Field(..., description="Echo字段，总是为 null")
+    """获取群信息ex"""
 
-# endregion res
+    class Data(BaseModel):
+        """响应数据类型"""
+
+        class ExtInfo(BaseModel):
+            """extInfo字段"""
+
+            class GroupOwnerId(BaseModel):
+                """groupOwnerId字段"""
+                memberUin: str = Field(description="memberUin字段")
+                memberUid: str = Field(description="memberUid字段")
+                memberQid: str = Field(description="memberQid字段")
+
+                model_config = {
+                    "extra": "allow",
+                }
+
+            class GroupBindGuildIds(BaseModel):
+                """groupBindGuildIds字段"""
+                guildIds: list[str] = Field(description="guildIds字段")
+
+                model_config = {
+                    "extra": "allow",
+                }
+
+            class GroupExtFlameData(BaseModel):
+                """groupExtFlameData字段"""
+                switchState: int = Field(description="switchState字段")
+                state: int = Field(description="state字段")
+                dayNums: list[str] = Field(description="dayNums字段")
+                version: int = Field(description="version字段")
+                updateTime: str = Field(description="updateTime字段")
+                isDisplayDayNum: bool = Field(description="isDisplayDayNum字段")
+
+                model_config = {
+                    "extra": "allow",
+                }
+
+            class GroupExcludeGuildIds(BaseModel):
+                """groupExcludeGuildIds字段"""
+                guildIds: list[str] = Field(description="guildIds字段")
+
+                model_config = {
+                    "extra": "allow",
+                }
+
+            groupInfoExtSeq: int = Field(description="groupInfoExtSeq字段")
+            reserve: int = Field(description="reserve字段")
+            luckyWordId: str = Field(description="luckyWordId字段")
+            lightCharNum: int = Field(description="lightCharNum字段")
+            luckyWord: str = Field(description="luckyWord字段")
+            starId: int = Field(description="starId字段")
+            essentialMsgSwitch: int = Field(description="essentialMsgSwitch字段")
+            todoSeq: int = Field(description="todoSeq字段")
+            blacklistExpireTime: int = Field(description="blacklistExpireTime字段")
+            isLimitGroupRtc: int = Field(description="isLimitGroupRtc字段")
+            companyId: int = Field(description="companyId字段")
+            hasGroupCustomPortrait: int = Field(description="hasGroupCustomPortrait字段")
+            bindGuildId: str = Field(description="bindGuildId字段")
+            groupOwnerId: GroupOwnerId = Field(description="groupOwnerId字段")
+            essentialMsgPrivilege: int = Field(description="essentialMsgPrivilege字段")
+            msgEventSeq: str = Field(description="msgEventSeq字段")
+            inviteRobotSwitch: int = Field(description="inviteRobotSwitch字段")
+            gangUpId: str = Field(description="gangUpId字段")
+            qqMusicMedalSwitch: int = Field(description="qqMusicMedalSwitch字段")
+            showPlayTogetherSwitch: int = Field(description="showPlayTogetherSwitch字段")
+            groupFlagPro1: str = Field(description="groupFlagPro1字段")
+            groupBindGuildIds: GroupBindGuildIds = Field(description="groupBindGuildIds字段")
+            viewedMsgDisappearTime: str = Field(description="viewedMsgDisappearTime字段")
+            groupExtFlameData: GroupExtFlameData = Field(description="groupExtFlameData字段")
+            groupBindGuildSwitch: int = Field(description="groupBindGuildSwitch字段")
+            groupAioBindGuildId: str = Field(description="groupAioBindGuildId字段")
+            groupExcludeGuildIds: GroupExcludeGuildIds = Field(description="groupExcludeGuildIds字段")
+            fullGroupExpansionSwitch: int = Field(description="fullGroupExpansionSwitch字段")
+            fullGroupExpansionSeq: str = Field(description="fullGroupExpansionSeq字段")
+            inviteRobotMemberSwitch: int = Field(description="inviteRobotMemberSwitch字段")
+            inviteRobotMemberExamine: int = Field(description="inviteRobotMemberExamine字段")
+            groupSquareSwitch: int = Field(description="groupSquareSwitch字段")
+
+            model_config = {
+                "extra": "allow",
+            }
+
+        groupCode: str = Field(description="groupCode字段")
+        resultCode: float = Field(description="resultCode字段")
+        extInfo: ExtInfo = Field(description="extInfo字段")
+
+        model_config = {
+            "extra": "allow",
+        }
+
+    status: Literal["ok"] = Field(description="status字段", default="ok")
+    retcode: float = Field(description="retcode字段", default=0.0)
+    data: Data = Field(description="data字段")
+    message: str = Field(description="message字段", default="")
+    wording: str = Field(description="wording字段", default="")
+    echo: None = Field(description="echo字段", default=None)
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class GetGroupInfoExAPI(BaseModel):
@@ -135,9 +153,6 @@ class GetGroupInfoExAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetGroupInfoExReq
     Res: type[BaseModel] = GetGroupInfoExRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

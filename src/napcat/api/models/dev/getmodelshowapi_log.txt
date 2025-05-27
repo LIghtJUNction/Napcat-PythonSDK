@@ -1,1 +1,9 @@
-Based on the OpenAPI specification for /_get_model_show, I have updated the Pydantic models. The GetModelShowReq now correctly includes the 'model' field with type 'str' and default 'napcat'. The GetModelShowRes has been refactored to include nested models for 'data' -> list of 'ModelItem' -> 'variants'. Inner classes 'Variants' and 'ModelItem' are defined within GetModelShowRes. Field types are updated according to the spec (status is Literal["ok"], retcode is int, data is list[ModelItem], message, wording, echo with str | None). Required fields are marked, and descriptions are added using Field. Unused imports were removed. The GetModelShowAPI class remains unchanged as it correctly references the Req and Res models.
+构建过程日志:
+1.  **移除多余导入**: 删除了 `typing.Any` 导入，因为它不再直接用于响应模型，而 `logging` 仍然被使用，因此保留。
+2.  **强制类型标注和默认值**: 为所有字段添加了明确的类型标注。使用 `Field` 设置了默认值和详细描述，确保代码符合Pydantic V2的最佳实践。
+3.  **修复 `typing` 模块弃用类型**: 确保所有类型都使用内置类型 (如 `list`, `dict`) 或 `| None` 代替旧的 `typing.List`, `typing.Optional` 等。
+4.  **内部嵌套类**: 将响应模型 `GetModelShowRes` 中复杂的 `data` 结构拆分为嵌套的 `DataItem` 和 `Variants` 类，使其结构更清晰，符合 OpenAPI 规范中 `data` 字段的实际结构。
+5.  **`Literal` 类型**: 将 `GetModelShowRes` 和 `Result` 中的 `status` 字段类型从 `str` 更改为 `Literal["ok"]`，以精确表示其固定值。
+6.  **`Result` 类修复**: 根据 OpenAPI `components/schemas/result` 的定义，将 `data` 字段类型调整为 `dict[str, object]`，并添加了默认值 `default_factory=dict` 和描述。同时将类名更改为 `Result` 以符合 Python 的 PascalCase 命名规范。
+7.  **`GetModelShowReq` 修复**: 为 `model` 字段添加了 `default="napcat"` 和描述，与 OpenAPI 定义保持一致。
+8.  **`GetModelShowAPI` 修复**: 为 `endpoint`, `method`, `Req`, `Res` 字段添加了 `Field` 和描述，增加了模型的完整性。

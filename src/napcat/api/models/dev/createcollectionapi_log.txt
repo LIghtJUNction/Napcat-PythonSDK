@@ -1,1 +1,21 @@
-Based on the provided OpenAPI specification, the CreateCollectionReq model was populated with required fields `rawData` and `brief` of type `str`. The CreateCollectionRes model was restructured to include the required fields: `status` (using `Literal["ok"]`), `retcode` (`int`), `data` (defined as a nested `Data` model), `message` (`str`), `wording` (`str`), and `echo` (`str | None`). The nested `Data` model includes `result` (`int`) and `errMsg` (`str`). Descriptions were added to all fields using `Field`. Unused imports (`Any`) were removed. Type hints were updated to comply with Python 3.13 standards (`str | None`, `list`, etc.). The overall structure now accurately reflects the API definition.
+Fixing code based on user requirements and OpenAPI spec:
+1.  **Redundant Imports**: Removed `typing.Any` as it's not considered 'deprecated' in the same way as `Dict`, `List`, etc. for Pydantic v2. Added `Literal` from `typing` as it's now required.
+2.  **Type Annotations**: Ensured all fields have explicit type annotations.
+3.  **Descriptions and Initial Values**: 
+    *   `result` class: 
+        *   `status`: Changed to `Literal["ok"]` as per `const: ok` in OpenAPI. No default needed for required `Literal` fields.
+        *   All other fields are required and non-nullable; removed default values for `retcode`, `data`, `message`, `wording` in `result` class, ensuring they are correctly interpreted as mandatory without Pydantic setting an implicit default (which would make them optional).
+    *   `CreateCollectionRes.Data` class: 
+        *   `result`: Removed `default=None` as it's a required `number` field.
+        *   `errMsg`: Removed `default=None` as it's a required `string` field.
+    *   `CreateCollectionRes` class: 
+        *   `status`: Changed to `Literal["ok"]` as per `const: ok` in OpenAPI. No default needed.
+        *   `retcode`: Removed `default=0` as it's a required `number` field.
+        *   `data`: Removed `default_factory=lambda: Data()` as `data` is required and its nested fields (`result`, `errMsg`) are also required without defaults, meaning an instance must be provided upon creation.
+        *   `message`: Removed `default=""` as it's a required `string` field.
+        *   `wording`: Removed `default=""` as it's a required `string` field.
+        *   `echo`: Kept `default=None` as it's a required but `nullable` field.
+4.  **Nested Classes**: The `Data` class is already correctly nested within `CreateCollectionRes`.
+5.  **Literal Types**: Applied `Literal["ok"]` for the `status` field in both `result` and `CreateCollectionRes` to reflect the `const: ok` constraint from the OpenAPI specification.
+
+All changes align with Pydantic v2 best practices, type hinting guidelines, and the provided OpenAPI specification.

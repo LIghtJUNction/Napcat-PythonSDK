@@ -4,7 +4,7 @@
 @tags: 其他/bug
 @homepage: https://napcat.apifox.cn/226659182e0
 @llms.txt: https://napcat.apifox.cn/226659182e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
 @description: 
 
@@ -21,35 +21,52 @@ __method__ = "POST"
 
 
 # region code
-import logging
 from pydantic import BaseModel, Field
-from typing import Literal
+from typing import Literal, Any
+import logging
 
 logger = logging.getLogger(__name__)
 
+# region component_models
+class Result(BaseModel):
+    status: Literal["ok"] = Field("ok", description="状态字段，固定为'ok'")
+    retcode: float = Field(..., description="返回码字段")
+    data: dict[str, Any] = Field(..., description="数据字段（通用对象）")
+    message: str = Field(..., description="消息字段")
+    wording: str = Field(..., description="文案字段")
+    echo: str | None = Field(None, description="回显字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region component_models/
+
 # region req
 class GetCollectionListReq(BaseModel):
-    """
-    获取收藏列表请求模型
-    """
-    category: str = Field(..., description="收藏类别")
-    count: str = Field(..., description="数量") # Note: OpenAPI spec says string for count, which might be unusual.
-# endregion req
+    """获取收藏列表请求模型"""
+    category: str = Field(..., description="收藏分类")
+    count: str = Field(..., description="收藏数量")
 
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetCollectionListRes(BaseModel):
-    """
-    获取收藏列表响应模型
-    """
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="返回码") # Assuming int based on typical usage
-    data: list[str] = Field(..., description="收藏列表数据，元素为字符串")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="补充说明")
-    echo: str | None = Field(..., description="回显信息") # Nullable but required
-# endregion res
+    """获取收藏列表响应模型"""
+    status: Literal["ok"] = Field("ok", description="响应状态，固定为'ok'")
+    retcode: float = Field(0.0, description="响应返回码")
+    data: list[str] = Field(default_factory=list, description="收藏列表数据，每个元素为字符串")
+    message: str = Field("", description="响应消息")
+    wording: str = Field("", description="响应文案")
+    echo: str | None = Field(None, description="回显字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetCollectionListAPI(BaseModel):
@@ -58,9 +75,6 @@ class GetCollectionListAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetCollectionListReq
     Res: type[BaseModel] = GetCollectionListRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code

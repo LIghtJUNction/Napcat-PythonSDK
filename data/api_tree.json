@@ -207,6 +207,12 @@
           "description": ""
         }
       },
+      "发送戳一戳": {
+        "url": "https://napcat.apifox.cn/250286923e0.md",
+        "id": "250286923e0",
+        "type": "e0",
+        "description": ""
+      },
       "撤回消息": {
         "url": "https://napcat.apifox.cn/226919954e0.md",
         "id": "226919954e0",
@@ -285,17 +291,23 @@
         "type": "e0",
         "description": ""
       },
+      "获取被过滤好友请求": {
+        "url": "https://napcat.apifox.cn/289565516e0.md",
+        "id": "289565516e0",
+        "type": "e0",
+        "description": ""
+      },
       "获取推荐好友/群聊卡片": {
         "url": "https://napcat.apifox.cn/226658965e0.md",
         "id": "226658965e0",
         "type": "e0",
         "description": ""
       },
-      "发送戳一戳": {
-        "url": "https://napcat.apifox.cn/250286923e0.md",
-        "id": "250286923e0",
+      "处理被过滤好友请求": {
+        "url": "https://napcat.apifox.cn/289565525e0.md",
+        "id": "289565525e0",
         "type": "e0",
-        "description": ""
+        "description": "在 4.7.43 版本中"
       },
       "获取当前账号在线客户端列表": {
         "url": "https://napcat.apifox.cn/226657379e0.md",
@@ -458,6 +470,12 @@
         "id": "266151905e0",
         "type": "e0",
         "description": ""
+      },
+      "设置好友备注": {
+        "url": "https://napcat.apifox.cn/298305173e0.md",
+        "id": "298305173e0",
+        "type": "e0",
+        "description": ""
       }
     },
     "群聊相关": {
@@ -465,6 +483,30 @@
       "id": "54406088f0",
       "type": "f0",
       "description": "",
+      "设置群搜索": {
+        "url": "https://napcat.apifox.cn/301542170e0.md",
+        "id": "301542170e0",
+        "type": "e0",
+        "description": ""
+      },
+      "设置群添加选项": {
+        "url": "https://napcat.apifox.cn/301542178e0.md",
+        "id": "301542178e0",
+        "type": "e0",
+        "description": ""
+      },
+      "设置群机器人添加选项": {
+        "url": "https://napcat.apifox.cn/301542198e0.md",
+        "id": "301542198e0",
+        "type": "e0",
+        "description": ""
+      },
+      "批量踢出群成员": {
+        "url": "https://napcat.apifox.cn/301542209e0.md",
+        "id": "301542209e0",
+        "type": "e0",
+        "description": ""
+      },
       "设置群备注": {
         "url": "https://napcat.apifox.cn/283136268e0.md",
         "id": "283136268e0",
@@ -728,6 +770,12 @@
         "id": "266151849e0",
         "type": "e0",
         "description": ""
+      },
+      "清空缓存": {
+        "url": "https://napcat.apifox.cn/298305106e0.md",
+        "id": "298305106e0",
+        "type": "e0",
+        "description": ""
       }
     },
     "密钥相关": {
@@ -936,30 +984,12 @@
           "type": "e0",
           "description": ""
         },
-        "fetch_user_profile_like": {
-          "url": "https://napcat.apifox.cn/226659254e0.md",
-          "id": "226659254e0",
-          "type": "e0",
-          "description": ""
-        },
         "获取中文分词": {
           "url": "https://napcat.apifox.cn/228534368e0.md",
           "id": "228534368e0",
           "type": "e0",
           "description": ""
         }
-      },
-      "get_doubt_friends_add_request": {
-        "url": "https://napcat.apifox.cn/289565516e0.md",
-        "id": "289565516e0",
-        "type": "e0",
-        "description": ""
-      },
-      "set_doubt_friends_add_request": {
-        "url": "https://napcat.apifox.cn/289565525e0.md",
-        "id": "289565525e0",
-        "type": "e0",
-        "description": ""
       }
     }
   }

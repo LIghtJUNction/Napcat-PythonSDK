@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['消息相关/发送私聊消息']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226659255e0
 @llms.txt: https://napcat.apifox.cn/226659255e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:10
 
-@description: 
+@description:
 
 summary:发送私聊戳一戳
 
@@ -21,33 +21,51 @@ __method__ = "POST"
 
 
 # region code
-import logging
-from typing import Literal # Import Literal
-from pydantic import BaseModel, Field # Keep BaseModel and Field
+from pydantic import BaseModel, Field
+from typing import Literal
 
-logger = logging.getLogger(__name__)
+# region component_models
+class Result(BaseModel):
+    """result字段"""
+    status: Literal["ok"] = Field(default="ok", description="status字段")
+    retcode: float = Field(default=0.0, description="retcode字段")
+    data: dict[str, any] = Field(default_factory=dict, description="data字段")
+    message: str = Field(default="", description="message字段")
+    wording: str = Field(default="", description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion component_models/
 
 # region req
 class FriendPokeReq(BaseModel):
-    """
-    发送私聊戳一戳请求模型
-    """
-    user_id: int | str = Field(..., description="要戳的QQ号")
-# endregion req
+    """发送私聊戳一戳"""
+    user_id: int | str = Field(description="私聊对象") # OpenAPI specifies oneOf: [number, string]
+    target_id: float | str | None = Field(default=None, description="戳一戳对象，可不填") # OpenAPI specifies anyOf: [number, string]
 
+    model_config = {
+        "extra": "allow",
+    }
+# endregion req/
 
 
 # region res
 class FriendPokeRes(BaseModel):
-    """
-    发送私聊戳一戳响应模型
-    """
-    status: Literal["ok"] = Field(..., description="响应状态")
-    retcode: int = Field(..., description="响应码")
-    message: str = Field(..., description="响应消息")
-    wording: str = Field(..., description="响应提示")
-    echo: str | None = Field(None, description="用于識別本次操作的任意字符串, client在每次請求時填入相同的字符串, response會原樣返回")
-# endregion res
+    """发送私聊戳一戳"""
+    # Based on OpenAPI response schema for /friend_poke 200, which directly lists these fields.
+    # The nested Data class from the original code has been removed as it does not align with the OpenAPI spec.
+    status: Literal["ok"] = Field(default="ok", description="status字段")
+    retcode: float = Field(default=0.0, description="retcode字段")
+    message: str = Field(default="", description="message字段")
+    wording: str = Field(default="", description="wording字段")
+    echo: str | None = Field(default=None, description="echo字段")
+
+    model_config = {
+        "extra": "allow",
+    }
+# endregion res/
 
 # region api
 class FriendPokeAPI(BaseModel):
@@ -56,9 +74,6 @@ class FriendPokeAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = FriendPokeReq
     Res: type[BaseModel] = FriendPokeRes
-# endregion api
 
-
-
-
+# endregion api/
 # endregion code

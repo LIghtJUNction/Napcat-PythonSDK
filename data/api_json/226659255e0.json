@@ -22,18 +22,27 @@
                 "type": "object",
                 "properties": {
                   "user_id": {
-                    "$ref": "#/components/schemas/user_id"
+                    "$ref": "#/components/schemas/user_id",
+                    "description": "私聊对象"
+                  },
+                  "target_id": {
+                    "$ref": "#/components/schemas/number | string",
+                    "description": "戳一戳对象，可不填"
                   }
                 },
                 "x-apifox-orders": [
-                  "user_id"
+                  "user_id",
+                  "target_id"
                 ],
                 "required": [
                   "user_id"
                 ],
                 "x-apifox-ignore-properties": []
               },
-              "example": ""
+              "example": {
+                "user_id": "1129317309",
+                "target_id": "123"
+              }
             }
           }
         },
@@ -107,6 +116,17 @@
   },
   "components": {
     "schemas": {
+      "number | string": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "x-apifox-folder": ""
+      },
       "user_id": {
         "oneOf": [
           {

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # region METADATA
 """
-@tags: ['消息相关']
+@tags: {{tags}}
 @homepage: https://napcat.apifox.cn/226657066e0
 @llms.txt: https://napcat.apifox.cn/226657066e0.md
-@last_update: 2025-04-27 00:53:40
+@last_update: 2025-05-28 01:34:09
 
-@description: 获取图片消息详情
+@description:
 
 summary:获取图片消息详情
 
@@ -22,43 +22,48 @@ __method__ = "POST"
 
 # region code
 from pydantic import BaseModel, Field
-from typing import Literal # Using Literal for status 'ok'
+from typing import Literal
+import logging
+
+logger = logging.getLogger(__name__)
 
 # region req
 class GetImageReq(BaseModel):
-    """
-    请求模型
-    """
-    file_id: str = Field(..., description="文件ID，例如：226723D7B1EE3BF02E9CFD8236EE468B.jpg")
+    """获取图片消息详情请求模型"""
+    file_id: str = Field(description="图片文件ID")
 
-# endregion req
-
+    model_config = {
+        "extra": "allow",
+    }
+# region req/
 
 
 # region res
 class GetImageRes(BaseModel):
-    """
-    响应模型
-    """
-
+    """获取图片消息详情响应模型"""
     class Data(BaseModel):
-        """
-        响应数据详情
-        """
-        file: str = Field(..., description="本地路径")
-        url: str = Field(..., description="网络路径")
-        file_size: str = Field(..., description="文件大小") # OpenAPI spec says string, keeping string
-        file_name: str = Field(..., description="文件名")
-        base64: str = Field(..., description="Base64编码的图片数据")
+        """响应数据详情"""
+        file: str = Field(description="本地路径")
+        url: str = Field(description="网络路径")
+        file_size: str = Field(description="文件大小")
+        file_name: str = Field(description="文件名")
+        base64: str = Field(description="base64编码的图片数据")
 
-    status: Literal["ok"] = Field(..., description="API执行状态")
-    retcode: int = Field(..., description="返回码")
-    data: Data = Field(..., description="响应数据详情")
-    message: str = Field(..., description="消息")
-    wording: str = Field(..., description="描述信息")
-    echo: str | None = Field(None, description="echo") # Nullable field, use | None
+        model_config = {
+            "extra": "allow",
+        }
 
-# endregion res
+    status: Literal["ok"] = Field(description="状态码，固定为 'ok'")
+    retcode: float = Field(description="返回码")
+    data: Data = Field(description="响应数据详情")
+    message: str = Field(description="消息")
+    wording: str = Field(description="提示词")
+    echo: str | None = Field(description="echo字段，可为空")
+
+    model_config = {
+        "extra": "allow",
+    }
+# region res/
 
 # region api
 class GetImageAPI(BaseModel):
@@ -67,9 +72,6 @@ class GetImageAPI(BaseModel):
     method: str = "POST"
     Req: type[BaseModel] = GetImageReq
     Res: type[BaseModel] = GetImageRes
-# endregion api
 
-
-
-
+# region api/
 # endregion code
