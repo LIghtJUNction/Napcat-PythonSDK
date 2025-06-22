@@ -8,7 +8,7 @@
 平均开发速度 = 净开发动力（ 开发动力 - 开发阻力 ）* 开发时间 / 代码量  
 
 联系作者催更：lightjunction.me@gmail.com
-
+尚未完成！
 **客户端实现**
 
 * [X] [HTTP客户端](https://github.com/LIghtJUNction/Napcat-PythonSDK/blob/main/src/napcat/clients/http) - 支持同步和异步请求
